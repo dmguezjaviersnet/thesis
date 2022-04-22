@@ -1,2 +1,31 @@
 \chapter*{Introducción}\label{chapter:introduction}
 \addcontentsline{toc}{chapter}{Introducción}
+
+Nuestro país se ha propuesto desde hace unos años llevar a cabo un profundo proceso de informatización. Transacciones bancarias, datos móviles, digitalización de información, acceso a información, etc. Todos estos han sido, y aún son, temas dentro de dicho proceso, con el objetivo de facilitar muchas actividades cotidianas. En los tiempos actuales, las carreteras son algo común, y los vehículos que hacen uso de estas también. No obstante, a menudo, las carreteras se deterioran, y en nuestro país, es algo bastante común que la mayoría de las carreteras en las grandes ciudades estén en malas condiciones.
+
+\section*{Motivación}
+Existen varias investigaciones que proponen soluciones para detectar las irregularidades en la carretera, la mayoría utilizan el acelerómetro. Trabajos como [1] The Pothole Patrol, donde utilizan acelerómetros externos que toman muetras con una frecuencia de 380Hz y un GPS externo. Luego estos datos pasan por varios filtros (5 en este caso), cada uno de los cuales se encarga de descartar eventos no asociados a irregularidades en la carretera. O por ejemplo en [2] Real Time Pothole Detection using Android Smartphones with Accelerometers, donde proponen un método utilizando los datos del acelerómetro, para detectar las anomalías, denominado G-ZERO, cuya hipótesis es que en el intervalo de tiempo en el que ocurre una anomalía, las lecturas del acelerómetro en los 3 ejes es bastante cercana a 0 y menor que cierto valor, lo que se asocia con la caída libre del vehículo en ese pequeño intervalo de tiempo.
+
+\section*{Problemática}
+En nuestro país no existe ninguna forma de ubicar de forma sencilla y accesible los tramos de carreteras que están en mal estado. Sería muy útil poder hacer esto, pues de esta forma se podría tener acceso a esta información de forma instantánea. El acceso rápido a estos datos no solo facilitaría la reparación de estas calles, sino que también podría servir de guía a choféres para evitar tales tramos y por tanto consecuencias ocasionadas por estas condiciones.
+
+\section*{Objetivos}
+\subsection*{General}
+
+Desarrollar una aplicación móvil que sea capaz de identificar y clasificar irregularidades en la carretera utilizando los sensores integrados del teléfono móvil.
+
+\subsection*{Específicos}
+\begin{enumerate}
+		\item Analizar el estado del arte respecto a la problemática en cuestión.
+		\item Recolectar información utilizando los sensores del móvil, que nos permita construir una base de datos.
+		\item Clasificar los distintos tipos de irregularidades en la carretera utilizando los datos recolectados previamente mencionada. 
+		\item Ubicar en un mapa las irregularidades haciendo uso de los datos del GPS almacenados en la base de datos.
+		\item Crear una base de datos con información acerca de la localización de tramos en mal estado. 
+
+\end{enumerate}
+
+\section*{Propuesta de solución}
+
+\section*{Estructura de la tesis}
+
+\section*{Estado del arte}
