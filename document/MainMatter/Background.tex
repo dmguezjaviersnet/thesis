@@ -1,1 +1,10 @@
 \chapter{Estado del Arte}\label{chapter:state-of-the-art}
+
+Existen varios artículos científicos que proponen soluciones a este problema, algunos proponen métodos puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, específicamente en la serie temporal del acelerómetro. Entre los varios métodos estadísticos podemos citar: \\
+
+\begin{enumerate}
+	\item [$\bold Z-Thresh$]: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
+	\item [ $\bold Z-DIFF$ ]: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la diferencia modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
+	\item [ $\bold G-ZERO$ ]: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un instante de tiempo donde las lecturas del acelerómetro en los 3 ejez son cercanas a 0 y menores que cierto valor prefijado, lo que indica que el vehículo está en caída libre.\\
+	\item [ $\bold STDEV(Z)$ ]: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de tiempo y compara con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\ 
+\end{enumerate}
