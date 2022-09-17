@@ -1,21 +1,56 @@
 \chapter{Estado del Arte}\label{chapter:state-of-the-art}
 
-Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del acelerómetro. Entre los varios métodos estadísticos Mednis {\it et al.} [] propusieron los siguientes:\\
+Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos
+puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
+acelerómetro. Entre los varios métodos estadísticos Mednis {\it et al.} [] propusieron los siguientes:\\
 
 \begin{enumerate}
-\item [ \textbf {Z-Thresh} ]: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
-	\item [ \textbf {Z-DIFF} ]: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la diferencia modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
-	\item [ \textbf {STDEV(Z)} ]: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de tiempo y compara con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\ 
-	\item [ \textbf {G-ZERO} ]: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto valor prefijado, lo que indica que el vehículo está en caída libre.\\
+\item [ \textbf {Z-Thresh} ]: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con 
+	un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
+	\item [ \textbf {Z-DIFF} ]: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la
+		diferencia modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
+	\item [ \textbf {STDEV(Z)} ]: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de
+		tiempo y compara con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\ 
+	\item [ \textbf {G-ZERO} ]: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
+		instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto valor prefijado, lo que indica que el vehículo está en caída libre.\\
 \end{enumerate}
 
 Los 3 primeros requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la información.\\
 
-P. Mohan {\it et al.} [] para el diseño de su estrategia (Nericell) se basaron en 2 ideas, cuando un vehículo interactúa con una anomalía (un bache en este caso) las ruedas descienden en el hueco ocasionando una caída sostenida en la aceleración en el eje Z, hasta que alcanzan el fondo del bache y en ese momento se produce un pico bien elevado de aceleración en el eje Z. A altas velocidades ese pico al final del evento es bien prominente, sin embargo cuando se va a muy poca velocidad no se nota prácticamente, pero la caída sostenida en la aceleración en el eje Z al entrar al bache si se mantiene, por lo que propusieron 2 métodos para detectar una anomalía dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
+P. Mohan {\it et al.} [] para el diseño de su estrategia (Nericell) se basaron en 2 ideas, cuando un vehículo interactúa con una
+anomalía (un bache en este caso) las ruedas descienden en el hueco ocasionando una caída sostenida en la aceleración en el eje Z,
+hasta que alcanzan el fondo del bache y en ese momento se produce un pico bien elevado de aceleración en el eje Z. A altas velocidades
+ese pico al final del evento es bien prominente, sin embargo cuando se va a muy poca velocidad no se nota prácticamente, pero la caída
+sostenida en la aceleración en el eje Z al entrar al bache si se mantiene, por lo que propusieron 2 métodos para detectar una anomalía
+dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
 
 \begin{enumerate}
-	\item [ \textbf {\it v > 25 km/h} ] Utilizan un método idéntico al \textbf {Z-THRESH}, o sea, buscan un valor bien prominente de aceleración en un instante de tiempo determinado, que sea mayor que cierto límite prefijado.\\
-	\item [ \textbf {\it v < 25 km/h} ] Utilizan un método que llamaron \textbf {Z-SUS} que busca una caída sostenida en la aceleración en el eje Z, por debajo de un cierto límite prefijado, durante cierta cantidad de tiempo.\\
+	\item [ \textbf {\it v > 25 km/h} ] Utilizan un método idéntico al \textbf {Z-THRESH}, o sea, buscan un valor bien prominente de
+		aceleración en un instante de tiempo determinado, que sea mayor que cierto límite prefijado.\\
+	\item [ \textbf {\it v < 25 km/h} ] Utilizan un método que llamaron \textbf {Z-SUS} que busca una caída sostenida en la aceleración
+		en el eje Z, por debajo de un cierto límite prefijado, durante cierta cantidad de tiempo.\\
 \end{enumerate}
 
-Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, Carlos {\it et al.} [] utilizaron SVM para entrenar un modelo que decidiera utilizando varios features (basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. Features como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 features utilizados para otorgar un valor de confianza a 4 de los features previamente mencionados excepto a la varianza, comparándolos con un cierto valor límite. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema, como el de Mednis {\it et al.}, con el objetivo de mejorar el rendimiento del clasificador. Otro de los features es la cantidad de veces que un feature estadístico sobrepasó el valor límite concebido. Completan los 12 features utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente.
+Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, Carlos {\it et al.} [] donde además de realizar 
+una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con SVM para entrenar 
+un modelo que decidiera utilizando varios features (basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. Features
+como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 features utilizados para
+otorgar un valor de confianza a 4 de los features previamente mencionados excepto a la varianza, comparándolos con un cierto valor límite. Esta idea
+fue tomada teniendo en cuenta una serie de artículos con respecto al tema, como el de Mednis {\it et al.}, con el objetivo de mejorar el rendimiento
+del clasificador. Otro de los features es la cantidad de veces que un feature estadístico sobrepasó el valor límite concebido. Completan los 12 features
+utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente.\\
+
+Fatjon Seraj {\it et al.} []  realizaron también un proceso para eliminar el ruido y mejorar la calidad de las señales 
+obtenidas con los sensores de los dispositivos utilizados para capturar los datos. Separaron las señales en ventanadas de 2.5 segundos y extrajeron de ahí varios 
+features para el proceso de entrenamiento. Features de dominio temporal, features de dominio de frecuencia y features extraídos de la transformada de wavelet son 
+los que conforman los vectores. Finalmente entrenaron un modelo utilizando una SVM con los features que extrajeron de los datos.\\
+
+Amr S. El-Wakeel {\it et al.} [] como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
+ventanas de 1 segundo y generando vectores de features bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
+de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
+Fourier por ventanas discretas (WDFT por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
+datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, etiquetando
+de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, utilizando métodos como KNN, árboles de decisión, SVM y
+ensembles de clasificadores, obteniendo los mejores resultados con las SVM y los bagged decission trees. Utilizaron features estadísticos, de dominio temporal,
+de dominio de frecuencia y de dominio frecuencia-temporal. Entre los features que utilizaron están media, mediana, moda, desviación estándar, varianza, rango
+entre cuartiles, media de la frecuencia, la mediana de la frecuencia, etc.\\
