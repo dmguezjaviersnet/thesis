@@ -15,7 +15,11 @@ acelerómetro. Entre los varios métodos estadísticos Mednis {\it et al.} [] pr
 		instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto valor prefijado, lo que indica que el vehículo está en caída libre.\\
 \end{enumerate}
 
-Los 3 primeros requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la información.\\
+Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la información. 
+Para caputurar datos preliminares utilizaron un collar LynxNet a una frecuencia de 100Hz. Para la evaluación del sistema utilizaron 4 dispositivos
+móviles (Samsung i5700, Samung Galaxy S, HTC Desire, HTC HD2), con los que recolectaron más datos y los procesaron con el objetivo de asignar los 
+valores óptimos a cada uno de los límites característicos de cada uno de los 4 métodos propuestos, así como el tamaño de la ventana en caso de 
+\textbf {STDEV(Z)}.\\
 
 P. Mohan {\it et al.} [] para el diseño de su estrategia (Nericell) se basaron en 2 ideas, cuando un vehículo interactúa con una
 anomalía (un bache en este caso) las ruedas descienden en el hueco ocasionando una caída sostenida en la aceleración en el eje Z,
@@ -36,21 +40,30 @@ una comparación de los métodos existentes en su momento, crearon un método en
 un modelo que decidiera utilizando varios features (basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. Features
 como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 features utilizados para
 otorgar un valor de confianza a 4 de los features previamente mencionados excepto a la varianza, comparándolos con un cierto valor límite. Esta idea
-fue tomada teniendo en cuenta una serie de artículos con respecto al tema, como el de Mednis {\it et al.}, con el objetivo de mejorar el rendimiento
+fue tomada teniendo en cuenta una serie de artículos con respecto al tema, (citar el artículo de Mednis {\it et al.}), con el objetivo de mejorar el rendimiento
 del clasificador. Otro de los features es la cantidad de veces que un feature estadístico sobrepasó el valor límite concebido. Completan los 12 features
-utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente.\\
-
-Fatjon Seraj {\it et al.} []  realizaron también un proceso para eliminar el ruido y mejorar la calidad de las señales 
-obtenidas con los sensores de los dispositivos utilizados para capturar los datos. Separaron las señales en ventanadas de 2.5 segundos y extrajeron de ahí varios 
-features para el proceso de entrenamiento. Features de dominio temporal, features de dominio de frecuencia y features extraídos de la transformada de wavelet son 
-los que conforman los vectores. Finalmente entrenaron un modelo utilizando una SVM con los features que extrajeron de los datos.\\
+utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente. Cabe desctacar que implementaron una plataforma llamada 
+Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y curados. Los datos que utilizaron fueron obtenidos de este
+mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
 Amr S. El-Wakeel {\it et al.} [] como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
 ventanas de 1 segundo y generando vectores de features bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
 de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
 Fourier por ventanas discretas (WDFT por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
-datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, etiquetando
-de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, utilizando métodos como KNN, árboles de decisión, SVM y
-ensembles de clasificadores, obteniendo los mejores resultados con las SVM y los bagged decission trees. Utilizaron features estadísticos, de dominio temporal,
-de dominio de frecuencia y de dominio frecuencia-temporal. Entre los features que utilizaron están media, mediana, moda, desviación estándar, varianza, rango
-entre cuartiles, media de la frecuencia, la mediana de la frecuencia, etc.\\
+datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, por lo que 
+etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como KNN, árboles de decisión, SVM y
+ensembles de clasificadores fueron probados, obteniendo los mejores resultados con las SVM y los bagged decission trees. Utilizaron features estadísticos, de
+dominio temporal, de dominio de frecuencia y de dominio frecuencia-temporal. Entre los features que utilizaron están media, mediana, moda, desviación estándar,
+varianza, rango entre cuartiles, media de la frecuencia, la mediana de la frecuencia, etc.\\
+
+Fatjon Seraj {\it et al.} [] en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más features que permitieran mejorar la calidad
+del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los dispositivos
+utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 segundos y extrajeron de ahí varios features para el proceso de entrenamiento. Features
+de dominio temporal, features de dominio de frecuencia y features extraídos de la transformada de wavelet son los que conforman los vectores. Finalmente entrenaron
+un modelo utilizando una SVM con los features que extrajeron de los datos, razón por la cual etiquetaron sus datos utilizando vídeos y audios grabados durante la
+recolección de los datos. El dispositivo que utilizaron para la recolección de los datos fue un Samsung Galaxy S2 y recopilaron datos a frecuencias de 47Hz y 93Hz.\\
+
+% //\\// Pendiente //\\//
+% - Añadir detalles sobre el uso del GPS.
+% - Añadir detalles sobre el uso de vehículos distintos.
+% - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
