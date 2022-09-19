@@ -68,41 +68,39 @@ recolección de los datos. El dispositivo que utilizaron para la recolección de
 % - Añadir detalles sobre el uso de vehículos distintos.
 % - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
-El algoritmo para la detección de anomalías en la carretera propuesto en el Jakob Eriksson {\it et al.} [] se basa en que condiciones anómalas de la carretera
-son reflejadas en característica de los datos de aceleración. El problema para identificar baches a partir de lecturas del acelerómetro es un bastante 
-complelejo debido a la amplia variación en las condiciones de la carretera. y el comportamiento del conductor. La mayoría de las anomalías pueden ser 
-caracterizadas como eventos de alta energía en la señal de la aceleración ,por si solo la energía de la señal no es suficiente como un criterio de 
-detención, debido a que muchos eventos de alta energía pueden no considerarse anomalías en la carretera. Muchos accesorios de la carretera como 
-los cruces de trenes, las juntos de expansión, los eventos de alta energía que pueden ser causados por los pasajeros cuando le dan un fuerte 
+El algoritmo para la detección de anomalías en la carretera propuesto por Jakob Eriksson {\it et al.} [] se basa en que condiciones anómalas de la carretera
+son reflejadas en característica de los datos de aceleración. El problema para identificar baches a partir de lecturas del acelerómetro es bastante 
+complelejo debido a la amplia variación en las condiciones de la carretera y el comportamiento del conductor. La mayoría de las anomalías pueden ser 
+caracterizadas como eventos de alta energía en la señal de la aceleración, por si sola la energía de la señal no es suficiente como un criterio de 
+detección debido a que muchos eventos de alta energía pueden no considerarse anomalías en la carretera. Muchos accesorios de la carretera como 
+los cruces de trenes, las juntas de expansión, los eventos de alta energía que pueden ser causados por los pasajeros cuando le dan un fuerte 
 tirón a la puerta del vehículo o si el el conductor frena de manera repentina. Los datos recopilados son divididos en 256 ventanas pues 
 los eventos que interesan son generalmente eventos de corta duración. Una serie de filtros de procesamientos de señales son aplicados 
 al  pedazo continuo de ventanas, donde cada filtro está diseñado para rechazar uno o más de un evento que no sea bache. 
 Las etapas de filtrado se dividen en 5 y son las siguientes:
 
 \begin{enumerate}
-	\item [ \textbf {Velocidad}]: Las ventanas donde el carro no se está moviendo o se está moviendo muy poco son ignoradas. 
-	De esta forma se rechazan eventos como un tirón en la puerta  cuando se baja el pasajero del vehículo.\\
-	\item [ \textbf {High-pass}] Los filtros del high-pass las componentes de baja frecuencia de la señal de aceleración  en los ejes z y x.
-	\item  [ \textbf {Z-peak}] Los picos de aceleración en el eje z es la principal característica de las anomalías significativsas de la carretera.
-	Este filtro rechaza todas las ventanas con un pico (absoluto) en la aceleración menor que un threshold $t_z$
-	\item  [ \textbf {xz-ratio }] La aceleración en el eje x puede ayudar a identificar anomalías que abarcan el ancho de la carretera y por lo tanto 
-	impactan ambos lados del carro de igual manera.  Asumiendo que el bache solo impacta un lado del carro, un verdadero evento de bache con un
-	un gran pico de aceleración en el eje z debería producir  un pico significante en el eje x  dentro de alguna ventana.
-	\item  [ \textbf {speed vs ratio }] A altas velocidades, incluso pequeñas anomalías en la carretera pueden crear altos picos en las lecturas 
-	de aceleración. Este filtro rechaza ventanas donde el pico de aceleración en el eje z es menor que un factor $t_s$ veces la velocidad a la que 
-	va el vehículo.
+	\item [ \textbf {Velocidad} ]: Las ventanas donde el carro no se está moviendo o se está moviendo a muy poca velocidad son ignoradas. 
+		De esta forma se rechazan eventos como un tirón en la puerta cuando se baja el pasajero del vehículo.\\
+	\item [ \textbf {High-pass} ] Los filtros de high-pass eliminan las componentes de baja frecuencia de la señal de aceleración en los ejes z y x, 
+		que pueden indicar giros, frenazos, etc.\\
+	\item  [ \textbf {Z-peak} ] Los picos de aceleración en el eje z es la principal característica de las anomalías significativsas de la carretera.
+		Este filtro rechaza todas las ventanas con un pico (absoluto) en la aceleración menor que un threshold $t_z$.\\
+	\item  [ \textbf {xz-ratio } ] La aceleración en el eje x puede ayudar a identificar anomalías que abarcan el ancho de la carretera y por lo tanto 
+		impactan ambos lados del carro de igual manera.  Asumiendo que el bache solo impacta un lado del carro, un verdadero evento de bache con un
+		un gran pico de aceleración en el eje z debería producir un pico significante en el eje x dentro de alguna ventana.\\
+	\item  [ \textbf {speed vs ratio } ] A altas velocidades, incluso pequeñas anomalías en la carretera pueden crear altos picos en las lecturas 
+		de aceleración. Este filtro rechaza ventanas donde el pico de aceleración en el eje z es menor que un factor $t_s$ veces la velocidad a la que 
+		va el vehículo.\\
 \end{enumerate}
 
-
-
-Dado que la frecuencia de sampleo del acelerómetro se hace mucho más seguido que la del GPS en el Jakob Eriksson {\it et al.} [] proponen estimar la 
-localización del vehículo cuando ocurra la lectura $l_i$ del acelerómetro usando interpolación lineal entre lecturas de GPS.
-A pesar que ciertos tipos de anomalías pueden producir alta energía, no siempre que se produzca esto representa una carretera en mal estado. Los cruces 
-de ferrocarriles, reductores de velocidad y otros equipamientos bien conocidos embebidos en la carretera pueden producir una alta energía y no 
-se consideran anomalías de la carretera. Para esto una propuesta vista en el Jakob Eriksson {\it et al.} [] es tener una lista negra con los localizaciones 
-de las anomalías que caigan en alguno de estos equipamientos embebidos en la carretera cuya información se puede obtener de  y luego remover los mismos. 
-Debido a que el error en la medición del GPS (alredodor de 5m a la redonda como media) es significativamente mayor que el tamaño de un bache común la ausencia 
-de una detección en una localización particular no siempre es un indicativo de que no haya anomalías en esta[]. No es posible determinar puramente 
-por la localización del GPS en el momento en que las ruedas del vehículo hacen contacto con alguna anomalía de la carretera.  Los conductores usuales 
-intentan evitar los baches por que la probabilidad de detectar una anomalía en la carretera es menor que la que se debe de esperar de una distribución  sin 
-sesgo del área que se intenta mapear.
+Dado que la frecuencia de captura de la señal del acelerómetro se hace mucho más seguido que la del GPS, proponen estimar la localización del vehículo
+cuando ocurra la lectura $l_i$ del acelerómetro usando interpolación lineal entre lecturas de GPS. A pesar que ciertos tipos de anomalías pueden producir
+alta energía, no siempre que se produzca esto representa una carretera en mal estado. Los cruces de ferrocarriles, reductores de velocidad y otros
+equipamientos bien conocidos embebidos en la carretera pueden producir una alta energía y no se consideran anomalías de la carretera. Para esto proponen
+tener una lista negra con los localizaciones de las anomalías que caigan en alguno de estos equipamientos embebidos en la carretera cuya información se
+puede obtener de y luego remover los mismos. Debido a que el error en la medición del GPS (alrededor de 5m a la redonda como media) es significativamente
+mayor que el tamaño de un bache común, la ausencia de una detección en una localización particular no siempre es un indicativo de que no haya anomalías en
+esta []. No es posible determinar puramente por la localización del GPS en el momento en que las ruedas del vehículo hacen contacto con alguna anomalía de
+la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una anomalía en la carretera es menor que la que se
+debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
