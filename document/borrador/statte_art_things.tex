@@ -1,0 +1,25 @@
+\\\\
+\textbf{Forward Selection}: FS es uno de los métodos de selección de características básicos. La idea como en otros métodos de selección de características, 
+es seleccionar un subconjunto de características, que produce resultados lo suficientemente precisos en comparación con los resultados con todas las 
+características. Forward selection comienza con 0 características en el modelo. La primera característica es seleccionada probando cada característica
+que seleccionando la característica que devuelva por ejemplo la mejor clasificación o el mejor f-value  en tests estadísticos (ANOVA por ejemplo).   
+\\\\
+\textbf{Backward Selection}: Otro método de selección de características es \textbf{backward selection}, el cual es el proceso opuesto comparado con 
+el \textbf{forward selection}. Mientras el forward selection comienza con 0 características, backward selection comienza con todas las características.
+En cada paso el algoritmo testea todas las características que quedan y remueve la característica que menos aporta mal.
+\\\\
+\textbf{Genetic Algorithms}: Los algoritmos genéticos son un grupo de modelos computacionales para buscar soluciones potenciales a un problema en específico usando
+una estructura de datos basadada en cromosomas, lo cual está inspirado en la evolución. Un cromosoma es una serie de instrucciones que un algoritmo puede usar para
+construir un nuevo modelo o función, como un problema de optimización o seleccionar un subsconjunto de características para SVM. Todas las características serán 
+representadas como un vector binario de tamaño m donde m es el número de características. \textbf{'1'} significa que la característica es parte del subconjunto y 
+\textbf{'0'} que no lo es.  El algoritmo puede ser considerado como un proceso de dos etapas. Comienza con una población actual donde los mejores cromosomas son 
+seleccionados para crear una población intermedia. Recombinación y mutación son aplicados para crear la nueva población. El proceso de dos etapas continúa una generación
+en la ejecución del algoritmo genético.  El algoritmo comienza con una población inicial de cromosomas. Típicamente la población inicial se escoge de manera aleatoria 
+del conjunto original de datos. Luego cada cromosoma es evaluado y se le asigna un fitness value. Los cromosomas que representen una mejor solución para el problema 
+objetivo dan un mejor fitness value que aquellos cromosomas que dan una solución peor. Mejores fitness value significa mejores oportunidades de reproducir. EL proceso 
+de reproducción puede ocurrir a través de crossover, mutation, o operaciones de reproducción. 
+\\\\
+\textbf{PCA}: PCA es otro método usado usado frecuentemente para la extracción de features. El PCA busca las componentes principales no correlacionadas que describen 
+las dependencias entre múltiples variables. Las componente principales se ordenan de tal forma que la primera componente explique la mayor cantidad de varianza en los
+datos, y la segunda componente para la segunda mayor cantidad de varianza y asi será.  Debe ser notado que forward selection, backward selection y genetic algorithm 
+no afectan los datos, y solo son métodos para elejir la mejor combinación de características, pero PCA es para nuevas características. 

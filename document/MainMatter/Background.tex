@@ -104,3 +104,15 @@ mayor que el tamaño de un bache común, la ausencia de una detección en una lo
 esta []. No es posible determinar puramente por la localización del GPS en el momento en que las ruedas del vehículo hacen contacto con alguna anomalía de
 la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una anomalía en la carretera es menor que la que se
 debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
+
+En el Fengyu Cong {\it et al.} [] para la extracción de características descomponen la señal usando WPD(Wavelet Packet Decomposition) usando sucesivamente filtros de low-pass y de high-pass.
+Done WPD es llevado a cabo una aplicación iterativa de filtros espejos en cuadratura y seguido por submuestreo. La selección de características basadas 
+en machine learning puede ser asistida para reducir la demanda computacional para la clasificiación. La selección de características está diseñada para
+encontrar las características que hacen una mejor discriminación de los baches y los segmentos normales en estudio. 
+Para la selección de características se probaron con cuatro métodos: \textbf{Backward Selection}, \textbf{Forward Selection}, \textbf{Genetic Algorithm} y
+\textbf{PCA} usando un número diferente de características seleccionadas. El PCA fue el mejor feature selection cuando el número de características es mayor 
+que 5, mientras FS(Forward Selection) es mejor cuando el número de características es mayor que 2 y menor que 6.
+\\
+Para la clasificicación usaron SVM one-class classification con kernel RBF con parámetros  $\nu = 0.01$  $\gamma = 0.00002$. SVM fué entrenado con el 70 \%  de los datos 
+(1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de los datos  (530 segmentos) y en todos los 21 segmentos de anomalías fueron 
+usados para los tests de precisión del modelo SVM construido. 
