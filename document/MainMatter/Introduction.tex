@@ -1,32 +1,44 @@
 \chapter*{Introducción}\label{chapter:introduction}
 \addcontentsline{toc}{chapter}{Introducción}
 
-Nuestro país se ha propuesto desde hace unos años llevar a cabo un profundo proceso de informatización. Transacciones bancarias, datos móviles, digitalización de información, acceso a información, etc. Todos estos han sido, y aún son, temas dentro de dicho proceso, con el objetivo de facilitar muchas actividades cotidianas. En los tiempos actuales, las carreteras son algo común, y los vehículos que hacen uso de estas también. No obstante, a menudo, las carreteras se deterioran, y en nuestro país, es algo bastante común que la mayoría de las carreteras en las grandes ciudades estén en malas condiciones.
+Nuestro país se ha propuesto desde hace unos años llevar a cabo un profundo proceso de informatización.
+Transacciones bancarias, datos móviles, digitalización de información, acceso a información, etc. Todos
+estos han sido, y aún son, temas dentro de dicho proceso con el objetivo de facilitar muchas actividades
+cotidianas. En los tiempos actuales las carreteras son algo común y los vehículos que hacen uso de estas
+también. No obstante, a menudo las carreteras se deterioran debido al clima o al tráfico, y en nuestro
+país es algo bastante común que la mayoría de las carreteras en las grandes ciudades estén en malas condiciones.
 
 \section*{Motivación}
-Existen varias investigaciones que proponen soluciones para detectar las irregularidades en la carretera, la mayoría utilizan el acelerómetro. Trabajos como \textbf{The Pothole Patrol} por Jakob Eriksson y otros [1], donde utilizan acelerómetros externos que toman muestras con una frecuencia de 380Hz y un GPS externo. Luego estos datos pasan por varios filtros (5 en este caso), cada uno de los cuales se encarga de descartar eventos no asociados a irregularidades en la carretera. O por ejemplo en \textbf{Real Time Pothole Detection using Android Smartphones with Accelerometers} por Artis Mednis y otros [2], donde proponen un método utilizando los datos del acelerómetro, para detectar las anomalías, denominado G-ZERO, cuya hipótesis es que en el intervalo de tiempo en el que ocurre una anomalía, las lecturas del acelerómetro en los 3 ejes es bastante cercana a 0 y menor que cierto valor, lo que se asocia con la caída libre del vehículo en ese pequeño intervalo de tiempo.
+En nuestro país no existe ninguna forma de ubicar de forma sencilla y accesible los tramos de carreteras que están
+en mal estado. Sería muy útil poder hacer esto pues de esta forma se podría tener acceso a esta información de forma
+instantánea. El acceso rápido a estos datos no solo facilitaría la reparación de estas calles, sino que también podría
+servir de guía a choféres para evitar tales tramos y por tanto consecuencias ocasionadas por estas condiciones como 
+accidentes y daños a la estructura de los vehículos. Además, el hecho de no tener que enviar vehículos a inspeccionar
+el estado de las carreteras ya constituye un ahorro importante de recursos y de tiempo, y permitiría tomar decisiones 
+con mayor rapidez sobre que tramos de carretera priorizar.
 
-\section*{Problemática}
-En nuestro país no existe ninguna forma de ubicar de forma sencilla y accesible los tramos de carreteras que están en mal estado. Sería muy útil poder hacer esto, pues de esta forma se podría tener acceso a esta información de forma instantánea. El acceso rápido a estos datos no solo facilitaría la reparación de estas calles, sino que también podría servir de guía a choféres para evitar tales tramos y por tanto consecuencias ocasionadas por estas condiciones.
+\section*{Problema}
+Determinar cuando hay una anomalía en la carretera.
 
 \section*{Objetivos}
 \subsection*{General}
-
-Desarrollar una aplicación móvil que sea capaz de identificar y clasificar irregularidades en la carretera utilizando los sensores integrados del teléfono móvil.
+Proponer un modelo para la la detección de baches utilizando dispositivos móviles.
 
 \subsection*{Específicos}
 \begin{enumerate}
-		\item Analizar el estado del arte respecto a la problemática en cuestión.
-		\item Recolectar información que nos permita construir una base de datos utilizando los sensores del móvil.
-		\item Crear una base de datos con información acerca de la localización de tramos en mal estado. 
-		\item Ubicar en un mapa las irregularidades haciendo uso de los datos del GPS almacenados en la base de datos.
-		\item Analizar y procesar los datos recolectados. 
-		\item Construir un modelo de machine learning que minimice el error a la hora de clasificar los distintos tipos de irregularidades. 
-		\item Entrenar el modelo para clasificar los distintos tipos de irregularidades en la carretera.
-		\item Evaluar el modelo y los resultados obtenidos.
+		\item Estudiar el estado del arte del uso de Dispositivos Móviles para la Detección de Baches
+		\item Determinar el conjunto de sensores apropiados para la detección de baches así como su 
+frecuencia de muestreo. 
+		\item Implementar un prototipo de aplicación para la captura de los datos de los sensores así 
+como la señalización manual de baches. 
+		\item Proponer e implementar una modelo para la detección automática de baches.
+		\item Proponer e implementar un prototipo para la visualización de los datos.
+		\item Proponer una metodología para validar los resultados parciales.
 
 \end{enumerate}
 
 \section*{Propuesta de solución}
 
-Nuestra propuesta de solución es una aplicación móvil que capture las señales de los sensores integrados de un dispositivo móvil, almacene dicha información, y con esta, construir un modelo de Machine Learning que sea capaz de clasificar en tiempo real las irregularidades en la carretera y ubicarlas en un mapa disponible para los usuarios de la aplicación.
+Nuestra propuesta de solución es una aplicación móvil que capture las señales de los sensores integrados de un dispositivo móvil, almacene
+dicha información, y con esta, construir un modelo de Machine Learning que sea capaz de clasificar en tiempo real las irregularidades en la
+carretera y ubicarlas en un mapa disponible para los usuarios de la aplicación.
