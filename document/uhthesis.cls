@@ -24,7 +24,7 @@
 \RequirePackage[
 	style=apa,
 	citestyle=authoryear,
-  hyperref=true,
+	hyperref=true,
 	backref=true
 	]{biblatex}
 \RequirePackage[linktocpage,breaklinks,colorlinks,%
