@@ -4,16 +4,16 @@ Existen varios artículos científicos que proponen soluciones al problema de id
 puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
 acelerómetro. Entre los varios métodos estadísticos Mednis {\it et al.} [] propusieron los siguientes:\\
 
-\begin{enumerate}
-\item [ \textbf {Z-Thresh} ]: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con 
+\begin{itemize}
+	\item  \emph{\textbf {Z-Thresh}}: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con 
 	un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
-	\item [ \textbf {Z-DIFF} ]: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la
+	\item \emph{\textbf {Z-DIFF}}: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la
 		diferencia modular con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\
-	\item [ \textbf {STDEV(Z)} ]: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de
+	\item \emph{\textbf {STDEV(Z)}}: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de
 		tiempo y compara con un valor límite prefijado, si es mayor devuelve {\it TRUE} indicando que hay una anomalía en ese instante, de lo contrario devuelve {\it FALSE}.\\ 
-	\item [ \textbf {G-ZERO} ]: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
+	\item \emph{\textbf {G-ZERO}}: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
 		instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto valor prefijado, lo que indica que el vehículo está en caída libre.\\
-\end{enumerate}
+\end{itemize}
 
 Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la información. 
 Para caputurar datos preliminares utilizaron un collar LynxNet a una frecuencia de 100Hz. Para la evaluación del sistema utilizaron 4 dispositivos
@@ -28,12 +28,12 @@ ese pico al final del evento es bien prominente, sin embargo cuando se va a muy 
 sostenida en la aceleración en el eje Z al entrar al bache si se mantiene, por lo que propusieron 2 métodos para detectar una anomalía
 dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
 
-\begin{enumerate}
-	\item [ \textbf {\it v > 25 km/h} ] Utilizan un método idéntico al \textbf {Z-THRESH}, o sea, buscan un valor bien prominente de
+\begin{itemize}
+	\item  \textbf {v > 25 km/h}:  Utilizan un método idéntico al \textbf {Z-THRESH}, o sea, buscan un valor bien prominente de
 		aceleración en un instante de tiempo determinado, que sea mayor que cierto límite prefijado.\\
-	\item [ \textbf {\it v < 25 km/h} ] Utilizan un método que llamaron \textbf {Z-SUS} que busca una caída sostenida en la aceleración
+	\item \textbf {v < 25 km/h}:  Utilizan un método que llamaron \textbf {Z-SUS} que busca una caída sostenida en la aceleración
 		en el eje Z, por debajo de un cierto límite prefijado, durante cierta cantidad de tiempo.\\
-\end{enumerate}
+\end{itemize}
 
 Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, Carlos {\it et al.} [] donde además de realizar 
 una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con SVM para entrenar 
@@ -68,7 +68,8 @@ recolección de los datos. El dispositivo que utilizaron para la recolección de
 % - Añadir detalles sobre el uso de vehículos distintos.
 % - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
-El algoritmo para la detección de anomalías en la carretera propuesto por Jakob Eriksson {\it et al.} [] se basa en que condiciones anómalas de la carretera
+% Jakob Eriksson {\it et al.} [] 
+El algoritmo para la detección de anomalías en la carretera propuesto por ~\cite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
 son reflejadas en característica de los datos de aceleración. El problema para identificar baches a partir de lecturas del acelerómetro es bastante 
 complelejo debido a la amplia variación en las condiciones de la carretera y el comportamiento del conductor. La mayoría de las anomalías pueden ser 
 caracterizadas como eventos de alta energía en la señal de la aceleración, por si sola la energía de la señal no es suficiente como un criterio de 
@@ -79,20 +80,20 @@ los eventos que interesan son generalmente eventos de corta duración. Una serie
 al  pedazo continuo de ventanas, donde cada filtro está diseñado para rechazar uno o más de un evento que no sea bache. 
 Las etapas de filtrado se dividen en 5 y son las siguientes:
 
-\begin{enumerate}
-	\item [ \textbf {Velocidad} ]: Las ventanas donde el carro no se está moviendo o se está moviendo a muy poca velocidad son ignoradas. 
+\begin{itemize}
+	\item \emph{\textbf {Velocidad}}: Las ventanas donde el carro no se está moviendo o se está moviendo a muy poca velocidad son ignoradas. 
 		De esta forma se rechazan eventos como un tirón en la puerta cuando se baja el pasajero del vehículo.\\
-	\item [ \textbf {High-pass} ] Los filtros de high-pass eliminan las componentes de baja frecuencia de la señal de aceleración en los ejes z y x, 
+	\item \emph{\textbf {High-pass}}: Los filtros de high-pass eliminan las componentes de baja frecuencia de la señal de aceleración en los ejes z y x, 
 		que pueden indicar giros, frenazos, etc.\\
-	\item  [ \textbf {Z-peak} ] Los picos de aceleración en el eje z es la principal característica de las anomalías significativsas de la carretera.
+	\item  \emph{\textbf {Z-peak}}: Los picos de aceleración en el eje z es la principal característica de las anomalías significativsas de la carretera.
 		Este filtro rechaza todas las ventanas con un pico (absoluto) en la aceleración menor que un threshold $t_z$.\\
-	\item  [ \textbf {xz-ratio } ] La aceleración en el eje x puede ayudar a identificar anomalías que abarcan el ancho de la carretera y por lo tanto 
+	\item  \emph{\textbf {xz-ratio}}: La aceleración en el eje x puede ayudar a identificar anomalías que abarcan el ancho de la carretera y por lo tanto 
 		impactan ambos lados del carro de igual manera.  Asumiendo que el bache solo impacta un lado del carro, un verdadero evento de bache con un
 		un gran pico de aceleración en el eje z debería producir un pico significante en el eje x dentro de alguna ventana.\\
-	\item  [ \textbf {speed vs ratio } ] A altas velocidades, incluso pequeñas anomalías en la carretera pueden crear altos picos en las lecturas 
+	\item  \emph{\textbf {speed vs ratio }}:	A altas velocidades, incluso pequeñas anomalías en la carretera pueden crear altos picos en las lecturas 
 		de aceleración. Este filtro rechaza ventanas donde el pico de aceleración en el eje z es menor que un factor $t_s$ veces la velocidad a la que 
-		va el vehículo.\\
-\end{enumerate}
+		va el vehículo.
+\end{itemize}
 
 Dado que la frecuencia de captura de la señal del acelerómetro se hace mucho más seguido que la del GPS, proponen estimar la localización del vehículo
 cuando ocurra la lectura $l_i$ del acelerómetro usando interpolación lineal entre lecturas de GPS. A pesar que ciertos tipos de anomalías pueden producir
@@ -105,7 +106,7 @@ esta []. No es posible determinar puramente por la localización del GPS en el m
 la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una anomalía en la carretera es menor que la que se
 debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
 
-En el Fengyu Cong {\it et al.} [] para la extracción de características descomponen la señal usando WPD(Wavelet Packet Decomposition) usando sucesivamente filtros de low-pass y de high-pass.
+En el Fengyu Cong {\it et al.} ~\cite{cong2013applying} para la extracción de características descomponen la señal usando WPD(Wavelet Packet Decomposition) usando sucesivamente filtros de low-pass y de high-pass.
 Done WPD es llevado a cabo una aplicación iterativa de filtros espejos en cuadratura y seguido por submuestreo. La selección de características basadas 
 en machine learning puede ser asistida para reducir la demanda computacional para la clasificiación. La selección de características está diseñada para
 encontrar las características que hacen una mejor discriminación de los baches y los segmentos normales en estudio. 
@@ -116,3 +117,53 @@ que 5, mientras FS(Forward Selection) es mejor cuando el número de característ
 Para la clasificicación usaron SVM one-class classification con kernel RBF con parámetros  $\nu = 0.01$  $\gamma = 0.00002$. SVM fué entrenado con el 70 \%  de los datos 
 (1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de los datos  (530 segmentos) y en todos los 21 segmentos de anomalías fueron 
 usados para los tests de precisión del modelo SVM construido. 
+
+En el Aniket Kulkarni {\it et al.} \cite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que puede utilizarse para cargarlo 
+en un servidor centralizado o enviarlo  a las autoridades competentes inmediatamente.  Cuando el usuario inicia su viaje, lanza la aplicación Android de detección de baches. La aplicación,
+que tiene como complemento del algoritmo en funcionamiento, detecta los baches en las carreteras mientras el usuario está conduciendo. Supervisa los cambios en la aceleración. La aplicación 
+añáde la hora actual, las coordenadas geográficas y las estadísticas de baches al registro de eventos. Cuando el usuario  finalice el recorrido pulsa "Stop"  y se le presenta el registro de eventos.
+Este registro debe mantenerse en la base de datos.  El algoritmo que proponen es el siguiente:\\\\
+\noindent
+
+\begin{itemize}
+	\item  Un filtro de \emph{high-pass} para remover las componentes de baja frecuencia de la señal de aceleración en los eje x y z.  El filtro de high pass elimina el desplazamiento de la gravedad.
+	El alpha usado es de 0.8 \\\\
+	\begin{align*}
+		\alpha = 0.8 \\
+		gravity_{x} = \alpha * gravity_x + (1-\alpha) *event.values_{x} \notag\\
+		gravity_{y} = \alpha * gravity_y + (1-\alpha) *event.values_{y} \notag\\
+		gravity_{z} = \alpha * gravity_z + (1-\alpha) *event.values_{z} \notag\\	
+	\end{align*}
+			
+	Luego el effecto de \emph{high-pass} para la eliminación de las componentes de baja frecuencia
+	
+	\begin{align*}
+		acceleration_{x} =  event.values_{x} - gravity_{x}\\
+		acceleration_{y} = event.values_{y} - gravity_{y}\\
+		acceleration_{z} = event.values_{z} - gravity_{z}
+	\end{align*}
+
+	\item Los picos de aceleración en el eje z es  una de las características principales de las anomalías en la carretera. Este filtro rechaza todas 
+	las ventanas con un pico de aceleración en la componente z menor menor que un \emph{threshold} \textbf{tz} ( o sea rechaza la lectura si $accel_z < tz$ ).
+	\item Un verdadero evento de bache con una larga aceleración en la componente z debe producir un pico significativo en el eje x. Este filtro rechaza 
+	todas las ventanas con un pico de aceleración en la componente z menor que  el producto del \emph{threshold} en el eje x \textbf{tx} por  el pico de aceleración (o sea 
+	si tx es el \emph{threshold} en el eje x rechazaría las lecturas que $accel_x < tx * accel_z$).
+	\item A altas velocidades pequeñas anomalías pueden crear altos picos en las lecturas de aceleración. Este filtro rechaza las ventans donde los picos de 
+	aceleración en el eje z son menores que un factor ts veces la velocidad a la que se viaja(O sea asumiendo que el factor de velocidad es ts, y \emph{speed} la velocidad actual 
+	a la que viaje el vehículo rechaza las lecturas que cumplan $accel_z < ts * speed$). 
+	\item  Si todas las condiciones anteriores se cumplen entonces se considera un bache o en caso contrario no.
+	\item  Se usa una red neural para mejorar la eficiencia y precisión de la detección de baches. Los parámetros de la red neural usados son los siguientes
+	\begin{enumerate}
+		\item Número de capas de entrada: 3
+		\item Input 1 : aceleración en el eje x
+		\item Input 2 : aceleración en el eje x
+		\item Input 3 : aceleración en el eje x
+		\item Número de neuronas ocultas: 6
+		\item Número de capas de salidas: 1
+		\item Output 1 : Decidir si es un bache
+		\item Función de activación: sigmoidal
+		\item Algoritmo usado: \emph{backpropagation}
+	\end{enumerate}
+	
+\end{itemize}
+
