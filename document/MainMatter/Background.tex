@@ -2,7 +2,7 @@
 
 Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos
 puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
-acelerómetro. Entre los varios métodos estadísticos \cite{mednis2011real} propusieron los siguientes:\\
+acelerómetro. Entre los varios métodos estadísticos ~\cite{mednis2011real} propusieron los siguientes:\\
 
 \begin{itemize}
 	\item  \emph{\textbf {Z-Thresh}}: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con
@@ -25,7 +25,7 @@ móviles (Samsung i5700, Samung Galaxy S, HTC Desire, HTC HD2), con los que reco
 valores óptimos a cada uno de los \emph{threshold}s característicos de cada uno de los 4 métodos propuestos, así como el tamaño de la ventana en caso de
 \textbf {STDEV(Z)}.\\
 
-\cite{mohan2008nericell} para el diseño de su estrategia se basaron en 2 ideas, cuando un vehículo interactúa con una
+~\cite{mohan2008nericell} para el diseño de su estrategia se basaron en 2 ideas, cuando un vehículo interactúa con una
 anomalía (un bache en este caso) las ruedas descienden en el hueco ocasionando una caída sostenida en la aceleración en el eje Z,
 hasta que alcanzan el fondo del bache y en ese momento se produce un pico bien elevado de aceleración en el eje Z. A altas velocidades
 ese pico al final del evento es bien prominente, sin embargo cuando se va a muy poca velocidad no se nota prácticamente, pero la caída
@@ -39,18 +39,18 @@ dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
 	      en el eje Z, por debajo de un cierto \emph{threshold} prefijado, durante cierta cantidad de tiempo.\\
 \end{itemize}
 
-Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, \cite{carlos2018evaluation} además de realizar
+Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, ~\cite{carlos2018evaluation} además de realizar
 una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con \textbf{SVM} para entrenar
 un modelo que decidiera utilizando varios \emph{features} (basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. \emph{features}
 como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 \emph{features} utilizados para
 otorgar un valor de confianza a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con un cierto valor \emph{threshold}.
-Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(\cite{mednis2011real}), con el objetivo de mejorar el rendimiento
+Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\cite{mednis2011real}), con el objetivo de mejorar el rendimiento
 del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor \emph{threshold} concebido. Completan los
 12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente. Cabe desctacar que implementaron una
 plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y curados. Los datos que utilizaron fueron
 obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
-\cite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
+~\cite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
 ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
 de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
 Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
@@ -61,7 +61,7 @@ etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo
 \emph{features} que utilizaron están media, mediana, moda, desviación estándar, varianza, rango entre cuartiles, media de la frecuencia, la mediana de la frecuencia,
 etc.\\
 
-\cite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar la calidad
+~\cite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar la calidad
 del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los dispositivos
 utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 segundos y extrajeron de ahí varios \emph{features} para el proceso de entrenamiento.
 \emph{features} de dominio temporal, \emph{features} de dominio de frecuencia y \emph{features} extraídos de la transformada de wavelet son los que conforman los vectores.
@@ -74,7 +74,7 @@ frecuencias de 47Hz y 93Hz.\\
 % - Añadir detalles sobre el uso de vehículos distintos.
 % - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
-El algoritmo para la detección de anomalías en la carretera propuesto por \cite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
+El algoritmo para la detección de anomalías en la carretera propuesto por ~\cite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
 son reflejadas en características de los datos de aceleración. El problema para identificar baches a partir de lecturas del acelerómetro es bastante
 complelejo debido a la amplia variación en las condiciones de la carretera y el comportamiento del conductor. La mayoría de las anomalías pueden ser
 caracterizadas como eventos de alta energía en la señal de la aceleración, por si sola la energía de la señal no es suficiente como un criterio de
@@ -123,7 +123,7 @@ Para la clasificicación usaron \textbf{SVM} one-class classification con kernel
 entrenado con el 70 \%  de los datos (1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de los datos  (530 segmentos)
 y en todos los 21 segmentos de anomalías fueron usados para los tests de precisión del modelo \textbf{SVM} construido.
 
-En el Aniket Kulkarni {\it et al.} \cite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
+En el Aniket Kulkarni {\it et al.} ~\cite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
 puede utilizarse para cargarlo en un servidor centralizado o enviarlo  a las autoridades competentes inmediatamente.  Cuando el usuario inicia su viaje,
 lanza la aplicación Android de detección de baches. La aplicación, que tiene como complemento del algoritmo en funcionamiento, detecta los baches en las
 carreteras mientras el usuario está conduciendo. Supervisa los cambios en la aceleración. La aplicación añáde la hora actual, las coordenadas geográficas
@@ -173,7 +173,7 @@ registro debe mantenerse en la base de datos.  El algoritmo que proponen es el s
 
 \end{itemize}
 
-\cite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
+~\cite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
 carretera está en el mundo no posee anomalías, y que la aplicación de técnicas de Machine Learning utizando una ventana deslizante a ciegas puede
 disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que una anomalía comienza con una señal normal
 y luego ocurre un pico de aceleración en el eje Z que excede un \emph{threshold} superior y luego cae y excede un \emph{threshold} inferior o viceversa,
@@ -189,3 +189,27 @@ con una anomalía tendrá una relación casi lineal con la profundidad o altura 
 que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades), es que llevan a cabo el proceso
 de identificar los tipos de anomalías. Los autores comparan su propuesta con otras hechas en los últimos 3 años obteniendo un mejor \emph{F1 score} al
 identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.
+
+~\cite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del \textbf{GPS}
+en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas por ráfagas, que son mediciones registradas con la
+misma marca de tiempo. A continuación, se realizó el rechazo de valores atípicos de GPS y se aplicó el filtro de Kalman a la latitud y la longitud para reducir
+aún más el ruido. Después la velocidad será estimamda por cada par consecutivo de latitud y longitud. La señal resultante de velocidad fué sobremuestrada y filtrada
+usando límites físicos razonables para la aceleración del vehiculo. Cuando las estimaciones de velocidad parecían lo suficientemente suaves, la señal estaba
+a menudo contaminada por una gran latencia en comparación con la estimación de velocidad original (ruidosa) y la señal no llegaba a cero en las paradas de los vehículos.
+Para aliviar este problema se usan dos correcciones. En primer lugar, se elimina una latencia determinada visualmente de la estimación de velocidad filtrada. En segundo
+lugar, se aplica una fusión muy sencilla de la aceleración y la señal de \textbf{GPS}: la varianza de la norma de la aceleración se calculó para la señal de aceleración
+y se examinó visualmente. Mediante un simple \emph{threshold} fueron capaces de detectar un segmento de la señal, donde la velocidad del vehículo era cero, o muy cercana
+a cero. A continuación, establecieron los segmentos correspondientes de la señal de velocidad en cero y suavizaron la señal utilizando un filtro de Kalman. Los datos
+fueron seperados usando una ventana deslizante. Experimentaron con pedazos desde 0.5 segundos hasta 2 segundos, esta escala se consideró aceptable para la tarea de
+reconocimiento de anomalías, ya que la duración media de las anomalías era alrededor de 2 segundos. Por cada ventana, se determinaba el por ciento de la ventana cubierta
+por anomalías (uno o más juntos). La extracción de características se realiza utilizando ventanas deslizantes de 2 segundos de longitud, con un deslizamiento de 0.5
+segundos. Varias características fueron extraídas de la señal de aceleración: la desviación estándar, la media, la varianza, \emph{peok-to-peak}, \emph{signal magnitude area},
+\emph{3-order autoregressive coeficcients}, \emph{til angles}, la raíz de la desviación cuadrática media. Los valores absolutos de la correlación de señales entre todas
+las dimensiones son usados también, ya que se observó visualmente muchas veces todas las señales de aceleración mostraban similar formas de onda en los segmentos de la
+anomalía. Se utilizaron características basadas en \emph{Fast Fourier Transformation(FFT)} para incorporar información de frecuencias específicas. Esto se basó en la
+suposición de que los baches producirían componentes de menor frecuencia en comparación a la vibración que se origina en el motor y en la superficie normal de la carretera.
+La energía \textbf{FFT} se extrajo de 17 bandas de frecuencia para cada dirección de la aceleración y los coeficientes cepstrales de frecuencia de mel en 4 bandas. Se
+utilizó el algoritmo de selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la
+dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}.  Para clasificar las ventanas 
+se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones de parámetros con SVM
+usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. 
