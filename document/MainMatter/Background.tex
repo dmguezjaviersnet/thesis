@@ -71,7 +71,8 @@ frecuencias de 47Hz y 93Hz.\\
 
 % //\\// Pendiente //\\//
 % - Añadir detalles sobre el uso del GPS.
-% - Añadir detalles sobre el uso de vehículos distintos.
+% - Añadir detalles sobre si es multi-class classification o binary-classification
+% - Añadir detalles sobre el uso de distintos vehículos.
 % - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
 El algoritmo para la detección de anomalías en la carretera propuesto por \cite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
@@ -199,3 +200,20 @@ con el objetivo de prevenir el \emph{overfitting}, asignando 0 como valor de for
 tiene como función de activación la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size}
 de 3. Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\\emph{Synthetic Minority
 OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso).
+
+~\cite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con un total de 12, entre ellos camiones incluidos,
+además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2 personas iban en el vehículo, uno de ellos encargado de etiquetar las
+anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos
+y asignan una etiqueta a dicha serie temporal. Su propuesta consiste en una forma distinta de procesar los datos capturados con el acelerómetro del dispositivo móvil, que es
+utilizando lo que se conoce como \emph{Bag of Words representation}, donde los datos son representados utilizando un histograma que refleja la cantidad de veces que se repite
+una palabra en un documento determinado. Esta representación se ha utilizado en áreas como visión por computadoras, procesamiento del habla y procesamiento de series temporales
+como es el caso de este problema en particular. El objetivo es crear un diccionario de palabras clave que describa la serie temporal por fragmentos (un tamaño prefijado) y luego
+representar en un histograma la frecuencia con que aparece cada palabra clave en una serie temporal dada. Para crear esta lista de palabras clave separan en una cantidad de tramos 
+prefijada las series temporales de los datos recolectados y etiquetados, con datos de estos tramos como las lecturas, la media, la varianza, y los valores máximo y mínimo corren
+\emph{k-means} con todos los datos de una clase para cada una de las clases, con el objetivo de agrupar los tramos similares en \emph{clusters} y obtener $k$ centroides, cada uno
+de estos lo consideran una palabra clave perteneciente a una de las clases en cuestión. De esta forma cada clase tiene $k$ centroides que son sus palabras clave y así se obtiene 
+un diccionario de clase:palabras clave. Luego para construir el vector de \emph{features} segmentan la señal por tramos y comparan cada tramo con cada uno de las palabras clave 
+en el diccionario utilizando distancia euclideana y asignando a cada tramo la palabra clave con menor distancia, de esta forma cada tramo se convierte en una palabra clave y es 
+convertido a un histograma donde cada característica constituye la cantidad de veces que se repite cada palabra clave en esa serie temporal, y es este vector el que entregan al 
+clasificador. Probaron con una gran variedad de clasificadores \textbf{ANN} (redes neuronales), \textbf{KNN}, \textbf{NB} (\emph{Naive Bayes}), \textbf{RF} (\emph{Random Forest}),
+\textbf{DT} (\emph{Decision Trees}), \textbf{SVM}, y \textbf{KR}(\emph{Kernel Ridge}).
