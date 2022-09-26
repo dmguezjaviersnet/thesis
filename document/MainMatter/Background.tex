@@ -7,13 +7,13 @@ acelerómetro. Entre los varios métodos estadísticos ~\cite{mednis2011real} pr
 \begin{itemize}
 	\item  \emph{\textbf {Z-Thresh}}: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con 
 	un valor \emph{threshold} prefijado, si es mayor devuelve \emph{True} indicando que hay una anomalía en ese instante, de lo contrario
-	devuelve {\it FALSE}.\\
+	devuelve \emph{False}.\\
 	\item \emph{\textbf {Z-DIFF}}: Utiliza el valor del acelerómetro en el eje Z en dos instantes de tiempo consecutivos y compara la
 		diferencia modular con un valor \emph{threshold} prefijado, si es mayor devuelve \emph{True} indicando que hay una anomalía en ese
-		instante, de lo contrario devuelve {\it FALSE}.\\
+		instante, de lo contrario devuelve \emph{False}.\\
 	\item \emph{\textbf {STDEV(Z)}}: Analiza la desviación estándar del valor del acelerómetro en el eje Z durante un intervalo de
 		tiempo y compara con un valor \emph{threshold} prefijado, si es mayor devuelve \emph{True} indicando que hay una anomalía en ese
-		instante, de lo contrario devuelve {\it FALSE}.\\ 
+		instante, de lo contrario devuelve \emph{False}.\\ 
 	\item \emph{\textbf {G-ZERO}}: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
 		instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto valor prefijado, lo que
 		indica que el vehículo está en caída libre.\\
@@ -122,9 +122,9 @@ arrojó mejores resultados cuando el número de \emph{features} es mayor que 5, 
 \emph{features} es mayor que 2 y menor que 6.\\
 Para la clasificicación usaron \textbf{SVM} one-class classification con kernel RBF con parámetros  $\nu = 0.01$  $\gamma = 0.00002$. \textbf{SVM} fué
 entrenado con el 70 \%  de los datos (1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de los datos  (530 segmentos)
-y en todos los 21 segmentos de anomalías fueron usados para los tests de precisión del modelo \textbf{SVM} construido. 
+y en todos los 21 segmentos de anomalías fueron usados para los tests de precisión del modelo \textbf{SVM} construido.\\
 
-En el Aniket Kulkarni {\it et al.} ~\cite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
+~\cite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
 puede utilizarse para cargarlo en un servidor centralizado o enviarlo  a las autoridades competentes inmediatamente.  Cuando el usuario inicia su viaje,
 lanza la aplicación Android de detección de baches. La aplicación, que tiene como complemento del algoritmo en funcionamiento, detecta los baches en las
 carreteras mientras el usuario está conduciendo. Supervisa los cambios en la aceleración. La aplicación añáde la hora actual, las coordenadas geográficas
@@ -189,7 +189,7 @@ cual diseñan varios experimentos. Como resultado de esto llegaron a la conclusi
 con una anomalía tendrá una relación casi lineal con la profundidad o altura de la anomalía. Utilizando \textbf{KNN} y \textbf{DTW}(\emph{Dynamic Time Warping}
 que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades), es que llevan a cabo el proceso
 de identificar los tipos de anomalías. Los autores comparan su propuesta con otras hechas en los últimos 3 años obteniendo un mejor \emph{F1 score} al
-identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.
+identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.\\
 
 ~\cite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del \textbf{GPS}
 en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas por ráfagas, que son mediciones registradas con la
@@ -211,10 +211,10 @@ anomalía. Se utilizaron características basadas en \emph{Fast Fourier Transfor
 suposición de que los baches producirían componentes de menor frecuencia en comparación a la vibración que se origina en el motor y en la superficie normal de la carretera.
 La energía \textbf{FFT} se extrajo de 17 bandas de frecuencia para cada dirección de la aceleración y los coeficientes cepstrales de frecuencia de mel en 4 bandas. Se
 utilizó el algoritmo de selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la
-dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}.  Para clasificar las ventanas, que representan 
+dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}. Para clasificar las ventanas, que representan 
 pequeños segmentos de la carratera, se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones 
-de parámetros con SVM usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. Presentaron además un \emph{framework} de 
-visualización para los resultados , parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.
+de parámetros con \textbf{SVM} usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. Presentaron además un \emph{framework} de 
+visualización para los resultados, parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.\\
 
 ~\cite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el giroscopio. Con esto
 construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media de los 3 ejes del acelerómetro así
@@ -223,8 +223,8 @@ los picos en las lecturas causados por los baches. Finalmente proponen como mode
 compuesta de una capa densa con función de activación ReLU, permitiendo \\emph{backpropagation} de forma más rápida. Adicionalmente cuenta con una capa de \emph{dropout}
 con el objetivo de prevenir el \emph{overfitting}, asignando 0 como valor de forma aleatoria a un porciento de las entradas luego de cada actualización. La capa de salida 
 tiene como función de activación la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size}
-de 3. Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\\emph{Synthetic Minority
-OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso). 
+de 3. Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\emph{Synthetic Minority
+OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso).\\
 
 ~\cite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con un total de 12, entre ellos camiones incluidos,
 además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2 personas iban en el vehículo, uno de ellos encargado de etiquetar las
@@ -241,4 +241,4 @@ un diccionario de clase:palabras clave. Luego para construir el vector de \emph{
 en el diccionario utilizando distancia euclideana y asignando a cada tramo la palabra clave con menor distancia, de esta forma cada tramo se convierte en una palabra clave y es 
 convertido a un histograma donde cada característica constituye la cantidad de veces que se repite cada palabra clave en esa serie temporal, y es este vector el que entregan al 
 clasificador. Probaron con una gran variedad de clasificadores \textbf{ANN} (redes neuronales), \textbf{KNN}, \textbf{NB} (\emph{Naive Bayes}), \textbf{RF} (\emph{Random Forest}),
-\textbf{DT} (\emph{Decision Trees}), \textbf{SVM}, y \textbf{KR}(\emph{Kernel Ridge}).
+\textbf{DT} (\emph{Decision Trees}), \textbf{SVM}, y \textbf{KR}(\emph{Kernel Ridge}).\\
