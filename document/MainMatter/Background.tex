@@ -211,9 +211,10 @@ anomalía. Se utilizaron características basadas en \emph{Fast Fourier Transfor
 suposición de que los baches producirían componentes de menor frecuencia en comparación a la vibración que se origina en el motor y en la superficie normal de la carretera.
 La energía \textbf{FFT} se extrajo de 17 bandas de frecuencia para cada dirección de la aceleración y los coeficientes cepstrales de frecuencia de mel en 4 bandas. Se
 utilizó el algoritmo de selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la
-dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}.  Para clasificar las ventanas 
-se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones de parámetros con SVM
-usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. 
+dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}.  Para clasificar las ventanas, que representan 
+pequeños segmentos de la carratera, se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones 
+de parámetros con SVM usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. Presentaron además un \emph{framework} de 
+visualización para los resultados , parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.
 
 ~\cite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el giroscopio. Con esto
 construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media de los 3 ejes del acelerómetro así
@@ -223,7 +224,7 @@ compuesta de una capa densa con función de activación ReLU, permitiendo \\emph
 con el objetivo de prevenir el \emph{overfitting}, asignando 0 como valor de forma aleatoria a un porciento de las entradas luego de cada actualización. La capa de salida 
 tiene como función de activación la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size}
 de 3. Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\\emph{Synthetic Minority
-OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso).
+OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso). 
 
 ~\cite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con un total de 12, entre ellos camiones incluidos,
 además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2 personas iban en el vehículo, uno de ellos encargado de etiquetar las
