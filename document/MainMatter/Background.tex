@@ -20,7 +20,7 @@ acelerómetro. Entre los varios métodos estadísticos ~\cite{mednis2011real} pr
 \end{itemize}
 
 Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la información. 
-Para caputurar datos preliminares utilizaron un collar LynxNet a una frecuencia de 100Hz. Para la evaluación del sistema utilizaron 4 dispositivos
+Para capturar datos preliminares utilizaron un collar LynxNet a una frecuencia de 100Hz. Para la evaluación del sistema utilizaron 4 dispositivos
 móviles (Samsung i5700, Samung Galaxy S, HTC Desire, HTC HD2), con los que recolectaron más datos y los procesaron con el objetivo de asignar los 
 valores óptimos a cada uno de los \emph{threshold}s característicos de cada uno de los 4 métodos propuestos, así como el tamaño de la ventana en caso de 
 \textbf {STDEV(Z)}.\\
@@ -40,26 +40,15 @@ dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
 \end{itemize}
 
 Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, ~\cite{carlos2018evaluation} además de realizar
-una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con \textbf{SVM} para entrenar
-un modelo que decidiera utilizando varios \emph{features} (basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. \emph{features}
-como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 \emph{features} utilizados para
-otorgar un valor de confianza a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con un cierto valor \emph{threshold}.
-Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\cite{mednis2011real}), con el objetivo de mejorar el rendimiento
-del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor \emph{threshold} concebido. Completan los
-12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente. Cabe desctacar que implementaron una
-plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y curados. Los datos que utilizaron fueron
-obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
-
-~\cite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
-ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
-de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
-Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
-datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, por lo que 
-etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como \textbf{KNN},
-\emph{\textbf{Decision Trees}}, \textbf{SVM} y \emph{ensembles} de clasificadores fueron probados, obteniendo los mejores resultados con las \textbf{SVM} y los
-\emph{bagged decision trees}. Utilizaron \emph{features} estadísticos, de dominio temporal, de dominio de frecuencia y de dominio frecuencia-temporal. Entre los
-\emph{features} que utilizaron están media, mediana, moda, desviación estándar, varianza, rango entre cuartiles, media de la frecuencia, la mediana de la frecuencia,
-etc.\\
+una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con \emph{Support Vector Machines} 
+(\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features} (basados principalmente en la aceleración en el eje Z), sí existía
+o no una anomalía. \emph{Features} como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros
+4 \emph{features} utilizados para otorgar un valor de confianza a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con
+un cierto valor \emph{threshold}. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\cite{mednis2011real}), con el objetivo
+de mejorar el rendimiento del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor \emph{threshold}
+concebido. Completan los 12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente. Cabe desctacar que
+implementaron una plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y curados. Los datos que
+utilizaron fueron obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
 ~\cite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar la calidad
 del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los dispositivos
@@ -68,6 +57,17 @@ utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 se
 Finalmente entrenaron un modelo utilizando una \textbf{SVM} con los \emph{features} que extrajeron de los datos, razón por la cual etiquetaron sus datos utilizando vídeos
 y audios grabados durante la recolección de los datos. El dispositivo que utilizaron para la recolección de los datos fue un Samsung Galaxy S2 y recopilaron datos a
 frecuencias de 47Hz y 93Hz.\\
+
+~\cite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
+ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
+de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
+Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
+datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, por lo que 
+etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como \emph{K-Nearest Neighboors} (\textbf{KNN}),
+\emph{\textbf{Decision Trees}}, \textbf{SVM} y \emph{ensembles} de clasificadores fueron probados, obteniendo los mejores resultados con las \textbf{SVM} y los
+\emph{bagged decision trees}. Utilizaron \emph{features} estadísticos, de dominio temporal, de dominio de frecuencia y de dominio frecuencia-temporal. Entre los
+\emph{features} que utilizaron están media, mediana, moda, desviación estándar, varianza, rango entre cuartiles, media de la frecuencia, la mediana de la frecuencia,
+etc.\\
 
 % //\\// Pendiente //\\//
 % - Añadir detalles sobre el uso del GPS.
@@ -175,15 +175,15 @@ registro debe mantenerse en la base de datos.  El algoritmo que proponen es el s
 \end{itemize}
 
 ~\cite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
-carretera está en el mundo no posee anomalías, y que la aplicación de técnicas de Machine Learning utizando una ventana deslizante a ciegas puede
+carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de Machine Learning utizando una ventana deslizante a ciegas puede
 disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que una anomalía comienza con una señal normal
 y luego ocurre un pico de aceleración en el eje Z que excede un \emph{threshold} superior y luego cae y excede un \emph{threshold} inferior o viceversa,
 y finalmente la señal vuelve a estabilizarse entre esos dos \emph{threshold}s. Ese intervalo es el que consideran como el intervalo candidato en el que
-puede haber una anomalía , y para encontrarlo utilizan primero el método heurístico de establecer un \emph{threshold} superior e inferior en la aceleración
+puede haber una anomalía, y para encontrarlo utilizan primero el método heurístico de establecer un \emph{threshold} superior e inferior en la aceleración
 y buscan el primer instante donde la aceleración sobrepasa alguno de los \emph{threshold}s y el último instante, y utilizan un método para encontrar los
 instantes de tiempo justo antes de que ocurriera el primer evento y el instante de tiempo justo después de que ocurriera el último evento, de esta forma
-logran construir una ventana de tamaño dinámico que contiene toda la información acerca de la anomalía, de esta forma construyen un conjunto de ventanas
-con posibles anomalías en la serie temporal. Luego crean un modelo con un random forest utilizando algunos \emph{features} estadísticos de cada una de las ventanas
+logran construir una ventana de tamaño dinámico que contiene toda la información acerca de la anomalía, obteniendo como resultado un conjunto de ventanas
+con posibles anomalías en la serie temporal. Luego crean un modelo con un \emph{Random forest} utilizando algunos \emph{features} estadísticos de cada una de las ventanas
 para filtrar ventanas que no constituyen anomalías reales, también proponen tratar al vehículo como un modelo de vibración de un nivel de libertad para lo
 cual diseñan varios experimentos. Como resultado de esto llegaron a la conclusión de que la varianza de la aceleración en el eje Z cuando el vehículo interactúa
 con una anomalía tendrá una relación casi lineal con la profundidad o altura de la anomalía. Utilizando \textbf{KNN} y \textbf{DTW}(\emph{Dynamic Time Warping}
@@ -213,8 +213,8 @@ La energía \textbf{FFT} se extrajo de 17 bandas de frecuencia para cada direcci
 utilizó el algoritmo de selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la
 dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}. Para clasificar las ventanas, que representan 
 pequeños segmentos de la carratera, se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones 
-de parámetros con \textbf{SVM} usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros \gamma y C. Presentaron además un \emph{framework} de 
-visualización para los resultados, parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.\\
+de parámetros con \textbf{SVM} usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros $\gamma$ y C. Presentaron además un \emph{framework}
+de visualización para los resultados, parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.\\
 
 ~\cite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el giroscopio. Con esto
 construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media de los 3 ejes del acelerómetro así
@@ -240,5 +240,5 @@ de estos lo consideran una palabra clave perteneciente a una de las clases en cu
 un diccionario de clase:palabras clave. Luego para construir el vector de \emph{features} segmentan la señal por tramos y comparan cada tramo con cada uno de las palabras clave 
 en el diccionario utilizando distancia euclideana y asignando a cada tramo la palabra clave con menor distancia, de esta forma cada tramo se convierte en una palabra clave y es 
 convertido a un histograma donde cada característica constituye la cantidad de veces que se repite cada palabra clave en esa serie temporal, y es este vector el que entregan al 
-clasificador. Probaron con una gran variedad de clasificadores \textbf{ANN} (redes neuronales), \textbf{KNN}, \textbf{NB} (\emph{Naive Bayes}), \textbf{RF} (\emph{Random Forest}),
-\textbf{DT} (\emph{Decision Trees}), \textbf{SVM}, y \textbf{KR}(\emph{Kernel Ridge}).\\
+clasificador. Probaron con una gran variedad de clasificadores redes neuronales artificiales(\textbf{ANN}), \textbf{KNN}, \emph{Naive Bayes}(\textbf{NB}), \emph{Random Forest}
+(\textbf{RF}), \emph{Decision Trees}(\textbf{DT}), \textbf{SVM}, y \emph{Kernel Ridge}(\textbf{KR}).\\
