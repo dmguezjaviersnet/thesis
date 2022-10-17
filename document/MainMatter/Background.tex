@@ -44,30 +44,30 @@ una comparación de los métodos existentes en su momento, crearon un método en
 (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features} (basados principalmente en la aceleración en el eje Z), sí existía
 o no una anomalía. \emph{Features} como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros
 4 \emph{features} utilizados para otorgar un valor de confianza a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con
-un cierto valor \emph{threshold}. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\parencite{mednis2011real}), con el objetivo
-de mejorar el rendimiento del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor \emph{threshold}
-concebido. Completan los 12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente. Cabe desctacar que
-implementaron una plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y curados. Los datos que
-utilizaron fueron obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
+un cierto valor \emph{threshold}. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\parencite{mednis2011real}), con el
+objetivo de mejorar el rendimiento del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor
+\emph{threshold} concebido. Completan los 12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente.
+Cabe desctacar que implementaron una plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y
+curados. Los datos que utilizaron fueron obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
-~\parencite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar la calidad
-del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los dispositivos
-utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 segundos y extrajeron de ahí varios \emph{features} para el proceso de entrenamiento.
-\emph{features} de dominio temporal, \emph{features} de dominio de frecuencia y \emph{features} extraídos de la transformada de wavelet son los que conforman los vectores.
-Finalmente entrenaron un modelo utilizando una \textbf{SVM} con los \emph{features} que extrajeron de los datos, razón por la cual etiquetaron sus datos utilizando vídeos
-y audios grabados durante la recolección de los datos. El dispositivo que utilizaron para la recolección de los datos fue un Samsung Galaxy S2 y recopilaron datos a
-frecuencias de 47Hz y 93Hz.\\
+~\parencite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar
+la calidad del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los
+dispositivos utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 segundos y extrajeron de ahí varios \emph{features} para el proceso
+de entrenamiento. \emph{features} de dominio temporal, \emph{features} de dominio de frecuencia y \emph{features} extraídos de la transformada de wavelet son
+los que conforman los vectores. Finalmente entrenaron un modelo utilizando una \textbf{SVM} con los \emph{features} que extrajeron de los datos, razón por la
+cual etiquetaron sus datos utilizando vídeos y audios grabados durante la recolección de los datos. El dispositivo que utilizaron para la recolección de los
+datos fue un Samsung Galaxy S2 y recopilaron datos a frecuencias de 47Hz y 93Hz.\\
 
 ~\parencite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
-ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación de ruido
-de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
+ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación
+de ruido de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
 Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
-datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de Machine Learning. Se decantaron por un enfoque supervisado, por lo que 
-etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como \emph{K-Nearest Neighboors} (\textbf{KNN}),
-\emph{\textbf{Decision Trees}}, \textbf{SVM} y \emph{ensembles} de clasificadores fueron probados, obteniendo los mejores resultados con las \textbf{SVM} y los
-\emph{bagged decision trees}. Utilizaron \emph{features} estadísticos, de dominio temporal, de dominio de frecuencia y de dominio frecuencia-temporal. Entre los
-\emph{features} que utilizaron están media, mediana, moda, desviación estándar, varianza, rango entre cuartiles, media de la frecuencia, la mediana de la frecuencia,
-etc.\\
+datos más confiables con los que llevar a cabo el proceso de entrenamiento del modelo de \emph{Machine Learning}. Se decantaron por un enfoque supervisado, por
+lo que etiquetaron de antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como \emph{K-Nearest Neighboors}
+(\textbf{KNN}), \emph{\textbf{Decision Trees}}, \textbf{SVM} y \emph{ensembles} de clasificadores fueron probados, obteniendo los mejores resultados con las
+\textbf{SVM} y los \emph{bagged decision trees}. Utilizaron \emph{features} estadísticos, de dominio temporal, de dominio de frecuencia y de dominio
+frecuencia-temporal. Entre los \emph{features} que utilizaron están media, mediana, moda, desviación estándar, varianza, rango entre cuartiles, media de la
+frecuencia, la mediana de la frecuencia, etc.\\
 
 % //\\// Pendiente //\\//
 % - Añadir detalles sobre el uso del GPS.
@@ -114,10 +114,10 @@ debe de esperar de una distribución sin sesgo del área que se intenta mapear.\
 
 ~\parencite{cong2013applying} para la extracción de \emph{features} descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition}) usando
 sucesivamente filtros de \emph{low-pass} y de \emph{high-pass}. Donde \textbf{WPD} es llevado a cabo aplicando de forma iterativa filtros espejos en
-cuadratura y seguido por submuestreo. La selección de \emph{features} basadas en machine learning puede ser asistida para reducir la demanda computacional
-para la clasificiación. La selección de \emph{features} está diseñada para encontrar las \emph{features} que hacen una mejor discriminación de los baches
-y los segmentos normales en estudio. Para la selección de \emph{features} se probaron con cuatro métodos: \textbf{BS}(\emph{Backward Selection}), \textbf{FS}
-(\emph{Forward Selection}),  y \textbf{PCA} usando un número diferente de \emph{features} seleccionadas. \textbf{PCA} fue el que
+cuadratura y seguido por submuestreo. La selección de \emph{features} basadas en \emph{Machine Learning} puede ser asistida para reducir la demanda
+computacional para la clasificiación. La selección de \emph{features} está diseñada para encontrar las \emph{features} que hacen una mejor discriminación
+de los baches y los segmentos normales en estudio. Para la selección de \emph{features} se probaron con cuatro métodos: \textbf{BS}(\emph{Backward Selection}),
+\textbf{FS} (\emph{Forward Selection}),  y \textbf{PCA} usando un número diferente de \emph{features} seleccionadas. \textbf{PCA} fue el que
 arrojó mejores resultados cuando el número de \emph{features} es mayor que 5, mientras \textbf{FS}(\emph{Forward Selection}) es mejor cuando el número de
 \emph{features} es mayor que 2 y menor que 6.\\
 Para la clasificicación usaron \textbf{SVM} one-class classification con kernel RBF con parámetros  $\nu = 0.01$  $\gamma = 0.00002$. \textbf{SVM} fué
@@ -175,7 +175,7 @@ registro debe mantenerse en la base de datos.  El algoritmo que proponen es el s
 \end{itemize}
 
 ~\parencite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
-carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de Machine Learning utizando una ventana deslizante a ciegas puede
+carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de \emph{Machine Learning} utizando una ventana deslizante a ciegas puede
 disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que una anomalía comienza con una señal normal
 y luego ocurre un pico de aceleración en el eje Z que excede un \emph{threshold} superior y luego cae y excede un \emph{threshold} inferior o viceversa,
 y finalmente la señal vuelve a estabilizarse entre esos dos \emph{threshold}s. Ese intervalo es el que consideran como el intervalo candidato en el que
@@ -183,62 +183,68 @@ puede haber una anomalía, y para encontrarlo utilizan primero el método heurí
 y buscan el primer instante donde la aceleración sobrepasa alguno de los \emph{threshold}s y el último instante, y utilizan un método para encontrar los
 instantes de tiempo justo antes de que ocurriera el primer evento y el instante de tiempo justo después de que ocurriera el último evento, de esta forma
 logran construir una ventana de tamaño dinámico que contiene toda la información acerca de la anomalía, obteniendo como resultado un conjunto de ventanas
-con posibles anomalías en la serie temporal. Luego crean un modelo con un \emph{Random forest} utilizando algunos \emph{features} estadísticos de cada una de las ventanas
-para filtrar ventanas que no constituyen anomalías reales, también proponen tratar al vehículo como un modelo de vibración de un nivel de libertad para lo
-cual diseñan varios experimentos. Como resultado de esto llegaron a la conclusión de que la varianza de la aceleración en el eje Z cuando el vehículo interactúa
-con una anomalía tendrá una relación casi lineal con la profundidad o altura de la anomalía. Utilizando \textbf{KNN} y \textbf{DTW}(\emph{Dynamic Time Warping}
-que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades), es que llevan a cabo el proceso
-de identificar los tipos de anomalías. Los autores comparan su propuesta con otras hechas en los últimos 3 años obteniendo un mejor \emph{F1 score} al
-identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.\\
+con posibles anomalías en la serie temporal. Luego crean un modelo con un \emph{Random forest} utilizando algunos \emph{features} estadísticos de cada una
+de las ventanas para filtrar ventanas que no constituyen anomalías reales, también proponen tratar al vehículo como un modelo de vibración de un nivel de
+libertad para lo cual diseñan varios experimentos. Como resultado de esto llegaron a la conclusión de que la varianza de la aceleración en el eje Z cuando
+el vehículo interactúa con una anomalía tendrá una relación casi lineal con la profundidad o altura de la anomalía. Utilizando \textbf{KNN} y \textbf{DTW}
+(\emph{Dynamic Time Warping} que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades), es que
+llevan a cabo el proceso de identificar los tipos de anomalías. Los autores comparan su propuesta con otras hechas en los últimos 3 años obteniendo un mejor
+\emph{F1 score} al identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.\\
 
-~\parencite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del \textbf{GPS}
-en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas por ráfagas, que son mediciones registradas con la
-misma marca de tiempo. A continuación, se realizó el rechazo de valores atípicos de GPS y se aplicó el filtro de Kalman a la latitud y la longitud para reducir
-aún más el ruido. Después la velocidad será estimamda por cada par consecutivo de latitud y longitud. La señal resultante de velocidad fué sobremuestrada y filtrada
-usando límites físicos razonables para la aceleración del vehiculo. Cuando las estimaciones de velocidad parecían lo suficientemente suaves, la señal estaba
-a menudo contaminada por una gran latencia en comparación con la estimación de velocidad original (ruidosa) y la señal no llegaba a cero en las paradas de los vehículos.
-Para aliviar este problema se usan dos correcciones. En primer lugar, se elimina una latencia determinada visualmente de la estimación de velocidad filtrada. En segundo
-lugar, se aplica una fusión muy sencilla de la aceleración y la señal de \textbf{GPS}: la varianza de la norma de la aceleración se calculó para la señal de aceleración
-y se examinó visualmente. Mediante un simple \emph{threshold} fueron capaces de detectar un segmento de la señal, donde la velocidad del vehículo era cero, o muy cercana
-a cero. A continuación, establecieron los segmentos correspondientes de la señal de velocidad en cero y suavizaron la señal utilizando un filtro de Kalman. Los datos
-fueron seperados usando una ventana deslizante. Experimentaron con pedazos desde 0.5 segundos hasta 2 segundos, esta escala se consideró aceptable para la tarea de
-reconocimiento de anomalías, ya que la duración media de las anomalías era alrededor de 2 segundos. Por cada ventana, se determinaba el por ciento de la ventana cubierta
-por anomalías (uno o más juntos). La extracción de características se realiza utilizando ventanas deslizantes de 2 segundos de longitud, con un deslizamiento de 0.5
-segundos. Varias características fueron extraídas de la señal de aceleración: la desviación estándar, la media, la varianza, \emph{peok-to-peak}, \emph{signal magnitude area},
-\emph{3-order autoregressive coeficcients}, \emph{til angles}, la raíz de la desviación cuadrática media. Los valores absolutos de la correlación de señales entre todas
-las dimensiones son usados también, ya que se observó visualmente muchas veces todas las señales de aceleración mostraban similar formas de onda en los segmentos de la
-anomalía. Se utilizaron características basadas en \emph{Fast Fourier Transformation(FFT)} para incorporar información de frecuencias específicas. Esto se basó en la
-suposición de que los baches producirían componentes de menor frecuencia en comparación a la vibración que se origina en el motor y en la superficie normal de la carretera.
-La energía \textbf{FFT} se extrajo de 17 bandas de frecuencia para cada dirección de la aceleración y los coeficientes cepstrales de frecuencia de mel en 4 bandas. Se
-utilizó el algoritmo de selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la
-dependecia de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}. Para clasificar las ventanas, que representan 
-pequeños segmentos de la carratera, se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue seleccionado. Evaluaron 49 combinaciones 
-de parámetros con \textbf{SVM} usando función de kernal radial (RBF), correspondientes a una rejilla de valores de los parámetros $\gamma$ y C. Presentaron además un \emph{framework}
-de visualización para los resultados, parar habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.\\
+~\parencite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del
+\textbf{GPS} en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas por ráfagas,
+que son mediciones registradas con la misma marca de tiempo. A continuación, se realizó el rechazo de valores atípicos de GPS y se aplicó el filtro de
+Kalman a la latitud y la longitud para reducir aún más el ruido. Después la velocidad será estimamda por cada par consecutivo de latitud y longitud.
+La señal resultante de velocidad fué sobremuestrada y filtrada usando límites físicos razonables para la aceleración del vehiculo. Cuando las estimaciones
+de velocidad parecían lo suficientemente suaves, la señal estaba a menudo contaminada por una gran latencia en comparación con la estimación de velocidad
+original (ruidosa) y la señal no llegaba a cero en las paradas de los vehículos. Para aliviar este problema se usan dos correcciones. En primer lugar, se
+elimina una latencia determinada visualmente de la estimación de velocidad filtrada. En segundo lugar, se aplica una fusión muy sencilla de la aceleración
+y la señal de \textbf{GPS}: la varianza de la norma de la aceleración se calculó para la señal de aceleración y se examinó visualmente. Mediante un simple
+\emph{threshold} fueron capaces de detectar un segmento de la señal, donde la velocidad del vehículo era cero, o muy cercana a cero. A continuación,
+establecieron los segmentos correspondientes de la señal de velocidad en cero y suavizaron la señal utilizando un filtro de Kalman. Los datos fueron
+seperados usando una ventana deslizante. Experimentaron con pedazos desde 0.5 segundos hasta 2 segundos, esta escala se consideró aceptable para la tarea de
+reconocimiento de anomalías, ya que la duración media de las anomalías era alrededor de 2 segundos. Por cada ventana, se determinaba el por ciento de la
+ventana cubierta por anomalías (uno o más juntos). La extracción de características se realiza utilizando ventanas deslizantes de 2 segundos de longitud,
+con un deslizamiento de 0.5 segundos. Varias características fueron extraídas de la señal de aceleración: la desviación estándar, la media, la varianza,
+\emph{peok-to-peak}, \emph{signal magnitude area}, \emph{3-order autoregressive coeficcients}, \emph{til angles}, la raíz de la desviación cuadrática media.
+Los valores absolutos de la correlación de señales entre todas las dimensiones son usados también, ya que se observó visualmente muchas veces todas las
+señales de aceleración mostraban similar formas de onda en los segmentos de la anomalía. Se utilizaron características basadas en \emph{Fast Fourier
+Transformation(FFT)} para incorporar información de frecuencias específicas. Esto se basó en la suposición de que los baches producirían componentes de
+menor frecuencia en comparación a la vibración que se origina en el motor y en la superficie normal de la carretera. La energía \textbf{FFT} se extrajo de
+17 bandas de frecuencia para cada dirección de la aceleración y los coeficientes cepstrales de frecuencia de mel en 4 bandas. Se utilizó el algoritmo de
+selección de \emph{features} \emph{Backward Selection} para seleccionar el conjunto de \emph{features} óptimo tanto para los que eliminaron la dependecia
+de velocidad como para los que no. Usaron un método para remover la dependecia de la velocidad en los \emph{features}. Para clasificar las ventanas, que
+representan pequeños segmentos de la carratera, se utilizó SVM con kernel RBF. El clasificador con el mejor g-means medio luego de varias corridas fue
+seleccionado. Evaluaron 49 combinaciones de parámetros con \textbf{SVM} usando función de kernal radial (RBF), correspondientes a una rejilla de valores
+de los parámetros $\gamma$ y C. Presentaron además un \emph{framework} de visualización para los resultados, parar habilitar la inspección visual de,
+por ejemplo, los ejemplos cercanos al borde de las clases.\\
 
-~\parencite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el giroscopio. Con esto
-construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media de los 3 ejes del acelerómetro así
-como los del giroscopio, luego estandarizaron los datos para disminuir el efecto de los \emph{outliers} en los \emph{features} y permite percibir mejor en un gráfico
-los picos en las lecturas causados por los baches. Finalmente proponen como modelo una red neuronal con 2 capas ocultas y 1 capa de salida, cada una de las capas ocultas
-compuesta de una capa densa con función de activación ReLU, permitiendo \\emph{backpropagation} de forma más rápida. Adicionalmente cuenta con una capa de \emph{dropout}
-con el objetivo de prevenir el \emph{overfitting}, asignando 0 como valor de forma aleatoria a un porciento de las entradas luego de cada actualización. La capa de salida 
-tiene como función de activación la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size}
-de 3. Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\emph{Synthetic Minority
-OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no bache en este caso).\\
-
-~\parencite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con un total de 12, entre ellos camiones incluidos,
-además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2 personas iban en el vehículo, uno de ellos encargado de etiquetar las
-anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos
-y asignan una etiqueta a dicha serie temporal. Su propuesta consiste en una forma distinta de procesar los datos capturados con el acelerómetro del dispositivo móvil, que es
-utilizando lo que se conoce como \emph{Bag of Words representation}, donde los datos son representados utilizando un histograma que refleja la cantidad de veces que se repite
-una palabra en un documento determinado. Esta representación se ha utilizado en áreas como visión por computadoras, procesamiento del habla y procesamiento de series temporales
-como es el caso de este problema en particular. El objetivo es crear un diccionario de palabras clave que describa la serie temporal por fragmentos (un tamaño prefijado) y luego
-representar en un histograma la frecuencia con que aparece cada palabra clave en una serie temporal dada. Para crear esta lista de palabras clave separan en una cantidad de tramos 
-prefijada las series temporales de los datos recolectados y etiquetados, con datos de estos tramos como las lecturas, la media, la varianza, y los valores máximo y mínimo corren
-\emph{k-means} con todos los datos de una clase para cada una de las clases, con el objetivo de agrupar los tramos similares en \emph{clusters} y obtener $k$ centroides, cada uno
-de estos lo consideran una palabra clave perteneciente a una de las clases en cuestión. De esta forma cada clase tiene $k$ centroides que son sus palabras clave y así se obtiene 
-un diccionario de clase:palabras clave. Luego para construir el vector de \emph{features} segmentan la señal por tramos y comparan cada tramo con cada uno de las palabras clave 
-en el diccionario utilizando distancia euclideana y asignando a cada tramo la palabra clave con menor distancia, de esta forma cada tramo se convierte en una palabra clave y es 
-convertido a un histograma donde cada característica constituye la cantidad de veces que se repite cada palabra clave en esa serie temporal, y es este vector el que entregan al 
-clasificador. Probaron con una gran variedad de clasificadores redes neuronales artificiales(\textbf{ANN}), \textbf{KNN}, \emph{Naive Bayes}(\textbf{NB}), \emph{Random Forest}
-(\textbf{RF}), \emph{Decision Trees}(\textbf{DT}), \textbf{SVM}, y \emph{Kernel Ridge}(\textbf{KR}).\\
+~\parencite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el
+giroscopio. Con esto construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media
+de los 3 ejes del acelerómetro así como los del giroscopio, luego estandarizaron los datos para disminuir el efecto de los \emph{outliers} en los
+\emph{features} y permite percibir mejor en un gráfico los picos en las lecturas causados por los baches. Finalmente proponen como modelo una red
+neuronal con 2 capas ocultas y 1 capa de salida, cada una de las capas ocultas compuesta de una capa densa con función de activación ReLU, permitiendo
+\\emph{backpropagation} de forma más rápida. Adicionalmente cuenta con una capa de \emph{dropout} con el objetivo de prevenir el \emph{overfitting},
+asignando 0 como valor de forma aleatoria a un porciento de las entradas luego de cada actualización. La capa de salida tiene como función de activación
+la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size} de 3.
+Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\emph{Synthetic
+Minority OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no
+bache en este caso).\\ ~\parencite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
+un total de 12, entre ellos camiones incluidos, además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2
+personas iban en el vehículo, uno de ellos encargado de etiquetar las anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el
+dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta a dicha serie temporal. Su
+propuesta consiste en una forma distinta de procesar los datos capturados con el acelerómetro del dispositivo móvil, que es utilizando lo que se conoce
+como \emph{Bag of Words representation}, donde los datos son representados utilizando un histograma que refleja la cantidad de veces que se repite una
+palabra en un documento determinado. Esta representación se ha utilizado en áreas como visión por computadoras, procesamiento del habla y procesamiento
+de series temporales como es el caso de este problema en particular. El objetivo es crear un diccionario de palabras clave que describa la serie temporal
+por fragmentos (un tamaño prefijado) y luego representar en un histograma la frecuencia con que aparece cada palabra clave en una serie temporal dada.
+Para crear esta lista de palabras clave separan en una cantidad de tramos prefijada las series temporales de los datos recolectados y etiquetados, con
+datos de estos tramos como las lecturas, la media, la varianza, y los valores máximo y mínimo corren \emph{k-means} con todos los datos de una clase para
+cada una de las clases, con el objetivo de agrupar los tramos similares en \emph{clusters} y obtener $k$ centroides, cada uno de estos lo consideran una
+palabra clave perteneciente a una de las clases en cuestión. De esta forma cada clase tiene $k$ centroides que son sus palabras clave y así se obtiene 
+un diccionario de clase:palabras clave. Luego para construir el vector de \emph{features} segmentan la señal por tramos y comparan cada tramo con cada
+uno de las palabras clave en el diccionario utilizando distancia euclideana y asignando a cada tramo la palabra clave con menor distancia, de esta forma
+cada tramo se convierte en una palabra clave y es convertido a un histograma donde cada característica constituye la cantidad de veces que se repite cada
+palabra clave en esa serie temporal, y es este vector el que entregan al clasificador. Probaron con una gran variedad de clasificadores redes neuronales
+artificiales(\textbf{ANN}), \textbf{KNN}, \emph{Naive Bayes}(\textbf{NB}), \emph{Random Forest} (\textbf{RF}), \emph{Decision Trees}(\textbf{DT}),
+\textbf{SVM}, y \emph{Kernel Ridge}(\textbf{KR}).\\
