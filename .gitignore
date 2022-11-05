@@ -21,4 +21,5 @@
 *.bcf
 *.xml
 *.pdf_tex
+/.vscode
 Session.vim

@@ -61,13 +61,6 @@
 	tipo de anomalías, incluso puede ser útil para marcar rutas de viaje y así facilitar algunos aspectos de la propuesta de
 	solución.
 
-	%------------------------- Detallar que framework utilizamos para capturar los sensores ---------------------------
-	% Primero que todo era necesario tener alguna forma de obtener señales de los sensores necesarios
-	% para poder llevar a cabo nuestra propuesta. Para esto se apredió a trabajar en \textbf{Flutter} y
-	% se hizo una aplicación móvil sencilla utilizando algunas bibliotecas propias de ese
-	% \emph{framework} que nos permitiera obtener las señales de los sensores y exportarlas en un
-	% {\textbf .json} para luego poder trabajar con dichos datos en el modelo de \emph{Machine Learning}.
-
 	%------------------------- Detallar las frecuencias de muestreo según la velocidad ---------------------------
 	Debido a que la \textbf{velocidad} de un vehículo durante un recorrido no suele ser constante, es necesario
 	que la \textbf{frecuencia de muestreo} cambie en función de la \textbf{velocidad} a la que vaya el vehículo,
@@ -86,4 +79,28 @@
 \section*{Detección de outliers}
 	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya que se tuvieron 
 	los \emph{datasets}, el primer paso sería identificar estas lecturas anómalas utilizando algún método de detección de
-	\emph{outliers}(o \emph{novelty detection}).
+	\emph{outliers}(o \emph{novelty detection}). Para esto primero que todo utilizamos 3 de los métodos sugeridos en la 
+	literatura que pueden ser indicadores de la presencia de una anomalía en la carretera \textbf{Z-THRESH}, \textbf{Z-DIFF},
+	\textbf{G-ZERO} y además utilizamos algoritmos conocidos de \emph{Machine Learning} para detectar outliers como \textbf{DBSCAN},
+	\textbf{OPTICS} y \textbf{One Class SVM}.
+	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
+
+
+\section*{Detección de outliers}
+	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya que se tuvieron 
+	los \emph{datasets}, el primer paso sería identificar estas lecturas anómalas utilizando algún método de detección de
+	\emph{outliers}(o \emph{novelty detection}). Para esto primero que todo utilizamos 3 de los métodos sugeridos en la 
+	literatura que pueden ser indicadores de la presencia de una anomalía en la carretera \textbf{Z-THRESH}, \textbf{Z-DIFF},
+	\textbf{G-ZERO} y además utilizamos algoritmos conocidos de \emph{Machine Learning} para detectar outliers como \textbf{DBSCAN},
+	\textbf{OPTICS} y \textbf{One Class SVM}.
+	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
+
+\section*{Clasificación de outliers}
+
+	%------------------------- Detallar que framework utilizamos para capturar los sensores ---------------------------
+	% Primero que todo era necesario tener alguna forma de obtener señales de los sensores necesarios
+	% para poder llevar a cabo nuestra propuesta. Para esto se apredió a trabajar en \textbf{Flutter} y
+	% se hizo una aplicación móvil sencilla utilizando algunas bibliotecas propias de ese
+	% \emph{framework} que nos permitiera obtener las señales de los sensores y exportarlas en un
+	% {\textbf .json} para luego poder trabajar con dichos datos en el modelo de \emph{Machine Learning}.
+

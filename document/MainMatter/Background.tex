@@ -50,7 +50,7 @@ móviles (Samsung i5700, Samung Galaxy S, HTC Desire, HTC HD2), con los que reco
 valores óptimos a cada uno de los \emph{threshold}s característicos de cada uno de los 4 métodos propuestos, así como el tamaño de la ventana en caso de 
 \textbf {STDEV(Z)}.\\
 
-~\parencite{mohan2008nericell} para el diseño de su estrategia se basaron en 2 ideas, cuando un vehículo interactúa con una
+~\textcite{mohan2008nericell} para el diseño de su estrategia se basaron en 2 ideas, cuando un vehículo interactúa con una
 anomalía (un bache en este caso) las ruedas descienden en el hueco ocasionando una caída sostenida en la aceleración en el eje Z,
 hasta que alcanzan el fondo del bache y en ese momento se produce un pico bien elevado de aceleración en el eje Z. A altas velocidades
 ese pico al final del evento es bien prominente, sin embargo cuando se va a muy poca velocidad no se nota prácticamente, pero la caída
@@ -64,18 +64,18 @@ dependiendo de la velocidad $v$ a la que se desplaze el vehículo:\\
 		en el eje Z, por debajo de un cierto \emph{threshold} prefijado, durante cierta cantidad de tiempo.\\
 \end{itemize}
 
-Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, ~\parencite{carlos2018evaluation} además de realizar
+Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios, ~\textcite{carlos2018evaluation} además de realizar
 una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con \emph{Support Vector Machines} 
 (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features} (basados principalmente en la aceleración en el eje Z), sí existía
 o no una anomalía. \emph{Features} como la media, desviación estándar, varianza, coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros
 4 \emph{features} utilizados para otorgar un valor de confianza a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con
-un cierto valor \emph{threshold}. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\parencite{mednis2011real}), con el
+un cierto valor \emph{threshold}. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\textcite{mednis2011real}), con el
 objetivo de mejorar el rendimiento del clasificador. Otro de los \emph{features} es la cantidad de veces que un feature estadístico sobrepasó el valor
 \emph{threshold} concebido. Completan los 12 \emph{features} utilizados la suma de los valores de confianza, así como el valor de confianza correspondiente.
 Cabe desctacar que implementaron una plataforma llamada Pothole Lab con el objetivo de crear un sitio web público donde tener acceso a data sets robustos y
 curados. Los datos que utilizaron fueron obtenidos de este mismo sitio y fueron capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
-~\parencite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar
+~\textcite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más \emph{features} que permitieran mejorar
 la calidad del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de las señales obtenidas con los sensores de los
 dispositivos utilizados para capturar los datos. Separaron las señales en ventanas de 2.5 segundos y extrajeron de ahí varios \emph{features} para el proceso
 de entrenamiento. \emph{features} de dominio temporal, \emph{features} de dominio de frecuencia y \emph{features} extraídos de la transformada de wavelet son
@@ -83,7 +83,7 @@ los que conforman los vectores. Finalmente entrenaron un modelo utilizando una \
 cual etiquetaron sus datos utilizando vídeos y audios grabados durante la recolección de los datos. El dispositivo que utilizaron para la recolección de los
 datos fue un Samsung Galaxy S2 y recopilaron datos a frecuencias de 47Hz y 93Hz.\\
 
-~\parencite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
+~\textcite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los sensores por
 ventanas de 1 segundo y generando vectores de \emph{features} bien extensos en cada una de estas ventanas. Además llevaron a cabo un proceso de eliminación
 de ruido de las señales probando varios métodos conocidos en el campo del procesamiento de señales digitales como la transformada de Fourier o la transformada de
 Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés), pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener
@@ -100,7 +100,7 @@ frecuencia, la mediana de la frecuencia, etc.\\
 % - Añadir detalles sobre el uso de distintos vehículos.
 % - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
-El algoritmo para la detección de anomalías en la carretera propuesto por ~\parencite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
+El algoritmo para la detección de anomalías en la carretera propuesto por ~\textcite{eriksson2008pothole} se basa en que condiciones anómalas de la carretera
 son reflejadas en características de los datos de aceleración. El problema para identificar baches a partir de lecturas del acelerómetro es bastante
 complelejo debido a la amplia variación en las condiciones de la carretera y el comportamiento del conductor. La mayoría de las anomalías pueden ser
 caracterizadas como eventos de alta energía en la señal de la aceleración, por si sola la energía de la señal no es suficiente como un criterio de
@@ -137,7 +137,7 @@ esta []. No es posible determinar puramente por la localización del GPS en el m
 la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una anomalía en la carretera es menor que la que se
 debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
 
-~\parencite{cong2013applying} para la extracción de \emph{features} descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition}) usando
+~\textcite{cong2013applying} para la extracción de \emph{features} descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition}) usando
 sucesivamente filtros de \emph{low-pass} y de \emph{high-pass}. Donde \textbf{WPD} es llevado a cabo aplicando de forma iterativa filtros espejos en
 cuadratura y seguido por submuestreo. La selección de \emph{features} basadas en \emph{Machine Learning} puede ser asistida para reducir la demanda
 computacional para la clasificiación. La selección de \emph{features} está diseñada para encontrar las \emph{features} que hacen una mejor discriminación
@@ -149,7 +149,7 @@ Para la clasificicación usaron \textbf{SVM} one-class classification con kernel
 entrenado con el 70 \%  de los datos (1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de los datos  (530 segmentos)
 y en todos los 21 segmentos de anomalías fueron usados para los tests de precisión del modelo \textbf{SVM} construido.\\
 
-~\parencite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
+~\textcite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que
 puede utilizarse para cargarlo en un servidor centralizado o enviarlo  a las autoridades competentes inmediatamente.  Cuando el usuario inicia su viaje,
 lanza la aplicación Android de detección de baches. La aplicación, que tiene como complemento del algoritmo en funcionamiento, detecta los baches en las
 carreteras mientras el usuario está conduciendo. Supervisa los cambios en la aceleración. La aplicación añáde la hora actual, las coordenadas geográficas
@@ -199,7 +199,7 @@ registro debe mantenerse en la base de datos.  El algoritmo que proponen es el s
 	
 \end{itemize}
 
-~\parencite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
+~\textcite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran mayoría de la
 carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de \emph{Machine Learning} utizando una ventana deslizante a ciegas puede
 disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que una anomalía comienza con una señal normal
 y luego ocurre un pico de aceleración en el eje Z que excede un \emph{threshold} superior y luego cae y excede un \emph{threshold} inferior o viceversa,
@@ -216,7 +216,7 @@ el vehículo interactúa con una anomalía tendrá una relación casi lineal con
 llevan a cabo el proceso de identificar los tipos de anomalías. Los autores comparan su propuesta con otras hechas en los últimos 3 años obteniendo un mejor
 \emph{F1 score} al identificar los 3 tipos de anomalías que consideraron en cada uno de los 3 \emph{datasets} que probaron.\\
 
-~\parencite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del
+~\textcite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la señal del
 \textbf{GPS} en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas por ráfagas,
 que son mediciones registradas con la misma marca de tiempo. A continuación, se realizó el rechazo de valores atípicos de GPS y se aplicó el filtro de
 Kalman a la latitud y la longitud para reducir aún más el ruido. Después la velocidad será estimamda por cada par consecutivo de latitud y longitud.
@@ -244,7 +244,7 @@ seleccionado. Evaluaron 49 combinaciones de parámetros con \textbf{SVM} usando 
 de los parámetros $\gamma$ y C. Presentaron además un \emph{framework} de visualización para los resultados, parar habilitar la inspección visual de,
 por ejemplo, los ejemplos cercanos al borde de las clases.\\
 
-~\parencite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el
+~\textcite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el
 giroscopio. Con esto construyen un vector de 24 \emph{features} entre los cuales están los valores máximo, mínimo, la desviación estándar y la media
 de los 3 ejes del acelerómetro así como los del giroscopio, luego estandarizaron los datos para disminuir el efecto de los \emph{outliers} en los
 \emph{features} y permite percibir mejor en un gráfico los picos en las lecturas causados por los baches. Finalmente proponen como modelo una red
@@ -254,7 +254,7 @@ asignando 0 como valor de forma aleatoria a un porciento de las entradas luego d
 la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size} de 3.
 Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\emph{Synthetic
 Minority OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no
-bache en este caso).\\ ~\parencite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
+bache en este caso).\\ ~\textcite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
 un total de 12, entre ellos camiones incluidos, además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2
 personas iban en el vehículo, uno de ellos encargado de etiquetar las anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el
 dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta a dicha serie temporal. Su
