@@ -2,7 +2,32 @@
 
 Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos
 puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
-acelerómetro. Entre los varios métodos estadísticos ~\parencite{mednis2011real} propusieron los siguientes:\\
+acelerómetro. También utilizan procesamiento de imágenes para poder detectar sobre el pavimento la región o las regiones que se corresponden
+con un bache utilizando distintos filtros sobre la imagen.
+
+
+En las imágenes de la superficie del pavimento, la información de color, en particular
+Los valores RGB no son imprescindibles a la hora de realizar la segmentación proceso con respecto a 
+la detección de defectos. Por lo tanto, el primer paso es transformar imágenes en color originales en 
+imágenes a escala de grises.
+
+Para cumplir con la primera característica identificada, las regiones más oscuras que indican defectos deben separarse de la parte posterior.
+suelo dentro de cada imagen de pavimento.
+
+Después de llenar los agujeros dentro de las regiones restantes del binario
+imagen B, regiones pequeñas (p. ej., grietas cortas, artefactos), regiones que
+
+tener una forma lineal (por ejemplo, grietas largas, juntas, cortinas de bordillo) y re-
+Se asumen giones, que están conectados al límite de la imagen.
+Para que no queden baches y así se eliminen.
+
+
+De acuerdo con la observación de los autores de que la región dentro de una olla
+el agujero es principalmente granular, los llamados filtros puntuales se utilizan para crear
+respuestas de filtro alto
+
+
+Entre los varios métodos estadísticos ~\parencite{mednis2011real} propusieron los siguientes:\\
 
 \begin{itemize}
 	\item  \emph{\textbf {Z-Thresh}}: Toma el valor del acelerómetro en el eje Z en un instante determinado y compara su valor modular con 
