@@ -6,6 +6,18 @@ acelerómetro. También utilizan procesamiento de imágenes para poder detectar 
 con un bache utilizando distintos filtros sobre la imagen.
 
 
+Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas ~\parencite{koch2011pothole}
+Luego utilizar un proceso de  \emph{thresholding} sobre un histograma de la forma de la imagen (histogram shape-based thresholding)
+
+Con base en las propiedades geométricas de una región defectuosa, la
+la forma potencial del bache se aproxima utilizando adelgazamiento morfológico y regresión elíptica.~\parencite{koch2011pothole}
+
+
+Posteriormente, se extrae la textura dentro de una posible forma defectuosa y se compara con la textura del pavimento circundante 
+sin defectos para determinar si la región de interés representa una forma real.
+
+bache.ndear el pavimento sin defectos para determinar si la región de interés representa un real bache
+
 En las imágenes de la superficie del pavimento, la información de color, en particular
 Los valores RGB no son imprescindibles a la hora de realizar la segmentación proceso con respecto a 
 la detección de defectos. Por lo tanto, el primer paso es transformar imágenes en color originales en 
