@@ -23,15 +23,15 @@
 	\end{figure}
 
 	\subsection{Acelerómetro}
-	La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
-	sin embargo una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
-	por el bache, cayendo brevemente e incluso inclinándose momentáneamente hacia un lado (en el caso de un bache
-	que afecte una sola rueda), por tanto la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
-	un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.
-	Tal como se plantea en el estado del arte la característica fundamental de un bache son lecturas anormales en el eje
-	Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado, también dicho sensor debe registrar lecturas
-	anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
-	hacia un lado por un momento.\\
+		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
+		sin embargo una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
+		por el bache, cayendo brevemente e incluso inclinándose momentáneamente hacia un lado (en el caso de un bache
+		que afecte una sola rueda), por tanto la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
+		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.
+		Tal como se plantea en el estado del arte la característica fundamental de un bache son lecturas anormales en el eje
+		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado, también dicho sensor debe registrar lecturas
+		anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
+		hacia un lado por un momento.\\
 
 	\begin{figure}[htb]
 		\centering
@@ -41,28 +41,28 @@
 	\end{figure}
 
 	\subsection{Giroscopio}
-	El \textbf{giroscopio} es otro de los sensores que se considera aportaría información útil, ya que este sensor 
-	mide en $rad/s$ la velocidad angular del dispositivo móvil con respecto a los 3 ejes mencionados previamente. 
-	En el momento que un vehículo interactúa con un bache ocurren vibraciones que hacen que el vehículo gire, lo que
-	debería generar picos en las lecturas del \textbf{giroscopio} en un intervalo de tiempo. El problema con este sensor es 
-	que a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja por lo que 
-	su uso en la propuesta de solución se tiene pensado como algo que permita mejorarla y no algo de lo que esta
-	dependa.\\
+		El \textbf{giroscopio} es otro de los sensores que se considera aportaría información útil, ya que este sensor 
+		mide en $rad/s$ la velocidad angular del dispositivo móvil con respecto a los 3 ejes mencionados previamente. 
+		En el momento que un vehículo interactúa con un bache ocurren vibraciones que hacen que el vehículo gire, lo que
+		debería generar picos en las lecturas del \textbf{giroscopio} en un intervalo de tiempo. El problema con este sensor es 
+		que a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja por lo que 
+		su uso en la propuesta de solución se tiene pensado como algo que permita mejorarla y no algo de lo que esta
+		dependa.\\
 
 	\subsection{GPS}
 		El \textbf{GPS}(\emph{Global Positioning System}) es el sensor que le permite al dispositivo móvil ubicarse sobre la
 		superficie de la tierra utilizando coordenadas de latitud-longitud. Debido a que este sistema utiliza señales para
 		comunicarse con satélites en tiempo real, existe una latencia debido al tiempo que le toma a la señal viajar hacia el
-		satélite y de vuelta al dispositivo. Además, condiciones atmosféricas pueden afectar esta latencia, así como el hecho
+		satélite y de vuelta al dispositivo. Además, las condiciones atmosféricas pueden afectar esta latencia, así como el hecho
 		de que la señal puede ser reflejada por el terreno, edificios, etc., como por ejemplo cuando se viaja a través de un
 		túnel subterráneo donde la señal no puede llegar. También es importante destacar que las lecturas que genera el \textbf
 		{GPS} tienen cierto margen de error que varía de un dispositivo a otro y que depende de la potencia del sensor en sí,
-		pero en general según la literatura el error medio en estos sensores es de 5m aproximadamente, ambos aspectos son
-		importantes a tener en cuenta al hacer uso de este sensor. El mismo se puede utilizar para estimar la \textbf{velocidad}
-		a la que viaja el vehículo, lo que es necesario ya que la \textbf{velocidad} es un factor que influye de forma directa en
-		la forma que un vehículo es afectado por un bache, además con este sensor es posible ubicar en un mapa aproximadamente los
-		lugares donde existen baches u otro tipo de anomalías, incluso puede ser útil para marcar rutas de viaje y así facilitar
-		algunos aspectos de la propuesta de solución.
+		pero en general según la literatura la mediana del error en estos sensores es de 5m aproximadamente \parencite{eriksson2008pothole},
+		ambos aspectos son importantes a tener en cuenta al hacer uso de este sensor. El mismo se puede utilizar para estimar la
+		\textbf{velocidad} a la que viaja el vehículo, lo que es necesario ya que la \textbf{velocidad} es un factor que influye de
+		forma directa en la forma que un vehículo es afectado por un bache, además con este sensor es posible ubicar en un mapa
+		aproximadamente los lugares donde existen baches u otro tipo de anomalías, incluso puede ser útil para marcar rutas de viaje
+		y así facilitar algunos aspectos de la propuesta de solución.
 
 	\subsection{Velocidad y frecuencia de muestreo}
 		La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
@@ -91,9 +91,9 @@
 		el dispositivo.
 
 \section{Detección de outliers}
-	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya que se tuvieron 
-	los \emph{datasets}, el primer paso fue identificar estas lecturas anómalas utilizando algún método de detección de
-	\emph{outliers}(o \emph{novelty detection}). Para esto se probaron 2 vías:\\
+	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya con los \emph
+	{datasets} al alcance, el primer paso fue identificar estas lecturas anómalas utilizando algún método de detección de \emph
+	{outliers}(o \emph{novelty detection}). Para esto se probaron 2 vías:\\
 
 	\begin{itemize}
 		\item Se utilizaron 3 de los métodos heurísticos sugeridos en la literatura que pueden ser indicadores de la presencia de una
