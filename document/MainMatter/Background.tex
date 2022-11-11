@@ -8,8 +8,18 @@ con un bache utilizando distintos filtros sobre la imagen.
 \section{Detección en Imágenes}
 
 \subsection{Segmentación de la imagen}
-La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\parencite{koch2011pothole}.
-El primer paso sería transformar la imagen original a color en una imagen a escala de grises  ~\parencite{koch2011pothole}.
+La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
+En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
+el proceso de segmentación con respecto a lal detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
+imagen a escala de grises  ~\brackcite{koch2011pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
+dentro de cada imagen del pavimento. Para este propósito se usa un algoritmo de \emph{histogram shape-based thresholding} que 
+permite separar el fondo  de la imagen. El valor T de \emph{threshold} se determina como el valor de intensidad del punto 
+$P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que 
+indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este \emph{threshold} T se convierte la imagen 
+mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}. 
+
+\subsection{Extracción de la forma de una imagen(\emph{Shape extraction})}
+La linealidad de la forma de una región se puede definir por su excentricidad $\epsilon$. 
 
 % Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}
 % Luego utilizar un proceso de  \emph{thresholding} sobre un histograma de la forma de la imagen (histogram shape-based thresholding)
