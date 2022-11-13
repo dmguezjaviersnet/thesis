@@ -220,9 +220,34 @@ con un bache utilizando distintos filtros sobre la imagen.
 			Selection} como \emph{Forward Selection}, \emph{Backward Selection} o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite
 			{cong2013applying}.
 
-			de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con
-		\emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features} (basados
-		principalmente en la aceleración en el eje Z), sí existía o no una anomalía. \emph{Features} como la media, desviación estándar, varianza,
+	\subsection{Purificación y segmentación de la señal}
+		Otros aspecto a tener en cuenta a la hora de intentar solucionar este problema es que las señales digitales están sujetas a ruido que puede ser
+		ocasionado por varias razones, y que dificulta la tarea en cuestión. Muchos autores proponen utilizar métodos de proesamiento de señales digitales
+		para purificar la señal y mejorar su calidad, métodos como \textbf{FFT} y \emph{Wavelet Decomposition} \brackcite{el2018towards}, y \emph{high-pass
+		filters} y \emph{low-pass filters} para eliminar componentes de baja y alta frecuencia respectivamente \brackcite{eriksson2008pothole,
+		kulkarni2014pothole}. También es importante determinar de que forma segmentar la señal para su análisis, propuestas que tienen en cuenta solo la 
+		cantidad de ventanas \brackcite{eriksson2008pothole}, ventanas con cierta duración \brackcite{seraj2015roads el2018towards}, ventanas deslizantes
+		con cierta duración \brackcite{perttunen2011distributed} y una interesante propuesta utilizando \emph{Dynamic Time Warping} que permita determinar 
+		de forma dinámica el tamaño de la ventana a considerar \brackcite{zheng2020fused}.
+
+	\subsection{Ubicación del dispositivo en el vehículo}
+		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
+		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación.
+		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en el asiento
+		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
+		
+	\subsection{Frecuencia de muestreo}
+		La frecuencia de muestreo es un factor importante, demasiada y se introduciría ruido innecesario en los datos, muy poca y no se podrá obtener
+		toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
+		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
+		acelerómetro y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100 Hz \brackcite{mednis2011real}, 100 Hz para el 
+		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS}.
+
+	\subsection{Geolocalización del bache utilizando GPS}
+
+		\brackcite{carlos2018evaluation} de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron
+		un enfoque supervisado con \emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features}
+		(basados principalmente en la aceleración en el eje Z), sí existía o no una anomalía. \emph{Features} como la media, desviación estándar, varianza,
 		coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 \emph{features} utilizados para otorgar un valor de confianza
 		a 4 de los \emph{features} previamente mencionados excepto a la varianza, comparándolos con un cierto valor \emph{threshold}. Esta idea
 		fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\brackcite{mednis2011real}), con el objetivo de mejorar el
@@ -417,27 +442,3 @@ con un bache utilizando distintos filtros sobre la imagen.
 		artificiales(\textbf{ANN}), \textbf{KNN}, \emph{Naive Bayes}(\textbf{NB}), \emph{Random Forest} (\textbf{RF}), \emph{Decision Trees}(\textbf{DT}),
 		\textbf{SVM}, y \emph{Kernel Ridge}(\textbf{KR}).\\
 
-	\subsection{Purificación y segmentación de la señal}
-		Otros aspecto a tener en cuenta a la hora de intentar solucionar este problema es que las señales digitales están sujetas a ruido que puede ser
-		ocasionado por varias razones, y que dificulta la tarea en cuestión. Muchos autores proponen utilizar métodos de proesamiento de señales digitales
-		para purificar la señal y mejorar su calidad, métodos como \textbf{FFT} y \emph{Wavelet Decomposition} \brackcite{el2018towards}, y \emph{high-pass
-		filters} y \emph{low-pass filters} para eliminar componentes de baja y alta frecuencia respectivamente \brackcite{eriksson2008pothole,
-		kulkarni2014pothole}. También es importante determinar de que forma segmentar la señal para su análisis, propuestas que tienen en cuenta solo la 
-		cantidad de ventanas \brackcite{eriksson2008pothole}, ventanas con cierta duración \brackcite{seraj2015roads el2018towards}, ventanas deslizantes
-		con cierta duración \brackcite{perttunen2011distributed} y una interesante propuesta utilizando \emph{Dynamic Time Warping} que permita determinar 
-		de forma dinámica el tamaño de la ventana a considerar \brackcite{zheng2020fused}.
-
-	\subsection{Ubicación del dispositivo en el vehículo}
-		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
-		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación.
-		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en el asiento
-		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
-		
-	\subsection{Frecuencia de muestreo}
-		La frecuencia de muestreo es un factor importante, demasiada y se introduciría ruido innecesario en los datos, muy poca y no se podrá obtener
-		toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
-		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
-		acelerómetro y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100 Hz \brackcite{mednis2011real}, 100 Hz para el 
-		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS}.
-
-	\subsection{Geolocalización del bache utilizando GPS}
