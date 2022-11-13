@@ -3,20 +3,43 @@
 Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos
 puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
 acelerómetro. También utilizan procesamiento de imágenes para poder detectar sobre el pavimento la región o las regiones que se corresponden
-con un bache utilizando distintos filtros sobre la imagen.
+con un bache.
 
-\section{Detección en Imágenes}
+\section{Detección de baches en imágenes}
 
-\subsection{Segmentación de la imagen}
+\subsection{Preprocesamiento de la imagen}
+Un recortamiento de las imágenes de entrada a un cierto tamaño reduce la complejidad computacional ~\brackcite{jo2015pothole}. 
+El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
+es decrementar el tamaño de la imagen $\alpha$ veces \brackcite{akagic2017pothole}. \\
+La segmentación de imágenes detecta información relevante en las imágenes digitales, y es el primer paso en el análisis de imágenes y patrones
+reconocimiento ~\brackcite{buza2013pothole}.
 La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
+El paso de segmentación consiste en separar una región de bache y de la región de fondo, transformando la imagen a color original 
+en una imagen binaria utilizando el histograma de una imagen de entrada ~\brackcite{ryu2015image}.
 En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
 el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
-imagen a escala de grises  ~\brackcite{koch2011pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
-dentro de cada imagen del pavimento. Para este propósito se usa un algoritmo de \emph{histogram shape-based thresholding} que 
-permite separar el fondo  de la imagen. El valor T de \emph{threshold} se determina como el valor de intensidad del punto 
-$P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que 
-indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este \emph{threshold} T se convierte la imagen 
-mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}. 
+imagen a escala de grises  ~\brackcite{koch2011pothole, jo2015pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
+dentro de cada imagen del pavimento ~\brackcite{koch2011pothole}. Para este propósito se puede usar el algoritmo de 
+\emph{histogram shape-based thresholding} ~\brackcite{koch2011pothole,ryu2015image}, el algoritmo de máxima entropía, o el método de Otsu~\brackcite{jo2015pothole,buza2013pothole}, 
+los cuales permiten separar el fondo de la imagen ~\brackcite{koch2011pothole, ryu2015image} mediante la transformación en una imagen binaria \brackcite{koch2011pothole, jo2015pothole,ryu2015image}. 
+En el \emph{histogram shape-based thresholding} el valor T de \emph{threshold} se determina como el valor de intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta 
+que intersecta con el origen del histograma y el punto que indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. 
+Basado en este \emph{threshold} T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}.
+Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
+
+$$B_{i,j}=\left\{
+    \begin{array}{c l}
+        1, & \text{si } I_{i,j} < T_{b}\\
+        0, & \text{en otro caso}\\
+    \end{array}
+\right.$$
+donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
+$T_b$ es el valor de \emph{threshold} del método de Otsu \brackcite{jo2015pothole}.
+
+\subsection{Extracción de candidatos a bache}
+
+
+\subsection{Detección usando \emph{Convolutional Neural Network}}
 
 \subsection{Extracción de la forma de una imagen(\emph{Shape extraction})}
 % El tamaño absoluto de una región de interés R es dependiente de de la resolución de una imagen, mientras 
