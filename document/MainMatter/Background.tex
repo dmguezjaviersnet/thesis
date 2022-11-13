@@ -7,37 +7,38 @@ con un bache utilizando distintos filtros sobre la imagen.
 
 \section{Detección en Imágenes}
 
-\subsection{Segmentación de la imagen}
-La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
-En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
-el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
-imagen a escala de grises  ~\brackcite{koch2011pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
-dentro de cada imagen del pavimento. Para este propósito se usa un algoritmo de \emph{histogram shape-based thresholding} que 
-permite separar el fondo  de la imagen. El valor T de \emph{threshold} se determina como el valor de intensidad del punto 
-$P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que 
-indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este \emph{threshold} T se convierte la imagen 
-mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}. 
+	\subsection{Segmentación de la imagen}
+	La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
+	En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
+	el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
+	imagen a escala de grises  ~\brackcite{koch2011pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
+	dentro de cada imagen del pavimento. Para este propósito se usa un algoritmo de \emph{histogram shape-based thresholding} que 
+	permite separar el fondo  de la imagen. El valor T de \emph{threshold} se determina como el valor de intensidad del punto 
+	$P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que 
+	indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este \emph{threshold} T se convierte la imagen 
+	mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}. 
 
-\subsection{Extracción de la forma de una imagen(\emph{Shape extraction})}
-% El tamaño absoluto de una región de interés R es dependiente de de la resolución de una imagen, mientras 
-% la linealidad de la forma de una región se puede definir por su excentricidad $\epsilon$. Se considera que una región es lineal 
-% si su excentricidad es mayor que 0.99. Para extraer la forma de los próximos candidatos a regiones defectuosas se determina ~\brackcite{koch2011pothole}:
-Dada las siguientes propiedades de una región:\\
+	\subsection{Extracción de la forma de una imagen(\emph{Shape extraction})}
+	% El tamaño absoluto de una región de interés R es dependiente de de la resolución de una imagen, mientras 
+	% la linealidad de la forma de una región se puede definir por su excentricidad $\epsilon$. Se considera que una región es lineal 
+	% si su excentricidad es mayor que 0.99. Para extraer la forma de los próximos candidatos a regiones defectuosas se determina ~\brackcite{koch2011pothole}:
+	Dada las siguientes propiedades de una región:\\
 
-\begin{itemize}
-	\item $\varepsilon$: La excentricidad que permite definir la linealidad de una región(Se considera que una región es lineal si su excentricidad es mayor que 0.99)
-	\item $l_{max}$: la longitud del eje mayor 
-	\item $P_{cent}$: La posición del centroide ($P_cent$)
-	\item $\alpha$: La orientación del ángulo
-	\item R : tamaño absoluto de una región de interés dependiente de la resolución de la imagen
-	\item $\varepsilon_{max}$: \emph{threshold} de excentricidad máxima
-	\item s : tamaño de la región
-	\item $r_{max}$: \emph{threshold} de valor máximo que puede alcanzar la relación la longitud del eje mayor y el tamaño de la región($\frac{l_{max}}{s}$) 
-\end{itemize} 
+	\begin{itemize}
+		\item $\varepsilon$: La excentricidad que permite definir la linealidad de una región(Se considera que una región es lineal si su excentricidad
+			es mayor que 0.99)
+		\item $l_{max}$: la longitud del eje mayor 
+		\item $P_{cent}$: La posición del centroide ($P_cent$)
+		\item $\alpha$: La orientación del ángulo
+		\item R : tamaño absoluto de una región de interés dependiente de la resolución de la imagen
+		\item $\varepsilon_{max}$: \emph{threshold} de excentricidad máxima
+		\item s : tamaño de la región
+		\item $r_{max}$: \emph{threshold} de valor máximo que puede alcanzar la relación la longitud del eje mayor y el tamaño de la región($\frac{l_{max}
+			}{s}$) \end{itemize} 
 
-Basado en estas propiedades se distingue entre regiones que podrían representar la sombra de un bache y regiones que podrían representar un bache completo.
-Una región es candidata a representar la sombra de un un bache si el centroide de la región no reside dentro de la región , o si la excentricidad excede el
-\emph{threshold} $\varepsilon+{max}$ y $\frac{l_{max}}{s}$ excede el \emph{threshold} $r_{max}$ ~\brackcite{koch2011pothole}.
+	Basado en estas propiedades se distingue entre regiones que podrían representar la sombra de un bache y regiones que podrían representar un bache
+	completo. Una región es candidata a representar la sombra de un un bache si el centroide de la región no reside dentro de la región , o si la
+	excentricidad excede el \emph{threshold} $\varepsilon+{max}$ y $\frac{l_{max}}{s}$ excede el \emph{threshold} $r_{max}$ ~\brackcite{koch2011pothole}.
 
 % \begin{center}
 % 	$type(R)$ := $\left\{\substack{\text{Es candidato a representar la sombra de un bache} :\;\;P_{cent}\in{R}\;\; \vee  (\varepsilon > \varepsilon_{max} \wedge (\frac{l_{max}}{s} > r_{max})) \\
@@ -46,42 +47,43 @@ Una región es candidata a representar la sombra de un un bache si el centroide 
 % \end{center}
 
 
-Para aproximar la forma elíptica de un bache basado en la forma detectada se procede a realizar los siguientes pasos ~\brackcite{koch2011pothole}:
+	Para aproximar la forma elíptica de un bache basado en la forma detectada se procede a realizar los siguientes pasos ~\brackcite{koch2011pothole}:
 
-\begin{enumerate}
-	\item Utilizan adelgazamiento morfológico para reducir la región de sombra  a su trazo o esqueleto mínimamente conectado.
-	\item Los puntos de ramificación del esqueleto se identifican y son conectados en orden para determinar el camino principal de la región de sombra.
-	\item Si el número de puntos finales del esqueleto es inferior a 5, significa que el límite de la forma es casi uniforme, por lo que el esqueleto completo define el camino principal.
-	\item Finalmente, teniendo como base el camino principal se utiliza la regresión elíptica para aproximar una elipse.
-\end{enumerate}
+	\begin{enumerate}
+		\item Utilizan adelgazamiento morfológico para reducir la región de sombra  a su trazo o esqueleto mínimamente conectado.
+		\item Los puntos de ramificación del esqueleto se identifican y son conectados en orden para determinar el camino principal de la región de sombra.
+		\item Si el número de puntos finales del esqueleto es inferior a 5, significa que el límite de la forma es casi uniforme, por lo que el esqueleto
+			completo define el camino principal.
+		\item Finalmente, teniendo como base el camino principal se utiliza la regresión elíptica para aproximar una elipse.
+	\end{enumerate}
 
-Lo anterior describe como  extraer la forma de la región interior de un bache. Si se determina que la forma de una región candidata a defecto es un bache, entonces el valor aproximado
-de la elipse define la región interior $R_i$. En el caso de una supuesta región de bache completa, la región de defecto completa se utiliza para definir $R_i$.
+	Lo anterior describe como  extraer la forma de la región interior de un bache. Si se determina que la forma de una región candidata a defecto es un
+	bache, entonces el valor aproximado de la elipse define la región interior $R_i$. En el caso de una supuesta región de bache completa, la región de
+	defecto completa se utiliza para definir $R_i$.
 
-\subsection{Extracción de la textura}
+	\subsection{Extracción de la textura}
 
-Para cumplir con la tercera característica visual identificada de los baches, se debe describir la textura de la superficie dentro de un 
-candidato a bache y compararla con la textura de la región circundante. Para describir la textura de una región se propone el uso 
-de la desviación estándar de los valores de intensidad del nivel de gris como una medida estadística para describir la textura  tanto 
-de la región interna como de la región externa. A la imagen en escala de grises se le aplican filtros para enfatizar las características 
-estructuras de la textura. De acuerdo con la observación de los autores de que la región dentro de un bache es en su mayoría granular, 
-los llamados \emph{spot filters} se utilizan para crear respuestas de filtro alto ~\brackcite{koch2011pothole}. La región exterior
-$R_o$ representa la parte intacta y saludable de la imagen del pavimento.
-Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
+	Para cumplir con la tercera característica visual identificada de los baches, se debe describir la textura de la superficie dentro de un 
+	candidato a bache y compararla con la textura de la región circundante. Para describir la textura de una región se propone el uso 
+	de la desviación estándar de los valores de intensidad del nivel de gris como una medida estadística para describir la textura  tanto 
+	de la región interna como de la región externa. A la imagen en escala de grises se le aplican filtros para enfatizar las características 
+	estructuras de la textura. De acuerdo con la observación de los autores de que la región dentro de un bache es en su mayoría granular, 
+	los llamados \emph{spot filters} se utilizan para crear respuestas de filtro alto ~\brackcite{koch2011pothole}. La región exterior
+	$R_o$ representa la parte intacta y saludable de la imagen del pavimento.
+	Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
 
-\begin{enumerate}
-	\item la dilatación morfológica se aplica sobre la imagen binaria segmentada que contiene
-	las supuestas áreas defectuosas
-	\item Se combina la imagen binaria con la región interior $R_i$ y se obtiene como resultado la región defectuosa total.
-	\item La región exterior $R_i$ se determina como el complemento de la región defectuosa total
-\end{enumerate}
+	\begin{enumerate}
+		\item la dilatación morfológica se aplica sobre la imagen binaria segmentada que contiene
+		las supuestas áreas defectuosas
+		\item Se combina la imagen binaria con la región interior $R_i$ y se obtiene como resultado la región defectuosa total.
+		\item La región exterior $R_i$ se determina como el complemento de la región defectuosa total
+	\end{enumerate}
 
-Basado en la respuesta de los filtros dentro de las regiones $R_i$ y $R_o$ los valores de desviación estándar correspondientes son
-determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, que describen la textura de las regiones $R_i$ 
-y $R_o$ respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de características $f_i$ y $f_o$.
-Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de $R_i$ es más gruesa y granulada que en el interior de $R_o$, se asume 
-que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011pothole}.
-
+	Basado en la respuesta de los filtros dentro de las regiones $R_i$ y $R_o$ los valores de desviación estándar correspondientes son
+	determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, que describen la textura de las regiones $R_i$ 
+	y $R_o$ respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de características $f_i$ y $f_o$.
+	Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de $R_i$ es más gruesa y granulada que en el interior de $R_o$, se asume 
+	que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011pothole}.
 
 % Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}
 % Luego utilizar un proceso de  \emph{thresholding} sobre un histograma de la forma de la imagen (histogram shape-based thresholding)
@@ -194,10 +196,11 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 	\subsection{Enfoques utilizando \emph{Machine Learning}}
 		\subsubsection{Algoritmos}
 			Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios. Entre los modelos supervisados
-			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{carlos2018evaluation, seraj2015roads, el2018towards,
-			cong2013applying, perttunen2011distributed, pawar2020efficient}, \emph{Decision Trees} ~\brackcite{el2018towards, pawar2020efficient}
-			, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}(\textbf{KNN}) ~\brackcite{el2018towards
-			zheng2020fused, pawar2020efficient} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite{kulkarni2014pothole, pawar2020efficient}.
+			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, carlos2018evaluation, seraj2015roads,
+			el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite{el2018towards,
+			gonzalez2017learning} , \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}(\textbf{KNN})
+			~\brackcite{el2018towards zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite
+			{kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}.
 
 		\subsubsection{Features}
 			Entre los principales \emph{features} utilizados en estos modelos de aprendizaje de máquina se encuentran como era de esperar el valor 
@@ -392,7 +395,9 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 		la sigmoidal. La función de pérdida es \emph{binary cross entropy} y la red neuronal es entrenada durante 140 épocas con un \emph{batch size} de 3.
 		Compararon su propuesta con otras similares pero modificando los hiperparámetros e incorporando un modelo conocido como \textbf{SMOTE}(\emph{Synthetic
 		Minority OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no
-		bache en este caso).\\ ~\brackcite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
+		bache en este caso).\\
+
+		~\brackcite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
 		un total de 12, entre ellos camiones incluidos, además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2
 		personas iban en el vehículo, uno de ellos encargado de etiquetar las anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el
 		dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta a dicha serie temporal. Su
@@ -423,5 +428,16 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 		de forma dinámica el tamaño de la ventana a considerar \brackcite{zheng2020fused}.
 
 	\subsection{Ubicación del dispositivo en el vehículo}
+		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
+		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación.
+		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en el asiento
+		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
+		
 	\subsection{Frecuencia de muestreo}
+		La frecuencia de muestreo es un factor importante, demasiada y se introduciría ruido innecesario en los datos, muy poca y no se podrá obtener
+		toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
+		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
+		acelerómetro y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100 Hz \brackcite{mednis2011real}, 100 Hz para el 
+		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS}.
+
 	\subsection{Geolocalización del bache utilizando GPS}
