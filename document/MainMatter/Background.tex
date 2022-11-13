@@ -197,11 +197,27 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{carlos2018evaluation, seraj2015roads, el2018towards,
 			cong2013applying, perttunen2011distributed, pawar2020efficient}, \emph{Decision Trees} ~\brackcite{el2018towards, pawar2020efficient}
 			, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}(\textbf{KNN}) ~\brackcite{el2018towards
-			zheng2020fused, pawar2020efficient}
+			zheng2020fused, pawar2020efficient} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite{kulkarni2014pothole, pawar2020efficient}.
 
-			además
 		\subsubsection{Features}
-		de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con
+			Entre los principales \emph{features} utilizados en estos modelos de aprendizaje de máquina se encuentran como era de esperar el valor 
+			del \textbf{acelerómetro} en los 3 ejes, pues este dato es el más característico de una bache en la carretera, de este se derivan otros
+			\emph{features} estadísticos como la media, desviación estándar, varianza, coeficiente de variación, diferencia entre valor mínimo y
+			máximo, mediana, moda y rango entre cuartiles \brackcite{carlos2018evaluation, seraj2015roads, el2018towards, perttunen2011distributed
+			pawar2020efficient}. Algunos autores proponen el uso de la señal del \textbf{giroscopio} y la extracción de \emph{features} estadísticos
+			a partir de esta, pues se encarga de medir la velocidad de giro del dispositivo, y los baches y las anomalías en general deben producir
+			lecturas anormales de este sensor, de esta forma se podría tener más información que permita mejorar el rendimiento de los algoritmos 
+			de aprendizaje supervisado \brackcite{seraj2015roads, pawar2020efficient}. Debido a que este enfoque se basa en el uso de señales digitales,
+			varias propuestas han utilizado herramientas del campo de procesamiento de señales digitales para mejorar y enriquecer la calidad de sus 
+			datos y sus modelos, \emph{features} extraídos utilizando la \textbf{Transformada Rápida de Fourier}(\textbf{FFT}) como frecuencia media,
+			mediana de la frecuencia y energía de las bandas de frecuencia \brackcite{seraj2015roads, perttunen2011distributed}, otros fueron extraídos
+			utilizando \emph{Wavelet Decomposition} específicamente \emph{Stationary Wavelet Decomposition} \brackcite{seraj2015roads} o \emph{Wavelet
+			Packet Decomposition} \brackcite{cong2013applying}. Incluso en algunos de los artículos se propone analizar la relevancia de los \emph
+			{features} seleccionados a la hora de discriminar entre baches y otros segmentos de carretera, utilizando algún proceso de \emph{Feature
+			Selection} como \emph{Forward Selection}, \emph{Backward Selection} o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite
+			{cong2013applying}.
+
+			de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron un enfoque supervisado con
 		\emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features} (basados
 		principalmente en la aceleración en el eje Z), sí existía o no una anomalía. \emph{Features} como la media, desviación estándar, varianza,
 		coeficiente de variaciónn y diferencia entre valor mínimo y máximo. Otros 4 \emph{features} utilizados para otorgar un valor de confianza
@@ -324,7 +340,7 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 		cae y excede un \emph{threshold} inferior o viceversa, y finalmente la señal vuelve a estabilizarse entre esos dos \emph{threshold}s. Ese
 		intervalo es el que consideran como el intervalo candidato en el que puede haber una anomalía, y para encontrarlo utilizan primero el método
 		heurístico de establecer un \emph{threshold} superior e inferior en la aceleración y buscan el primer instante donde la aceleración sobrepasa
-		alguno de los \emph{threshold}s y el último instante, y utilizan un método para encontrar los instantes de tiempo justo antes de que ocurriera
+		alguno de los \emph{thresholds} y el último instante, y utilizan un método para encontrar los instantes de tiempo justo antes de que ocurriera
 		el primer evento y el instante de tiempo justo después de que ocurriera el último evento, de esta forma logran construir una ventana de tamaño
 		dinámico que contiene toda la información acerca de la anomalía, obteniendo como resultado un conjunto de ventanas con posibles anomalías en
 		la serie temporal. Luego crean un modelo con un \emph{Random forest} utilizando algunos \emph{features} estadísticos de cada una de las ventanas
@@ -396,7 +412,16 @@ que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011poth
 		artificiales(\textbf{ANN}), \textbf{KNN}, \emph{Naive Bayes}(\textbf{NB}), \emph{Random Forest} (\textbf{RF}), \emph{Decision Trees}(\textbf{DT}),
 		\textbf{SVM}, y \emph{Kernel Ridge}(\textbf{KR}).\\
 
-	\section{Purificación de la señal}
-	\section{Ubicación del dispositivo en el vehículo}
-	\section{Frecuencia de muestreo}
-	\section{Geolocalización del bache utilizando GPS}
+	\subsection{Purificación y segmentación de la señal}
+		Otros aspecto a tener en cuenta a la hora de intentar solucionar este problema es que las señales digitales están sujetas a ruido que puede ser
+		ocasionado por varias razones, y que dificulta la tarea en cuestión. Muchos autores proponen utilizar métodos de proesamiento de señales digitales
+		para purificar la señal y mejorar su calidad, métodos como \textbf{FFT} y \emph{Wavelet Decomposition} \brackcite{el2018towards}, y \emph{high-pass
+		filters} y \emph{low-pass filters} para eliminar componentes de baja y alta frecuencia respectivamente \brackcite{eriksson2008pothole,
+		kulkarni2014pothole}. También es importante determinar de que forma segmentar la señal para su análisis, propuestas que tienen en cuenta solo la 
+		cantidad de ventanas \brackcite{eriksson2008pothole}, ventanas con cierta duración \brackcite{seraj2015roads el2018towards}, ventanas deslizantes
+		con cierta duración \brackcite{perttunen2011distributed} y una interesante propuesta utilizando \emph{Dynamic Time Warping} que permita determinar 
+		de forma dinámica el tamaño de la ventana a considerar \brackcite{zheng2020fused}.
+
+	\subsection{Ubicación del dispositivo en el vehículo}
+	\subsection{Frecuencia de muestreo}
+	\subsection{Geolocalización del bache utilizando GPS}
