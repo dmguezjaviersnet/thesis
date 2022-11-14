@@ -155,7 +155,7 @@ interés se extrae en función de la posición de estos puntos, mientras que los
 	problema en cuestión, y que propusieron métodos heurísticos basados en \emph{thresholds} para determinar la presencia de
 	baches en la carretera \brackcite{mednis2011real, eriksson2008pothole, mohan2008nericell}.
 
-	\subsection{Los trabajos seminales}
+	\subsection{Enfoques utilizando métodos heurísticos}
 		Entre estos primeros trabajos que propusieron varios métodos heurísticos basados en \emph{thresholds}, todos se basan en la idea
 		de que condiciones anómalas de la carretera son reflejadas en características de los datos de aceleración \brackcite{mohan2008nericell,
 		mednis2011real, eriksson2008pothole}.\\
@@ -231,51 +231,60 @@ interés se extrae en función de la posición de estos puntos, mientras que los
 			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, carlos2018evaluation, seraj2015roads,
 			el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite{el2018towards,
 			gonzalez2017learning} , \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}(\textbf{KNN})
-			~\brackcite{el2018towards zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite
+			~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite
 			{kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}.
 
 		\subsubsection{Features}
 			Entre los principales \emph{features} utilizados en estos modelos de aprendizaje de máquina se encuentran como era de esperar el valor 
 			del \textbf{acelerómetro} en los 3 ejes, pues este dato es el más característico de una bache en la carretera, de este se derivan otros
 			\emph{features} estadísticos como la media, desviación estándar, varianza, coeficiente de variación, diferencia entre valor mínimo y
-			máximo, mediana, moda y rango entre cuartiles \brackcite{carlos2018evaluation, seraj2015roads, el2018towards, perttunen2011distributed
-			pawar2020efficient}. Algunos autores proponen el uso de la señal del \textbf{giroscopio} y la extracción de \emph{features} estadísticos
-			a partir de esta, pues se encarga de medir la velocidad de giro del dispositivo, y los baches y las anomalías en general deben producir
-			lecturas anormales de este sensor, de esta forma se podría tener más información que permita mejorar el rendimiento de los algoritmos 
-			de aprendizaje supervisado \brackcite{seraj2015roads, pawar2020efficient}. Debido a que este enfoque se basa en el uso de señales digitales,
-			varias propuestas han utilizado herramientas del campo de procesamiento de señales digitales para mejorar y enriquecer la calidad de sus 
-			datos y sus modelos, \emph{features} extraídos utilizando la \textbf{Transformada Rápida de Fourier}(\textbf{FFT}) como frecuencia media,
-			mediana de la frecuencia y energía de las bandas de frecuencia \brackcite{seraj2015roads, perttunen2011distributed}, otros fueron extraídos
-			utilizando \emph{Wavelet Decomposition} específicamente \emph{Stationary Wavelet Decomposition} \brackcite{seraj2015roads} o \emph{Wavelet
-			Packet Decomposition} \brackcite{cong2013applying}. Incluso en algunos de los artículos se propone analizar la relevancia de los \emph
-			{features} seleccionados a la hora de discriminar entre baches y otros segmentos de carretera, utilizando algún proceso de \emph{Feature
-			Selection} como \emph{Forward Selection}, \emph{Backward Selection} o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite
-			{cong2013applying}.
+			máximo, mediana, moda y rango entre cuartiles \brackcite{carlos2018evaluation, seraj2015roads, el2018towards, perttunen2011distributed,
+			pawar2020efficient}, incluso \emph{features} como cuantas veces cierto \emph{feature} estadístico sobrepasó cierto \emph{threshold}
+			establecido \brackcite{carlos2018evaluation}, una idea basada en los primeros trabajos en relación a este problema y que utilizaron
+			heurísticas basadas en \emph{thresholds}. Algunos autores proponen el uso de la señal del \textbf{giroscopio} y la extracción de \emph
+			{features} estadísticos a partir de esta, pues se encarga de medir la velocidad de giro del dispositivo, y los baches y las anomalías
+			en general deben producir lecturas anormales de este sensor, de esta forma se podría tener más información que permita mejorar el
+			rendimiento de los algoritmos de aprendizaje supervisado \brackcite{seraj2015roads, pawar2020efficient}. Debido a que este enfoque
+			se basa en el uso de señales digitales, varias propuestas han utilizado herramientas del campo de procesamiento de señales digitales
+			para mejorar y enriquecer la calidad de sus datos y sus modelos, \emph{features} extraídos utilizando la \textbf{Transformada Rápida
+			de Fourier}(\textbf{FFT}) como frecuencia media, mediana de la frecuencia y energía de las bandas de frecuencia \brackcite{seraj2015roads,
+			perttunen2011distributed}, otros fueron extraídos utilizando \emph{Wavelet Decomposition} específicamente \emph{Stationary Wavelet
+			Decomposition} \brackcite{seraj2015roads} o \emph{Wavelet Packet Decomposition} \brackcite{cong2013applying}. Incluso en algunos de
+			los artículos se propone analizar la relevancia de los \emph {features} seleccionados a la hora de discriminar entre baches y otros
+			segmentos de carretera, utilizando algún proceso de \emph{Feature Selection} como \emph{Forward Selection}, \emph{Backward Selection}
+			o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite {cong2013applying}.
 
 	\subsection{Purificación y segmentación de la señal}
 		Otros aspecto a tener en cuenta a la hora de intentar solucionar este problema es que las señales digitales están sujetas a ruido que puede ser
 		ocasionado por varias razones, y que dificulta la tarea en cuestión. Muchos autores proponen utilizar métodos de proesamiento de señales digitales
 		para purificar la señal y mejorar su calidad, métodos como \textbf{FFT} y \emph{Wavelet Decomposition} \brackcite{el2018towards}, y \emph{high-pass
 		filters} y \emph{low-pass filters} para eliminar componentes de baja y alta frecuencia respectivamente \brackcite{eriksson2008pothole,
-		kulkarni2014pothole}. También es importante determinar de que forma segmentar la señal para su análisis, propuestas que tienen en cuenta solo la 
-		cantidad de ventanas \brackcite{eriksson2008pothole}, ventanas con cierta duración \brackcite{seraj2015roads el2018towards}, ventanas deslizantes
-		con cierta duración \brackcite{perttunen2011distributed} y una interesante propuesta utilizando \emph{Dynamic Time Warping} que permita determinar 
-		de forma dinámica el tamaño de la ventana a considerar \brackcite{zheng2020fused}.
+		kulkarni2014pothole}. También es importante determinar de que forma segmentar la señal para su análisis, hay propuestas que segmentan la señal en 256
+		ventanas \brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 
+		de 2.5 segundos con el 66\% de las ventanas solapándose \brackcite{seraj2015roads}, ventanas deslizantes con varias duraciones entre 0.5 y 2 segundos
+		\brackcite{perttunen2011distributed} y una interesante propuesta utilizando \emph{Dynamic Time Warping} que permita determinar de forma dinámica el
+		tamaño de la ventana a considerar \brackcite{zheng2020fused}.
 
 	\subsection{Ubicación del dispositivo en el vehículo}
 		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
 		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación.
-		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en el asiento
+		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en la parte
 		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
 		
 	\subsection{Frecuencia de muestreo}
-		La frecuencia de muestreo es un factor importante, demasiada y se introduciría ruido innecesario en los datos, muy poca y no se podrá obtener
+		La frecuencia de muestreo es un factor importante, muy alta y se introduciría ruido innecesario en los datos, muy baja y no se podrá obtener
 		toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
 		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
-		acelerómetro y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100 Hz \brackcite{mednis2011real}, 100 Hz para el 
-		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS}.
+		\textbf{acelerómetro}y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100Hz \brackcite{mednis2011real}, 100Hz para el 
+		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS} \brackcite{el2018towards}.
 
 	\subsection{Geolocalización del bache utilizando GPS}
+		Pocos de los autores se plantean resolver el problema de identificar la ubicación del bache utilizando el \textbf{GPS}. Debido a que el
+		error en la medición del \textbf{GPS} (alrededor de 5m a la redonda como mediana) es significativamente mayor que el tamaño de un bache
+		común, la ausencia de una detección en una localización particular no siempre es un indicativo de que no haya anomalías en esta. No es
+		posible determinar puramente por la localización del \textbf{GPS} en el momento en que las ruedas del vehículo hacen contacto con alguna
+		anomalía de la carretera. Los conductores usuales intentan evitar los baches, por lo que la probabilidad de detectar una anomalía en la
+		carretera es menor que la que se debe de esperar de una distribución sin sesgo del área que se intenta mapear \brackcite {eriksson2008pothole}.
 
 		\brackcite{carlos2018evaluation} de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron
 		un enfoque supervisado con \emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \emph{features}
@@ -317,17 +326,18 @@ interés se extrae en función de la posición de estos puntos, mientras que los
 		% - Añadir detalles sobre la ubicación de los dispositivos en el vehiculo.
 
 
-		Dado que la frecuencia de captura de la señal del acelerómetro se hace mucho más seguido que la del GPS, proponen estimar la localización
-		del vehículo cuando ocurra la lectura $l_i$ del acelerómetro usando interpolación lineal entre lecturas de GPS. A pesar que ciertos tipos
-		de anomalías pueden producir alta energía, no siempre que se produzca esto representa una carretera en mal estado. Los cruces de ferrocarriles,
-		reductores de velocidad y otros equipamientos bien conocidos embebidos en la carretera pueden producir una alta energía y no se consideran
-		anomalías de la carretera. Para esto proponen tener una lista negra con los localizaciones de las anomalías que caigan en alguno de estos
-		equipamientos embebidos en la carretera cuya información se puede obtener de y luego remover los mismos. Debido a que el error en la medición
-		del GPS (alrededor de 5m a la redonda como media) es significativamente mayor que el tamaño de un bache común, la ausencia de una detección en
-		una localización particular no siempre es un indicativo de que no haya anomalías en esta []. No es posible determinar puramente por la
-		localización del GPS en el momento en que las ruedas del vehículo hacen contacto con alguna anomalía de la carretera. Los conductores usuales
-		intentan evitar los baches, por que la probabilidad de detectar una anomalía en la carretera es menor que la que se debe de esperar de una
-		distribución sin sesgo del área que se intenta mapear.\\
+		
+		\brackcite{eriksson2008pothole}	Dado que la frecuencia de captura de la señal del acelerómetro se hace mucho más seguido que la del GPS,
+		proponen estimar la localización del vehículo cuando ocurra la lectura $l_i$ del acelerómetro usando interpolación lineal entre lecturas
+		de GPS. A pesar que ciertos tipos de anomalías pueden producir alta energía, no siempre que se produzca esto representa una carretera en
+		mal estado. Los cruces de ferrocarriles, reductores de velocidad y otros equipamientos bien conocidos embebidos en la carretera pueden
+		producir una alta energía y no se consideran anomalías de la carretera. Para esto proponen tener una lista negra con los localizaciones
+		de las anomalías que caigan en alguno de estos equipamientos embebidos en la carretera cuya información se puede obtener de y luego
+		remover los mismos. Debido a que el error en la medición del GPS (alrededor de 5m a la redonda como media) es significativamente mayor
+		que el tamaño de un bache común, la ausencia de una detección en una localización particular no siempre es un indicativo de que no haya
+		anomalías en esta []. No es posible determinar puramente por la localización del GPS en el momento en que las ruedas del vehículo hacen
+		contacto con alguna anomalía de la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una
+		anomalía en la carretera es menor que la que se debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
 
 		~\brackcite{cong2013applying} para la extracción de \emph{features} descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition})
 		usando sucesivamente filtros de \emph{low-pass} y de \emph{high-pass}. Donde \textbf{WPD} es llevado a cabo aplicando de forma iterativa filtros
