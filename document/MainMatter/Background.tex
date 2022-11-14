@@ -37,6 +37,15 @@ donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa
 $T_b$ es el valor de \emph{threshold} del método de Otsu \brackcite{jo2015pothole}.
 
 \subsection{Extracción de candidatos a bache}
+La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
+Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
+de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
+en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
+\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
+interés se extrae en función de la posición de estos puntos, mientras que los valores de los píxeles del resto de la región se cambia a
+0 ~\brackcite{akagic2017pothole}.
+
+
 
 
 \subsection{Detección usando \emph{Convolutional Neural Network}}
