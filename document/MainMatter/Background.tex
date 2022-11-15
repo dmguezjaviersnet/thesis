@@ -8,13 +8,13 @@ con un bache.
 \section{Detección de baches en imágenes}
 
 \subsection{Preprocesamiento de la imagen}
-Un recortamiento de las imágenes de entrada a un cierto tamaño reduce la complejidad computacional ~\brackcite{jo2015pothole}. 
+La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
 El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
 es decrementar el tamaño de la imagen $\alpha$ veces \brackcite{akagic2017pothole}. \\
-La segmentación de imágenes detecta información relevante en las imágenes digitales, y es el primer paso en el análisis de imágenes y patrones
-reconocimiento ~\brackcite{buza2013pothole}.
+La segmentación de imágenes detecta información relevante, y es el primer paso en el análisis de imágenes y patrones
+de reconocimiento ~\brackcite{buza2013pothole}.
 La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
-El paso de segmentación consiste en separar una región de bache y de la región de fondo, transformando la imagen a color original 
+El paso de segmentación consiste en separar la región de un bache y de la región de fondo, transformando la imagen a color original 
 en una imagen binaria utilizando el histograma de una imagen de entrada ~\brackcite{ryu2015image}.
 En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
 el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
@@ -38,13 +38,28 @@ $T_b$ es el valor de \emph{threshold} del método de Otsu \brackcite{jo2015potho
 
 \subsection{Extracción de candidatos a bache}
 La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
+
 Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
 de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
 en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
 \emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
-interés se extrae en función de la posición de estos puntos, mientras que los valores de los píxeles del resto de la región se cambia a
+interés se extrae en función de la posición de estos puntos, mientras que los valores de los \emph{pixels} del resto de la región se cambia a
 0 ~\brackcite{akagic2017pothole}.
 
+Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguinetes pasos: segmentación
+de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad de línea entre los \emph{pixels}.
+A continuación, se detecta el carril para eliminar el ruido restante. Solo se utiliza la superficie de la carretera dentro de las dos marcas de 
+carril, y todos los valores que queden fuera de esta área son eliminados. Por lo general, las marcas de carriles en una carretera son más brillantes que el fondo.
+Así, se puede separar las marcas de los carriles del fondo mediante una  mejora del brillo y el \emph{thresholding} ~\brackcite{jo2015pothole}. A continuación los 
+puntos candidatos para marcas de carriles son seleccionados mediante escaneo de líneas ~\brackcite{jo2015pothole}. Los puntos candidatos a ser marcas de carril 
+seleccionados se conectan mediante la combinación de puntos cercanos. Para carreteras sin marca de carril, y siempre que no se puedan detectar carriles, utilizan 
+un método de detección estático de marcas de carril. Las marcas de carril pueden ser generadas usando el \emph{vanishing point} (un \emph{vanishing point} es un punto 
+en el plano de una imagen de un dibujo en perspectiva donde las proyecciones en perspectiva bidimensional de líneas paralelas entre sí en el espacio 
+tridimensional parecen converger) ~\brackcite{jo2015pothole}. La mayoría de los carriles tienen dos marcas de carril (una hacia el lado derecho 
+del vehículo, y otra hacia su lado izquierdo). Si una de las dos marcas no es detectada, es reemplazada por una marca de carril estática. Solo 
+se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carril izquierdo no se detectó, solo esa línea se reemplaza por una marca 
+de carril estática. El área entre dos marcas de carril detectadas es seleccionada como la región de interés. La agrupación 
+de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
 
 
 
