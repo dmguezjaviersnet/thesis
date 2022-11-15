@@ -46,9 +46,9 @@ en la desviación estándar de la imagen para formar lo que ellos denominan \emp
 interés se extrae en función de la posición de estos puntos, mientras que los valores de los \emph{pixels} del resto de la región se cambia a
 0 ~\brackcite{akagic2017pothole}.
 
-Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguinetes pasos: segmentación
-de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad de línea entre los \emph{pixels}.
-A continuación, se detecta el carril para eliminar el ruido restante. Solo se utiliza la superficie de la carretera dentro de las dos marcas de 
+Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación
+de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
+de línea entre los \emph{pixels}. A continuación, se detecta el carril para eliminar el ruido restante. Solo se utiliza la superficie de la carretera dentro de las dos marcas de 
 carril, y todos los valores que queden fuera de esta área son eliminados. Por lo general, las marcas de carriles en una carretera son más brillantes que el fondo.
 Así, se puede separar las marcas de los carriles del fondo mediante una  mejora del brillo y el \emph{thresholding} ~\brackcite{jo2015pothole}. A continuación los 
 puntos candidatos para marcas de carriles son seleccionados mediante escaneo de líneas ~\brackcite{jo2015pothole}. Los puntos candidatos a ser marcas de carril 
@@ -61,7 +61,8 @@ se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carri
 de carril estática. El área entre dos marcas de carril detectadas es seleccionada como la región de interés. La agrupación 
 de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
 
-Ryu et al. ~\brackcite{ryu2015image} 
+Ryu et al. ~\brackcite{ryu2015image} primero proponen usar un ~\emph{median filter}. La idea principal del ~\emph{median filter} es recorrer la señal entrada 
+por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
 
 \subsection{Detección usando \emph{Convolutional Neural Network}}
 
