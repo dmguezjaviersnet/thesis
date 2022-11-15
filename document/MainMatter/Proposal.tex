@@ -3,7 +3,7 @@
 \section{Captura de señales}
 	Las señales que se consideraron capturar son las proporcionadas por sensores como el \textbf{acelerómetro},
 	el \textbf{giroscopio} y el \textbf{GPS}, pues son los sensores más comunes en los teléfonos inteligentes. El
-	\textbf{acelerómetro} como se explica en la literatura permite medir en tiempo real la aceleración(rapidez de
+	\textbf{acelerómetro}, como se explica en la literatura, permite medir en tiempo real la aceleración(rapidez de
 	cambio de la \textbf{velocidad}) en $m/s^2$ con respecto a los 3 ejes principales, y en el caso de los
 	acelerómetros integrados en los teléfonos inteligentes permite medir la aceleración en los 3 ejes
 	principales del dispositivo en cuestión. Estos 3 ejes se encuentran ubicados, si se sostiene el
@@ -28,7 +28,7 @@
 		por el bache, cayendo brevemente e incluso inclinándose momentáneamente hacia un lado (en el caso de un bache
 		que afecte una sola rueda), por tanto la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
 		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.
-		Tal como se plantea en el estado del arte la característica fundamental de un bache son lecturas anormales en el eje
+		Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
 		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado, también dicho sensor debe registrar lecturas
 		anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
 		hacia un lado por un momento.\\
@@ -41,11 +41,11 @@
 	\end{figure}
 
 	\subsection{Giroscopio}
-		El \textbf{giroscopio} es otro de los sensores que se considera aportaría información útil, ya que este sensor 
+		El \textbf{giroscopio} es otro de los sensores que se considera que aportaría información útil, ya que este sensor 
 		mide en $rad/s$ la velocidad angular del dispositivo móvil con respecto a los 3 ejes mencionados previamente. 
 		En el momento que un vehículo interactúa con un bache ocurren vibraciones que hacen que el vehículo gire, lo que
 		debería generar picos en las lecturas del \textbf{giroscopio} en un intervalo de tiempo. El problema con este sensor es 
-		que a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja por lo que 
+		que, a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja por lo que 
 		su uso en la propuesta de solución se tiene pensado como algo que permita mejorarla y no algo de lo que esta
 		dependa.\\
 
@@ -90,7 +90,7 @@
 		transformación de coordenadas para poder obtener lecturas acertadas sin importar la posición en la que se coloque
 		el dispositivo.
 
-\section{Detección de outliers}
+\section{Detección de anomalías}
 	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya con los \emph
 	{datasets} al alcance, el primer paso fue identificar estas lecturas anómalas utilizando algún método de detección de \emph
 	{outliers}(o \emph{novelty detection}). Para esto se probaron 2 vías:\\
@@ -99,19 +99,19 @@
 		\item Se utilizaron 3 de los métodos heurísticos sugeridos en la literatura que pueden ser indicadores de la presencia de una
 			anomalía en la carretera \textbf{Z-THRESH}, \textbf{Z-DIFF}, \textbf{G-ZERO}, que solamente necesitan los valores
 			del \textbf{acelerómetro} en los 3 ejes.
-		\item Se utilizaron algoritmos conocidos de \emph{Machine Learning} para detectar \emph{outliers} como \textbf{DBSCAN},
+		\item Se utilizaron algoritmos conocidos de \emph{Machine Learning} para detectar anomalías como \textbf{DBSCAN},
 			\textbf{OPTICS} y \textbf{One Class SVM} con todos los features (no solo las lecturas del \textbf{acelerómetro}).
 	\end{itemize}
 
 	El proceso de detección con las heurísticas es sencillo, simplemente si algún valor excede los \emph{thresholds} establecidos en 
-	cada método este se considera un \emph{outlier}. Para el proceso de detección de outliers con los algoritmos de aprendizaje no-supervisado
+	cada método este se considera un anomalía. Para el proceso de detección de outliers con los algoritmos de aprendizaje no-supervisado
 	se probaron 2 vías: 
 
 	\begin{itemize}
-		\item Detectar los \emph{outliers} en toda la serie temporal.\\
+		\item Detectar los anomalías en toda la serie temporal.\\
 		\item Construir varias ventanas de cierto tamaño utilizando una ventana deslizante, extraer varios \emph{features} de
 			cada una de estas ventanas y así generar nuevos \emph {features} para cada uno de los datos con el objetivo de
-			intentar mejorar el proceso de detección de estos \emph{outliers}.\\
+			intentar mejorar el proceso de detección de estos anomalías.\\
 	\end{itemize}
 	
 	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
