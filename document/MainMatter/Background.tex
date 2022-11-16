@@ -1,9 +1,8 @@
 \chapter{Estado del Arte}\label{chapter:state-of-the-art}
-
-Existen varios artículos científicos que proponen soluciones al problema de identificar cuando hubo una anomalía, algunos proponen métodos
-puramente estadísticos y otros utilizan métodos de aprendizaje de máquinas para identificar patrones, mayormente en la serie temporal del
-acelerómetro. También utilizan procesamiento de imágenes para poder detectar sobre el pavimento la región o las regiones que se corresponden
-con un bache.
+En la literatura existen varios autores que proponen soluciones al problema de identificar cuando hubo una anomalía en la carretera utilizando
+diferentes enfoques. Algunos plantean resolver el problema intentando identificar en imágenes las regiones que puedan ser candidatas a ser un 
+bache, utilizando  técnicas de procesamiento de imágenes o de aprendizaje de máquinas. Otros proponen resolverlo utilizando métodos heurísticos
+o de aprendizaje de máquinas, que hacen uso de la serie temporal que es posible generar a partir del muestreo de sensores como el acelerómetro. 
 
 \section{Detección de baches en imágenes}
 
@@ -177,30 +176,30 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 % el agujero es principalmente granular, los llamados filtros puntuales se utilizan para crear
 % respuestas de filtro alto
 
-\section{Detección utilizando series temporales de otros sensores}
-	Otros sensores utilizados en la literatura respecto al tema son el \textbf{acelerómetro} y el \textbf{giroscopio}. Muchos
-	autores hacen referencias a artículos que son considerados los primeros que utilizaron estas señales para resolver el 
-	problema en cuestión, y que propusieron métodos heurísticos basados en umbrales para determinar la presencia de
-	baches en la carretera \brackcite{mednis2011real, eriksson2008pothole, mohan2008nericell}.
+\section{Detección utilizando series temporales}
+	Los primeros trabajos que utilizaron las series temporales que se generan como resultado del muestreo de sensores como el \textbf
+	{acelerómetro} y el \textbf{giroscopio}, para determinar la presencia de baches en la carretera, se basaron en el uso de técnicas
+	de establecimiento de umbrales.\\
 
 	\subsection{Enfoques utilizando métodos heurísticos}
-		Entre estos primeros trabajos que propusieron varios métodos heurísticos basados en umbrales, todos se basan en la idea
-		de que condiciones anómalas de la carretera son reflejadas en características de los datos de aceleración \brackcite{mohan2008nericell,
-		mednis2011real, eriksson2008pothole}.\\
-		~\textcite{mednis2011real} propusieron los siguientes métodos:\\
+		Entre estos primeros trabajos que propusieron varios métodos heurísticos basados en umbrales, todos tienen como premisa
+		la idea de que condiciones anómalas de la carretera son reflejadas en características de los datos de aceleración \brackcite
+		{mohan2008nericell, mednis2011real, eriksson2008pothole}.\\
+
+		\emph{Mednis et al.} ~\brackcite{mednis2011real} propusieron los siguientes métodos:\\
 
 		\begin{itemize}
-			\item  \emph{\textbf {Z-Thresh}}: Establecer unos umbrales los valores del acelerómetro en el eje Z en un instante.\\
-			\item \emph{\textbf {Z-DIFF}}: Establecer unos umbrales para la diferencia modular de 2 valores consecutivos del
-				acelerómetro.\\
+			\item  \emph{\textbf {Z-Thresh}}: Establecer unos umbrales para los valores del acelerómetro en el eje Z en un instante de tiempo.\\
+			\item \emph{\textbf {Z-DIFF}}: Establecer unos umbrales para la diferencia entre 2 valores consecutivos del acelerómetro.\\
 			\item \emph{\textbf {STDEV(Z)}}: Establecer unos umbrales para la desviación estándar de los valorres del acelerómetro en
 				el eje Z durante un intervalo de tiempo.\\ 
-			\item \emph{\textbf {G-ZERO}}: Establecer un umbrales cercanos a 0 para los valores modulares del acelerómetro
-				en los 3 ejes en un instante.\\
+			\item \emph{\textbf {G-ZERO}}: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
+				instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto umbral prefijado. Lo 
+				cual podría ser indicativo de que el vehículo está en caída libre en un pequeño intervalo de tiempo.
 		\end{itemize}
 
-		~\textcite{mohan2008nericell} usan una idea idéntica al \emph{\textbf{Z-Thresh}} y otra en la que buscan una caída sostenida de la 
-		aceleración en el eje Z, por debajo de cierto umbral, durante cierta cantidad de tiempo (\emph{\textbf{Z-SUS}}).\\
+		\emph{Mohan et al.} ~\brackcite{mohan2008nericell} usan una idea idéntica al \emph{\textbf{Z-Thresh}} y otra en la que buscan
+		una caída sostenida de la aceleración en el eje Z por debajo de cierto umbral, durante cierta cantidad de tiempo(\emph{\textbf{Z-SUS}}).\\
 
 		% Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la
 		% información. Para capturar datos preliminares utilizaron un collar \emph{LynxNet} a una frecuencia de 100Hz. Para la evaluación del
@@ -253,7 +252,7 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 		% Los datos recopilados son divididos en 256 ventanas pues los eventos que interesan son generalmente eventos de
 		% corta duración. 
 
-	\subsection{Enfoques utilizando \emph{Machine Learning}}
+	\subsection{Enfoques utilizando aprendizaje de máquinas}
 		\subsubsection{Algoritmos}
 			Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios. Entre los modelos supervisados
 			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, carlos2018evaluation, seraj2015roads,
@@ -271,45 +270,53 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 			máximo, mediana, moda y rango entre cuartiles \brackcite{carlos2018evaluation, seraj2015roads, el2018towards, perttunen2011distributed,
 			pawar2020efficient}. Incluso características, como por ejemplo, cuantas veces cierta característica estadística sobrepasó cierto umbral
 			establecido \brackcite{carlos2018evaluation}, una idea basada en los primeros trabajos en relación a este problema y que utilizaron
-			heurísticas basadas en umbrales. Algunos autores proponen el uso de la señal del \textbf{giroscopio} y la extracción de características
-			estadísticos a partir de esta, pues se encarga de medir la velocidad de giro del dispositivo, y los baches y las anomalías
-			en general deben producir lecturas anormales de este sensor. De esta forma se podría tener más información que permita mejorar el
-			rendimiento de los algoritmos de aprendizaje supervisado \brackcite{seraj2015roads, pawar2020efficient}. Debido a que este enfoque
-			se basa en el uso de señales digitales, varias propuestas han utilizado herramientas del campo de procesamiento de señales digitales
-			para mejorar y enriquecer la calidad de sus datos y sus modelos. Características extraídas utilizando la Transformada Rápida
-			de Fourier(\textbf{FFT}) como frecuencia media, mediana de la frecuencia y energía de las bandas de frecuencia \brackcite{seraj2015roads,
+			heurísticas basadas en umbrales.\\
+			\indent Algunos autores proponen el uso de la señal del \textbf{giroscopio} y la extracción de características estadísticas a partir de esta,
+			pues se encarga de medir la velocidad de giro del dispositivo, y los baches y las anomalías en general, deben producir lecturas anormales
+			de este sensor. De esta forma se podría tener más información que permita mejorar el rendimiento de los algoritmos de aprendizaje
+			supervisado \brackcite{seraj2015roads, pawar2020efficient}.\\
+			\indent Debido a que este enfoque se basa en el uso de señales digitales, varias propuestas han utilizado herramientas del campo de procesamiento
+			de señales digitales para mejorar y enriquecer la calidad de sus datos y sus modelos. Características extraídas utilizando la Transformada
+			Rápida de Fourier(\textbf{FFT}) como frecuencia media, mediana de la frecuencia y energía de las bandas de frecuencia \brackcite{seraj2015roads,
 			perttunen2011distributed} y otras que fueron extraídas utilizando \emph{Wavelet Decomposition} específicamente \emph{Stationary Wavelet
-			Decomposition} \brackcite{seraj2015roads} o \emph{Wavelet Packet Decomposition} \brackcite{cong2013applying}. Incluso en algunos de
-			los artículos se propone analizar la relevancia de los características seleccionadas a la hora de discriminar entre baches y otros
+			Decomposition} \brackcite{seraj2015roads} o \emph{Wavelet Packet Decomposition} \brackcite{cong2013applying}.\\
+			\indent En algunos de los artículos se propone analizar la relevancia de los características seleccionadas a la hora de discriminar entre baches y otros
 			segmentos de carretera, utilizando algún proceso de selección de características como \emph{Forward Selection}, \emph{Backward Selection}
-			o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite {cong2013applying}. \emph{Gonzales et al.} \brackcite{gonzalez2017learning}
-			usan las características para construir una representación por intervalos de la serie temporal empleando la técnica de \emph{Bag
-			of Words}, de la cual extraen varias características nuevas (palabras) que describen cada fragmento en el que segmentaron la serie temporal.
+			o \emph{Principal Components Analysis}(\textbf{PCA}) \brackcite {cong2013applying}.\\
+			\indent \emph{Gonzales et al.} \brackcite{gonzalez2017learning} usan las características para construir una representación por intervalos de la serie
+			temporal empleando la técnica de \emph{Bag of Words}, de la cual extraen varias características nuevas (palabras) que describen cada fragmento
+			en el que segmentaron la serie temporal. Algunos de los autores plantearon que la velocidad puede influir de forma directa en como se reflejan
+			los valores del acelerómetro en el eje Z en los datos, y dicho valor puede cambiar drásticamente si se interactúa con una anomalía a velocidades
+			distintas \brackcite{eriksson2008pothole, perttunen2011distributed, mednis2011real}. \emph{Perttunen et al.} \brackcite{perttunen2011distributed}
+			propusieron un método para eliminar la dependencia de la velocidad de dicha característica. 
 
 		\subsubsection{Etiquetado de los datos}
 			Para el uso de estos modelos supervisados es necesario tener datos etiquetados. Debido a que las anomalías y los baches ocurren por una 
 			fracción de segundo determinar exactamente el momento en el que ocurre es un proceso complicado. Algunos autores propusieron etiquetar
 			los datos utilizando vídeo y audio capturado durante el recorrido identificando cada evento que ocurriese durante el viaje \brackcite
 			{seraj2015roads}. Otros utilizaron solamente vídeos capturados durante el proceso de recolección de datos para etiquetarlos \brackcite
-			{el2018towards}. \brackcite{gonzalez2017learning} etiquetaron las anomalías de la siguiente forma, cuando se van acercando a la anomalía
-			ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta a dicha
-			serie temporal. \brackcite{tai2010automatic} etiquetaron sus datos realizando grabaciones de audio durante el viaje recolectando la voz 
-			de la persona encargada de notificar la presencia de una anomalía.
+			{el2018towards}.\\
+			\indent \emph{Gonzales et al.} \brackcite{gonzalez2017learning} etiquetaron las anomalías de la siguiente forma, cuando se van acercando a la
+			anomalía ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta
+			a dicha serie temporal. \emph{Tai et al.} \brackcite{tai2010automatic} etiquetaron sus datos realizando grabaciones de audio durante el
+			viaje recolectando la voz de la persona encargada de notificar la presencia de una anomalía.
 
 
 	\subsection{Purificación y segmentación de la señal}
 		Otros aspecto a tener en cuenta a la hora de intentar solucionar este problema es que las señales digitales están sujetas a ruido que puede ser
-		ocasionado por varias razones, y que dificulta la tarea en cuestión. Muchos autores proponen utilizar métodos de proesamiento de señales digitales
-		para purificar la señal y mejorar su calidad, métodos como \emph{Fast Fourier Transform}(\textbf{FFT}), \emph{Wavelet Decomposition} \brackcite
-		{el2018towards} y \emph{Wavelet Discrete Transform} \brackcite{seraj2015roads}, y \emph{high-pass filters} y \emph{low-pass filters} para eliminar
-		componentes de baja y alta frecuencia respectivamente \brackcite{eriksson2008pothole, kulkarni2014pothole}. También es importante determinar de que
-		forma segmentar la señal para su análisis, hay propuestas que segmentan la señal en 256 ventanas \brackcite{eriksson2008pothole}, en ventanas con
-		duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de de 2.5 segundos con el 66\% de las ventanas solapándose
-		\brackcite{seraj2015roads}, ventanas deslizantes con varias duraciones entre 0.5 y 2 segundos \brackcite{perttunen2011distributed} y una interesante
-		propuesta por \emph{Zhenf et al.} donde se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la
-		gran mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de \emph{Machine Learning} utizando
-		una ventana deslizante a ciegas puede disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento, por lo que proponen un método
-		para determinar de forma dinámica el tamaño de la ventana a considerar.
+		ocasionado por varias razones, y que dificulta la tarea en cuestión.\\
+		\indent Muchos autores proponen utilizar métodos de procesamiento de señales digitales para purificar la señal y mejorar su calidad. Métodos como \emph
+		{Fast Fourier Transform}(\textbf{FFT}), \emph{Wavelet Decomposition} \brackcite {el2018towards}, \emph{Wavelet Discrete Transform} \brackcite
+		{seraj2015roads} y \emph{high-pass filters} y \emph{low-pass filters} p\brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
+		componentes de baja y alta frecuencia respectivamente.\\
+		\indent También es importante determinar de que forma segmentar la señal para su análisis. Hay propuestas que segmentan la señal en 256 ventanas
+		\brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 2.5,
+		segundos con el 66\% de las ventanas solapadas \brackcite{seraj2015roads} y ventanas deslizantes con varias duraciones entre 0.5 y 2 segundos
+		\brackcite{perttunen2011distributed}.\\
+		\indent Una interesante propuesta por \emph{Zhenf et al.} \brackcite{zheng2020fused} sugiere que la mayoría de los artículos con respecto al tema no
+		toman en consideración el hecho que la gran mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas
+		de aprendizaje de máquinas utizando una ventana deslizante a ciegas puede disminuir considerablemente la precisión y la rapidez del proceso de
+		entrenamiento, por lo que proponen un método para determinar de forma dinámica el tamaño de la ventana a considerar.\\
 		
 	\subsection{Ubicación del dispositivo en el vehículo}
 		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
@@ -318,10 +325,10 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
 		
 	\subsection{Frecuencia de muestreo}
-		La frecuencia de muestreo es un factor importante, muy alta y se introduciría ruido innecesario en los datos, muy baja y no se podrá obtener
-		toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
+		La frecuencia de muestreo es un factor importante, si es muy alta se introduciría ruido innecesario en los datos, y si es muy baja y no se podrá
+		obtener toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
 		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
-		\textbf{acelerómetro}y 1 Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100Hz \brackcite{mednis2011real}, 100Hz para el 
+		\textbf{acelerómetro} y 1Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100Hz \brackcite{mednis2011real}, 100Hz para el 
 		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS} \brackcite{el2018towards}.
 
 	\subsection{Geolocalización del bache utilizando GPS}
@@ -329,10 +336,11 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 		error en la medición del \textbf{GPS}(aproximadamente de 5m a la redonda como mediana) es significativamente mayor que el tamaño de un bache
 		común, la ausencia de una detección en una localización particular no siempre es un indicativo de que no haya anomalías en esta. No es
 		posible determinar puramente por la localización del \textbf{GPS} en el momento en que las ruedas del vehículo hacen contacto con alguna
-		anomalía de la carretera. Los conductores usuales intentan evitar los baches, por lo que la probabilidad de detectar una anomalía en la
-		carretera es menor que la que se debe de esperar de una distribución sin sesgo del área que se intenta mapear \brackcite {eriksson2008pothole}.
-		Dado que la frecuencia de captura de la señal del \textbf{acelerómetro} se hace mucho más seguido que la del \textbf{GPS}, proponen estimar la localización
-		del vehículo cuando ocurra la lectura $l_i$ del \textbf{acelerómetro} usando interpolación lineal entre lecturas de \textbf{GPS} \brackcite
+		anomalía de la carretera.\\
+		\indent Los conductores usuales intentan evitar los baches, por lo que la probabilidad de detectar una anomalía en la carretera es menor que la
+		que se debe de esperar de una distribución sin sesgo del área que se intenta mapear \brackcite {eriksson2008pothole}. Dado que la frecuencia
+		de captura de la señal del \textbf{acelerómetro} se hace mucho más seguido que la del \textbf{GPS}, se propone estimar la localización del
+		vehículo cuando ocurra la lectura $l_i$ del \textbf{acelerómetro} usando interpolación lineal entre lecturas de \textbf{GPS} \brackcite
 		{eriksson2008pothole}.
 
 		% \brackcite{carlos2018evaluation} de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron
@@ -361,7 +369,7 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 		% a cabo un proceso de eliminación de ruido de las señales probando varios métodos conocidos en el campo del procesamiento de señales
 		% digitales como la transformada de Fourier o la transformada de Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés),
 		% pero finalmente utilizaron transformadas de wavelets para purificar la señales y obtener datos más confiables con los que llevar a cabo
-		% el proceso de entrenamiento del modelo de \emph{Machine Learning}. Se decantaron por un enfoque supervisado, por lo que etiquetaron de
+		% el proceso de entrenamiento del modelo de aprendizaje de máquinas. Se decantaron por un enfoque supervisado, por lo que etiquetaron de
 		% antemano los datos utilizando vídeos capturados durante el mismo proceso de recolección de datos, métodos como \emph{K-Nearest Neighboors}
 		% (\textbf{KNN}), \emph{\textbf{Decision Trees}}, \textbf{SVM} y \emph{ensembles} de clasificadores fueron probados, obteniendo los mejores
 		% resultados con las \textbf{SVM} y los \emph{bagged decision trees}. Utilizaron características estadísticos, de dominio temporal, de dominio
@@ -390,7 +398,7 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 
 		% ~\brackcite{cong2013applying} para la extracción de características descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition})
 		% usando sucesivamente filtros de \emph{low-pass} y de \emph{high-pass}. Donde \textbf{WPD} es llevado a cabo aplicando de forma iterativa filtros
-		% espejos en cuadratura y seguido por submuestreo. La selección de características basadas en \emph{Machine Learning} puede ser asistida para
+		% espejos en cuadratura y seguido por submuestreo. La selección de características basadas en aprendizaje de máquinas puede ser asistida para
 		% reducir la demanda computacional para la clasificiación. La selección de características está diseñada para encontrar las características que
 		% hacen una mejor discriminación de los baches y los segmentos normales en estudio. Para la selección de características se probaron con cuatro
 		% métodos: \textbf{BS}(\emph{Backward Selection}), \textbf{FS} (\emph{Forward Selection}),  y \textbf{PCA} usando un número diferente de \emph
@@ -453,7 +461,7 @@ si varias regiones candidatas incompletas tales como, sombras, manchas y parches
 		% \end{itemize}
 
 		% ~\brackcite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran
-		% mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de \emph{Machine Learning} utizando una
+		% mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de aprendizaje de máquinas utizando una
 		% ventana deslizante a ciegas puede disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que
 		% una anomalía comienza con una señal normal y luego ocurre un pico de aceleración en el eje Z que excede un umbral superior y luego
 		% cae y excede un umbral inferior o viceversa, y finalmente la señal vuelve a estabilizarse entre esos dos umbrals. Ese

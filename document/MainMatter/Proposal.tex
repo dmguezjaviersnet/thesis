@@ -1,4 +1,14 @@
 \chapter{Propuesta}\label{chapter:proposal}
+	La propuesta de solución consiste en varios pasos. Primero se capturan las señales de los sensores y se almacenan.
+	Luego, se realiza un preprocesado de los datos, para eliminar datos que sean erróneos. Durante este proceso, también
+	se extraen ciertas características importantes a partir de las ya existentes en los datos obtenidos durante la fase
+	de captura de señales. Una vez se tengan los datos que se quieren estructurados, se pasa a una fase de detección de
+	anomalías utilizando algunos métodos heurísticos y de aprendizaje no-supervisado. Las anomalías que se extraigan con
+	este proceso son etiquetadas con un método que utiliza la distancia de la ubicación de las lecturas a ciertas marcas
+	previamente etiquetadas a mano. Luego se realiza un proceso de selección de características utilizando varios métodos, 
+	para determinar las características más relevantes a la hora de clasificar las anomalías en bache o no bache. Y
+	finalmente se realiza un proceso de selección de modelos e hiperparámetros, mediante el cual se busca un algoritmo
+	y una configuración de hiperparámetros que maximice el \emph{F1 score}.
 
 \section{Captura de señales}
 	Las señales que se consideraron capturar son las proporcionadas por sensores como el \textbf{acelerómetro},
@@ -19,17 +29,17 @@
 		\centering
 		\includegraphics[scale = 0.5]{Graphics/mobile_phone_axis.png}
 		\caption{Ejes de un dispositivo móvil}
-		\label{fig:1}
+		\label{fig:4}
 	\end{figure}
 
 	\subsection{Acelerómetro}
 		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
 		sin embargo una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
-		por el bache, cayendo brevemente e incluso inclinándose momentáneamente hacia un lado (en el caso de un bache
-		que afecte una sola rueda), por tanto la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
+		por el bache. En ese momento cae brevemente e incluso se inclina momentáneamente hacia un lado (en el caso de un bache
+		que afecte una sola rueda). Por esta razón la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado, debe tener
 		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.
 		Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
-		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado, también dicho sensor debe registrar lecturas
+		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado. También, dicho sensor debe registrar lecturas
 		anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
 		hacia un lado por un momento.\\
 
@@ -37,7 +47,7 @@
 		\centering
 		\includegraphics[scale = 0.5]{Graphics/one_side_pothole_vehicle.jpg}
 		\caption{Vehículo impactado por un bache en un solo lado}
-		\label{fig:2}
+		\label{fig:5}
 	\end{figure}
 
 	\subsection{Giroscopio}
@@ -65,15 +75,16 @@
 		y así facilitar algunos aspectos de la propuesta de solución.
 
 	\subsection{Velocidad y frecuencia de muestreo}
+		Debido a que la \textbf{velocidad} de un vehículo durante un recorrido no suele ser constante, es necesario que la \textbf
+		{frecuencia de muestreo} cambie en función de la \textbf{velocidad} a la que vaya el vehículo. Pues si el vehículo se
+		desplaza más rápido será necesario muestrear más para mantener la precisión y consistencia de los datos que se generen.\\
 		La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
-		{giroscopio} por cada metro. Si se va a una \textbf{velocidad} $v$ en $m/s$ y se quiere obtener $x$ muestras
-		por cada metro, quiere decir que se necesitan obtener $v * x$ muestras, por lo que la frecuencia de muestreo
+		{giroscopio} por cada metro. Si el vehículo se desplaza a una \textbf{velocidad} $v$ en $m/s$ y se quiere obtener
+		$x$ muestras por cada metro, quiere decir que se necesitan obtener $v * x$ muestras, por lo que la frecuencia de muestreo
 		necesaria sería de $v * x Hz$. Como se quiere una sola muestra por cada metro la frecuencia de muestreo
-		en este caso particular es de $v Hz$. Debido a que la \textbf{velocidad} de un vehículo durante un
-		recorrido no suele ser constante, es necesario que la \textbf{frecuencia de muestreo} cambie en función de la
-		\textbf{velocidad} a la que vaya el vehículo, pues mientras más rápido vaya es necesario realizar más capturas
-		con los sensores para no perder información importante. Este cambio de \textbf{frecuencia de muestreo} se propuso
-		realizarlo cada 5 segundos.\\
+		en este caso particular es de $v Hz$. La actualización de la \textbf{frecuencia de muestreo} ocurre cada vez que se recomputa
+		la velocidad, lo que se propuso realizar cada 5 segundos debido a la posible latencia inherente del \textbf{GPS} a la hora
+		obtener las lecturas.\\
 		Para actualizar de forma correcta la \textbf{frecuencia de muestreo} es necesario conocer la \textbf{velocidad}
 		a la que viaja el vehículo, o al menos realizar una estimación aceptable de la misma utilizando los sensores de
 		los que dispone el dispositivo móvil. Esta estimación se realizó utilizando las lecturas del \textbf{GPS}, y se 
@@ -86,7 +97,7 @@
 	\subsection{Posición del móvil en el vehículo}
 		La posición en la que se coloca el dispositivo móvil en el vehículo es relevante, al menos por ahora, pues la
 		dirección del eje Y del vehículo debe coincidir con la del eje Y del móvil para que las señales que se capturen
-		se correspondan con la realidad, de lo contrario se deberían realizar ciertos ajustes utilizando algún método de
+		se correspondan con la realidad. De lo contrario, se deberían realizar ciertos ajustes utilizando algún método de
 		transformación de coordenadas para poder obtener lecturas acertadas sin importar la posición en la que se coloque
 		el dispositivo.
 
