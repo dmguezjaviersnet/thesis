@@ -61,8 +61,20 @@ se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carri
 de carril estática. El área entre dos marcas de carril detectadas es seleccionada como la región de interés. La agrupación 
 de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
 
-Ryu et al. ~\brackcite{ryu2015image} primero proponen usar un ~\emph{median filter}. La idea principal del ~\emph{median filter} es recorrer la señal entrada 
-por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
+Ryu et al. ~\brackcite{ryu2015image} primero proponen usar un ~\emph{median filter}. La idea principal del ~\emph{median filter} es recorrer la señal 
+entrada por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
+Se probaron filtros de 3 x 3, 7 x 7 y 9 x 9 y el filtro 9x9 mostró el mejor desempeño entre los tres. A continuación, se restauran los contornos dañados de las 
+regiones del objeto, y las piezas pequeñas se eliminan mediante la operación de \emph{closing}(dilatación y erosión) de un filtro morfológico. Después de la operación 
+de \emph{closing}, las regiones candidatas a bache se extraen utilizando características como el tamaño, la compacidad, la elipticidad,
+y la linealidad. Además el refinamiento de las regiones candidatas es necesario para detectar las regiones correctas que son baches después de obtener las regiones 
+candidatas. Los candidatos iniciales obtenidos usando características pueden no representar el área total del bache. De esta forma el refinamiento de las 
+regiones candiadatas usando características como la compacidad, el punto central, y el \emph{convex hull} son necesarios antes de que para decicidir 
+si varias regiones candidatas incompletas tales como, sombras, manchas y parches son baches o no.
+
+
+
+
+
 
 \subsection{Detección usando \emph{Convolutional Neural Network}}
 
