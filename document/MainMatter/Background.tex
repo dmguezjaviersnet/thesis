@@ -127,7 +127,7 @@ características $f_i$ y $f_o$. Si $|f_o|$  es menor que  $|f_i|$, significa que
 la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
 
 
-Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para esto fin, 
+Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
 comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
 uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). \textbf{OHI} es un método para 
 medir el grado de similitud entre las regiones de una imagen. Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
@@ -135,7 +135,7 @@ sombras y evitar la detección errónea de baches. Para establecer que una regi�
 determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido.
 La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI}
 de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
-es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada seríá un bache.
+es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
 
 
 
