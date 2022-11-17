@@ -102,29 +102,17 @@
 		el dispositivo.
 
 \section{Detección de anomalías}
-	Los baches en la carretera no son más que anomalías como ya se mencionó. Teniendo en cuenta esto y ya con los \emph
-	{datasets} al alcance, el primer paso fue identificar estas lecturas anómalas utilizando algún método de detección de \emph
-	{outliers}(o \emph{novelty detection}). Para esto se probaron 2 vías:\\
+	Los baches no son más que anomalías en la carretera. Teniendo en cuenta esto, se propuso detetar dichar anomalías utilizando
+	2 enfoques. Primero, intentar identificar las anomalías utilizando los métodos heurísticos sugeridos en la literatura basados
+	en umbrales. Y segundo emplear algoritmos de aprendizaje de máquinas para detectar anomalías.\\
+	\indent Los métodos heurísticos que se utilizaron en la propuesta fueron \textbf{Z-THRESH}, \textbf{Z-DIFF} y \textbf{G-ZERO}.
+	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado los
+	métodos de aprendizaje de máquinas que se probaron fueron \textbf{DBSCAN}, \textbf{OPTICS} y \textbf{One Class SVM} utilizando 
+	6 características, las lecturas de los 3 ejes de \textbf{acelerómetro}, y además las lecturas de los 3 ejes del \textbf{giroscopio},
+	pues se consideró que las lecturas de este último sensor pueden ser significativas a la hora de determinar la existencia de una 
+	anomalía. Este proceso de detección de anomalías se aplicó a cada una de las series temporales obtenidas como resultado del muestreo
+	de los sensores del dispositivo móvil.
 
-	\begin{itemize}
-		\item Se utilizaron 3 de los métodos heurísticos sugeridos en la literatura que pueden ser indicadores de la presencia de una
-			anomalía en la carretera \textbf{Z-THRESH}, \textbf{Z-DIFF}, \textbf{G-ZERO}, que solamente necesitan los valores
-			del \textbf{acelerómetro} en los 3 ejes.
-		\item Se utilizaron algoritmos conocidos de \emph{Machine Learning} para detectar anomalías como \textbf{DBSCAN},
-			\textbf{OPTICS} y \textbf{One Class SVM} con todos los features (no solo las lecturas del \textbf{acelerómetro}).
-	\end{itemize}
-
-	El proceso de detección con las heurísticas es sencillo, simplemente si algún valor excede los \emph{thresholds} establecidos en 
-	cada método este se considera un anomalía. Para el proceso de detección de outliers con los algoritmos de aprendizaje no-supervisado
-	se probaron 2 vías: 
-
-	\begin{itemize}
-		\item Detectar los anomalías en toda la serie temporal.\\
-		\item Construir varias ventanas de cierto tamaño utilizando una ventana deslizante, extraer varios \emph{features} de
-			cada una de estas ventanas y así generar nuevos \emph {features} para cada uno de los datos con el objetivo de
-			intentar mejorar el proceso de detección de estos anomalías.\\
-	\end{itemize}
-	
 	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
 
 \section{Clasificación de outliers}
