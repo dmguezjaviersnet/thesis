@@ -76,16 +76,17 @@
 
 	\subsection{Velocidad y frecuencia de muestreo}
 		Debido a que la \textbf{velocidad} de un vehículo durante un recorrido no suele ser constante, es necesario que la \textbf
-		{frecuencia de muestreo} cambie en función de la \textbf{velocidad} a la que vaya el vehículo. Pues si el vehículo se
-		desplaza más rápido será necesario muestrear más para mantener la precisión y consistencia de los datos que se generen.\\
-		La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
+		{frecuencia de muestreo} del \textbf{acelerómetro} y el \textbf{giroscopio} cambie en función de la \textbf{velocidad}
+		a la que vaya el vehículo. Pues si el vehículo se desplaza más rápido será necesario muestrear más para mantener la
+		precisión y consistencia de los datos que se generen.\\
+		\indent La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
 		{giroscopio} por cada metro. Si el vehículo se desplaza a una \textbf{velocidad} $v$ en $m/s$ y se quiere obtener
 		$x$ muestras por cada metro, quiere decir que se necesitan obtener $v * x$ muestras, por lo que la frecuencia de muestreo
 		necesaria sería de $v * x Hz$. Como se quiere una sola muestra por cada metro la frecuencia de muestreo
 		en este caso particular es de $v Hz$. La actualización de la \textbf{frecuencia de muestreo} ocurre cada vez que se recomputa
 		la velocidad, lo que se propuso realizar cada 5 segundos debido a la posible latencia inherente del \textbf{GPS} a la hora
 		obtener las lecturas.\\
-		Para actualizar de forma correcta la \textbf{frecuencia de muestreo} es necesario conocer la \textbf{velocidad}
+		\indent Para actualizar de forma correcta la \textbf{frecuencia de muestreo} es necesario conocer la \textbf{velocidad}
 		a la que viaja el vehículo, o al menos realizar una estimación aceptable de la misma utilizando los sensores de
 		los que dispone el dispositivo móvil. Esta estimación se realizó utilizando las lecturas del \textbf{GPS}, y se 
 		asignaron frecuencias de muestreo teniendo en cuenta los límites de velocidad existentes en la zona urbana donde 
@@ -93,6 +94,9 @@
 		los vehículos desplazarse a más de 100 km/h y también debido a que la mayoría de los vehículos que circulan en
 		el país no alcanzan dicha \textbf{velocidad}, se asumió que esta es la máxima a la que podría desplazarse un
 		vehículo a la hora de decidir las frecuencias de muestreo de los sensores.\\
+		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1Hz, debido a que es necesario tener 
+		la ubicación en tiempo real del dispositivo y buena precisión en las lecturas del propio \textbf{GPS}. Además 
+		muestrear más de una vez por segundo no tiene sentido, pues la distancia entre una lectura y no será considerable.\\
 
 	\subsection{Posición del móvil en el vehículo}
 		La posición en la que se coloca el dispositivo móvil en el vehículo es relevante, al menos por ahora, pues la
@@ -108,8 +112,8 @@
 	\indent Los métodos heurísticos que se utilizaron en la propuesta fueron \textbf{Z-THRESH}, \textbf{Z-DIFF} y \textbf{G-ZERO}.
 	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado los
 	métodos de aprendizaje de máquinas que se probaron fueron \textbf{DBSCAN}, \textbf{OPTICS} y \textbf{One Class SVM} utilizando 
-	6 características, las lecturas de los 3 ejes del \textbf{acelerómetro}, y además las lecturas de los 3 ejes del \textbf{giroscopio},
-	pues se consideró que las lecturas de este último sensor pueden ser significativas a la hora de determinar la existencia de una 
+	6 características, las lecturas de los 3 ejes del \textbf{acelerómetro}, y además las lecturas de los 3 ejes del \textbf{giroscopio}.
+	Este último sensor se incluyó, pues se consideró que sus lecturas pueden ser significativas a la hora de determinar la existencia de una 
 	anomalía. Este proceso de detección de anomalías se aplicó a cada una de las series temporales obtenidas como resultado del muestreo
 	de los sensores del dispositivo móvil.
 
