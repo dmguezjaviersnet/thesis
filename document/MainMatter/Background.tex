@@ -137,7 +137,11 @@ La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y
 de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
 es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
 
-
+Buza et al. ~\brackcite{buza2013pothole} después del resultado de extración de agrupamientos aplican un proceso de selección de semillas.
+Esto marcará el área para la identificación de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada.
+Después de esta operación se tienen las regiones definidas verticalmentepor un bache. La operación vertical previa se utiliza como base para 
+la extracción de las regiones definidas horizontalmente por un bache. El proceso de identificación de baches se completa trazando líneas verticales 
+y horizontales entre los puntos indentificados para realizar la extracción de la superficie del bache.
 
 % Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
 
