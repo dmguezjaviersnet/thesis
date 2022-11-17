@@ -20,9 +20,9 @@
 	dispositivo de la forma usual, de la siguiente manera:
 
 	\begin{itemize}
-		\item eje X: Va de un lado del dispositivo a otro.
-		\item eje Y: Va desde la parte inferior hasta la parte superior del dispositivo.
-		\item eje Z: Es ortogonal a la pantalla del dispositivo.
+		\item eje X: Va de un lado del dispositivo a otro (lateral).
+		\item eje Y: Va desde la parte inferior hasta la parte superior del dispositivo (longitudinal).
+		\item eje Z: Es ortogonal a la pantalla del dispositivo (vertical).
 	\end{itemize}
 	
 	\begin{figure}[htb]
@@ -31,6 +31,15 @@
 		\caption{Ejes de un dispositivo móvil}
 		\label{fig:4}
 	\end{figure}
+
+	Por su parte los ejes correspondientes a un vehículo están distribuidos de la siguiente forma:
+
+	\begin{itemize}
+		\item eje X: Va de un lado del vehículo a otro (lateral).
+		\item eje Y: Va desde la parte trasera hasta la parte delantera del vehículo (longitudinal).
+		\item eje Z: Es ortogonal al vehículo, es decir, va desde la parte inferior hasta la parte superior del mismo (vertical).
+	\end{itemize}
+
 
 	\subsection{Acelerómetro}
 		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
@@ -99,10 +108,12 @@
 		muestrear más de una vez por segundo no tiene sentido, pues la distancia entre una lectura y no será considerable.\\
 
 	\subsection{Posición del móvil en el vehículo}
-		La posición en la que se coloca el dispositivo móvil en el vehículo es relevante, al menos por ahora, pues la
-		dirección del eje Y del vehículo debe coincidir con la del eje Y del móvil para que las señales que se capturen
+		La posición en la que se coloca el dispositivo móvil en el vehículo a la hora de capturar las señales de los sensores es
+		relevante. Esto se debe a que es necesario que las lecturas que se obtengan durante el muestreo sean relevantes y representen
+		las características de la carretera por la que viaja el vehículo. Para esto, es necesario colocar el dispositivo móvil de tal 
+		forma que la dirección del eje Y del vehículo coincida con la del eje Y del móvil, para que las señales que se capturen
 		se correspondan con la realidad. De lo contrario, se deberían realizar ciertos ajustes utilizando algún método de
-		transformación de coordenadas para poder obtener lecturas acertadas sin importar la posición en la que se coloque
+		transformación de coordenadas para poder obtener lecturas acertadas, sin importar la posición en la que se coloque
 		el dispositivo.
 
 \section{Detección de anomalías}
