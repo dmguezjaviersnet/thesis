@@ -5,6 +5,10 @@ bache, utilizando  técnicas de procesamiento de imágenes o de aprendizaje de m
 o de aprendizaje de máquinas, que hacen uso de la serie temporal que es posible generar a partir del muestreo de sensores como el acelerómetro. 
 
 \section{Detección de baches en imágenes}
+Varios autores en la literatura se han propuesto identificar baches en imágenes. Algunos de estos hacen se van por la vía del procesamiento 
+de imágenes digitales. La mayoría, proponen como pasos fundamentales un preprocesamiento de la imagen utilizando principalmente 
+un proceso de segmentación. Luego se encargan de busar la región de interés que representa los posibles baches en la imagen. Y por último,
+tratan identificar si esa región de interés es un efecto un bache o no. 
 
 \subsection{Preprocesamiento de la imagen}
 La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
@@ -109,29 +113,46 @@ de la región de interés. La segunda diferencia es usan solo el paso para la el
 segundo paso del método anterior.
 
 
-Koch et al. tratan de describir la textura de la superficie dentro de un candidato a bache y compararla con la textura de la región circundante. 
-Para describir la textura de una región se propone el uso de la desviación estándar de los valores de intensidad del nivel de gris como una 
-medida estadística para describir la textura  tanto de la región interna como de la región externa. A la imagen en escala de grises se le 
-aplican filtros para enfatizar las características estructurales de la textura. . La región exterior
-$R_o$ representa la parte intacta y saludable de la imagen del pavimento.
-Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
-
-\begin{enumerate}
-	\item la dilatación morfológica se aplica sobre la imagen binaria segmentada que contiene
-	las supuestas áreas defectuosas
-	\item Se combina la imagen binaria con la región interior $R_i$ y se obtiene como resultado la región defectuosa total.
-	\item La región exterior $R_i$ se determina como el complemento de la región defectuosa total
-\end{enumerate}
-
-Basado en la respuesta de los filtros dentro de las regiones $R_i$ y $R_o$ los valores de desviación estándar correspondientes son
-determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, que describen la textura de las regiones $R_i$ 
-y $R_o$ respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de características $f_i$ y $f_o$.
-Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de $R_i$ es más gruesa y granulada que en el interior de $R_o$, se asume 
-que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011pothole}.
+Koch et al. ~\brackcite{koch2011pothole} tratan de describir la textura de la superficie dentro de un candidato a bache y compararla con la textura de la 
+región circundante. Para describir la textura de una región se propone el uso de la desviación estándar de los valores de intensidad del nivel 
+de gris como una medida estadística para describir la textura  tanto de la región interna como de la región externa. A la imagen en escala de 
+grises se le aplican filtros para enfatizar las características estructurales de la textura. La región exterior $R_o$ representa la parte intacta y 
+saludable de la imagen del pavimento. Para determinar la región exterior se propone un  procedimiento de tres pasos. Primero, 
+se aplica dilatación morfológica sobre la imagen binaria segmentada que contiene las supuestas áreas defectuosas. Segundo, 
+se combina la imagen binaria con la región interior y se obtiene como resultado la región defectuosa total. Finalmente, 
+La región exterior se determina como el complemento de la región defectuosa total. Basado en la respuesta de los filtros dentro de las regiones 
+interior y exterior, los valores de desviación estándar correspondientes son determinados y utilizados para establecer dos vectores de características 
+$f_i$ y $f_o$, que describen la textura de las dichas regiones respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de 
+características $f_i$ y $f_o$. Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de la región interior es más gruesa y granulada que en 
+la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
 
 
-Ryu et al. ~\brackcite{ryu2015image} 
+Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
+comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
+uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). \textbf{OHI} es un método para 
+medir el grado de similitud entre las regiones de una imagen. Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
+sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un bache 
+determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido.
+La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI}
+de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
+es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
 
+
+
+% Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
+
+% \begin{enumerate}
+% 	\item la dilatación morfológica se aplica sobre la imagen binaria segmentada que contiene
+% 	las supuestas áreas defectuosas
+% 	\item Se combina la imagen binaria con la región interior $R_i$ y se obtiene como resultado la región defectuosa total.
+% 	\item La región exterior $R_i$ se determina como el complemento de la región defectuosa total
+% \end{enumerate}
+
+% Basado en la respuesta de los filtros dentro de las regiones $R_i$ y $R_o$ los valores de desviación estándar correspondientes son
+% determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, que describen la textura de las regiones $R_i$ 
+% y $R_o$ respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de características $f_i$ y $f_o$.
+% Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de $R_i$ es más gruesa y granulada que en el interior de $R_o$, se asume 
+% que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011pothole}.
 
 % De acuerdo con la observación de los autores de que la región dentro de un bache es en su mayoría granular, 
 % los llamados \emph{spot filters} se utilizan para crear respuestas de filtro alto ~\brackcite{koch2011pothole}
