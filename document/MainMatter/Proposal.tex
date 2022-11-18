@@ -29,7 +29,7 @@
 		\centering
 		\includegraphics[scale = 0.5]{Graphics/mobile_phone_axis.png}
 		\caption{Ejes de un dispositivo móvil}
-		\label{fig:4}
+		\label{fig:2}
 	\end{figure}
 
 	Por su parte los ejes correspondientes a un vehículo están distribuidos de la siguiente forma:
@@ -40,14 +40,20 @@
 		\item eje Z: Es ortogonal al vehículo, es decir, va desde la parte inferior hasta la parte superior del mismo (vertical).
 	\end{itemize}
 
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.4]{Graphics/car-axis.jpg}
+		\caption{Ejes de un vehículo}
+		\label{fig:3}
+	\end{figure}
 
 	\subsection{Acelerómetro}
 		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
 		sin embargo una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
 		por el bache. En ese momento cae brevemente e incluso se inclina momentáneamente hacia un lado (en el caso de un bache
 		que afecte una sola rueda). Por esta razón la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado, debe tener
-		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.
-		Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
+		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.\\
+		\indent Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
 		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado. También, dicho sensor debe registrar lecturas
 		anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
 		hacia un lado por un momento.\\
@@ -56,7 +62,7 @@
 		\centering
 		\includegraphics[scale = 0.5]{Graphics/one_side_pothole_vehicle.jpg}
 		\caption{Vehículo impactado por un bache en un solo lado}
-		\label{fig:5}
+		\label{fig:4}
 	\end{figure}
 
 	\subsection{Giroscopio}
@@ -73,15 +79,15 @@
 		superficie de la tierra utilizando coordenadas de latitud-longitud. Debido a que este sistema utiliza señales para
 		comunicarse con satélites en tiempo real, existe una latencia debido al tiempo que le toma a la señal viajar hacia el
 		satélite y de vuelta al dispositivo. Además, las condiciones atmosféricas pueden afectar esta latencia, así como el hecho
-		de que la señal puede ser reflejada por el terreno, edificios, etc., como por ejemplo cuando se viaja a través de un
-		túnel subterráneo donde la señal no puede llegar. También es importante destacar que las lecturas que genera el \textbf
-		{GPS} tienen cierto margen de error que varía de un dispositivo a otro y que depende de la potencia del sensor en sí,
-		pero en general según la literatura la mediana del error en estos sensores es de 5m aproximadamente ~\brackcite{eriksson2008pothole},
-		ambos aspectos son importantes a tener en cuenta al hacer uso de este sensor. El mismo se puede utilizar para estimar la
-		\textbf{velocidad} a la que viaja el vehículo, lo que es necesario ya que la \textbf{velocidad} es un factor que influye de
-		forma directa en la forma que un vehículo es afectado por un bache, además con este sensor es posible ubicar en un mapa
-		aproximadamente los lugares donde existen baches u otro tipo de anomalías, incluso puede ser útil para marcar rutas de viaje
-		y así facilitar algunos aspectos de la propuesta de solución.
+		de que la señal puede ser reflejada por el terreno, edificios, etc., como por ejemplo, cuando se viaja a través de un
+		túnel subterráneo donde la señal no puede llegar.\\
+		\indent También es importante destacar que las lecturas que genera el \textbf {GPS} tienen cierto margen de error que varía
+		de un dispositivo a otro y que depende de la potencia del sensor en sí. En general, según la literatura, la mediana del error
+		en estos sensores es de 5m aproximadamente ~\brackcite{eriksson2008pothole}, ambos aspectos son importantes a tener en cuenta
+		al hacer uso de este sensor. El mismo se puede utilizar para estimar la \textbf{velocidad} a la que viaja el vehículo, lo que
+		es necesario ya que la \textbf{velocidad} es un factor que influye de forma directa en la forma que un vehículo es afectado por
+		un bache. Además, con este sensor es posible ubicar en un mapa, aproximadamente, los lugares donde existen baches u otro tipo
+		de anomalías, incluso puede ser útil para marcar rutas de viaje y así facilitar algunos aspectos de la propuesta de solución.
 
 	\subsection{Velocidad y frecuencia de muestreo}
 		Debido a que la \textbf{velocidad} de un vehículo durante un recorrido no suele ser constante, es necesario que la \textbf
@@ -104,8 +110,8 @@
 		el país no alcanzan dicha \textbf{velocidad}, se asumió que esta es la máxima a la que podría desplazarse un
 		vehículo a la hora de decidir las frecuencias de muestreo de los sensores.\\
 		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1Hz, debido a que es necesario tener 
-		la ubicación en tiempo real del dispositivo y buena precisión en las lecturas del propio \textbf{GPS}. Además 
-		muestrear más de una vez por segundo no tiene sentido, pues la distancia entre una lectura y no será considerable.\\
+		la ubicación en tiempo real del dispositivo y buena precisión en las lecturas del propio \textbf{GPS}. Además, 
+		muestrear más de una vez por segundo no es necesario, pues la distancia entre una lectura y otra no es considerable.\\
 
 	\subsection{Posición del móvil en el vehículo}
 		La posición en la que se coloca el dispositivo móvil en el vehículo a la hora de capturar las señales de los sensores es
@@ -116,10 +122,51 @@
 		transformación de coordenadas para poder obtener lecturas acertadas, sin importar la posición en la que se coloque
 		el dispositivo.
 
+\section{Preprocesamiento de los datos}
+	Luego de recolectar los datos, se lleva a cabo un preprocesamiento de los mismos para eliminar o corregir cierto aspectos.
+	El primer aspecto de este preprocesamiento es eliminar lecturas donde la precisión del \textbf{GPS} sea mayor que cierto valor,
+	con el objetivo de tener la mayor precisión posible en los datos recopilados.\\
+	\indent También, debido a que la frecuencia de muestreo del \textbf{acelerómetro} y el \textbf{giroscopio} es mayor que la del
+	\textbf{GPS}, existen varias lecturas consecutivas con un mismo valor de latitud-longitud en ese intervalo de tiempo. Para
+	corregir esto, se estimaron los valores de latitud-longitud de dichas lecturas utilizando interpolación lineal entre dos lecturas
+	de \textbf{GPS} consecutivas.
+
+	\subsubsection{Extraccón de características estadísticas}
+		Durante este proceso, además de corregir y eliminar ciertos datos, también se extrajeron características, entre ellos
+		algunos estadísticos, y se incorporaron a cada uno de los datos. Estas características se extrajeron con el objetivo
+		de tener un juego de datos que brindara más información acerca de la naturaleza del problema, y así, tentativamente,
+		mejorar la calidad de la propuesta.\\
+
+		Las características no estadísticas extraídas fueron:\\
+
+		\begin{itemize}
+			\item X/Z: Cociente entre la aceleración en el eje X y la aceleración en el eje Z.
+			\item MaxZRatio: Cociente entre la aceleración en el eje Z y el máximo valor de aceleración en el eje Z.
+			\item MinZRatio: Cociente entre la aceleración en el eje Z y el mínimo valor de aceleración en el eje Z
+			\item SpeedVsZ: Cociente entre la velocidad y la aceleración en el eje Z.
+		\end{itemize}
+
+		Las características estadísticas extraídas fueron:\\
+
+		\begin{itemize}
+			\item MeanDevAccelX: Desviación del valor de la aceleración en el eje X con respecto a la media.
+			\item MedianDevAccelX: Desviación del valor de la aceleración en el eje X con respecto a la mediana.
+			\item MeanDevAccelY: Desviación del de la aceleración en el eje Y con respecto a la media.
+			\item MedianDevAccelY: Desviación del valor de la aceleración en el eje Y con respecto a la mediana.
+			\item MeanDevAccelZ: Desviación del valor de la aceleración en el eje Z con respecto a la media.
+			\item MedianDevAccelZ: Desviación del valor de la aceleración en el eje Z con respecto a la mediana.
+			\item MeanDevGyroX: Desviación del valor del giroscopio en el eje X con respecto a la media.
+			\item MedianDevGyroX: Desviación del valor del giroscopio en el eje X con respecto a la mediana.
+			\item MeanDevGyroY: Desviación del valor del giroscopio en el eje Y con respecto a la media.
+			\item MedianDevGyroY: Desviación del valor del giroscopio en el eje Y con respecto a la mediana.
+			\item MeanDevGyroZ: Desviación del valor del giroscopio en el eje Z con respecto a la media.
+			\item MedianDevGyroZ: Desviación del valor del giroscopio en el eje Z con respecto a la mediana.
+		\end{itemize}
+
 \section{Detección de anomalías}
-	Los baches no son más que anomalías en la carretera. Teniendo en cuenta esto, se propuso detectar dichar anomalías utilizando
+	Los baches no son más que anomalías en la carretera. Teniendo en cuenta esto, se propuso detectar dichas anomalías utilizando
 	2 enfoques. Primero, intentar identificar las anomalías utilizando los métodos heurísticos sugeridos en la literatura basados
-	en umbrales. Y segundo emplear algoritmos de aprendizaje de máquinas para detectar anomalías.\\
+	en umbrales. Segundo, emplear algoritmos de aprendizaje de máquinas para detectar anomalías.\\
 	\indent Los métodos heurísticos que se utilizaron en la propuesta fueron \textbf{Z-THRESH}, \textbf{Z-DIFF} y \textbf{G-ZERO}.
 	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado los
 	métodos de aprendizaje de máquinas que se probaron fueron \textbf{DBSCAN}, \textbf{OPTICS} y \textbf{One Class SVM} utilizando 
@@ -128,9 +175,31 @@
 	anomalía. Este proceso de detección de anomalías se aplicó a cada una de las series temporales obtenidas como resultado del muestreo
 	de los sensores del dispositivo móvil.
 
-	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
+\section{Etiquetado de anomalías}
+	Luego de haber detectado las anomalías, es necesario llevar a cabo un proceso de etiquetado para poder utilizar los datos en la siguiente
+	fase de la propuesta. Para esto, se utilizaron las anomalías extraídas de la serie temporal y una lista de marcas. Estas marcas se realizaron
+	manualmente a lo largo de la misma ruta con la cual se generaron las series temporales e indican la presencia de un bache en cierta
+	ubicación, con coordenadas de latitud-longitud.\\
+	\indent Para asignar la etiqueta de bache a una anomalía, se busca en un radio predefinido si existe una marca de bache, de lo contrario, se le
+	asigna la etiqueta de no bache. Debido a que es imposible determinar exactamente el punto donde el vehículo hizo contacto con el bache
+	utilizando el \textbf{GPS}, a causa del error inherente del sensor, este proceso de etiquetado tiene un cierto error. Este error puede ocasionar
+	que anomalías que no sean baches sean etiquetadas como tal, debido a que existe un bache en un radio cercano a esta.
 
-\section{Clasificación de outliers}
+\section{Selección de características}
+	Ya con los datos etiquetados, lo próximo que se propuso fue llevar a cabo un proceso de selección de características utilizando métodos como
+	\emph{Forward Selection}, \emph{Backward Selection} y \emph{Recursive Feedback Elimination}. De esta forma, se podrían determinar cuales de las 
+	características que posee nuestro juego de datos son mejores para predecir si una anomalía es bache o no bache. Con lo cual se podríá determinar
+	automáticamente la existencia de un bache en la carretera.
+
+\section{Selección de modelo}
+	Una vez se sabe que características son las mejores para predecir si una anomalía es bache o no, se llevó a cabo un proceso de selección de
+	modelo. La métrica de evaluación que se escogió fue el \emph{F1 score}, porque se consideró que un equilibrio entre \emph{precision} y el
+	\emph{recall} es más relevante que el \emph{accuracy} para el problema en cuestión. Este proceso de selección de modelo tiene el
+	objetivo de determinar entre varios modelos definidos, cual obtiene mejor rendimiento con respecto a la métrica seleccionada utlizando los datos
+	del problema. Los modelos entre los cuales se propuso escoger son: \textbf{KNN}, árboles de decisión, \emph{Random Forest}, regresión logística y
+	\textbf{SVM}. Junto con este proceso de selección de modelo también se llevó a cabo una selección de hiperparámetros que permita determinar con
+	cuales de estos el modelo arroja mejores resultados. Finalmente, se evaluó el rendimiento del modelo analizando el comportamiento de la métrica
+	de evaluación en un conjunto de prueba.
 
 	%------------------------- Detallar que framework utilizamos para capturar los sensores ---------------------------
 	% Primero que todo era necesario tener alguna forma de obtener señales de los sensores necesarios
@@ -138,4 +207,4 @@
 	% se hizo una aplicación móvil sencilla utilizando algunas bibliotecas propias de ese
 	% \emph{framework} que nos permitiera obtener las señales de los sensores y exportarlas en un
 	% {\textbf .json} para luego poder trabajar con dichos datos en el modelo de \emph{Machine Learning}.
-
+	%Hablar sobre los hiperparámetros seleccionadas para cada uno de los métodos.
