@@ -146,8 +146,42 @@ y horizontales entre los puntos indentificados para realizar la extracción de l
 
 \subsection{Detección usando \emph{Deep Learning}}
  
-Varios autores dan solución  al  problema de detectar imágenes de baches en la carretera mediante el uso de una red neuronal convolucional(\textbf{CNN}).
+Varios autores dan solución al problema de detectar imágenes de baches en la carretera mediante el uso de una de las técnicas  
+de \emph{deep learning}, una red neuronal convolucional(\textbf{CNN}).Con el uso de un modelo de \textbf{CNN} se logra  
+detectar imágenes de baches en varias condiciones tales como: húmedas, secas y sombreadas asi como de varios tamaños y formas.
+Un de modelo de \textbf{CNN} puede pensarse como la combinación de dos componentes: una parte de extracción de características
+y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características
+mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
 
+Pereira et al. ~\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolutional} , cuatro
+capas de \emph{pooling} y una capa de \emph{fully-connected}. Una función de activación \textbf{ReLU} es usada entre 
+la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
+y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
+clasificación binaria con una neurona. La última capa \emph{fully-connected} da la clasificación para la clase de las imágenes de entrada.
+La capa de salida da como resultado  valores predecidos entre 0 y 1. 0 se refiere a que no hay bache y 1 a que si lo hay.
+
+
+% 
+Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
+de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
+
+La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} parar detectar baches en imágenes 
+en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
+\emph{Inception - V2}. \emph{Fast-R CNN} es un detector que utiliza una propuesta externa 
+o búsqueda selectiva externa. Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
+región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
+ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
+capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
+\emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
+diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
+
+
+\subsection{Captura de los datos}
+
+
+
+
+% La principal ventaje que tiene el uso de \textbf{CNN} es que detecta las características importantes sin supervisión humana.
 
 % Para determinar la región exterior $R_o$ se propone el siguiente procedimiento:
 
@@ -211,7 +245,7 @@ Varios autores dan solución  al  problema de detectar imágenes de baches en la
 	% bache, entonces el valor aproximado de la elipse define la región interior $R_i$. En el caso de una supuesta región de bache completa, la región de
 	% defecto completa se utiliza para definir $R_i$.
 
-	\subsection{Extracción de la textura}
+	% \subsection{Extracción de la textura}
 
 
 % Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}
