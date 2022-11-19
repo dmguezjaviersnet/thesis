@@ -1,10 +1,11 @@
 \chapter{Detalles de Implementación y Experimentos}\label{chapter:implementation}
 
 \section{Aplicación para la captura de señales}
-	Para capturar las señales se utilizó una aplicación implementada en \emph{Flutter} 2.10.15, con \emph{dart} 2.16.2.
-	Se utlizaron las bibliotecas \emph{sensors\textunderscore plus} y \emph{geolocator} para obtener acceso a las lecturas del \textbf
-	{acelerómetro}, \textbf{giroscopio} y \textbf{GPS}. Para comenzar a realizar una captura se aprieta el botón de \emph{Start recorder}
-	y a partir de ese momento la aplicación comienza a reflejar los valores que se obtienen de los sensores en la interfaz de usuario.\\
+	Para capturar las señales se utilizó una aplicación implementada en \textbf{Flutter} 2.10.15, con \textbf{dart} 2.16.2.
+	Se utlizaron las bibliotecas \textbf{sensors\textunderscore plus} y \textbf{geolocator}, disponibles en \textbf{Flutter}, para obtener acceso
+	a las lecturas del \textbf {acelerómetro}, \textbf{giroscopio} y \textbf{GPS}. Para comenzar a realizar una captura se aprieta el botón
+	de \emph{Start recorder} y a partir de ese momento la aplicación comienza a reflejar los valores que se obtienen de los sensores en la
+	interfaz de usuario.\\
 	\indent La aplicación muestra en tiempo real las lecturas de los distintos sensores, así como la velocidad en kilómetros por hora (km/h) y la
 	duración de la captura que se está realizando en el momento (ver figura \ref{fig:6}).\\
 	\indent Cuando se desea detener la grabación se presiona el botón \emph{Stop recorder}. Luego si se quiere exportar dicha grabación se puede
@@ -101,11 +102,30 @@
 		de realizar las marcas, se esperó un tiempo a que la precisión del \textbf{GPS} se estabilizara en un rango aceptable, preferiblemente por debajo 
 		de los 5 metros. Las marcas se realizaron desde la acera debido al tráfico, y en la medida de lo posible un poco más cerca del bache en la calle.
 		Por cada bache, se realizaron varias marcas con distinta precisión y desde distintas ubicaciones relativamente cercanas a la ubicación real del
-		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}.
+		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaran de marcar los baches en el recorrido
+		en cuestión, se exportaba dicho archivo con un nombre similar al de las lecturas para poder relacionarlos uno con el otro a la hora de utilizarlos.
 
 	\subsection{Error en las lecturas y las marcas}
 		En las lecturas durante los recorridos existe cierto error. Esto se debe a que no se pudo fijar el dispositivo en la posición óptima y se tuvo que
 		sostener con las manos, lo que sin duda alguna influye negativamente en los datos obtenidos. También, en estas lecturas y en las marcas, hay un
 		error inherente del propio \textbf{GPS}. En las marcas además, hay un error extra debido a que estas se realizaron de la acera.
 
-\section{Aplicación para los modelos de aprendizaje de máquinas}
+\section{Los modelos de aprendizaje de máquinas}
+	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{python} con el objetivo de llevar a cabo 
+	la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta mejor al juego de datos,
+	pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
+
+	\subsection{Estructura del juego de datos y características escogidas}
+		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa una
+		característica y cada fila uno de los datos recopilados. Entre las columnas de este \textbf{DataFrame} están los valores de los 3 ejes del \textbf
+		{acelerómetro}, los valores de los 3 ejes del \textbf{giroscopio} y la velocidad, estas son las primeras 7 características de nuestro juego de datos
+		y son obtenidas directamente al leer los datos recopilados.\\
+		\indent El resto de características, son características estadísticas generadas a partir de las 7 previamente mencionadas, y tienen como objetivo
+		enriquecer el juego de datos para obtener una representación más precisa del problema que se pretende resolver. Estas características estadísticas,
+		que fueron mencionadas en el capítulo anterior (ver capítulo \ref{chapter:proposal}), son computadas y agregadas como columnas al \textbf{DataFrame}.
+		Luego, se agregan las columnas correspondientes a la latitud, longitud y precisión de dicha ubicación, para cada uno de los datos.\\
+		\indent Finalmente, son eliminadas las lecturas donde la precisión es mayor que 10 metros, y se recomputa la latitud y longitud de cada dato con
+		interpolación lineal utilizando la biblioteca \textbf{nvector}.
+
+	\subsection{Detección de anomalías}
+		Una vez se tuvo el juego de datos completamente generado y refinado de acuerdo a las necesidades, se realizó un proceso de detección de anomalías.
