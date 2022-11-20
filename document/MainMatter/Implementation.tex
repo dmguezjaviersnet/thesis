@@ -163,7 +163,8 @@
 		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la bibliotea \textbf{sklearn}. Cada vez que se corrían los métodos de selección
 		de características se almacenó la información de que características se escogieron, de esta forma, luego se pudo analizar en general que
 		características fueron más escogidas.\\
-		% ------------ poner tabla de características más utilizadas ---------------- %
+		\indent Se probaron con 3, 6 y 9 características.
+		% ------------ Poner tabla de características más utilizadas ---------------- %
 
 	\subsection{Detalles de la selección de modelo}
 		Una vez el algoritmo de selección de características terminaba, se generaba un nuevo \textbf{DataFrame} con esas únicas columnas como datos,
@@ -174,8 +175,86 @@
 		Para los modelos, se utilizaron los módulos \textbf{sklearn.svm}, \textbf{sklearn.trees}, \textbf{sklearn.linear\textunderscore models},
 		\textbf{sklearn. ensembles} y \textbf{sklearn.neighbors}, que permiten utilizar los métodos de aprendizaje supervisado \textbf{SVM}, \emph
 		{Decision Trees}, regresión logística, \emph{Random Forest} y \textbf{KNN} respectivamente. Para separar los datos en conjunto de entrenamiento
-		y de prueba se utilizó el método \textbf{train\textunderscore test\textunderscore split} del módulo \textbf{sklearn.model\textunderscore selection}.
-		Del mismo módulo se utilizaron los objetos \textbf {RepeteadStratifiedKFold} y \textbf{GridSearchCV} para realizar validación cruzada y para
-		selección de hiperparámetros respectivamente. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor
-		configuración de hiperparámetros, realizar la validación cruzada y obtener el mejor modelo para la fase de prueba.
-		% ------------ Tabla con hiperparámetros para cada método ---------------- %
+		y de prueba se utilizó el método \textbf{train\textunderscore test\textunderscore split} del módulo \textbf{sklearn.model\textunderscore
+		selection}.\\
+		\indent Del mismo módulo se utilizaron los objetos \textbf {RepeteadStratifiedKFold} y \textbf{GridSearchCV} para realizar validación cruzada y
+		para selección de hiperparámetros respectivamente. La métrica utilizada fue \emph{F1 score}, para esto utilizamos el método \textbf{f1\textunderscore
+		score} del módulo \textbf{sklearn.metrics}. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor configuración
+		de hiperparámetros, realizar la validación cruzada y obtener el mejor modelo para la fase de prueba, utilizando la métrica seleccionada.\\
+
+		\subsubsection{Hiperparámetros con los que se probó}
+			A continuación se muestran las 5 tablas, 1 por cada método, con los hiperparámetros entre los cuales el \textbf{GridSearchCV} seleccionó.\\
+
+			\begin{figure}[ht!]
+				\centering
+				\begin{tabular}{llll}
+					\toprule
+						   n\_neighbors &            weights &                  algorithm &       leaf\_size \\
+					\midrule
+					 3, 5, 7, 9, 11 &  uniform, distance &  brute, kd\_tree, ball\_tree &  20, 30, 40, 50 \\
+					\bottomrule
+				\end{tabular}\\\\
+				\caption{Hiperparámetros \textbf{KNN}}
+				\label{table:1}
+			\end{figure}
+
+			\begin{figure}[ht!]
+				\centering
+				\begin{tabular}{llll}
+					\toprule
+							criterion &        splitter &           max\_depth &      max\_features \\
+					\midrule
+					  entropy, gini &  best, random &  3, 4, 5, 6, None &  sqrt, log2, None \\
+					\bottomrule
+				\end{tabular}\\\\
+				\caption{Hiperparámetros \emph{Decision Tree}}
+				\label{table:2}
+			\end{figure}
+			
+			\begin{figure}[ht!]
+				\centering
+				\begin{tabular}{llll}
+					\toprule
+					     n\_estimators &        criterion &          max\_depth &  max\_features \\
+					\midrule
+					  100, 120, 180 &  entropy, gini &  10,  13, 16, 20 &  log2, sqrt \\
+					\bottomrule
+				\end{tabular}\\\\
+				\caption{Hiperparámetros \emph{Randon Forest}}
+				\label{table:3}
+			\end{figure}
+
+			\begin{figure}[ht!]
+				\centering
+				\begin{tabular}{lllll}
+					\toprule
+					 penalty &                       tol &                   C &         solver &        max\_iter \\
+					\midrule
+					    l2 &  1e-3, 1e-4, 1e-5, 1e-6 &  1, 10, 100, 1000 &  lbfgs, saga &  100, 500, 1000 \\
+					\bottomrule
+				\end{tabular}\\\\
+				\caption{Hiperparámetros regresión logística}
+				\label{table:4}
+			\end{figure}
+
+			\begin{figure}[ht!]
+				\centering
+				\begin{tabular}{lllll}
+					\toprule
+					      C & kernel &          gamma &  probability \\
+					\midrule
+					  100 &  rbf &  0.01, 0.001 &         True \\
+					\bottomrule
+				\end{tabular}
+				\caption{Hiperparámetros \textbf{SVM}}
+				\label{table:5}
+			\end{figure}
+			% \newpage
+
+			% \emph{Decision Tree}\\\\
+
+			% \emph{Random Forest}\\\\
+
+			% Regresión Logística\\\\
+
+			% \textbf{SVM}\\\\
