@@ -107,25 +107,75 @@
 
 	\subsection{Error en las lecturas y las marcas}
 		En las lecturas durante los recorridos existe cierto error. Esto se debe a que no se pudo fijar el dispositivo en la posición óptima y se tuvo que
-		sostener con las manos, lo que sin duda alguna influye negativamente en los datos obtenidos. También, en estas lecturas y en las marcas, hay un
-		error inherente del propio \textbf{GPS}. En las marcas además, hay un error extra debido a que estas se realizaron de la acera.
+		sostener con las manos, lo que sin duda alguna influye negativamente en los datos obtenidos. También, en estas lecturas así como en las marcas, hay un
+		error inherente del propio \textbf{GPS}. En las marcas además, hay un error extra debido a que estas se realizaron desde la acera.
 
 \section{Los modelos de aprendizaje de máquinas}
 	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{python} con el objetivo de llevar a cabo 
 	la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta mejor al juego de datos,
 	pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
 
-	\subsection{Estructura del juego de datos y características escogidas}
-		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa una
-		característica y cada fila uno de los datos recopilados. Entre las columnas de este \textbf{DataFrame} están los valores de los 3 ejes del \textbf
+	\subsection{Detalles de la estructura del juego de datos y características escogidas}
+		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa
+		una característica y cada fila uno de los datos recopilados. Entre las columnas de este \textbf{DataFrame} están los valores de los 3 ejes del \textbf
 		{acelerómetro}, los valores de los 3 ejes del \textbf{giroscopio} y la velocidad, estas son las primeras 7 características de nuestro juego de datos
 		y son obtenidas directamente al leer los datos recopilados.\\
 		\indent El resto de características, son características estadísticas generadas a partir de las 7 previamente mencionadas, y tienen como objetivo
 		enriquecer el juego de datos para obtener una representación más precisa del problema que se pretende resolver. Estas características estadísticas,
-		que fueron mencionadas en el capítulo anterior (ver capítulo \ref{chapter:proposal}), son computadas y agregadas como columnas al \textbf{DataFrame}.
+		que fueron mencionadas en el capítulo anterior (ver \ref{chapter:proposal}), son computadas y agregadas como columnas al \textbf{DataFrame}.
 		Luego, se agregan las columnas correspondientes a la latitud, longitud y precisión de dicha ubicación, para cada uno de los datos.\\
 		\indent Finalmente, son eliminadas las lecturas donde la precisión es mayor que 10 metros, y se recomputa la latitud y longitud de cada dato con
 		interpolación lineal utilizando la biblioteca \textbf{nvector}.
 
-	\subsection{Detección de anomalías}
+	\subsection{Detalles de la detección de anomalías}
 		Una vez se tuvo el juego de datos completamente generado y refinado de acuerdo a las necesidades, se realizó un proceso de detección de anomalías.
+		Para este proceso se probaron 6 métodos, 3 heurísticos y 3 métodos de aprendizaje de máquinas. Los 3 métodos heurísticos fueron los mencionados 
+		en el capítulo previo (ver \ref{chapter:proposal}), \textbf{Z-Thresh}, \textbf{Z-Diff} y \textbf{G-Zero}. Con \textbf{Z-Thresh} debido a que 
+		los valores de la aceleración en el eje Z se mantuvieron entre 9 y 10 mayormente (debido a la aceleración de la gravedad), se decidió escoger
+		11 como umbral. Con \textbf{Z-Diff}, se decidió escoger 6, pues en este caso lo que se intenta es detectar cambios bruscos en los valores de
+		aceleración en el eje Z y en el caso de \textbf{G-Zero} se escogió 0.8 como se recomienda en la literatura.\\
+		\indent Para la detección de anomalías utilizando los métodos de aprendizaje de máquinas se utilizaron 6 de las características del \textbf
+		{DataFrame}, la aceleración en los 3 ejes y la velocidad de giro en los 3 ejes. Los métodos de aprendizaje no-supervisado utilizados están
+		implementados en la biblioteca \textbf{sklearn} de python, específicamente en los módulos \textbf{sklearn.cluster}, donde se encuentran
+		\textbf{DBSCAN} y \textbf{OPTICS}, y en \textbf{sklearn.svm}, donde se encuentra \textbf{One Class SVM}.\\
+		% ------------ Especificar hiperparámetros de los métodos ---------------- %
+		\indent De esta forma, con cada uno de estos 6 métodos, se obtenía un \textbf{DataFrame} con los datos seleccionados como anomalías.
+
+	\subsection{Detalles del proceso de etiquetado}
+		Con cada uno de los juegos de datos obtenido por cada uno de los métodos utilizados para detectar anomalías, fue que se llevó a cabo
+		el proceso de etiquetado para indentificar que anomalía es un bache. Esto, como se mencionó en el capítulo anterior, (ver \ref{chapter:proposal}),
+		se llevó a cabo utilizando el conjunto de marcas correspondientes a la serie temporal de la cual se extrajeron las anomalías. De esta manera, se
+		le asigna una etiqueta a una anomalía indicando que es bache, si existe una marca en el conjunto de marcas que se encuentre en un radio de 10
+		metros. Se consideró 10 metros, debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
+		recopilación.\\
+		\indent Para computar la distancia se utilizó la fórmula de \textbf{Haversine}, que se utiliza para calcular la distancia entre dos puntos sobre la
+		superficie de una esfera utilizando coordenadas de latitud-longitud. Debido a que la tierra no es una esfera perfecta, tiene distintos radios, que
+		van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la distancia entre 2 puntos,
+		con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera que se consideró para este
+		cómputo fue de 6371 km.\\
+
+	\subsection{Detalles de la selección de características}
+		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver \ref{chapter:proposal}), se llevó a cabo un proceso
+		de selección de características con varios métodos, para escoger cuales de estas representan mejor el problema que se pretende resolver.
+		Antes de esto se eliminaron características que se consideraron no aportan información acerca de si una anomalía es bache o no, como por ejemplo:
+		la velocidad, la latitud, la longitud y la precisión del \textbf{GPS}.\\
+		\indent El clasificador que se utilizó para estimar dichas características en el proceso de selección fue un \emph{Random Forest}, y fue
+		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la bibliotea \textbf{sklearn}. Cada vez que se corrían los métodos de selección
+		de características se almacenó la información de que características se escogieron, de esta forma, luego se pudo analizar en general que
+		características fueron más escogidas.\\
+		% ------------ poner tabla de características más utilizadas ---------------- %
+
+	\subsection{Detalles de la selección de modelo}
+		Una vez el algoritmo de selección de características terminaba, se generaba un nuevo \textbf{DataFrame} con esas únicas columnas como datos,
+		y fue con este juego de datos que se pasaba a la fase de selección de modelo. En esta, se llevó a cabo un extenso proceso en el cual se buscó
+		el mejor algoritmo con la mejor configuración de hiperparámetros para ese juego de datos. Los varios algoritmos que se probaron fueron
+		mencionados en el capítulo anterior (ver \ref {chapter:proposal}).\\
+		\indent Para llevar a cabo esta fase de la propuesta se utilizó la biblioteca \textbf{sklearn} de \textbf{python}.
+		Para los modelos, se utilizaron los módulos \textbf{sklearn.svm}, \textbf{sklearn.trees}, \textbf{sklearn.linear\textunderscore models},
+		\textbf{sklearn. ensembles} y \textbf{sklearn.neighbors}, que permiten utilizar los métodos de aprendizaje supervisado \textbf{SVM}, \emph
+		{Decision Trees}, regresión logística, \emph{Random Forest} y \textbf{KNN} respectivamente. Para separar los datos en conjunto de entrenamiento
+		y de prueba se utilizó el método \textbf{train\textunderscore test\textunderscore split} del módulo \textbf{sklearn.model\textunderscore selection}.
+		Del mismo módulo se utilizaron los objetos \textbf {RepeteadStratifiedKFold} y \textbf{GridSearchCV} para realizar validación cruzada y para
+		selección de hiperparámetros respectivamente. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor
+		configuración de hiperparámetros, realizar la validación cruzada y obtener el mejor modelo para la fase de prueba.
+		% ------------ Tabla con hiperparámetros para cada método ---------------- %
