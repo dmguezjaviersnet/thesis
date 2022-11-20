@@ -2,7 +2,7 @@
 
 \section{Aplicación para la captura de señales}
 	Para capturar las señales se utilizó una aplicación implementada en \textbf{Flutter} 2.10.15, con \textbf{dart} 2.16.2.
-	Se utlizaron las bibliotecas \textbf{sensors\textunderscore plus} y \textbf{geolocator}, disponibles en \textbf{Flutter}, para obtener acceso
+	Se utilizaron las bibliotecas \textbf{sensors\textunderscore plus} y \textbf{geolocator}, disponibles en \textbf{Flutter}, para obtener acceso
 	a las lecturas del \textbf {acelerómetro}, \textbf{giroscopio} y \textbf{GPS}. Para comenzar a realizar una captura se aprieta el botón
 	de \emph{Start recorder} y a partir de ese momento la aplicación comienza a reflejar los valores que se obtienen de los sensores en la
 	interfaz de usuario.\\
@@ -88,9 +88,9 @@
 		lecturas del \textbf{GPS} se mantuvieron generalmente por encima de 50 metros, rara vez por debajo de esa cifra.
 
 	\subsection{Metodología para la captura de señales}
-		Primero que todo, para capturar las señales, escogimos varias rutas de La Habana de longitud moderada. Luego nos montamos en un vehículo
-		y colocamos el dispositivo en el asiento de tal forma que su eje Y coindiera con el eje Y del vehículo y su pantalla estuviera hacia arriba.
-		Apenas el vehículo comenzó a moverse pusimos la aplicación a grabar. Durante el viaje, dado que no se contaba con un objeto capaz de fijar el
+		Primero que todo, para capturar las señales, se escogieron varias rutas de La Habana de longitud moderada. Una vez montado en un vehículo
+		se colocó el dispositivo en el asiento de tal forma que su eje Y coindiera con el eje Y del vehículo y su pantalla estuviera hacia arriba.
+		Apenas el vehículo comenzó a moverse, se puso la aplicación a grabar. Durante el viaje, dado que no se contaba con un objeto capaz de fijar el
 		dispositivo móvil en la posición deseada, se tuvo que sostener lo mejor posible con las manos para que mantuviera la orientación. \\
 		\indent Cuando el vehículo se iba a detener por alguna razón y se estaba al tanto, se cambiaba al estado de \textbf{frenar} un poco antes, para
 		registrar tal evento en los datos. Lo mismo se hizo cuando el vehículo iba a doblar una esquina. Una vez terminaba el evento, se cambiaba otra
@@ -102,7 +102,7 @@
 		de realizar las marcas, se esperó un tiempo a que la precisión del \textbf{GPS} se estabilizara en un rango aceptable, preferiblemente por debajo 
 		de los 5 metros. Las marcas se realizaron desde la acera debido al tráfico, y en la medida de lo posible un poco más cerca del bache en la calle.
 		Por cada bache, se realizaron varias marcas con distinta precisión y desde distintas ubicaciones relativamente cercanas a la ubicación real del
-		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaran de marcar los baches en el recorrido
+		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaron de marcar los baches en el recorrido
 		en cuestión, se exportaba dicho archivo con un nombre similar al de las lecturas para poder relacionarlos uno con el otro a la hora de utilizarlos.
 
 	\subsection{Error en las lecturas y las marcas}
@@ -111,14 +111,14 @@
 		error inherente del propio \textbf{GPS}. En las marcas además, hay un error extra debido a que estas se realizaron desde la acera.
 
 \section{Los modelos de aprendizaje de máquinas}
-	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{python} con el objetivo de llevar a cabo 
+	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6}  con el objetivo de llevar a cabo 
 	la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta mejor al juego de datos,
 	pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
 
 	\subsection{Detalles de la estructura del juego de datos y características escogidas}
 		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa
 		una característica y cada fila uno de los datos recopilados. Entre las columnas de este \textbf{DataFrame} están los valores de los 3 ejes del \textbf
-		{acelerómetro}, los valores de los 3 ejes del \textbf{giroscopio} y la velocidad, estas son las primeras 7 características de nuestro juego de datos
+		{acelerómetro}, los valores de los 3 ejes del \textbf{giroscopio} y la velocidad. Estas son las primeras 7 características de nuestro juego de datos
 		y son obtenidas directamente al leer los datos recopilados.\\
 		\indent El resto de características, son características estadísticas generadas a partir de las 7 previamente mencionadas, y tienen como objetivo
 		enriquecer el juego de datos para obtener una representación más precisa del problema que se pretende resolver. Estas características estadísticas,
@@ -136,21 +136,21 @@
 		aceleración en el eje Z y en el caso de \textbf{G-Zero} se escogió 0.8 como se recomienda en la literatura.\\
 		\indent Para la detección de anomalías utilizando los métodos de aprendizaje de máquinas se utilizaron 6 de las características del \textbf
 		{DataFrame}, la aceleración en los 3 ejes y la velocidad de giro en los 3 ejes. Los métodos de aprendizaje no-supervisado utilizados están
-		implementados en la biblioteca \textbf{sklearn} de python, específicamente en los módulos \textbf{sklearn.cluster}, donde se encuentran
+		implementados en la biblioteca \textbf{sklearn} de \textbf{Python}, específicamente en los módulos \textbf{sklearn.cluster}, donde se encuentran
 		\textbf{DBSCAN} y \textbf{OPTICS}, y en \textbf{sklearn.svm}, donde se encuentra \textbf{One Class SVM}.\\
 		% ------------ Especificar hiperparámetros de los métodos ---------------- %
 		\indent De esta forma, con cada uno de estos 6 métodos, se obtenía un \textbf{DataFrame} con los datos seleccionados como anomalías.
 
 	\subsection{Detalles del proceso de etiquetado}
-		Con cada uno de los juegos de datos obtenido por cada uno de los métodos utilizados para detectar anomalías, fue que se llevó a cabo
-		el proceso de etiquetado para indentificar que anomalía es un bache. Esto, como se mencionó en el capítulo anterior, (ver \ref{chapter:proposal}),
+		Con cada uno de los juegos de datos obtenidos por cada uno de los métodos utilizados para detectar anomalías, se llevó a cabo
+		el proceso de etiquetado para indentificar que anomalía es un bache. Esto, como se mencionó en el capítulo anterior(ver \ref{chapter:proposal}),
 		se llevó a cabo utilizando el conjunto de marcas correspondientes a la serie temporal de la cual se extrajeron las anomalías. De esta manera, se
 		le asigna una etiqueta a una anomalía indicando que es bache, si existe una marca en el conjunto de marcas que se encuentre en un radio de 10
 		metros. Se consideró 10 metros, debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
 		recopilación.\\
 		\indent Para computar la distancia se utilizó la fórmula de \textbf{Haversine}, que se utiliza para calcular la distancia entre dos puntos sobre la
-		superficie de una esfera utilizando coordenadas de latitud-longitud. Debido a que la tierra no es una esfera perfecta, tiene distintos radios, que
-		van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la distancia entre 2 puntos,
+		superficie de una esfera utilizando coordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene distintos radios, que
+		van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la distancia entre 2 puntos
 		con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera que se consideró para este
 		cómputo fue de 6371 km.\\
 
@@ -171,7 +171,7 @@
 		y fue con este juego de datos que se pasaba a la fase de selección de modelo. En esta, se llevó a cabo un extenso proceso en el cual se buscó
 		el mejor algoritmo con la mejor configuración de hiperparámetros para ese juego de datos. Los varios algoritmos que se probaron fueron
 		mencionados en el capítulo anterior (ver \ref {chapter:proposal}).\\
-		\indent Para llevar a cabo esta fase de la propuesta se utilizó la biblioteca \textbf{sklearn} de \textbf{python}.
+		\indent Para llevar a cabo esta fase de la propuesta se utilizó la biblioteca \textbf{sklearn} de \textbf{Python}.
 		Para los modelos, se utilizaron los módulos \textbf{sklearn.svm}, \textbf{sklearn.trees}, \textbf{sklearn.linear\textunderscore models},
 		\textbf{sklearn. ensembles} y \textbf{sklearn.neighbors}, que permiten utilizar los métodos de aprendizaje supervisado \textbf{SVM}, \emph
 		{Decision Trees}, regresión logística, \emph{Random Forest} y \textbf{KNN} respectivamente. Para separar los datos en conjunto de entrenamiento
