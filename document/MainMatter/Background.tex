@@ -10,7 +10,8 @@ de imágenes digitales. La mayoría, proponen como pasos fundamentales un prepro
 un proceso de segmentación. Luego se encargan de busar la región de interés que representa los posibles baches en la imagen. Y por último,
 tratan identificar si esa región de interés es un efecto un bache o no. 
 
-\subsection{Preprocesamiento de la imagen}
+\subsection{Detección usando técnicas de procesamiento de imágenes}
+\subsubsection{Preprocesamiento de la imagen}
 La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
 El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
 es decrementar el tamaño de la imagen $\alpha$ veces \brackcite{akagic2017pothole}. \\
@@ -39,7 +40,7 @@ $$B_{i,j}=\left\{
 donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
 $T_b$ es el valor de umbral del método de Otsu \brackcite{jo2015pothole}.
 
-\subsection{Extracción de candidatos a bache}
+\subsubsection{Extracción de candidatos a bache}
 La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
 
 Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
@@ -149,7 +150,7 @@ y horizontales entre los puntos indentificados para realizar la extracción de l
 Varios autores dan solución al problema de detectar imágenes de baches en la carretera mediante el uso de una de las técnicas  
 de \emph{deep learning}, una red neuronal convolucional(\textbf{CNN}).Con el uso de un modelo de \textbf{CNN} se logra  
 detectar imágenes de baches en varias condiciones tales como: húmedas, secas y sombreadas asi como de varios tamaños y formas.
-Un de modelo de \textbf{CNN} puede pensarse como la combinación de dos componentes: una parte de extracción de características
+Un modelo de \textbf{CNN} puede pensarse como la combinación de dos componentes: una parte de extracción de características
 y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características
 mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
 
@@ -175,24 +176,62 @@ capas de \emph{pooling} de región de interés convierten la salida de \textbf{C
 \emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
 diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
 
+Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
+\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
+con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \emph{CNN} 
+propuesta llamada  \textbf{MVGG16}). La propuesta  \emph{Faster R-CNN} con \emph{backbone} \textbf{MVGG16} desarrolló una 
+\emph{CNN} profunda con diferentes capas \emph{dilated} para aumentar los campos receptivos.
+
+\subsubsection{Data augmentation}
+Un tamaño limitado en el conjunto de datos puede conducir a un \emph{overfitting}. Sin embargo, los modelos de \emph{deep learning}
+exigen una cantidad satisfactoria de datos para generar resultados precisos. Con la técnica de \emph{data augmentation} se logra evitar 
+el \emph{overfitting} asi como aprovechar la regularización ~\brackcite{ahmed2021smart,pereira2018deep}. 
+Esto se reliza mediante procesos de rotación~\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}~\brackcite{pereira2018deep}, 
+\emph{flip}~\brackcite{pereira2018deep}, \emph{scaling}~\brackcite{ahmed2021smart}, ajuste de color~\brackcite{ahmed2021smart} y 
+\emph{mosaic augmentation}~\brackcite{ahmed2021smart} sobre las imágenes.
+
 
 \subsection{Captura de los datos}
-Para la captura de los datos algunos autores usan cámaras de video conectadas a los parabrisas de los vehículos para 
-recopilar imágenes de las carreteras ~\brackcite{ahmed2021smart}. Otros obtienen imágenes que contengan baches de  sitios en 
-Internet usando el motor de búsqueda de Google ~\brackcite{koch2011pothole}. Koch et al. ~\brackcite{koch2011pothole} también 
-obtienen las imágenes de videos de archivos de prueba capturados alrededor del \emph{Georgia Tech campus} utilizando un 
-prototipo de vehículo robot controlado a distancia equipado con una cámara web \textbf{HP Elite Autofocus} y una 
-computadora portátil \textbf{Viliv S5 Ultra PC}. El método se probó en más de 80 imágenes de baches diferentes capturadas 
-desde varias cámaras, ángulos de disparo, diferentes formas irregulares y número de baches, diferentes tamaños y fondos 
-~\brackcite{akagic2017pothole}. 
+Para la captura de los datos algunos autores usan cámaras de video conectadas a los  parabrisas de los vehículos para 
+recopilar imágenes de las carreteras ~\brackcite{ahmed2021smart}. Otros,  obtienen imágenes que contengan baches de  sitios en 
+Internet usando el motor de búsqueda de Google ~\brackcite{koch2011pothole,akagic2017pothole}. Muchas de las imágenes tomadas 
+se realizaron desde distintas cámaras, ángulos de disparo, tamaños, número de baches y fondos ~\brackcite{akagic2017pothole,pereira2018deep,ahmed2021smart}. 
+Un conjunto de datos no estructurados se puede utilizar para examinar el verdadero potencial de cualquier método de 
+detección de baches ~\brackcite{akagic2017pothole}.
+
+Koch et al. ~\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
+del \emph{Georgia Tech campus} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
+\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
 Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
 \emph{black-box}  a lo largo de la \emph{National Highway}.Los videos fueron grabados en un clima soleado al mediodía.
 
 Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
-en Corea. El vehículo topográfico es un vehículo de exploración que se utiliza para recopilar datos topográficos.
+en Corea. 
 
-Akagic et al. ~\brackcite{akagic2017pothole} 
+Pererira et al. ~\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
+lugares con diversas condiciones de clima, tamaños y formas.
+
+Buza et al. ~\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
+múltiples baches, 10 con grietas y un bache, 5 con parches de la carretera reparados y el resto sin zonas defectuosas.
+
+Kumar et al. ~\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
+Todo el conjunto de datos consta de dos conjuntos diferentes, uno se consideraron simple y el otro más complejo.
+
+Ahmed et al. ~\brackcite{ahmed2021smart} usan conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
+diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
+
+
+% Akagic et al. ~\brackcite{akagic2017pothole} se comprueba en una imagen conjunto de datos formado a partir de imágenes 
+% seleccionadas de la búsqueda en Google de la  palabra clave "bache". 
+
+
+% Las imágenes seleccionadas se recopilanron 
+% con diferentes tipos de cámaras. Las imágenes están tomadas de varios ángulos con diferentes formas irregulares y número de baches.
+
+% Akagic et al.  probaron con más de 80 imágenes de baches de diferentes capturadas 
+% desde varias cámaras, ángulos de disparo, diferentes formas irregulares y número de baches, diferentes tamaños y fondos 
+% ~\brackcite{akagic2017pothole}. 
 
 % La principal ventaje que tiene el uso de \textbf{CNN} es que detecta las características importantes sin supervisión humana.
 
