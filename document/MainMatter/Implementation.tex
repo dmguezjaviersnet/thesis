@@ -275,7 +275,7 @@
 		score} del módulo \textbf{sklearn.metrics}. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor configuración
 		de hiperparámetros, realizar la validación cruzada y obtener el mejor modelo para la fase de prueba, utilizando la métrica seleccionada.\\
 
-		\subsubsection{Hiperparámetros con los que se probó}
+		\subsubsection{Conjuntos de hiperparámetros}
 			A continuación se muestran las 5 tablas, 1 por cada método, con los hiperparámetros entre los cuales el \textbf{GridSearchCV} seleccionó.\\
 
 			\begin{figure}[ht!]
@@ -329,10 +329,11 @@
 				\caption{Hiperparámetros regresión logística}
 				\label{table:4}
 			\end{figure}
+			\newpage
 
 			\begin{figure}[ht!]
 				\centering
-				\begin{tabular}{lllll}
+				\begin{tabular}{llll}
 					\toprule
 					      C & kernel &          gamma &  probability \\
 					\midrule
