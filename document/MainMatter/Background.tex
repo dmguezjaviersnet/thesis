@@ -2,15 +2,24 @@
 En la literatura existen varios autores que proponen soluciones al problema de identificar cuando hubo una anomalía en la carretera utilizando
 diferentes enfoques. Algunos plantean resolver el problema intentando identificar en imágenes las regiones que puedan ser candidatas a ser un 
 bache, utilizando  técnicas de procesamiento de imágenes o de aprendizaje de máquinas. Otros proponen resolverlo utilizando métodos heurísticos
-o de aprendizaje de máquinas, que hacen uso de la serie temporal que es posible generar a partir del muestreo de sensores como el acelerómetro. 
+o de aprendizaje de máquinas, que hacen uso de la serie temporal generada a partir del muestreo de sensores como el acelerómetro. 
 
 \section{Detección de baches en imágenes}
 Varios autores en la literatura se han propuesto identificar baches en imágenes. Algunos de estos enfocan este problema por la vía del
-procesamiento de imágenes digitales. La mayoría propone tres pasos fundamentales. Primero, un preprocesamiento de la imagen utilizando
-principalmente un proceso de segmentación. Luego se encargan de busar la región de interés que representa los posibles baches en la imagen.
-Y por último, tratan identificar si esa región de interés es un efecto un bache o no. 
+procesamiento de imágenes digitales. Mediante el uso de varios filtros consecutivos  sobre la imagen se logra poco a poco acercarse 
+a la región que corresponde a un bache sobre el pavimento de la carretera.  Otros autores hacen uso de técnicas de \emph{Deep Learning}
+para de forma automática sacar carácterísticas relevantes que permitan entrenar el modelo para que prediga las regiones 
+que son baches dentro de una imagen.
+
+
 
 	\subsection{Detección usando técnicas de procesamiento de imágenes}
+
+		Para detectar baches en la carretera mediante técnicas de procesamiento de imágenes digitales la mayoría de los autores  en la literatura 
+		proponen tres pasos fundamentales. Primero, un preprocesamiento de la imagen utilizando principalmente un proceso de segmentación. Luego 
+		se encargan de buscar la región de interés que representa los posibles baches en la imagen. Y por último, tratan de identificar si esa 
+		región de interés es en efecto un bache o no. 
+		
 		\subsubsection{Preprocesamiento de la imagen}
 		La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
 		El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
@@ -26,29 +35,34 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 		dentro de cada imagen del pavimento ~\brackcite{koch2011pothole}. Para este propósito, se puede usar el algoritmo de \emph{histogram shape-based
 		thresholding} ~\brackcite{koch2011pothole,ryu2015image}, el algoritmo de máxima entropía, o el método de Otsu~\brackcite{jo2015pothole,buza2013pothole}, 
 		los cuales permiten separar el fondo de la imagen ~\brackcite{koch2011pothole, ryu2015image} mediante la transformación en una imagen binaria \brackcite
-		{koch2011pothole, jo2015pothole,ryu2015image}. En el \emph{histogram shape-based thresholding} el valor T de umbral se determina como el valor de
-		intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que indica la
-		máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B
-		que contiene el área defectuosa ~\brackcite{koch2011pothole}. Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
+		{koch2011pothole, jo2015pothole,ryu2015image}. 
+		% En el \emph{histogram shape-based thresholding} el valor T de umbral se determina como el valor de
+		% intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que indica la
+		% máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B
+		% que contiene el área defectuosa ~\brackcite{koch2011pothole}. Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
 
-		$$B_{i,j}=\left\{
-			\begin{array}{c l}
-				1, & \text{si } I_{i,j} < T_{b}\\
-				0, & \text{en otro caso}\\
-			\end{array}
-		\right.$$
-		donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
-		$T_b$ es el valor de umbral del método de Otsu \brackcite{jo2015pothole}.
+		% $$B_{i,j}=\left\{
+		% 	\begin{array}{c l}
+		% 		1, & \text{si } I_{i,j} < T_{b}\\
+		% 		0, & \text{en otro caso}\\
+		% 	\end{array}
+		% \right.$$
+		% donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
+		% $T_b$ es el valor de umbral del método de Otsu \brackcite{jo2015pothole}.
 
 		\subsubsection{Extracción de candidatos a bache}
 		La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
+		Varias técnicas son usadas en la literatura para encontrar dicha esta área. 
 
-		Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
+		La propuesta de Akagic et al. ~\brackcite{akagic2017pothole} consta de varios pasos. Primero, forman una nueva matriz que contiene las posiciones 
 		de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
 		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
 		\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
-		interés se extrae en función de la posición de estos puntos, mientras que los valores de los \emph{pixels} del resto de la región se cambia a
-		0 ~\brackcite{akagic2017pothole}.
+		interés se extrae en función de la posición de estos puntos.
+		
+		
+		% , mientras que los valores de los \emph{pixels} del resto de la región se cambia a
+		% 0 ~\brackcite{akagic2017pothole}.
 
 		Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación
 		de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
