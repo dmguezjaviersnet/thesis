@@ -267,10 +267,27 @@
 		\end{figure}
 
 		Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los clusters se están asignando de 
-		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta.
+		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de cuantas 
+		anomalías detecto cada algoritmo (ver tabla \ref{table:3}).
+    
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+				Algoritmo &  Número de Anomalías \\
+				\midrule
+				    DBSCAN &                  134 \\
+				     OCSVM &                  446 \\
+				    z-diff &                    7 \\
+				   z-tresh &                   95 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Número de anomalías detectadas por cada algoritmo}
+			\label{table:3}
+		\end{figure}
 
 		Los hiperparámetros de los métodos de detección de anomalías que se probaron para determinar la mejor configuración se muestran en las tablas 
-		\ref{table:3}, \ref{table:4} y \ref{table:5}.
+		\ref{table:4}, \ref{table:5} y \ref{table:6}.
 
 		\begin{figure}[htb]
 			\centering
@@ -282,7 +299,7 @@
 				\bottomrule
 			\end{tabular}
 			\caption{Hyperparámetros con los que se probó \textbf{DBSCAN}}
-			\label{table:3}
+			\label{table:4}
 		\end{figure}
 		
 		\begin{figure}[htb]
@@ -295,7 +312,7 @@
 				\bottomrule
 			\end{tabular}
 			\caption{Hyperparámetros con los que se probó \textbf{One Class SVM}}
-			\label{table:4}
+			\label{table:5}
 		\end{figure}
 		
 		\begin{figure}[htb]
@@ -308,8 +325,9 @@
 				\bottomrule
 			\end{tabular}
 			\caption{Hyperparámetros con los que se probó \textbf{OPTICS}}
-			\label{table:5}
+			\label{table:6}
 		\end{figure}
+
 	\subsection{Detalles del proceso de etiquetado}
 		Con cada uno de los juegos de datos obtenidos por cada uno de los métodos utilizados para detectar anomalías, se llevó a cabo
 		el proceso de etiquetado para indentificar que anomalía es un bache. Esto, como se mencionó en el capítulo anterior(ver \ref{chapter:proposal}),
@@ -364,7 +382,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \textbf{KNN}}
-				\label{table:6}
+				\label{table:7}
 			\end{figure}
 
 			\begin{figure}[ht!]
@@ -377,7 +395,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \emph{Decision Tree}}
-				\label{table:7}
+				\label{table:8}
 			\end{figure}
 			
 			\begin{figure}[ht!]
@@ -390,7 +408,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \emph{Randon Forest}}
-				\label{table:8}
+				\label{table:9}
 			\end{figure}
 
 			\begin{figure}[ht!]
@@ -403,7 +421,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros regresión logística}
-				\label{table:9}
+				\label{table:10}
 			\end{figure}
 			\newpage
 
@@ -417,5 +435,5 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \textbf{SVM}}
-				\label{table:10}
+				\label{table:11}
 			\end{figure}
