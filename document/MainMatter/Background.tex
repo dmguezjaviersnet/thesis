@@ -5,221 +5,218 @@ bache, utilizando  técnicas de procesamiento de imágenes o de aprendizaje de m
 o de aprendizaje de máquinas, que hacen uso de la serie temporal que es posible generar a partir del muestreo de sensores como el acelerómetro. 
 
 \section{Detección de baches en imágenes}
-Varios autores en la literatura se han propuesto identificar baches en imágenes. Algunos de estos hacen se van por la vía del procesamiento 
-de imágenes digitales. La mayoría, proponen como pasos fundamentales un preprocesamiento de la imagen utilizando principalmente 
-un proceso de segmentación. Luego se encargan de busar la región de interés que representa los posibles baches en la imagen. Y por último,
-tratan identificar si esa región de interés es un efecto un bache o no. 
+Varios autores en la literatura se han propuesto identificar baches en imágenes. Algunos de estos enfocan este problema por la vía del
+procesamiento de imágenes digitales. La mayoría propone tres pasos fundamentales. Primero, un preprocesamiento de la imagen utilizando
+principalmente un proceso de segmentación. Luego se encargan de busar la región de interés que representa los posibles baches en la imagen.
+Y por último, tratan identificar si esa región de interés es un efecto un bache o no. 
 
-\subsection{Detección usando técnicas de procesamiento de imágenes}
-\subsubsection{Preprocesamiento de la imagen}
-La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
-El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
-es decrementar el tamaño de la imagen $\alpha$ veces \brackcite{akagic2017pothole}. \\
-La segmentación de imágenes detecta información relevante, y es el primer paso en el análisis de imágenes y patrones
-de reconocimiento ~\brackcite{buza2013pothole}.
-La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
-El paso de segmentación consiste en separar la región de un bache y de la región de fondo, transformando la imagen a color original 
-en una imagen binaria utilizando el histograma de una imagen de entrada ~\brackcite{ryu2015image}.
-En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
-el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
-imagen a escala de grises  ~\brackcite{koch2011pothole, jo2015pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
-dentro de cada imagen del pavimento ~\brackcite{koch2011pothole}. Para este propósito, se puede usar el algoritmo de 
-\emph{histogram shape-based thresholding} ~\brackcite{koch2011pothole,ryu2015image}, el algoritmo de máxima entropía, o el método de Otsu~\brackcite{jo2015pothole,buza2013pothole}, 
-los cuales permiten separar el fondo de la imagen ~\brackcite{koch2011pothole, ryu2015image} mediante la transformación en una imagen binaria \brackcite{koch2011pothole, jo2015pothole,ryu2015image}. 
-En el \emph{histogram shape-based thresholding} el valor T de umbral se determina como el valor de intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta 
-que intersecta con el origen del histograma y el punto que indica la máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. 
-Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B que contiene el área defectuosa ~\brackcite{koch2011pothole}.
-Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
+	\subsection{Detección usando técnicas de procesamiento de imágenes}
+		\subsubsection{Preprocesamiento de la imagen}
+		La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
+		El tamaño de una imagen no afecta la calidad de detección de un bache ~\brackcite{akagic2017pothole}. Una de las propuestas 
+		es decrementar el tamaño de la imagen $\alpha$ veces \brackcite{akagic2017pothole}. \\
+		La segmentación de imágenes detecta información relevante, y es el primer paso en el análisis de imágenes y patrones
+		de reconocimiento ~\brackcite{buza2013pothole}.
+		La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
+		El paso de segmentación consiste en separar la región de un bache y de la región de fondo, transformando la imagen a color original 
+		en una imagen binaria utilizando el histograma de una imagen de entrada ~\brackcite{ryu2015image}.
+		En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
+		el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
+		imagen a escala de grises  ~\brackcite{koch2011pothole, jo2015pothole}. Las regiones más oscuras que indican defectos deben separarse del fondo 
+		dentro de cada imagen del pavimento ~\brackcite{koch2011pothole}. Para este propósito, se puede usar el algoritmo de \emph{histogram shape-based
+		thresholding} ~\brackcite{koch2011pothole,ryu2015image}, el algoritmo de máxima entropía, o el método de Otsu~\brackcite{jo2015pothole,buza2013pothole}, 
+		los cuales permiten separar el fondo de la imagen ~\brackcite{koch2011pothole, ryu2015image} mediante la transformación en una imagen binaria \brackcite
+		{koch2011pothole, jo2015pothole,ryu2015image}. En el \emph{histogram shape-based thresholding} el valor T de umbral se determina como el valor de
+		intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que indica la
+		máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B
+		que contiene el área defectuosa ~\brackcite{koch2011pothole}. Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
 
-$$B_{i,j}=\left\{
-    \begin{array}{c l}
-        1, & \text{si } I_{i,j} < T_{b}\\
-        0, & \text{en otro caso}\\
-    \end{array}
-\right.$$
-donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
-$T_b$ es el valor de umbral del método de Otsu \brackcite{jo2015pothole}.
+		$$B_{i,j}=\left\{
+			\begin{array}{c l}
+				1, & \text{si } I_{i,j} < T_{b}\\
+				0, & \text{en otro caso}\\
+			\end{array}
+		\right.$$
+		donde $B_i,j$ es el \emph{pixel}(i,j) en la imagen binaria, $I_{i,j}$ representa el correspondiente \emph{pixel}(i,j) en la imagen de entrada, y
+		$T_b$ es el valor de umbral del método de Otsu \brackcite{jo2015pothole}.
 
-\subsubsection{Extracción de candidatos a bache}
-La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
+		\subsubsection{Extracción de candidatos a bache}
+		La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
 
-Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
-de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
-en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
-\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
-interés se extrae en función de la posición de estos puntos, mientras que los valores de los \emph{pixels} del resto de la región se cambia a
-0 ~\brackcite{akagic2017pothole}.
+		Akagic et al. ~\brackcite{akagic2017pothole} proponen para encontrar dicha área  primero forman una nueva matriz que contiene las posiciones 
+		de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
+		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
+		\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
+		interés se extrae en función de la posición de estos puntos, mientras que los valores de los \emph{pixels} del resto de la región se cambia a
+		0 ~\brackcite{akagic2017pothole}.
 
-Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación
-de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
-de línea entre los \emph{pixels}. A continuación, se detecta el carril para eliminar el ruido restante. Solo se utiliza la superficie de la carretera dentro de las dos marcas de 
-carril, y todos los valores que queden fuera de esta área son eliminados. Por lo general, las marcas de carriles en una carretera son más brillantes que el fondo.
-Así, se pueden separar las marcas de los carriles del fondo mediante una  mejora del brillo y el \emph{thresholding} ~\brackcite{jo2015pothole}. A continuación, los 
-puntos candidatos para marcas de carriles son seleccionados mediante escaneo de líneas ~\brackcite{jo2015pothole}. Los puntos candidatos seleccionados a ser marcas de carril 
-se conectan mediante la combinación de puntos cercanos. Para carreteras sin marca de carril, y siempre que no se puedan detectar carriles, utilizan 
-un método de detección estático de marcas de carril. Las marcas de carril pueden ser generadas usando el \emph{vanishing point} (un \emph{vanishing point} es un punto 
-en el plano de una imagen de un dibujo en perspectiva donde las proyecciones en perspectiva bidimensional de líneas paralelas entre sí en el espacio 
-tridimensional parecen converger) ~\brackcite{jo2015pothole}. La mayoría de los carriles tienen dos marcas de carril (una hacia el lado derecho 
-del vehículo, y otra hacia su lado izquierdo). Si una de las dos marcas no es detectada, es reemplazada por una marca de carril estática. Solo 
-se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carril izquierdo no se detectó, solo esa línea se reemplaza por una marca 
-de carril estática. El área entre dos marcas de carril detectadas es seleccionada como la región de interés. La agrupación 
-de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
+		Jo et al. ~\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación
+		de línea, detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
+		de línea entre los \emph{pixels}. A continuación, se detecta el carril para eliminar el ruido restante. Solo se utiliza la superficie de la carretera dentro de las dos marcas de 
+		carril, y todos los valores que queden fuera de esta área son eliminados. Por lo general, las marcas de carriles en una carretera son más brillantes que el fondo.
+		Así, se pueden separar las marcas de los carriles del fondo mediante una  mejora del brillo y el \emph{thresholding} ~\brackcite{jo2015pothole}. A continuación, los 
+		puntos candidatos para marcas de carriles son seleccionados mediante escaneo de líneas ~\brackcite{jo2015pothole}. Los puntos candidatos seleccionados a ser marcas de carril 
+		se conectan mediante la combinación de puntos cercanos. Para carreteras sin marca de carril, y siempre que no se puedan detectar carriles, utilizan 
+		un método de detección estático de marcas de carril. Las marcas de carril pueden ser generadas usando el \emph{vanishing point} (un \emph{vanishing point} es un punto 
+		en el plano de una imagen de un dibujo en perspectiva donde las proyecciones en perspectiva bidimensional de líneas paralelas entre sí en el espacio 
+		tridimensional parecen converger) ~\brackcite{jo2015pothole}. La mayoría de los carriles tienen dos marcas de carril (una hacia el lado derecho 
+		del vehículo, y otra hacia su lado izquierdo). Si una de las dos marcas no es detectada, es reemplazada por una marca de carril estática. Solo 
+		se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carril izquierdo no se detectó, solo esa línea se reemplaza por una marca 
+		de carril estática. El área entre dos marcas de carril detectadas es seleccionada como la región de interés. La agrupación 
+		de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
 
-Ryu et al. ~\brackcite{ryu2015image} primero proponen usar un \emph{median filter}. La idea principal del \emph{median filter} es recorrer la señal 
-entrada por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
-Se probaron filtros de 3x3, 7x7 y 9x9 y el filtro 9x9 mostró el mejor desempeño entre los tres. A continuación, se restauran los contornos dañados de las 
-regiones del objeto, y las piezas pequeñas se eliminan mediante la operación de \emph{closing}(dilatación y erosión) de un filtro morfológico. Después de la operación 
-de \emph{closing}, las regiones candidatas a bache se extraen utilizando características como el tamaño, la compacidad, la elipticidad
-y la linealidad. Además, el refinamiento de las regiones candidatas es necesario para detectar las regiones correctas que son baches después de obtener las regiones 
-candidatas. Los candidatos iniciales obtenidos usando características pueden no representar el área total del bache. De esta forma, el refinamiento de las 
-regiones candidatas usando características como la compacidad, el punto central, y el \emph{convex hull} son necesarios para decicidir 
-si varias regiones candidatas incompletas tales como, sombras, manchas y parches son baches o no.
+		Ryu et al. ~\brackcite{ryu2015image} primero proponen usar un \emph{median filter}. La idea principal del \emph{median filter} es recorrer la señal 
+		entrada por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
+		Se probaron filtros de 3x3, 7x7 y 9x9 y el filtro 9x9 mostró el mejor desempeño entre los tres. A continuación, se restauran los contornos dañados de las 
+		regiones del objeto, y las piezas pequeñas se eliminan mediante la operación de \emph{closing}(dilatación y erosión) de un filtro morfológico. Después de la operación 
+		de \emph{closing}, las regiones candidatas a bache se extraen utilizando características como el tamaño, la compacidad, la elipticidad
+		y la linealidad. Además, el refinamiento de las regiones candidatas es necesario para detectar las regiones correctas que son baches después de obtener las regiones 
+		candidatas. Los candidatos iniciales obtenidos usando características pueden no representar el área total del bache. De esta forma, el refinamiento de las 
+		regiones candidatas usando características como la compacidad, el punto central, y el \emph{convex hull} son necesarios para decicidir 
+		si varias regiones candidatas incompletas tales como, sombras, manchas y parches son baches o no.
 
-Buza et al. ~\brackcite{buza2013pothole} proponen después de la segmentación, eliminar todas las formas lineales  y las regiones y formas 
-menores que un valor $\delta$ en la imagen. La medida para eliminar toda estas regiones lineales se define por su excentricidad. Todas 
-las formas que están conectadas al límite de la imagen también son eliminadas. Mediante un algoritmo de agrupamiento spectral extraen 
-las regiones para representar formas en una imagen a escala de grises. Después de aplicar  el agrupamiento en la imagen,  
-se notó como resultado que había un color que tenía mayor densidad en la región del bache que otros.
+		Buza et al. ~\brackcite{buza2013pothole} proponen después de la segmentación, eliminar todas las formas lineales  y las regiones y formas 
+		menores que un valor $\delta$ en la imagen. La medida para eliminar toda estas regiones lineales se define por su excentricidad. Todas 
+		las formas que están conectadas al límite de la imagen también son eliminadas. Mediante un algoritmo de agrupamiento spectral extraen 
+		las regiones para representar formas en una imagen a escala de grises. Después de aplicar  el agrupamiento en la imagen,  
+		se notó como resultado que había un color que tenía mayor densidad en la región del bache que otros.
 
-Koch et al. ~\brackcite{koch2011pothole} logran distinguir entre regiones que podrían representar la forma de un bache y 
-regiones que podrían representar un bache completo. Una región es candidata a representar la forma de un bache si 
-el centroide de la región ($P_{cent}$) no se encuentra dentro de la región, o si la excentricidad excede un valor de umbral 
-máximo ($\varepsilon_{max}$) y la relación entre la longitud del eje mayor ($l_{max}$) y el tamaño de la región($s$) excede
-un valor de umbral máximo ($r_{max}$). Para reducir la región a su trazo  mínimamente conectado usan un proceso
-de adelgazamiento morfológico. Los puntos de ramificación del trazo son identificados y conectados en orden para 
-determinar el camino principal de la región. Finalmente, teniendo como base el camino principal del trazo 
-se utiliza regresión elíptica para aproximar una elipse. Con esto, se logra extraer la forma de la región de un 
-candidato a bache.
+		Koch et al. ~\brackcite{koch2011pothole} logran distinguir entre regiones que podrían representar la forma de un bache y 
+		regiones que podrían representar un bache completo. Una región es candidata a representar la forma de un bache si 
+		el centroide de la región ($P_{cent}$) no se encuentra dentro de la región, o si la excentricidad excede un valor de umbral 
+		máximo ($\varepsilon_{max}$) y la relación entre la longitud del eje mayor ($l_{max}$) y el tamaño de la región($s$) excede
+		un valor de umbral máximo ($r_{max}$). Para reducir la región a su trazo  mínimamente conectado usan un proceso
+		de adelgazamiento morfológico. Los puntos de ramificación del trazo son identificados y conectados en orden para 
+		determinar el camino principal de la región. Finalmente, teniendo como base el camino principal del trazo 
+		se utiliza regresión elíptica para aproximar una elipse. Con esto, se logra extraer la forma de la región de un 
+		candidato a bache.
 
-\subsubsection{Identificación de un bache entre los candidatos}
-Una vez que se tienen identificados los candidatos a ser baches, en la literatura proponen varias vías para  
-identificar cuales realmente lo son.
+		\subsubsection{Identificación de un bache entre los candidatos}
+		Una vez que se tienen identificados los candidatos a ser baches, en la literatura proponen varias vías para  
+		identificar cuales realmente lo son.
 
-Jo et al. ~\brackcite{jo2015pothole} emplean un método de detección en cascada para distinguir
-entre baches verdaderos y falsos. Primero, al filtral con valores de umbral establecidos para el ancho, la
-altura y el área, se logra remover grietas menores en la superficie y otros objetos similares. Luego, 
-se utiliza un umbral de la varianza para distinguir los baches de objetos similares, como parches de 
-la carretera y sombras. Los baches tienen una superficie gruesa, mientras que las regiones sombreadas 
-tienen una superficie plana. Debido a esto, los baches tienen un valor de varianza alto, y las regiones 
-de sombra tienen un varianza baja. El paso final para la detección en cascada es el seguimiento de 
-la trayectoria para eliminar los objetos similares causados por otros vehículos en movimiento. 
-Cuando un vehículo se mueve hacia la región de interés, las regiones oscuras del vehículo
-corren el riesgo de ser detectadas como baches.
+		Jo et al. ~\brackcite{jo2015pothole} emplean un método de detección en cascada para distinguir
+		entre baches verdaderos y falsos. Primero, al filtral con valores de umbral establecidos para el ancho, la
+		altura y el área, se logra remover grietas menores en la superficie y otros objetos similares. Luego, 
+		se utiliza un umbral de la varianza para distinguir los baches de objetos similares, como parches de 
+		la carretera y sombras. Los baches tienen una superficie gruesa, mientras que las regiones sombreadas 
+		tienen una superficie plana. Debido a esto, los baches tienen un valor de varianza alto, y las regiones 
+		de sombra tienen un varianza baja. El paso final para la detección en cascada es el seguimiento de 
+		la trayectoria para eliminar los objetos similares causados por otros vehículos en movimiento. 
+		Cuando un vehículo se mueve hacia la región de interés, las regiones oscuras del vehículo
+		corren el riesgo de ser detectadas como baches.
 
-Akagic et al. ~\brackcite{akagic2017pothole} para la identificación de un bache proponen un método de 3 fases:
-el método imágenes recortadas y umbralización de Otsu, la eliminación de formas de contorno y la detección 
-de regiones de baches. La primera fase está basada en los trabajos realizados por  Buza et al. ~\brackcite{buza2013pothole}.
-La primera diferencia que añaden es que la imagen de entrada en el primer paso es ahora el resultado del paso de extracción 
-de la región de interés. La segunda diferencia es usan solo el paso para la eliminación de todas las formas lineales y de contorno de la imagen del
-segundo paso del método anterior.
-
-
-Koch et al. ~\brackcite{koch2011pothole} tratan de describir la textura de la superficie dentro de un candidato a bache y compararla con la textura de la 
-región circundante. Para describir la textura de una región se propone el uso de la desviación estándar de los valores de intensidad del nivel 
-de gris como una medida estadística para describir la textura  tanto de la región interna como de la región externa. A la imagen en escala de 
-grises se le aplican filtros para enfatizar las características estructurales de la textura. La región exterior $R_o$ representa la parte intacta y 
-saludable de la imagen del pavimento. Para determinar la región exterior se propone un  procedimiento de tres pasos. Primero, 
-se aplica dilatación morfológica sobre la imagen binaria segmentada que contiene las supuestas áreas defectuosas. Segundo, 
-se combina la imagen binaria con la región interior y se obtiene como resultado la región defectuosa total. Finalmente, 
-La región exterior se determina como el complemento de la región defectuosa total. Basado en la respuesta de los filtros dentro de las regiones 
-interior y exterior, los valores de desviación estándar correspondientes son determinados y utilizados para establecer dos vectores de características 
-$f_i$ y $f_o$, que describen la textura de las dichas regiones respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de 
-características $f_i$ y $f_o$. Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de la región interior es más gruesa y granulada que en 
-la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
+		Akagic et al. ~\brackcite{akagic2017pothole} para la identificación de un bache proponen un método de 3 fases:
+		el método imágenes recortadas y umbralización de Otsu, la eliminación de formas de contorno y la detección 
+		de regiones de baches. La primera fase está basada en los trabajos realizados por  Buza et al. ~\brackcite{buza2013pothole}.
+		La primera diferencia que añaden es que la imagen de entrada en el primer paso es ahora el resultado del paso de extracción 
+		de la región de interés. La segunda diferencia es usan solo el paso para la eliminación de todas las formas lineales y de contorno de la imagen del
+		segundo paso del método anterior.
 
 
-Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
-comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
-uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). \textbf{OHI} es un método para 
-medir el grado de similitud entre las regiones de una imagen. Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
-sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un bache 
-determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido.
-La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI}
-de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
-es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
-
-Buza et al. ~\brackcite{buza2013pothole} después del resultado de extración de agrupamientos aplican un proceso de selección de semillas.
-Esto marcará el área para la identificación de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada.
-Después de esta operación se tienen las regiones definidas verticalmentepor un bache. La operación vertical previa se utiliza como base para 
-la extracción de las regiones definidas horizontalmente por un bache. El proceso de identificación de baches se completa trazando líneas verticales 
-y horizontales entre los puntos indentificados para realizar la extracción de la superficie del bache.
+		Koch et al. ~\brackcite{koch2011pothole} tratan de describir la textura de la superficie dentro de un candidato a bache y compararla con la textura de la 
+		región circundante. Para describir la textura de una región se propone el uso de la desviación estándar de los valores de intensidad del nivel 
+		de gris como una medida estadística para describir la textura  tanto de la región interna como de la región externa. A la imagen en escala de 
+		grises se le aplican filtros para enfatizar las características estructurales de la textura. La región exterior $R_o$ representa la parte intacta y 
+		saludable de la imagen del pavimento. Para determinar la región exterior se propone un  procedimiento de tres pasos. Primero, 
+		se aplica dilatación morfológica sobre la imagen binaria segmentada que contiene las supuestas áreas defectuosas. Segundo, 
+		se combina la imagen binaria con la región interior y se obtiene como resultado la región defectuosa total. Finalmente, 
+		La región exterior se determina como el complemento de la región defectuosa total. Basado en la respuesta de los filtros dentro de las regiones 
+		interior y exterior, los valores de desviación estándar correspondientes son determinados y utilizados para establecer dos vectores de características 
+		$f_i$ y $f_o$, que describen la textura de las dichas regiones respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de 
+		características $f_i$ y $f_o$. Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de la región interior es más gruesa y granulada que en 
+		la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
 
 
-\subsection{Detección usando \emph{Deep Learning}}
- 
-Varios autores dan solución al problema de detectar imágenes de baches en la carretera mediante el uso de una de las técnicas  
-de \emph{deep learning}, una red neuronal convolucional(\textbf{CNN}).Con el uso de un modelo de \textbf{CNN} se logra  
-detectar imágenes de baches en varias condiciones tales como: húmedas, secas y sombreadas asi como de varios tamaños y formas.
-Un modelo de \textbf{CNN} puede pensarse como la combinación de dos componentes: una parte de extracción de características
-y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características
-mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
+		Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
+		comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
+		uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). \textbf{OHI} es un método para 
+		medir el grado de similitud entre las regiones de una imagen. Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
+		sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un bache 
+		determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido.
+		La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI}
+		de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
+		es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
 
-Pereira et al. ~\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolutional} , cuatro
-capas de \emph{pooling} y una capa de \emph{fully-connected}. Una función de activación \textbf{ReLU} es usada entre 
-la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
-y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
-clasificación binaria con una neurona. La última capa \emph{fully-connected} da la clasificación para la clase de las imágenes de entrada.
-La capa de salida da como resultado  valores predecidos entre 0 y 1. 0 se refiere a que no hay bache y 1 a que si lo hay.
+		Buza et al. ~\brackcite{buza2013pothole} después del resultado de extración de agrupamientos aplican un proceso de selección de semillas.
+		Esto marcará el área para la identificación de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada.
+		Después de esta operación se tienen las regiones definidas verticalmentepor un bache. La operación vertical previa se utiliza como base para 
+		la extracción de las regiones definidas horizontalmente por un bache. El proceso de identificación de baches se completa trazando líneas verticales 
+		y horizontales entre los puntos indentificados para realizar la extracción de la superficie del bache.
 
+	\subsection{Detección usando \emph{Deep Learning}}
+	Varios autores dan solución al problema de detectar imágenes de baches en la carretera mediante el uso de una de las técnicas  
+	de \emph{deep learning}, una red neuronal convolucional(\textbf{CNN} por sus siglas en inglés). Con el uso de un modelo de \textbf{CNN} se logra  
+	detectar imágenes de baches en varias condiciones tales como: húmedas, secas y sombreadas asi como de varios tamaños y formas.
+	Un modelo de \textbf{CNN} puede pensarse como la combinación de dos componentes: una parte de extracción de características
+	y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características
+	mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
 
-% 
-Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
-de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
-
-La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} parar detectar baches en imágenes 
-en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
-\emph{Inception - V2}. \emph{Fast-R CNN} es un detector que utiliza una propuesta externa 
-o búsqueda selectiva externa. Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
-región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
-ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
-capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
-\emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
-diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
-
-Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
-\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
-con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \emph{CNN} 
-propuesta llamada  \textbf{MVGG16}). La propuesta  \emph{Faster R-CNN} con \emph{backbone} \textbf{MVGG16} desarrolló una 
-\emph{CNN} profunda con diferentes capas \emph{dilated} para aumentar los campos receptivos.
-
-\subsubsection{Data augmentation}
-Un tamaño limitado en el conjunto de datos puede conducir a un \emph{overfitting}. Sin embargo, los modelos de \emph{deep learning}
-exigen una cantidad satisfactoria de datos para generar resultados precisos. Con la técnica de \emph{data augmentation} se logra evitar 
-el \emph{overfitting} asi como aprovechar la regularización ~\brackcite{ahmed2021smart,pereira2018deep}. 
-Esto se reliza mediante procesos de rotación~\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}~\brackcite{pereira2018deep}, 
-\emph{flip}~\brackcite{pereira2018deep}, \emph{scaling}~\brackcite{ahmed2021smart}, ajuste de color~\brackcite{ahmed2021smart} y 
-\emph{mosaic augmentation}~\brackcite{ahmed2021smart} sobre las imágenes.
+	Pereira et al. ~\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolutional} , cuatro
+	capas de \emph{pooling} y una capa de \emph{fully-connected}. Una función de activación \textbf{ReLU} es usada entre 
+	la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
+	y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
+	clasificación binaria con una neurona. La última capa \emph{fully-connected} da la clasificación para la clase de las imágenes de entrada.
+	La capa de salida da como resultado  valores predecidos entre 0 y 1. 0 se refiere a que no hay bache y 1 a que si lo hay.
 
 
-\subsection{Captura de los datos}
-Para la captura de los datos algunos autores usan cámaras de video conectadas a los  parabrisas de los vehículos para 
-recopilar imágenes de las carreteras ~\brackcite{ahmed2021smart}. Otros,  obtienen imágenes que contengan baches de  sitios en 
-Internet usando el motor de búsqueda de Google ~\brackcite{koch2011pothole,akagic2017pothole}. Muchas de las imágenes tomadas 
-se realizaron desde distintas cámaras, ángulos de disparo, tamaños, número de baches y fondos ~\brackcite{akagic2017pothole,pereira2018deep,ahmed2021smart}. 
-Un conjunto de datos no estructurados se puede utilizar para examinar el verdadero potencial de cualquier método de 
-detección de baches ~\brackcite{akagic2017pothole}.
+	% 
+	Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
+	de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
 
-Koch et al. ~\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
-del \emph{Georgia Tech campus} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
-\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
+	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} parar detectar baches en imágenes 
+	en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
+	\emph{Inception - V2}. \emph{Fast-R CNN} es un detector que utiliza una propuesta externa 
+	o búsqueda selectiva externa. Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
+	región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
+	ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
+	capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
+	\emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
+	diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
 
-Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
-\emph{black-box}  a lo largo de la \emph{National Highway}.Los videos fueron grabados en un clima soleado al mediodía.
+	Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
+	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
+	con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \textbf{CNN} 
+	propuesta llamada  \textbf{MVGG16}). La propuesta \emph{Faster R-CNN} con \emph{backbone} \textbf{MVGG16} desarrolló una 
+	\textbf{CNN} profunda con diferentes capas dilatadas para aumentar los campos receptivos.
 
-Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
-en Corea. 
+		\subsubsection{Data augmentation}
+			Un tamaño limitado en el conjunto de datos puede conducir a un \emph{overfitting}. Sin embargo, los modelos de \emph{deep learning}
+			exigen una cantidad satisfactoria de datos para generar resultados precisos. Con la técnica de \emph{data augmentation} se logra evitar 
+			el \emph{overfitting} asi como aprovechar la regularización ~\brackcite{ahmed2021smart,pereira2018deep}. 
+			Esto se reliza mediante procesos de rotación~\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}~\brackcite{pereira2018deep}, 
+			\emph{flip}~\brackcite{pereira2018deep}, \emph{scaling}~\brackcite{ahmed2021smart}, ajuste de color~\brackcite{ahmed2021smart} y 
+			\emph{mosaic augmentation}~\brackcite{ahmed2021smart} sobre las imágenes.
 
-Pererira et al. ~\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
-lugares con diversas condiciones de clima, tamaños y formas.
+	\subsection{Captura de los datos}
+	Para la captura de los datos algunos autores usan cámaras de video conectadas a los  parabrisas de los vehículos para 
+	recopilar imágenes de las carreteras ~\brackcite{ahmed2021smart}. Otros,  obtienen imágenes que contengan baches de  sitios en 
+	Internet usando el motor de búsqueda de Google ~\brackcite{koch2011pothole,akagic2017pothole}. Muchas de las imágenes tomadas 
+	se realizaron desde distintas cámaras, ángulos de disparo, tamaños, número de baches y fondos ~\brackcite{akagic2017pothole,pereira2018deep,ahmed2021smart}. 
+	Un conjunto de datos no estructurados se puede utilizar para examinar el verdadero potencial de cualquier método de 
+	detección de baches ~\brackcite{akagic2017pothole}.
 
-Buza et al. ~\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
-múltiples baches, 10 con grietas y un bache, 5 con parches de la carretera reparados y el resto sin zonas defectuosas.
+	Koch et al. ~\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
+	del \emph{Georgia Tech campus} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
+	\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
-Kumar et al. ~\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
-Todo el conjunto de datos consta de dos conjuntos diferentes, uno se consideraron simple y el otro más complejo.
+	Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
+	\emph{black-box}  a lo largo de la \emph{National Highway}.Los videos fueron grabados en un clima soleado al mediodía.
 
-Ahmed et al. ~\brackcite{ahmed2021smart} usan conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
-diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
+	Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
+	en Corea. 
+
+	Pererira et al. ~\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
+	lugares con diversas condiciones de clima, tamaños y formas.
+
+	Buza et al. ~\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
+	múltiples baches, 10 con grietas y un bache, 5 con parches de la carretera reparados y el resto sin zonas defectuosas.
+
+	Kumar et al. ~\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
+	Todo el conjunto de datos consta de dos conjuntos diferentes, uno se consideraron simple y el otro más complejo.
+
+	Ahmed et al. ~\brackcite{ahmed2021smart} usan conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
+	diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
 
 
 % Akagic et al. ~\brackcite{akagic2017pothole} se comprueba en una imagen conjunto de datos formado a partir de imágenes 
@@ -417,7 +414,7 @@ diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
 			~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite
 			{kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}. \emph{Zheng et al.} \brackcite{zheng2020fused} agregan a este proceso
 			\textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas
-			a distintas velocidades. 
+			a distintas velocidades.
 
 		\subsubsection{Selección y extracción de características}
 			Entre los principales características utilizadas en estos modelos de aprendizaje de máquina se encuentra, como era de esperar, el valor 
@@ -463,7 +460,7 @@ diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
 		ocasionado por varias razones, y que dificulta la tarea en cuestión.\\
 		\indent Muchos autores proponen utilizar métodos de procesamiento de señales digitales para purificar la señal y mejorar su calidad. Métodos como \emph
 		{Fast Fourier Transform}(\textbf{FFT}), \emph{Wavelet Decomposition} \brackcite {el2018towards}, \emph{Wavelet Discrete Transform} \brackcite
-		{seraj2015roads} y \emph{high-pass filters} y \emph{low-pass filters} p\brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
+		{seraj2015roads} y \emph{high-pass filters} y \emph{low-pass filters} \brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
 		componentes de baja y alta frecuencia respectivamente.\\
 		\indent También es importante determinar de que forma segmentar la señal para su análisis. Hay propuestas que segmentan la señal en 256 ventanas
 		\brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 2.5,

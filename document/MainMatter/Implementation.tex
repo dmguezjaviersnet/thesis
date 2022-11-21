@@ -100,6 +100,7 @@
 	\subsection{Metodología para marcar los baches}
 		Para marcar los baches, se recorrió la misma ruta que se había seleccionado para capturar los datos, y se fueron marcando los baches. Antes 
 		de realizar las marcas, se esperó un tiempo a que la precisión del \textbf{GPS} se estabilizara en un rango aceptable, preferiblemente por debajo 
+	
 		de los 5 metros. Las marcas se realizaron desde la acera debido al tráfico, y en la medida de lo posible un poco más cerca del bache en la calle.
 		Por cada bache, se realizaron varias marcas con distinta precisión y desde distintas ubicaciones relativamente cercanas a la ubicación real del
 		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaron de marcar los baches en el recorrido
@@ -110,8 +111,100 @@
 		sostener con las manos, lo que sin duda alguna influye negativamente en los datos obtenidos. También, en estas lecturas así como en las marcas, hay un
 		error inherente del propio \textbf{GPS}. En las marcas además, hay un error extra debido a que estas se realizaron desde la acera.
 
+\section{Los juegos de datos}   
+	Los juegos de datos que se recopilaron fueron los correspondientes a 3 recorridos hechos a lo largo de 3 rutas de la ciudad de la Habana.
+
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.5]{Graphics/route_1_BelascoainyReina_BelascoainySanMiguel.png}
+		\caption{Ruta 1}
+		\label{fig:10}
+	\end{figure}
+
+	La ruta 1 se tomó empezando en Belascoaín y Reina hasta Belascoaín y San Miguel (ver \ref{fig:10}) y tiene una longitud de 0.5 km. La ruta
+	2 comienza en Egido y Arsenal y termina en Ayesteran y 19 de mayo (ver \ref{fig:11}) y tiene una longitud de 3.32 km. La ruta 3 comienza en
+	Egido y Arsenal y termina en L y Jovellar (ver \ref{fig:12}) y tiene una longitud de 3.73 km.\\ \indent Se trataron de escoger rutas donde
+	hubieran una cantidad importante de baches que se pudieran utilizar para el modelo.
+	\newpage
+
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.4]{Graphics/route_2_EgidoArsenal_Ayesteran19deMayo.png}
+		\caption{Ruta 2}
+		\label{fig:11}
+	\end{figure}
+
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.4]{Graphics/route_3_EgidoArsenal_LyJovellarHotelColina.png}
+		\caption{Ruta 3}
+		\label{fig:12}
+	\end{figure}
+
+	\subsection{Detalles acerca de algunos de los baches marcados}
+		En las recorridos realizados hay una gran variedad de anomalías que son baches, también hay muchas anomalías, que por sus características,
+		son idénticas a un bache, como por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:13}), que en condiciones normales no 
+		tendría las mismas características (ver \ref{fig:14}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
+		sensores es muy probable que hayan sido similares a las de un bache.
+		
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.4]{Graphics/pothole_3.jpg}
+			\caption{Boca de alcantarilla hundida en el pavimento}
+			\label{fig:13}
+		\end{figure}
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.4]{Graphics/pothole_9.jpg}
+			\caption{Boca de alcantarilla}
+			\label{fig:14}
+		\end{figure}
+
+		De igual forma, algunas otras tapas de alcantarillas no tiene las características que verdaderamente le corresponde como se puede ver en la
+		figura \ref{fig:15}.
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.3]{Graphics/pothole_4.jpg}
+			\includegraphics[scale = 0.3]{Graphics/pothole_5.jpg}
+			\caption{tapas de alcantarilla con características anormales}
+			\label{fig:15}
+		\end{figure}
+
+		Existen también otros objetos en la vía que no tienen las características reales y que pueden ocasionar las lecturas de los sensores sean similares
+		a las de un bache como se muestra en la figura \ref{fig:16}.
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.3]{Graphics/pothole_10.jpg}
+			\includegraphics[scale = 0.3]{Graphics/pothole_11.jpg}
+			\caption{Otros objetos en la vía con características anormales}
+			\label{fig:16}
+		\end{figure}
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.3]{Graphics/pothole_7.jpg}
+			\includegraphics[scale = 0.3]{Graphics/pothole_8.jpg}
+			\caption{Algunos baches de algunas de las rutas seleccionadas}
+			\label{fig:17}
+		\end{figure}
+		\newpage
+
+		Estas anomalías que se consideraron que podían generar lecturas	similares a las de un bache se etiqutaron como tal, al igual que las anomalías que se 
+		pueden apreciar en las figuras \ref{fig:17} y \ref{fig:18}, que sí son realmente baches.
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[scale = 0.3]{Graphics/pothole_1.jpg}
+			\includegraphics[scale = 0.3]{Graphics/pothole_2.jpg}
+			\caption{Algunos baches de algunas de las rutas seleccionadas}
+			\label{fig:18}
+		\end{figure}
+
 \section{Los modelos de aprendizaje de máquinas}
-	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6}  con el objetivo de llevar a cabo 
+	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo de llevar a cabo 
 	la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta mejor al juego de datos,
 	pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
 
