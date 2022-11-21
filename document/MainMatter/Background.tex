@@ -354,6 +354,14 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 		\emph{Mohan et al.} ~\brackcite{mohan2008nericell} usan una idea idéntica al \emph{\textbf{Z-Thresh}} y otra en la que buscan
 		una caída sostenida de la aceleración en el eje Z por debajo de cierto umbral, durante cierta cantidad de tiempo(\emph{\textbf{Z-SUS}}).\\
 
+		\emph{Astarita et al.} ~\brackcite{astarita2012mobile}, proponen un método basado en una serie de filtros para desechar 1 o más eventos que
+		no sean anomalías. Un primer filtro de baja frecuencia para eliminar las componentes introducidas como consecuencia del ruido de fondo en la señal.
+		Un segundo filtro de velocidad para eliminar picos cuando el vehículo está detenido, asociados al evento de tirar la puerta del vehículo. Y por 
+		último, un filtro que remueve las componentes que están por debajo de un umbral prefijado, que se determinó como resultado del análisis estadístico
+		de los datos. En este artículo, los autores llevan a cabo sus pruebas poniendo el dispositivo en varias posiciones en el carro. Esto lo pudieron
+		realizar, debido a que implementaron un método para determinar la orientación del móvil en el espacio utilizando los ángulos de Euler. Tres 
+		parámetros independientes que permiten definir la orientación de un objeto en el espacio a través de una secuencia de rotaciones.
+
 		% Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la
 		% información. Para capturar datos preliminares utilizaron un collar \emph{LynxNet} a una frecuencia de 100Hz. Para la evaluación del
 		% sistema utilizaron 4 dispositivos móviles (Samsung i5700, Samung Galaxy S, HTC Desire, HTC HD2), con los que recolectaron más datos
@@ -408,13 +416,13 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 	\subsection{Enfoques utilizando aprendizaje de máquinas}
 		\subsubsection{Algoritmos}
 			Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios. Entre los modelos supervisados
-			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, carlos2018evaluation, seraj2015roads,
-			el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite{el2018towards,
-			gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}(\textbf{KNN})
-			~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite
-			{kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}. \emph{Zheng et al.} \brackcite{zheng2020fused} agregan a este proceso
-			\textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza para determinar similitud entre 2 series temporales que puedan ser obtenidas
-			a distintas velocidades.
+			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, carlos2018evaluation,
+				seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
+				{el2018towards, gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
+				(\textbf{KNN}) ~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN})
+				\brackcite {kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}. \emph{Zheng et al.} \brackcite{zheng2020fused} agregan
+				a este proceso \textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza para determinar similitud entre 2 series temporales que
+				puedan ser obtenidas a distintas velocidades.
 
 		\subsubsection{Selección y extracción de características}
 			Entre los principales características utilizadas en estos modelos de aprendizaje de máquina se encuentra, como era de esperar, el valor 
@@ -453,6 +461,9 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 			anomalía ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta
 			a dicha serie temporal. \emph{Tai et al.} \brackcite{tai2010automatic} etiquetaron sus datos realizando grabaciones de audio durante el
 			viaje recolectando la voz de la persona encargada de notificar la presencia de una anomalía.
+			\indent \emph{Ranjith et al.} \brackcite{ranjith2015anomaly}, etiquetan a mano unos pocos datos utilizando vídeos grabados durante el proceso
+			de recolección de datos, y luego etiquetan el resto de los datos de forma automática utilizando \textbf{K-Means} y \textbf{DBSCAN}. Esta vía 
+			permite automatizar el proceso de etiquetado, de esta forma se puede lidiar con gran cantidad de datos sin tener que etiquetarlos a mano.
 
 
 	\subsection{Purificación y segmentación de la señal}
@@ -460,7 +471,7 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 		ocasionado por varias razones, y que dificulta la tarea en cuestión.\\
 		\indent Muchos autores proponen utilizar métodos de procesamiento de señales digitales para purificar la señal y mejorar su calidad. Métodos como \emph
 		{Fast Fourier Transform}(\textbf{FFT}), \emph{Wavelet Decomposition} \brackcite {el2018towards}, \emph{Wavelet Discrete Transform} \brackcite
-		{seraj2015roads} y \emph{high-pass filters} y \emph{low-pass filters} \brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
+		{seraj2015roads}, y \emph{high-pass filters} y \emph{low-pass filters} \brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
 		componentes de baja y alta frecuencia respectivamente.\\
 		\indent También es importante determinar de que forma segmentar la señal para su análisis. Hay propuestas que segmentan la señal en 256 ventanas
 		\brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 2.5,
@@ -473,9 +484,10 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 		
 	\subsection{Ubicación del dispositivo en el vehículo}
 		Debido a que los dispositivos utilizados en estos experimentos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los
-		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación.
-		Algunos autores colocaron el dispositivo en el parabrisas \brackcite{pawar2020efficient, seraj2015roads}, en el asiento delantero, en la parte
-		central del asiento trasero del vehículo y en el maletero \brackcite{el2018towards}
+		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación,
+		como plantean \emph{Astarita et al.} \brackcite{astarita2012mobile}. Algunos autores colocaron el dispositivo en el parabrisas \brackcite
+		{pawar2020efficient, seraj2015roads}, en el asiento delantero, en la parte central del asiento trasero del vehículo y en el maletero \brackcite
+		{el2018towards}.
 		
 	\subsection{Frecuencia de muestreo}
 		La frecuencia de muestreo es un factor importante, si es muy alta se introduciría ruido innecesario en los datos, y si es muy baja y no se podrá
@@ -496,6 +508,8 @@ Y por último, tratan identificar si esa región de interés es un efecto un bac
 		vehículo cuando ocurra la lectura $l_i$ del \textbf{acelerómetro} usando interpolación lineal entre lecturas de \textbf{GPS} \brackcite
 		{eriksson2008pothole}.
 
+\section{Consideraciones sobre el estado del arte}
+	
 		% \brackcite{carlos2018evaluation} de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron
 		% un enfoque supervisado con \emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \textbf
 		% {características} (basadas principalmente en la aceleración en el eje Z), sí existía o no una anomalía. características como la media,

@@ -233,6 +233,83 @@
 		\textbf{DBSCAN} y \textbf{OPTICS}, y en \textbf{sklearn.svm}, donde se encuentra \textbf{One Class SVM}.\\
 		% ------------ Especificar hiperparámetros de los métodos ---------------- %
 		\indent De esta forma, con cada uno de estos 6 métodos, se obtenía un \textbf{DataFrame} con los datos seleccionados como anomalías.
+		Los métodos no supervisados que mejor rendimiento mostraron en general fueron \textbf{DBSCAN} y \textbf{One Class SVM} como se muestra en 
+		la figura \ref{table:1}. En la tabla \ref{table:2}, se puede apreciar la media de los coeficientes de Silhouete entre todas las rutas.
+
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{llll}
+			\toprule
+			  Ruta\textbackslash Algoritmo &    DBSCAN &     OCSVM &     OPTICS \\
+			\midrule
+			  Ruta1 &  0.502849 &  0.533472 &  -0.245268 \\
+			  Ruta2 &  0.659878 &  0.533707 &  -0.271357 \\
+			  Ruta3 &  0.620526 &  0.509438 &  -0.238291 \\
+			\bottomrule
+			\end{tabular}
+			\caption{Puntuación de Silhouete de cada algoritmo de detección de anomalías no-supervisado en cada ruta}
+			\label{table:1}
+		\end{figure}
+
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+			\toprule
+			   Coeficiente de Silhouete medio & Algoritmo \\
+			\midrule
+			   0.594417 &    DBSCAN \\
+			   0.525539 &     OCSVM \\
+			  -0.251639 &    OPTICS \\
+			\bottomrule
+			\end{tabular}
+			\caption{Puntuación de Silhouete media de cada algoritmo de detección de anomalías no-supervisado}
+			\label{table:2}
+		\end{figure}
+
+		Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los clusters se están asignando de 
+		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta.
+
+		Los hiperparámetros de los métodos de detección de anomalías que se probaron para determinar la mejor configuración se muestran en las tablas 
+		\ref{table:3}, \ref{table:4} y \ref{table:5}.
+
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+				                                          eps &                                  min\_samples \\
+				\midrule
+				  0.05, 0.1, ..., 0.95, 0.99 &  15, 20, ..., 60, 65 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Hyperparámetros con los que se probó \textbf{DBSCAN}}
+			\label{table:3}
+		\end{figure}
+		
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+				                                            gamma &                                                 nu \\
+				\midrule
+				  scale, 0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 10 &  0.05, 0.1, ..., 0.95, 0.99 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Hyperparámetros con los que se probó \textbf{One Class SVM}}
+			\label{table:4}
+		\end{figure}
+		
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{lll}
+				\toprule
+				 cluster\_method &                                      metric &                                        min\_samples \\
+				\midrule
+				     xi, dbscan &  minkowski, euclidean, canberra, braycurtis &  5, 10, ..., 60, 65 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Hyperparámetros con los que se probó \textbf{OPTICS}}
+			\label{table:5}
+		\end{figure}
 
 	\subsection{Detalles del proceso de etiquetado}
 		Con cada uno de los juegos de datos obtenidos por cada uno de los métodos utilizados para detectar anomalías, se llevó a cabo
@@ -288,7 +365,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \textbf{KNN}}
-				\label{table:1}
+				\label{table:6}
 			\end{figure}
 
 			\begin{figure}[ht!]
@@ -301,7 +378,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \emph{Decision Tree}}
-				\label{table:2}
+				\label{table:7}
 			\end{figure}
 			
 			\begin{figure}[ht!]
@@ -314,7 +391,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \emph{Randon Forest}}
-				\label{table:3}
+				\label{table:8}
 			\end{figure}
 
 			\begin{figure}[ht!]
@@ -327,7 +404,7 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros regresión logística}
-				\label{table:4}
+				\label{table:9}
 			\end{figure}
 			\newpage
 
@@ -341,14 +418,5 @@
 					\bottomrule
 				\end{tabular}
 				\caption{Hiperparámetros \textbf{SVM}}
-				\label{table:5}
+				\label{table:10}
 			\end{figure}
-			% \newpage
-
-			% \emph{Decision Tree}\\\\
-
-			% \emph{Random Forest}\\\\
-
-			% Regresión Logística\\\\
-
-			% \textbf{SVM}\\\\
