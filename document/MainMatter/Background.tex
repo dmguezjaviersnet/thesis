@@ -523,6 +523,46 @@ que son baches dentro de una imagen.
 		{eriksson2008pothole}.
 
 \section{Consideraciones sobre el estado del arte}
+	Se pudo verificar que todos los autores de la literatura intentan de una forma u otra, proponer una herramienta que permita monitorear el estado de 
+	la carretera de forma automática. Algunos se plantean el problema como un problema de clasificación múltiple, para identificar algunos tipos de anomalías,
+	otros intentan solamente separar la carretera normal, de la carretera en mal estado, o sea, tener alguna forma de identificar las anomalías de forma general.
+	Lo que sí estuvo claro, es que estos trabajos fueron inspirados por trabajos seminales como \emph{The pothole patrol} de \emph{Eriksson et al.} \brackcite
+	{eriksson2008pothole}, \emph{Real time pothole detection using android smartphones with accelerometers} de \emph{Mednis et al.} \brackcite{mednis2011real} y 
+	\emph{Using mobile smartphones for rich monitoring of road and traffic conditions} de \emph{Mohan et al.} \brackcite{mohan2008nericell}. 
+
+	Las técnicas propuestas en estos trabajos iniciales, aún son utilizadas y consideradas por los autores para realizar sus respectivas investigaciones,
+	sin importar el enfoque que empleen para resolver su problema. Incluso desde el campo del aprendizaje de máquinas, el cual definitivamente ha tenido
+	un auge y se ha podido apreciar por la cantidad de propuestas en la literatura analizada de los últmos años que utilizan métodos de aprendizaje de
+	máquinas para atacar este problema. Con distintos enfoques, distintas formas de procesar los datos y distintas formas de implementar la propueta,
+	pero con la misma meta en mente. Se ha podido determinar que existen varios temas importantes de este problema, que se tratan de forma distinta por
+	varios autores:
+
+	\begin{itemize}
+		\item Posición del vehículo del móvil: Algunos fijan el dispositivo en distintas posiciones en el vehículo de forma tal que coincida su orientación
+			con la del vehículo. Pero no muchos de los autores no se plantean el problema de obtener lecturas relevantes sin importar la orientación del
+			dispositivo en el vehículo. Lo cual sería una comodidad, pues permitiría facilitar la recolección de datos, incluso por personas ajenas a la
+			investigación.
+
+		\item Purificación de la señal: Muchos de ellos, emplean algún método que le permita eliminar componentes no relevantes de la serie temporal, como
+			el ruido ocasionado por vibraciones ajenas al estado de la carretera, utilizando filtros digitales. Otros realizan un análisis de la frecuencia
+			de la señal con métodos de procesamiento de señales digitales, que les permiten desde producir una señal más acertada hasta la extracción de
+			características que pueden ser representativas del problema, y por tanto, ser utilizadas para el entrenamiento de algoritmos de aprendizaje
+			de máquinas.
+
+		\item Segmentación de la señal: Gran parte propone utilizar técnicas de ventana deslizante para analizar y detectar
+			patrones en las series temporales de los sensores, que permita determinar las características de un segmento de señal representativo de
+			una anomalía.
+
+		\item Geolocalización de la anomalía: Este problema en particular, no muchos de los autores lo tienen en cuenta, pero los que lo hacen, plantean
+			que es prácticamente imposible determinar el lugar exacto donde se encuentra una anomalía, pues el error del \textbf{GPS} impide esto.
+
+		\item Los métodos de solución: La mayoría utiliza métodos de aprendizaje de máquinas, sobre todo \textbf{SVM}. Pocos del resto, prueban con 
+			otros algoritmos de aprendizaje de máquinas y realizan una comparación exhaustiva.
+
+		\item Frecuencia de muestreo y sensores: La mayoría de los autores consideran frecuencias de muestreo fijas, lo que puede ocasionar que se sobremuestree o 
+			submuestree. Muy pocos incluyen el giroscopio como sensor a la hora de generar la información.
+	\end{itemize}
+	
 	
 		% \brackcite{carlos2018evaluation} de realizar una comparación de los métodos existentes en su momento, crearon un método en el que utilizaron
 		% un enfoque supervisado con \emph{Support Vector Machines} (\textbf{SVM}) para entrenar un modelo que decidiera utilizando varios \textbf
