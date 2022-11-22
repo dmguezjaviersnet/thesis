@@ -27,7 +27,7 @@ que son baches dentro de una imagen.
 		La segmentación de imágenes detecta información relevante, y es el primer paso en el análisis de imágenes y patrones
 		de reconocimiento ~\brackcite{buza2013pothole}.
 		La segmentación de imágenes permite  dividir la imagen del pavimento en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}.
-		El paso de segmentación consiste en separar la región de un bache y de la región de fondo, transformando la imagen a color original 
+		El paso de segmentación consiste en separar la región de un bache de la región de fondo, transformando la imagen a color original 
 		en una imagen binaria utilizando el histograma de una imagen de entrada ~\brackcite{ryu2015image}.
 		En las imágenes sobre la superficie del pavimento la información en color (valores en RGB) no son imprescindibles a la hora de realizar 
 		el proceso de segmentación con respecto a la detección de defectos. Por lo tanto se  transforma la imagen original a color en una 
@@ -52,15 +52,15 @@ que son baches dentro de una imagen.
 
 		\subsubsection{Extracción de candidatos a bache}
 		La región de interés es el área en la que los baches pueden ser encontrados, es decir el pavimento asfáltico ~\brackcite{akagic2017pothole}.
-		Varias técnicas son usadas en la literatura para encontrar dicha esta área. 
+		Varias técnicas son usadas en la literatura para encontrar dicha área. 
 
 		La propuesta de Akagic et al. ~\brackcite{akagic2017pothole} consta de varios pasos. Primero, forman una nueva matriz que contiene las posiciones 
-		de los \emph{pixels} de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
+		de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
 		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
 		\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
 		interés se extrae en función de la posición de estos puntos.
 		
-		
+		% de los \emph{pixels}
 		% , mientras que los valores de los \emph{pixels} del resto de la región se cambia a
 		% 0 ~\brackcite{akagic2017pothole}.
 
