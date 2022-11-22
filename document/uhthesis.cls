@@ -203,12 +203,20 @@
    \addcontentsline{toc}{chapter}{Recomendaciones}%
     \chapter*{Recomendaciones}}%
   {}
+
 \newenvironment{dedication}%
   {\cleardoublepage%
    \thispagestyle{empty}%
    \vskip 3.5cm%
    \begin{flushright}}%
   {\end{flushright}}
+
+\newenvironment{appendices}%
+  {\cleardoublepage%
+   \phantomsection%
+   \addcontentsline{toc}{chapter}{Anexos}
+    \chapter*{Anexos}}%
+  {}
 
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{definition}{Definición}[chapter]
