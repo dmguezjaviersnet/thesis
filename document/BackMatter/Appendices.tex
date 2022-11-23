@@ -661,4 +661,138 @@
 			\label{table:23}
 		\end{figure}
 
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+					  outliers\_method &                                           z\_thresh \\
+					 feature\_selector &                                 backward\_selection \\
+				features\_selected\_set &  \{Y Accel, Z Accel, X Gyro, Y Gyro, SpeedvsZ, MeanDevAccelZ,\\
+										& MeanDevGyroX, MeanDevGyroY, MedianDevGyroZ\}\\
+								model &                                      Random Forest \\
+							 F1\_score &                                           0.428571 \\
+							Precision &                                              0.375 \\
+							   Recall &                                                0.5 \\
+							 Accuracy &                                           0.724138 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			
+			\begin{tabular}{ll}
+				\toprule
+				 Hyperparams & Value \\
+				\midrule
+				   criterion &  gini \\
+				   max\_depth &     6 \\
+				max\_features &  sqrt \\
+				n\_estimators &   100 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Random Forest}}
+			\label{table:24}
+		\end{figure}
+		
+		\begin{figure}[htb]
+			\centering
+
+			\begin{tabular}{ll}
+				\toprule
+					  outliers\_method &                                             z\_diff \\
+					 feature\_selector &                                 backward\_selection \\
+				features\_selected\_set & \{Z Accel, Y Gyro, MinZratio, SpeedvsZ, MeanDevAccelZ, \\
+                						& MeanDevGyroX, MedianDevGyroX, MeanDevGyroY,\\ 
+										& MedianDevGyroY\} \\
+								model &                                      Random Forest \\
+							 F1\_score &                                           0.434783 \\
+							Precision &                                           0.714286 \\
+							   Recall &                                             0.3125 \\
+							 Accuracy &                                           0.763636 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+
+			\begin{tabular}{ll}
+				\toprule
+				 Hyperparams & Value \\
+				\midrule
+				   criterion &  gini \\
+				   max\_depth &    20 \\
+				max\_features &  sqrt \\
+				n\_estimators &   120 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{Random Forest}}
+			\label{table:25}
+
+		\end{figure}
+
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+					  outliers\_method &                                             dbscan \\
+					 feature\_selector &                              recursive\_elimination \\
+				features\_selected\_set & \{X Accel, Y Accel, Y Gyro, Z Gyro, X / Z, SpeedvsZ\}\\
+								model &                                      Random Forest \\
+							 F1\_score &                                           0.545455 \\
+							Precision &                                           0.666667 \\
+							   Recall &                                           0.461538 \\
+							 Accuracy &                                           0.756098 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+
+			\begin{tabular}{ll}
+				\toprule
+				 Hyperparams & Value \\
+				\midrule
+				   criterion &  gini \\
+				   max\_depth &    10 \\
+				max\_features &  log2 \\
+				n\_estimators &   180 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{Random Forest}}
+			\label{table:26}
+
+		\end{figure}
+
+		\begin{figure}[htb]
+			\centering
+			\begin{tabular}{ll}
+				\midrule
+					  outliers\_method &                                              ocsvm \\
+					 feature\_selector &                                  forward\_selection \\
+				features\_selected\_set & \{X Gyro, Y Gyro, Z Gyro, X / Z, MeanDevAccelY\\
+										&	MeanDevAccelZ, MedianDevGyroY, MeanDevGyroZ,\\ 
+										& MedianDevGyroZ\} \\
+								model &                                      Random Forest \\
+							 F1\_score &                                           0.292683 \\
+							Precision &                                               0.75 \\
+							   Recall &                                           0.181818 \\
+							 Accuracy &                                           0.783582 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			
+			\begin{tabular}{ll}
+				\toprule
+				 Hyperparams & Value \\
+				\midrule
+				   criterion &  gini \\
+				   max\_depth &    20 \\
+				max\_features &  sqrt \\
+				n\_estimators &   120 \\
+				\bottomrule
+			\end{tabular}
+			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{Random Forest}}
+			\label{table:27}
+		\end{figure}
+
+			
+
 \end{appendices}
