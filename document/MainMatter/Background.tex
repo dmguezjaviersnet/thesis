@@ -170,7 +170,9 @@ que son baches dentro de una imagen.
 	la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
 	y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
 	clasificación binaria con una neurona. La última capa \emph{fully-connected} da la clasificación para la clase de las imágenes de entrada.
-	La capa de salida da como resultado  valores predecidos entre 0 y 1. 0 se refiere a que no hay bache y 1 a que si lo hay.
+	La capa de salida da como resultado  valores predecidos entre 0 y 1, indicando si no hay o hay un bache respectivamente.
+
+	% 0 se refiere a que no hay bache y 1 a que si lo hay.
 	
 
 	
@@ -192,19 +194,21 @@ que son baches dentro de una imagen.
 	% como una medida estadística para describir la textura  tanto de la región interna como de 
 	% 	la región externa
 
-	Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
-	de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
+	% Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
+	% de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
 
-	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} parar detectar baches en imágenes 
+	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} para detectar baches en imágenes 
 	en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
-	\emph{Inception - V2}. \emph{Fast-R CNN} es un detector que utiliza una propuesta externa 
-	o búsqueda selectiva externa. Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
-	región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
-	ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
-	capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
-	\emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
-	diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
-
+	\emph{Inception - V2}. 
+	% \
+	% \emph{Fast-R CNN} es un detector que utiliza una propuesta externa o búsqueda selectiva externa.
+	% Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
+	% región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
+	% ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
+	% capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
+	% \emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
+	% diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
+	
 	Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
 	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
 	con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \textbf{CNN} 
@@ -232,7 +236,7 @@ que son baches dentro de una imagen.
 	\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
 	Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
-	\emph{black-box}  a lo largo de la \emph{National Highway}.Los videos fueron grabados en un clima soleado al mediodía.
+	\emph{black-box}  a lo largo de la \emph{National Highway}. Los videos fueron grabados en un clima soleado al mediodía.
 
 	Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
 	en Corea. 
