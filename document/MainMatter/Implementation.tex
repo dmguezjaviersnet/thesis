@@ -157,9 +157,9 @@
 		pueden apreciar en las figuras \ref{fig:17} y \ref{fig:18}, que sí son realmente baches.
 
 \section{Los modelos de aprendizaje de máquinas}
-	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo de llevar a cabo 
-	la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta mejor al juego de datos,
-	pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
+	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo
+	de llevar a cabo la segunda fase de la propuesta. Dentro de este programa, es donde se determina que modelo de aprendizaje de máquinas se ajusta
+	mejor al juego de datos, pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
 
 	\subsection{Detalles de la estructura del juego de datos y características escogidas}
 		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa
@@ -220,7 +220,7 @@
 
 		Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los clusters se asignaron de 
 		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
-		cantidad de anomalías que detectó cada algoritmo (ver tabla \ref{table:3}). Además,  se eliminó del \emph{pipeline} a \textbf{G-Zero}
+		cantidad de anomalías que detectó cada algoritmo (ver tabla \ref{table:3}). Además, se eliminó del \emph{pipeline} a \textbf{G-Zero}
 		,pues se consideró que no detectó suficientes anomalías.  Esto se supone que sea debido a que la frecuencia de muestreo a la que se 
 		realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que 
 		el vehículo está en caída libre.
@@ -253,13 +253,13 @@
 		metros. Se consideró 10 metros, debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
 		recopilación.\\
 		\indent Para computar la distancia se utilizó la fórmula de \textbf{Haversine}, que se utiliza para calcular la distancia entre dos puntos sobre la
-		superficie de una esfera utilizando co obtenidosordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene distintos radios, que
-		van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la distancia entre 2 puntos
-		con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera que se consideró para este
-		cómputo fue de 6371 km.\\
+		superficie de una esfera utilizando co obtenidosordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene
+		distintos radios, que van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la
+		distancia entre 2 puntos con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera
+		que se consideró para este cómputo fue de 6371 km.\\
 
 	\subsection{Detalles de la selección de características}
-		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver Cap. \ref{chapter:proposal}), se llevó a cabo un proceso
+		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver \ref{chapter:proposal}), se llevó a cabo un proceso
 		de selección de características con varios métodos, para escoger cuales de estas representan mejor el problema que se pretende resolver.
 		Antes de esto se eliminaron características que se consideraron no aportan información acerca de si una anomalía es bache o no, como por ejemplo:
 		la velocidad, la latitud, la longitud y la precisión del \textbf{GPS}.\\
@@ -288,7 +288,6 @@
 		RepeteadStratifiedKFold} se le pasaron argumentos para realizar 5-Fold 30 veces.
 
 		\subsubsection{Conjuntos de hiperparámetros}
-			Por cada uno de los 5 métodos utilizados, se probaron distintos conjuntos de hiperparámetros(ver figuras 
-			\ref{table:7}, \ref{table:8}, \ref{table:9}, \ref{table:10}, \ref{table:11}. Mediante el  \textbf{GridSearchCV} se buscaba la mejor combinación de hiperparámetros 
-			para cada uno de estos métodos. 
-			% A continuación se muestran las 5 tablas, 1 por cada método, con los hiperparámetros entre los cuales el \textbf{GridSearchCV} seleccionó.\\
+			Por cada uno de los 5 métodos utilizados, se probaron distintos conjuntos de hiperparámetros(ver figuras \ref{table:7}, \ref{table:8},
+			\ref{table:9}, \ref{table:10}, \ref{table:11}. Mediante el  \textbf{GridSearchCV} se buscó la mejor combinación de hiperparámetros 
+			para cada uno de estos métodos.
