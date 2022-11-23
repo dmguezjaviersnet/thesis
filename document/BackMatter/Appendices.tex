@@ -50,7 +50,7 @@
 		\end{figure}
 		\newpage
 
-	\section*{Tablas con los hiperparámetros que se probaron para los métodos no-supervisados}
+	\section*{Tablas con los hiperparámetros que se probaron los métodos no-supervisados}
 		\begin{figure}[htb]
 			\centering
 			\begin{tabular}{ll}
@@ -90,7 +90,7 @@
 			\label{table:6}
 		\end{figure}
 
-	\section*{Tablas con los hiperparámetros que se probaron para los métodos supervisados}
+	\section*{Tablas con los hiperparámetros que se probaron los métodos supervisados}
 		\begin{figure}[ht!]
 			\centering
 			\begin{tabular}{llll}
@@ -100,7 +100,7 @@
 				 3, 5, 7, 9, 11 &  uniform, distance &  brute, kd\_tree, ball\_tree &  20, 30, 40, 50 \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros \textbf{KNN}}
+			\caption{Hiperparámetros con los que se probó \textbf{KNN}}
 			\label{table:7}
 		\end{figure}
 
@@ -113,7 +113,7 @@
 				  entropy, gini &  best, random &  3, 4, 5, 6, None &  sqrt, log2, None \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros \emph{Decision Tree}}
+			\caption{Hiperparámetros con los que se probó \emph{Decision Tree}}
 			\label{table:8}
 		\end{figure}
 		
@@ -126,7 +126,7 @@
 				  100, 120, 180 &  entropy, gini &  10,  13, 16, 20 &  log2, sqrt \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros \emph{Randon Forest}}
+			\caption{Hiperparámetros con los que se probó \emph{Randon Forest}}
 			\label{table:9}
 		\end{figure}
 
@@ -139,7 +139,7 @@
 					l2 &  1e-3, 1e-4, 1e-5, 1e-6 &  1, 10, 100, 1000 &  lbfgs, saga &  100, 500, 1000 \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros regresión logística}
+			\caption{Hiperparámetros con los que se probó \textbf{Regresión logística}}
 			\label{table:10}
 		\end{figure}
 		\newpage
@@ -153,10 +153,34 @@
 				  100 &  rbf &  0.01, 0.001 &         True \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros \textbf{SVM}}
+			\caption{Hiperparámetros con los que se probó \textbf{SVM}}
 			\label{table:11}
 		\end{figure}
 		\newpage
+
+	\section*{Top de los \emph{features} más seleccionados}
+	
+		\begin{figure}[htb]
+			\centering
+				\begin{tabular}{lr}
+					\toprule
+						Feature &  Count \\
+					\midrule
+					 	 X / Z &     87 \\
+			   			SpeedvsZ &     77 \\
+		   				MeanDevGyroZ &     76 \\
+		 				MedianDevGyroZ &     69 \\
+					 	Y Gyro &     58 \\
+					 	Z Gyro &     55 \\
+			  			MinZratio &     54 \\
+		  				MeanDevGyroX &     54 \\
+		 				MeanDevAccelZ &     53 \\
+						MedianDevAccelY &     49 \\
+					\bottomrule
+				\end{tabular}
+				\caption{Top 10 de los features más seleccionados  para la clasificación}
+				\label{table:13}
+		\end{figure}
 	
 	\section*{Tablas de resultados}
 		\begin{figure}[htb]
@@ -794,28 +818,6 @@
 		\end{figure}
 
 		
-	\section*{Top de los \emph{features} más seleccionados}
 	
-		\begin{figure}[htb]
-			\centering
-				\begin{tabular}{lr}
-					\toprule
-						Feature &  Count \\
-					\midrule
-					 	 X / Z &     87 \\
-			   			SpeedvsZ &     77 \\
-		   				MeanDevGyroZ &     76 \\
-		 				MedianDevGyroZ &     69 \\
-					 	Y Gyro &     58 \\
-					 	Z Gyro &     55 \\
-			  			MinZratio &     54 \\
-		  				MeanDevGyroX &     54 \\
-		 				MeanDevAccelZ &     53 \\
-						MedianDevAccelY &     49 \\
-					\bottomrule
-				\end{tabular}
-				\caption{Top 10 de los features más significativos para la clasificación}
-				\label{table:34}
-		\end{figure}
 
 \end{appendices}

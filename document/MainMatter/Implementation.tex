@@ -259,15 +259,15 @@
 		cómputo fue de 6371 km.\\
 
 	\subsection{Detalles de la selección de características}
-		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver \ref{chapter:proposal}), se llevó a cabo un proceso
+		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver Cap. \ref{chapter:proposal}), se llevó a cabo un proceso
 		de selección de características con varios métodos, para escoger cuales de estas representan mejor el problema que se pretende resolver.
 		Antes de esto se eliminaron características que se consideraron no aportan información acerca de si una anomalía es bache o no, como por ejemplo:
 		la velocidad, la latitud, la longitud y la precisión del \textbf{GPS}.\\
 		\indent El clasificador que se utilizó para estimar dichas características en el proceso de selección fue un \emph{Random Forest}, y fue
 		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la bibliotea \textbf{sklearn}. Cada vez que se corrían los métodos de selección
 		de características se almacenó la información de que características se escogieron, de esta forma, luego se pudo analizar en general que
-		características fueron más escogidas. A dichos métodos se les pasaba el número de características a seleccionar. Las cantidades de características
-		con que las que se probaron fueron: 3, 6 y 9.\\
+		características fueron más escogidas(ver figura \ref{table:13}). A dichos métodos se les pasaba el número de características a seleccionar. Las 
+		cantidades de características con que se probaron fueron: 3, 6 y 9.\\
 		% ------------ Poner tabla de características más utilizadas ---------------- %
 
 	\subsection{Detalles de la selección de modelo}
@@ -288,5 +288,7 @@
 		RepeteadStratifiedKFold} se le pasaron argumentos para realizar 5-Fold 30 veces.
 
 		\subsubsection{Conjuntos de hiperparámetros}
-			A continuación se muestran las 5 tablas, 1 por cada método, con los hiperparámetros entre los cuales el \textbf{GridSearchCV} seleccionó.\\
-
+			Por cada uno de los 5 métodos utilizados, se probaron distintos conjuntos de hiperparámetros(ver figuras 
+			\ref{table:7}, \ref{table:8}, \ref{table:9}, \ref{table:10}, \ref{table:11}. Mediante el  \textbf{GridSearchCV} se buscaba la mejor combinación de hiperparámetros 
+			para cada uno de estos métodos. 
+			% A continuación se muestran las 5 tablas, 1 por cada método, con los hiperparámetros entre los cuales el \textbf{GridSearchCV} seleccionó.\\
