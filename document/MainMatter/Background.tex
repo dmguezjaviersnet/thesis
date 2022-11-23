@@ -120,35 +120,43 @@ que son baches dentro de una imagen.
 
 
 		Por otra parte, Koch et al. ~\brackcite{koch2011pothole} tratan de describir la textura de la superficie dentro de un candidato a bache y 
-		compararla con la textura de la región circundante. Para describir la textura de una región se propone el uso de la desviación estándar 
-		de los valores de intensidad del nivel de gris como una medida estadística para describir la textura  tanto de la región interna como de 
-		la región externa. A la imagen en escala de grises se le aplican filtros para enfatizar las características estructurales de la textura. 
-		La región exterior $R_o$ representa la parte intacta y saludable de la imagen del pavimento. Para determinar la región exterior se propone 
-		un  procedimiento de tres pasos. Primero, se aplica dilatación morfológica sobre la imagen binaria segmentada que contiene las supuestas áreas 
-		defectuosas. Segundo, se combina la imagen binaria con la región interior y se obtiene como resultado la región defectuosa total. Finalmente, 
-		La región exterior se determina como el complemento de la región defectuosa total. Basado en la respuesta de los filtros dentro de las regiones 
-		interior y exterior, los valores de desviación estándar correspondientes son determinados y utilizados para establecer dos vectores de características 
-		$f_i$ y $f_o$, que describen la textura de las dichas regiones respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de 
-		características $f_i$ y $f_o$. Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de la región interior es más gruesa y granulada que en 
-		la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
-
+		compararla con la textura de la región circundante. Para describir la textura de una región se propone el uso de la desviación estándar de 
+		los valores de intensidad del nivel de gris. Para determinar la región exterior se propone un  procedimiento de tres pasos. Primero, se 
+		aplica dilatación morfológica sobre la imagen binaria segmentada que contiene las supuestas áreas defectuosas. Segundo, se combina la 
+		imagen binaria con la región interior y se obtiene como resultado la región defectuosa total. Finalmente, la región exterior se determina 
+		como el complemento de la región defectuosa total. Basado en la respuesta de los filtros dentro de las regiones interior y exterior, los 
+		valores de desviación estándar correspondientes son determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, 
+		que describen la textura de dichas regiones respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de 
+		características $f_i$ y $f_o$ para determinar si la región interior se correponde con un bache.
+		
+		% Si $|f_o|$ 
+		% es menor que  $|f_i|$, significa que la textura dentro de la región interior es más gruesa y 
+		% granulada que en la región exterior. Si esto pasa, entoces la región interior se corresponde con un bache.
+		
+		% A la imagen en escala de grises se le aplican filtros para enfatizar las características 
+		% estructurales de la textura. 
+		% La región exterior $R_o$ representa la parte intacta y saludable de la imagen del pavimento
 
 		Por otro lado, Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
 		comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
-		uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). \textbf{OHI} es un método para 
-		medir el grado de similitud entre las regiones de una imagen. Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
-		sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un bache 
-		determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido.
-		La segunda, si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI}
-		de los valores usando la operación de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache,
-		es porque es similar a la región del fondo. En caso contrario, la región candidata refinidada sería un bache.
-
-		Buza et al. ~\brackcite{buza2013pothole} después del resultado de extración de agrupamientos aplican un proceso de selección de semillas.
-		Esto marcará el área para la identificación de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada.
-		Después de esta operación se tienen las regiones definidas verticalmentepor un bache. La operación vertical previa se utiliza como base para 
-		la extracción de las regiones definidas horizontalmente por un bache. El proceso de identificación de baches se completa trazando líneas verticales 
-		y horizontales entre los puntos indentificados para realizar la extracción de la superficie del bache.
-
+		uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). Mediante el uso del \textbf{OHI} es posible 
+		distinguir manchas, luces y sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un 
+		bache determinaron dos posibles condiciones. La primera, si la desviación estándar de la región candidata es menor que un umbral establecido. La segunda, 
+		si el \textbf{OHI} de los \emph{pixels} entre la región candidata y la región de fondo   es cercano a 1 y el \textbf{OHI} de los valores usando la operación 
+		de Sobel es cercano a 1. Si la región candidata refininada se considera que no es un bache, es porque es similar a la región del fondo. En caso contrario, 
+		la región candidata refinidada sería un bache.
+		
+		% Mediante el uso del \textbf{OHI} es posible distinguir manchas, luces y 
+		%sombras y evitar la detección errónea de bache
+		% \textbf{OHI} es un método para 
+		%medir el grado de similitud entre las regiones de una imagen. s
+		
+		La propuesta de Buza et al. ~\brackcite{buza2013pothole} es aplicar un proceso de selección de semillas. Esto marcará el área para la identificación 
+		de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada. Después de esta operación se tienen las regiones 
+		definidas verticalmente por un bache. La operación vertical previa se utiliza como base para la extracción de las regiones definidas horizontalmente 
+		por un bache. El proceso de identificación de baches se completa trazando líneas verticales y horizontales entre los puntos indentificados para 
+		realizar la extracción de la superficie del bache.
+		%  después del resultado de extración de agrupamientos 
 	\subsection{Detección usando \emph{Deep Learning}}
 	Varios autores dan solución al problema de detectar imágenes de baches en la carretera mediante el uso de una de las técnicas  
 	de \emph{deep learning}, una red neuronal convolucional(\textbf{CNN} por sus siglas en inglés). Con el uso de un modelo de \textbf{CNN} se logra  
@@ -162,9 +170,12 @@ que son baches dentro de una imagen.
 	la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
 	y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
 	clasificación binaria con una neurona. La última capa \emph{fully-connected} da la clasificación para la clase de las imágenes de entrada.
-	La capa de salida da como resultado  valores predecidos entre 0 y 1. 0 se refiere a que no hay bache y 1 a que si lo hay.
+	La capa de salida da como resultado  valores predecidos entre 0 y 1, indicando si no hay o hay un bache respectivamente.
+
+	% 0 se refiere a que no hay bache y 1 a que si lo hay.
 	
 
+	
 	% Se probaron filtros de 3x3, 7x7 y 9x9 y el filtro 9x9 mostró el mejor desempeño entre los tres.
 	% Después de aplicar  el agrupamiento en la imagen,  
 	% 	se notó como resultado que había un color que tenía mayor densidad en la región del bache que otros.
@@ -180,19 +191,24 @@ que son baches dentro de una imagen.
 	% 	corren el riesgo de ser detectadas como baches.
 	% La agrupación de línea se aplica dentro de la región de interés. La agrupación de línea también remueve el ruido creado por el proceso de \emph{thresholding}.
 
-	Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
-	de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
+	% como una medida estadística para describir la textura  tanto de la región interna como de 
+	% 	la región externa
 
-	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} parar detectar baches en imágenes 
+	% Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
+	% de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
+
+	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} para detectar baches en imágenes 
 	en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
-	\emph{Inception - V2}. \emph{Fast-R CNN} es un detector que utiliza una propuesta externa 
-	o búsqueda selectiva externa. Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
-	región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
-	ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
-	capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
-	\emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
-	diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
-
+	\emph{Inception - V2}. 
+	% \
+	% \emph{Fast-R CNN} es un detector que utiliza una propuesta externa o búsqueda selectiva externa.
+	% Este consta de  búsqueda selectiva externa, CNN con \emph{max-pooling}, capa de \emph{pooling} de 
+	% región de interés, capas de \emph{fully connected} y capas de salida. \emph{Fast R-CNN} toma una imagen de entrada y luego con  la 
+	% ayuda de \emph{CNN} y las capas de \emph{max-pooling}, un mapa de características convolucionales es extraído de la imagen. Las 
+	% capas de \emph{pooling} de región de interés convierten la salida de \textbf{CNN} en ciertos tamaños fijos. Cuando se pone 
+	% \emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
+	% diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
+	
 	Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
 	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
 	con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \textbf{CNN} 
@@ -220,7 +236,7 @@ que son baches dentro de una imagen.
 	\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
 	Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
-	\emph{black-box}  a lo largo de la \emph{National Highway}.Los videos fueron grabados en un clima soleado al mediodía.
+	\emph{black-box}  a lo largo de la \emph{National Highway}. Los videos fueron grabados en un clima soleado al mediodía.
 
 	Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
 	en Corea. 

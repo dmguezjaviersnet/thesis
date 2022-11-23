@@ -220,9 +220,10 @@
 
 		Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los clusters se asignaron de 
 		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
-		cantidad de anomalías detecto cada algoritmo (ver tabla \ref{table:3}). También se eliminó del \emph{pipeline} \textbf{G-Zero}
-		,pues se consideró que no detectó suficientes anomalías, se supone que la frecuencia de muestreo a la que se realizaron las capturas
-		fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que el vehículo está en caída libre.
+		cantidad de anomalías que detectó cada algoritmo (ver tabla \ref{table:3}). Además,  se eliminó del \emph{pipeline} a \textbf{G-Zero}
+		,pues se consideró que no detectó suficientes anomalías.  Esto se supone que sea debido a que la frecuencia de muestreo a la que se 
+		realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que 
+		el vehículo está en caída libre.
 
 		\begin{figure}[htb]
 			\centering
@@ -252,7 +253,7 @@
 		metros. Se consideró 10 metros, debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
 		recopilación.\\
 		\indent Para computar la distancia se utilizó la fórmula de \textbf{Haversine}, que se utiliza para calcular la distancia entre dos puntos sobre la
-		superficie de una esfera utilizando coordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene distintos radios, que
+		superficie de una esfera utilizando co obtenidosordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene distintos radios, que
 		van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la distancia entre 2 puntos
 		con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera que se consideró para este
 		cómputo fue de 6371 km.\\
@@ -279,7 +280,7 @@
 		\textbf{sklearn. ensembles} y \textbf{sklearn.neighbors}, que permiten utilizar los métodos de aprendizaje supervisado \textbf{SVM}, \emph
 		{Decision Trees}, regresión logística, \emph{Random Forest} y \textbf{KNN} respectivamente. Para separar los datos en conjunto de entrenamiento
 		y de prueba se utilizó el método \textbf{train\textunderscore test\textunderscore split} del módulo \textbf{sklearn.model\textunderscore
-		selection}.\\
+		selection}. Se tomó como  conjunto de entrenamiento el 70 \% de los datos y como conjunto de prueba el 30\%.\\
 		\indent Del mismo módulo se utilizaron los objetos \textbf {RepeteadStratifiedKFold} y \textbf{GridSearchCV} para realizar validación cruzada y
 		para selección de hiperparámetros respectivamente. La métrica utilizada fue \emph{F1 score}, para esto utilizamos el método \textbf{f1\textunderscore
 		score} del módulo \textbf{sklearn.metrics}. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor configuración
