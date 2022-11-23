@@ -11,8 +11,6 @@ a la región que corresponde a un bache sobre el pavimento de la carretera.  Otr
 para de forma automática sacar características relevantes que permitan entrenar el modelo para que prediga las regiones 
 que son baches dentro de una imagen.
 
-
-
 	\subsection{Detección usando técnicas de procesamiento de imágenes}
 
 		Para detectar baches en la carretera mediante técnicas de procesamiento de imágenes digitales la mayoría de los autores  en la literatura 
@@ -77,13 +75,14 @@ que son baches dentro de una imagen.
 		entrada por entrada, reemplazando cada entrada con la mediana de las entradas vecinas. Este filtro es utilizado para eliminar ruido como grietas o manchas. 
 		A continuación, se restauran los contornos dañados de las regiones del objeto, y las piezas pequeñas se eliminan mediante la operación de \emph{closing}
 		(dilatación y erosión) de un filtro morfológico. Después de la operación de \emph{closing}, las regiones candidatas a bache se extraen utilizando 
-		características como el tamaño, la compacidad, la elipticidad y la linealidad. Además, el refinamiento de las regiones candidatas es necesario para detectar 
-		las regiones correctas que son baches después de obtener las regiones candidatas. Los candidatos iniciales obtenidos usando características pueden no 
-		representar el área total del bache. De esta forma, el refinamiento de las regiones candidatas usando características como la compacidad, el punto 
-		central, y el \emph{convex hull} son necesarios para decicidir si varias regiones candidatas incompletas tales como, sombras, manchas y parches son baches o no.
+		características como el tamaño, la compacidad, la elipticidad y la linealidad. Además, el refinamiento de las regiones candidatas es necesario para
+		detectar las regiones correctas que son baches después de obtener las regiones candidatas. Los candidatos iniciales obtenidos usando características
+		pueden no representar el área total del bache. De esta forma, el refinamiento de las regiones candidatas usando características como la compacidad,
+		el punto central, y el \emph{convex hull} son necesarios para decicidir si varias regiones candidatas incompletas tales como, sombras, manchas y
+		parches son baches o no.
 
-		Por otro lado, Buza et al. ~\brackcite{buza2013pothole} proponen después de la segmentación, eliminar todas las formas lineales  y las regiones y formas 
-		menores que un valor $\delta$ en la imagen. La medida para eliminar toda estas regiones lineales se define por su excentricidad. Todas 
+		Por otro lado, Buza et al. ~\brackcite{buza2013pothole} proponen después de la segmentación, eliminar todas las formas lineales  y las regiones y
+		formas menores que un valor $\delta$ en la imagen. La medida para eliminar toda estas regiones lineales se define por su excentricidad. Todas 
 		las formas que están conectadas al límite de la imagen también son eliminadas. Mediante un algoritmo de agrupamiento spectral extraen 
 		las regiones para representar formas en una imagen a escala de grises. 
 
@@ -393,9 +392,7 @@ que son baches dentro de una imagen.
 		no sean anomalías. Un primer filtro de baja frecuencia para eliminar las componentes introducidas como consecuencia del ruido de fondo en la señal.
 		Un segundo filtro de velocidad para eliminar picos cuando el vehículo está detenido, asociados al evento de tirar la puerta del vehículo. Y por 
 		último, un filtro que remueve las componentes que están por debajo de un umbral prefijado, que se determinó como resultado del análisis estadístico
-		de los datos. En este artículo, los autores llevan a cabo sus pruebas poniendo el dispositivo en varias posiciones en el carro. Esto lo pudieron
-		realizar, debido a que implementaron un método para determinar la orientación del móvil en el espacio utilizando los ángulos de Euler. Tres 
-		parámetros independientes que permiten definir la orientación de un objeto en el espacio a través de una secuencia de rotaciones.
+		de los datos. 
 
 		% Los 3 primeros métodos requieren información acerca de la orientación del eje Z imaginario del dispositivo encargado de recopilar la
 		% información. Para capturar datos preliminares utilizaron un collar \emph{LynxNet} a una frecuencia de 100Hz. Para la evaluación del
@@ -450,15 +447,15 @@ que son baches dentro de una imagen.
 
 	\subsection{Enfoques utilizando aprendizaje de máquinas}
 		\subsubsection{Algoritmos}
-			En la literatura varios autores propusieron dar solución a la detección de anomalías en la carretera utilizando aprendizaje de máquinas.
-			Entre los modelos supervisados más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, 
-			carlos2018evaluation, seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
-				{el2018towards, gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
-				(\textbf{KNN}) ~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN})
-				\brackcite {kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}. \emph{Zheng et al.} \brackcite{zheng2020fused} agregan
-				a este proceso \textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza para determinar similitud entre 2 series temporales que
-				puedan ser obtenidas a distintas velocidades.
-				% Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios
+			En la literatura varios autores propusieron dar solución a la detección de anomalías en la carretera utilizando aprendizaje de máquinas. 
+			Entre los modelos supervisados más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, carlos2018evaluation,
+			seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
+			{el2018towards, gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
+			(\textbf{KNN}) ~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning}. Otros autores utilizan aprendizaje profundo con
+			\emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite {kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}.
+			\emph{Zheng et al.} \brackcite{zheng2020fused} agregan a este proceso \textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza
+			para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades.
+
 		\subsubsection{Selección y extracción de características}
 			Entre los principales características utilizadas en estos modelos de aprendizaje de máquina se encuentra, como era de esperar, el valor 
 			del \textbf{acelerómetro} en los 3 ejes, pues este dato es el más característico de una bache en la carretera. De este se derivan otras
@@ -522,7 +519,10 @@ que son baches dentro de una imagen.
 		datos recopilados tengan sentido, o sea que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación,
 		como plantean \emph{Astarita et al.} \brackcite{astarita2012mobile}. Algunos autores colocaron el dispositivo en el parabrisas \brackcite
 		{pawar2020efficient, seraj2015roads}, en el asiento delantero, en la parte central del asiento trasero del vehículo y en el maletero \brackcite
-		{el2018towards}.
+		{el2018towards}. \emph{Astarita et al.} \brackcite{astarita2012mobile} llevan a cabo sus pruebas poniendo el dispositivo en varias posiciones en
+		el carro. Esto lo pudieron realizar debido a que implementaron un método para determinar la orientación del móvil en el espacio utilizando los
+		ángulos de Euler, que son parámetros independientes que permiten definir la orientación de un objeto en el espacio a través de una secuencia de
+		rotaciones.
 		
 	\subsection{Frecuencia de muestreo}
 		La frecuencia de muestreo es un factor importante, si es muy alta se introduciría ruido innecesario en los datos, y si es muy baja y no se podrá
@@ -560,14 +560,14 @@ que son baches dentro de una imagen.
 
 	\begin{itemize}
 		\item Posición del vehículo del móvil: Algunos fijan el dispositivo en distintas posiciones en el vehículo de forma tal que coincida su orientación
-			con la del vehículo. Pero no muchos de los autores no se plantean el problema de obtener lecturas relevantes sin importar la orientación del
+			con la del vehículo. Pero no muchos de los autores se plantean el problema de obtener lecturas relevantes sin importar la orientación del
 			dispositivo en el vehículo. Lo cual sería una comodidad, pues permitiría facilitar la recolección de datos, incluso por personas ajenas a la
 			investigación.
 
 		\item Purificación de la señal: Muchos de ellos, emplean algún método que le permita eliminar componentes no relevantes de la serie temporal, como
 			el ruido ocasionado por vibraciones ajenas al estado de la carretera, utilizando filtros digitales. Otros realizan un análisis de la frecuencia
-			de la señal con métodos de procesamiento de señales digitales, que les permiten desde producir una señal más acertada hasta la extracción de
-			características que pueden ser representativas del problema, y por tanto, ser utilizadas para el entrenamiento de algoritmos de aprendizaje
+			de la señal con métodos de procesamiento de señales digitales, que les permiten desde producir una señal más acertada, hasta la extracción de
+			características que pueden ser representativas del problema. Estas pueden ser utilizadas luego, para el entrenamiento de algoritmos de aprendizaje
 			de máquinas.
 
 		\item Segmentación de la señal: Gran parte propone utilizar técnicas de ventana deslizante para analizar y detectar
@@ -577,11 +577,11 @@ que son baches dentro de una imagen.
 		\item Geolocalización de la anomalía: Este problema en particular, no muchos de los autores lo tienen en cuenta, pero los que lo hacen, plantean
 			que es prácticamente imposible determinar el lugar exacto donde se encuentra una anomalía, pues el error del \textbf{GPS} lo impide. 
 
-		\item Los métodos de solución: La mayoría utiliza métodos de aprendizaje de máquinas, sobre todo \textbf{SVM}. Pocos del resto, prueban con 
-			otros algoritmos de aprendizaje de máquinas y realizan una comparación exhaustiva.
+		\item Los métodos de solución: La mayoría utiliza métodos de aprendizaje supervisado, sobre todo \textbf{SVM}. No muchos del resto de autores
+			prueban con otros algoritmos y realizan una comparación exhaustiva.
 
-		\item Frecuencia de muestreo y sensores: La mayoría de los autores consideran frecuencias de muestreo fijas, lo que puede ocasionar que se sobremuestree o 
-			submuestree. Muy pocos incluyen el giroscopio como sensor a la hora de generar la información.
+		\item Frecuencia de muestreo y sensores: La mayoría de los autores consideran frecuencias de muestreo fijas, lo que puede ocasionar que se
+			sobremuestree o submuestree. Muy pocos incluyen el giroscopio como sensor a la hora del muestreo la información.
 	\end{itemize}
 
 
