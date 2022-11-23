@@ -379,7 +379,7 @@ que son baches dentro de una imagen.
 		\begin{itemize}
 			\item  \emph{\textbf {Z-Thresh}}: Establecer unos umbrales para los valores del acelerómetro en el eje Z en un instante de tiempo.\\
 			\item \emph{\textbf {Z-DIFF}}: Establecer unos umbrales para la diferencia entre 2 valores consecutivos del acelerómetro.\\
-			\item \emph{\textbf {STDEV(Z)}}: Establecer unos umbrales para la desviación estándar de los valorres del acelerómetro en
+			\item \emph{\textbf {STDEV(Z)}}: Establecer unos umbrales para la desviación estándar de los valores del acelerómetro en
 				el eje Z durante un intervalo de tiempo.\\ 
 			\item \emph{\textbf {G-ZERO}}: Este método se basa en la idea de que cuando el vehículo interactúa con alguna anomalía, existe un
 				instante de tiempo donde las lecturas del acelerómetro en los 3 ejes son cercanas a 0 y menores que cierto umbral prefijado. Lo 
@@ -450,15 +450,15 @@ que son baches dentro de una imagen.
 
 	\subsection{Enfoques utilizando aprendizaje de máquinas}
 		\subsubsection{Algoritmos}
-			Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios. Entre los modelos supervisados
-			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, carlos2018evaluation,
-				seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
+			En la literatura varios autores propusieron dar solución a la detección de anomalías en la carretera utilizando aprendizaje de máquinas.
+			Entre los modelos supervisados más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, 
+			carlos2018evaluation, seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
 				{el2018towards, gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
 				(\textbf{KNN}) ~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning} y \emph{Artificial Neural Networks}(\textbf{ANN})
 				\brackcite {kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}. \emph{Zheng et al.} \brackcite{zheng2020fused} agregan
 				a este proceso \textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza para determinar similitud entre 2 series temporales que
 				puedan ser obtenidas a distintas velocidades.
-
+				% Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios
 		\subsubsection{Selección y extracción de características}
 			Entre los principales características utilizadas en estos modelos de aprendizaje de máquina se encuentra, como era de esperar, el valor 
 			del \textbf{acelerómetro} en los 3 ejes, pues este dato es el más característico de una bache en la carretera. De este se derivan otras
