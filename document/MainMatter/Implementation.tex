@@ -185,62 +185,6 @@
 		implementados en la biblioteca \textbf{sklearn} de \textbf{Python}, específicamente en los módulos \textbf{sklearn.cluster}, donde se encuentran
 		\textbf{DBSCAN} y \textbf{OPTICS}, y en \textbf{sklearn.svm}, donde se encuentra \textbf{One Class SVM}.\\
 		\indent De esta forma, con cada uno de estos 6 métodos, se obtenía un \textbf{DataFrame} con los datos seleccionados como anomalías.
-		Los métodos no supervisados que mejor rendimiento mostraron en general fueron \textbf{DBSCAN} y \textbf{One Class SVM} como se muestra en 
-		la figura \ref{table:1}. En la tabla \ref{table:2}, se puede apreciar la media de los coeficientes de Silhouete entre todas las rutas.
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{llll}
-			\toprule
-			  Ruta\textbackslash Algoritmo &    DBSCAN &     OCSVM &     OPTICS \\
-			\midrule
-			  Ruta1 &  0.502849 &  0.533472 &  -0.245268 \\
-			  Ruta2 &  0.659878 &  0.533707 &  -0.271357 \\
-			  Ruta3 &  0.620526 &  0.509438 &  -0.238291 \\
-			\bottomrule
-			\end{tabular}
-			\caption{Puntuación de Silhouete de cada algoritmo de detección de anomalías no-supervisado en cada ruta}
-			\label{table:1}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
-			\toprule
-			   Coeficiente de Silhouete medio & Algoritmo \\
-			\midrule
-			   0.594417 &    DBSCAN \\
-			   0.525539 &     OCSVM \\
-			  -0.251639 &    OPTICS \\
-			\bottomrule
-			\end{tabular}
-			\caption{Puntuación de Silhouete media de cada algoritmo de detección de anomalías no-supervisado}
-			\label{table:2}
-		\end{figure}
-
-		Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los clusters se asignaron de 
-		forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
-		cantidad de anomalías que detectó cada algoritmo (ver tabla \ref{table:3}). Además, se eliminó del \emph{pipeline} a \textbf{G-Zero}
-		,pues se consideró que no detectó suficientes anomalías.  Esto se supone que sea debido a que la frecuencia de muestreo a la que se 
-		realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que 
-		el vehículo está en caída libre.
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
-				\toprule
-				 Algoritmo &  Número de Anomalías \\
-				\midrule
-				    DBSCAN &                  134 \\
-				     OCSVM &                  446 \\
-				    z-diff &                  181 \\
-				   z-tresh &                   95 \\
-				    g\_zero &                    0 \\
-				\bottomrule
-			\end{tabular}
-			\caption{Número de anomalías detectadas por cada algoritmo}
-			\label{table:3}
-		\end{figure}
 
 		Los hiperparámetros de los métodos de detección de anomalías que se probaron para determinar la mejor configuración se muestran en las tablas 
 		\ref{table:4}, \ref{table:5} y \ref{table:6}.
@@ -265,10 +209,8 @@
 		la velocidad, la latitud, la longitud y la precisión del \textbf{GPS}.\\
 		\indent El clasificador que se utilizó para estimar dichas características en el proceso de selección fue un \emph{Random Forest}, y fue
 		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la bibliotea \textbf{sklearn}. Cada vez que se corrían los métodos de selección
-		de características se almacenó la información de que características se escogieron, de esta forma, luego se pudo analizar en general que
-		características fueron más escogidas(ver figura \ref{table:13}). A dichos métodos se les pasaba el número de características a seleccionar. Las 
-		cantidades de características con que se probaron fueron: 3, 6 y 9.\\
-		% ------------ Poner tabla de características más utilizadas ---------------- %
+		de características se almacenó la información de que características se escogieron. A dichos métodos se les pasaba el número de
+		características a seleccionar. Las cantidades de características con que se probaron fueron: 3, 6 y 9.\\
 
 	\subsection{Detalles de la selección de modelo}
 		Una vez el algoritmo de selección de características terminaba, se generaba un nuevo \textbf{DataFrame} con esas únicas columnas como datos,
@@ -280,7 +222,7 @@
 		\textbf{sklearn. ensembles} y \textbf{sklearn.neighbors}, que permiten utilizar los métodos de aprendizaje supervisado \textbf{SVM}, \emph
 		{Decision Trees}, regresión logística, \emph{Random Forest} y \textbf{KNN} respectivamente. Para separar los datos en conjunto de entrenamiento
 		y de prueba se utilizó el método \textbf{train\textunderscore test\textunderscore split} del módulo \textbf{sklearn.model\textunderscore
-		selection}. Se tomó como  conjunto de entrenamiento el 70 \% de los datos y como conjunto de prueba el 30\%.\\
+		selection}. Se tomó como  conjunto de entrenamiento el 70\% de los datos y como conjunto de prueba el 30\%.\\
 		\indent Del mismo módulo se utilizaron los objetos \textbf {RepeteadStratifiedKFold} y \textbf{GridSearchCV} para realizar validación cruzada y
 		para selección de hiperparámetros respectivamente. La métrica utilizada fue \emph{F1 score}, para esto utilizamos el método \textbf{f1\textunderscore
 		score} del módulo \textbf{sklearn.metrics}. De esta forma, para cada uno de los 5 métodos utilizados, se pudo determinar la mejor configuración
@@ -291,3 +233,67 @@
 			Por cada uno de los 5 métodos utilizados, se probaron distintos conjuntos de hiperparámetros(ver figuras \ref{table:7}, \ref{table:8},
 			\ref{table:9}, \ref{table:10}, \ref{table:11}. Mediante el  \textbf{GridSearchCV} se buscó la mejor combinación de hiperparámetros 
 			para cada uno de estos métodos.
+
+\section{Resultados}
+	En la primera fase del \emph{pipeline}, la detección de anomalías, los métodos no supervisados que mejor rendimiento mostraron en general fueron
+	\textbf{DBSCAN} y \textbf{One Class SVM} como se muestra en la figura \ref{table:1}. En la tabla \ref{table:2}, se pueden observar la media
+	de los coeficientes de Silhouete entre todas las rutas.
+
+	\begin{figure}[htb]
+		\centering
+		\begin{tabular}{llll}
+		\toprule
+		  Ruta\textbackslash Algoritmo &    DBSCAN &     OCSVM &     OPTICS \\
+		\midrule
+		  Ruta1 &  0.502849 &  0.533472 &  -0.245268 \\
+		  Ruta2 &  0.659878 &  0.533707 &  -0.271357 \\
+		  Ruta3 &  0.620526 &  0.509438 &  -0.238291 \\
+		\bottomrule
+		\end{tabular}
+		\caption{Puntuación de Silhouete de cada algoritmo de detección de anomalías no-supervisado en cada ruta}
+		\label{table:1}
+	\end{figure}
+
+	\begin{figure}[htb]
+		\centering
+		\begin{tabular}{ll}
+		\toprule
+		   Coeficiente de Silhouete medio & Algoritmo \\
+		\midrule
+		   0.594417 &    DBSCAN \\
+		   0.525539 &     OCSVM \\
+		  -0.251639 &    OPTICS \\
+		\bottomrule
+		\end{tabular}
+		\caption{Puntuación de Silhouete media de cada algoritmo de detección de anomalías no-supervisado}
+		\label{table:2}
+	\end{figure}
+
+	Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los \emph{clusters} se asignaron de 
+	forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
+	cantidad de anomalías que detectó cada algoritmo (ver tabla \ref{table:3}). Además, se eliminó del \emph{pipeline} a \textbf{G-Zero},
+	pues se consideró que no detectó suficientes anomalías. Esto se supone que sea debido a que la frecuencia de muestreo a la que se 
+	realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que 
+	el vehículo está en caída libre.
+
+	\begin{figure}[htb]
+		\centering
+		\begin{tabular}{ll}
+			\toprule
+			 Algoritmo &  Número de Anomalías \\
+			\midrule
+				DBSCAN &                  134 \\
+				 OCSVM &                  446 \\
+				z-diff &                  181 \\
+			   z-tresh &                   95 \\
+				g\_zero &                    0 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Número de anomalías detectadas por cada algoritmo}
+		\label{table:3}
+	\end{figure}
+
+	En la segunda fase del \emph{pipeline}, la selección de características, se pudo apreciar en la tabla \ref{table:13} que los features más
+	escogidos por los algoritmos de selección de características fueron fulanito, menganito, ciclanito, etc. 
+
+	Finalmente en la fase final del \emph{pipeline}, los modelos supervisados, se pudo observar que ...
