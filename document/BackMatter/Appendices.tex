@@ -181,42 +181,38 @@
 			\bottomrule
 			\end{tabular}
 		\end{table}
-	
 
-	\section*{Las diez características más seleccionadas}
-	
-	\begin{table}[htb]
-		\centering
-		\caption{Top 10 de las carácterísticas más seleccionadas para la clasificación}
-		\label{table:12}
-			\begin{tabular}{lc}
-			\toprule
-					Feature &  Count \\
-			\midrule
-					  X / Z &    203 \\
-				   SpeedvsZ &    185 \\
-			   MeanDevGyroZ &    180 \\
-			 MedianDevGyroZ &    164 \\
-				  MinZratio &    145 \\
-					 Z Gyro &    136 \\
-					 Y Gyro &    132 \\
-			MedianDevAccelY &    132 \\
-					 X Gyro &    125 \\
-			 MedianDevGyroY &    119 \\
-			\bottomrule
-			\end{tabular}
-	\end{table}
-	
 	\newpage
-	\section*{Tablas de resultados}
-		
+	\section*{Las características más seleccionadas}
+		\begin{table}[htb]
+			\centering
+			\caption{Las 10 características más seleccionadas}
+			\label{table:12}
+				\begin{tabular}{lc}
+				\toprule
+						Feature &  Count \\
+				\midrule
+						  X / Z &    203 \\
+					   SpeedvsZ &    185 \\
+				   MeanDevGyroZ &    180 \\
+				 MedianDevGyroZ &    164 \\
+					  MinZratio &    145 \\
+						 Z Gyro &    136 \\
+						 Y Gyro &    132 \\
+				MedianDevAccelY &    132 \\
+						 X Gyro &    125 \\
+				 MedianDevGyroY &    119 \\
+				\bottomrule
+				\end{tabular}
+		\end{table}
+	
+	\section*{Mejores resultados e hiperparámetros seleccionados}
 		\begin{table}[htb]
 			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{KNN}}
 			\label{table:17}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                         z\_thresh \\
 				Método de selección de características &                               backward\_selection \\
 						 Características seleccionadas & \{MeanDevAccelY, MedianDevAccelZ,    \\
@@ -230,8 +226,8 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
-				\begin{tabular}{lc}
+
+			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &    Valor \\
 				\midrule
@@ -240,7 +236,7 @@
 				   n\_neighbors &        3 \\
 					   weights & distance \\
 				\bottomrule
-				\end{tabular}
+			\end{tabular}
 			
 			
 		\end{table}
@@ -251,7 +247,6 @@
 			\label{table:18}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                     z\_diff \\
 				Método de selección de características &                         backward\_selection \\
 						 Características seleccionadas & \{MeanDevGyroX, MeanDevGyroY, \\
@@ -265,7 +260,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &     Valor \\
@@ -285,7 +280,6 @@
 			\centering
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 				      Método de detección de anomalías &                                 dbscan \\
 				Método de selección de características &                     backward\_selection \\
 				         Características seleccionadas & \{X / Z, MedianDevAccelY,               \\
@@ -299,7 +293,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &    Valor \\
@@ -320,7 +314,6 @@
 			\label{table:20}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & 					\{Y Accel, X Gyro, Z Gyro, X / Z, \\
@@ -335,7 +328,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &    Valor \\
@@ -355,7 +348,6 @@
 			\label{table:21}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                          z\_thresh \\
 				Método de selección de características &                 forward\_selection \\
 						 Características seleccionadas & \{Y Accel, Z Gyro, MedianDevGyroX \} \\
@@ -368,7 +360,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -388,7 +380,6 @@
 			\label{table:22}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                   z\_diff \\
 				Método de selección de características &                    recursive\_elimination \\
 						 Características seleccionadas & \{SpeedvsZ, MedianDevGyroY, MeanDevGyroZ\}\\
@@ -401,7 +392,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -421,7 +412,6 @@
 			\label{table:23}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                  forward\_selection \\
 						 Características seleccionadas & \{X Accel, Z Gyro, X / Z, MinZratio, SpeedvsZ, \\
@@ -436,7 +426,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &   Valor \\
@@ -456,7 +446,6 @@
 			\label{table:24}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Gyro, X / Z, MaxZratio, MinZratio, \\
@@ -470,7 +459,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &   Valor \\
@@ -490,7 +479,6 @@
 			\centering
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                         z\_thresh \\
 				Método de selección de características &                               backward\_selection  \\
 						 Características seleccionadas & \{MeanDevAccelY, MedianDevAccelZ,  \\
@@ -504,7 +492,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -524,7 +512,6 @@
 			\label{table:26}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                             z\_diff \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Gyro, Z Gyro, SpeedvsZ, MeanDevGyroX, \\
@@ -538,7 +525,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 			\toprule
 			Hiperparámetro & Valor \\
@@ -559,7 +546,6 @@
 
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                  forward\_selection \\
 						 Características seleccionadas & \{X Accel, X Gyro, X / Z, MinZratio,   \\
@@ -573,7 +559,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -593,7 +579,6 @@
 			\label{table:28}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Gyro, X / Z, MinZratio, SpeedvsZ,   \\ 
@@ -607,7 +592,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -627,7 +612,6 @@
 			\label{table:29}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                           z\_thresh \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{MedianDevAccelX, MeanDevAccelY, \\ 
@@ -642,7 +626,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &     Valor \\
@@ -663,7 +647,6 @@
 			\label{table:30}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                              z\_diff \\
 				Método de selección de características &               recursive\_elimination \\
 						 Características seleccionadas & \{Y Gyro, MinZratio, MedianDevGyroZ\} \\
@@ -676,7 +659,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &  Valor \\
@@ -697,7 +680,6 @@
 			\label{table:31}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{X Accel, Y Accel, Y Gyro, Z Gyro, X / Z, \\ 
@@ -712,7 +694,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &     Valor \\
@@ -733,7 +715,6 @@
 			\label{table:32}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Accel, X Gyro, Y Gyro, Z Gyro, \\ 
@@ -748,7 +729,7 @@
 				\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &  Valor \\
@@ -762,14 +743,12 @@
 				\end{tabular}
 			
 		\end{table}
-		Configuración de hiperparámetros usada:
 		\begin{table}[htb]
 			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Random Forest}}
 			\label{table:33}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                           z\_thresh \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{X Accel, Y Gyro, X / Z, MaxZratio, \\ 
@@ -784,7 +763,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -804,7 +783,6 @@
 			\label{table:34}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 				      Método de detección de anomalías &                               z\_diff \\
 				Método de selección de características &                    forward\_selection \\
 				         Características seleccionadas & \{X Gyro, MeanDevGyroY, MeanDevGyroZ\} \\
@@ -817,7 +795,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro &   Valor \\
@@ -838,7 +816,6 @@
 			\label{table:35}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Accel, Z Accel, X / Z, MinZratio, \\
@@ -852,7 +829,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
@@ -873,7 +850,6 @@
 			\label{table:36}
 			\begin{tabular}{lc}
 				\toprule
-				\midrule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Accel, X Gyro, \\
@@ -888,7 +864,7 @@
 			\end{tabular}
 			\newline
 			\newline
-			Configuración de hiperparámetros usada:
+
 			\begin{tabular}{lc}
 				\toprule
 				Hiperparámetro & Valor \\
