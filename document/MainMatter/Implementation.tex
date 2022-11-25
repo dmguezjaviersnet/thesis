@@ -143,18 +143,18 @@
 
 	\subsection{Detalles acerca de algunos de los baches marcados}
 		En las recorridos realizados hay una gran variedad de anomalías que son baches, también hay muchas anomalías, que por sus características,
-		son idénticas a un bache, como por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:13}), que en condiciones normales no 
-		tendría las mismas características (ver \ref{fig:14}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
+		son idénticas a un bache, como por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:14}), que en condiciones normales no 
+		tendría las mismas características (ver \ref{fig:15}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
 		sensores es muy probable que hayan sido similares a las de un bache.
 
 		De igual forma, algunas otras tapas de alcantarillas no tiene las características que verdaderamente le corresponde como se puede ver en la
-		figura \ref{fig:15}.
+		figura \ref{fig:16}.
 
 		Existen también otros objetos en la vía que no tienen las características reales y que pueden ocasionar las lecturas de los sensores sean similares
-		a las de un bache como se muestra en la figura \ref{fig:16}.
+		a las de un bache como se muestra en la figura \ref{fig:17}.
 
 		Estas anomalías que se consideraron que podían generar lecturas	similares a las de un bache se etiqutaron como tal, al igual que las anomalías que se 
-		pueden apreciar en las figuras \ref{fig:17} y \ref{fig:18}, que sí son realmente baches.
+		pueden apreciar en las figuras \ref{fig:18} y \ref{fig:19}, que sí son realmente baches.
 
 \section{Los modelos de aprendizaje de máquinas}
 	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo
@@ -282,15 +282,15 @@
 		\centering
 		\caption{Número de anomalías detectadas por cada algoritmo}
 		\label{table:3}
-		\begin{tabular}{ll}
+		\begin{tabular}{lc}
 			\toprule
 			 Algoritmo &  Número de Anomalías \\
 			\midrule
 				DBSCAN &                  134 \\
 				 OCSVM &                  446 \\
 				Z-Diff &                  181 \\
-			   Z-Tresh &                   95 \\
-				G\_zero &                    0 \\
+			   Z-Thresh &                   95 \\
+				G-Zero &                    0 \\
 			\bottomrule
 		\end{tabular}
 		
@@ -313,9 +313,12 @@
 	\emph{pipeline} con la que se obtuvo este resultado se puede observar en la tabla \ref{fig:}.
 	\newpage
 
-	\begin{table}
+	En las tablas \ref{table:13}-\ref{table:16} se pueden apreciar los resultados obtenidos para cada una de las métricas, por cada algoritmo de detección de 
+	anomalías utilizado.
+
+	\begin{table}[htb]
 		\centering
-		\caption{Resultados usando Z-Thresh como método de detección de anomalías}
+		\caption{Resultados usando \textbf{Z-Thresh} como método de detección de anomalías}
 		\label{table:13}
 		\begin{tabular}{lcccc}
 		\toprule
@@ -332,7 +335,7 @@
 
 	\begin{table}[htb]
 		\centering
-		\caption{Resultados usando Z-Diff como método de detección de anomalías}
+		\caption{Resultados usando \textbf{Z-Diff} como método de detección de anomalías}
 		\label{table:14}
 		\begin{tabular}{lcccc}
 		\toprule
@@ -347,9 +350,9 @@
 		\end{tabular}
 	\end{table}
 
-	\begin{table}
+	\begin{table}[htb]
 		\centering
-		\caption{Resultados usando DBSCAN como método de detección de anomalías}
+		\caption{Resultados usando \textbf{DBSCAN} como método de detección de anomalías}
 		\label{table:15}
 		\begin{tabular}{lcccc}
 		\toprule
@@ -364,9 +367,12 @@
 		\end{tabular}
 	\end{table}
 
-	\begin{table}
+	Las configuraciones con las que se alcanzaron estas puntuaciones se pueden ver en detalle en las las tablas \ref{table:17}-\ref{table:36}.
+
+	\newpage
+	\begin{table}[htb]
 		\centering
-		\caption{Resultados usando One Class SVM como método de detección de anomalías}
+		\caption{Resultados usando \textbf{One Class SVM} como método de detección de anomalías}
 		\label{table:16}
 		\begin{tabular}{lcccc}
 		\toprule
@@ -380,3 +386,14 @@
 		\bottomrule
 		\end{tabular}
 	\end{table}
+
+	Acá en la matriz de confusión del modelo que arrojó mejor \emph{F1 score} (ver figura \ref{fig:13}), se puede apreciar que el porcentaje de falsos
+	negativos es bien bajo, lo que indica que este modelo falló en clasficar muy pocos baches como tales. A pesar de esto, se considera que estas pruebas 
+	deben ser repetidas con un conjunto de datos mucho más grande para tener un resultado más relevante y contundente.
+
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.6]{Graphics/best_model_confusion_matrix.png}
+		\caption{Matriz de confusión del modelo que mejor \emph{F1 score} obtuvo}
+		\label{fig:13}
+	\end{figure}
