@@ -233,7 +233,7 @@
 			Configuración de hiperparámetros usada:
 				\begin{tabular}{lc}
 				\toprule
-				Hyperparámetro &    Valor \\
+				Hiperparámetro &    Valor \\
 				\midrule
 					 algorithm &  kd\_tree \\
 					 leaf\_size &       50 \\
@@ -262,13 +262,13 @@
 												Recall &                                     0.4375 \\
 											  Accuracy &                                   0.745455 \\
 				\bottomrule
-				\end{tabular}
+			\end{tabular}
 			\newline
 			\newline
 			Configuración de hiperparámetros usada:
 			\begin{tabular}{lc}
 				\toprule
-				Hyperparámetro &     Valor \\
+				Hiperparámetro &     Valor \\
 				\midrule
 					 algorithm & ball\_tree \\
 					 leaf\_size &        40 \\
@@ -279,576 +279,627 @@
 			
 		\end{table}
 
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  Outliers\_method &                                   dbscan \\
-					 Feature\_selector &                        forward\_selection \\
-				Features\_selected\_set & \{X / Z, MedianDevAccelY, MedianDevGyroZ\} \\
-								Model &                                      KNN \\
-						F1\_score &                                 0.521739 \\
-					   Precision &                                      0.6 \\
-						  Recall &                                 0.461538 \\
-						Accuracy &                                 0.731707 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &     Value \\
-				\midrule
-				  algorithm & ball\_tree \\
-				  leaf\_size &        30 \\
-				n\_neighbors &         3 \\
-					weights &  distance \\
-				\bottomrule
-			\end{tabular}
+		\begin{table}[htb]
 			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{KNN}}
 			\label{table:19}
-		\end{figure}
-
-		\begin{figure}[htb]
 			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                  ocsvm \\
-					 feature\_selector &                      forward\_selection \\
-				features\_selected\_set & \{X Gyro, MeanDevAccelY, MeanDevAccelZ\} \\
-								Model &                                    KNN \\
-						F1\_score &                               0.327273 \\
-					   Precision &                               0.409091 \\
-						  Recall &                               0.272727 \\
-						Accuracy &                               0.723881 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &     Value \\
 				\midrule
-				  algorithm & ball\_tree \\
-				  leaf\_size &        30 \\
-				n\_neighbors &         3 \\
-					weights &  distance \\
+				      Método de detección de anomalías &                                 dbscan \\
+				Método de selección de características &                     backward\_selection \\
+				         Características seleccionadas & \{X / Z, MedianDevAccelY,               \\
+						 							   &                   MeanDevGyroZ\} \\
+				                                modelo &                                    KNN \\
+				                              F1 score &                                    0.6 \\
+				                             Precision &                                    0.6 \\
+				                                Recall &                                    0.6 \\
+				                              Accuracy &                               0.707317 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &    Valor \\
+				\midrule
+					 algorithm &  kd\_tree \\
+					 leaf\_size &       50 \\
+				   n\_neighbors &        3 \\
+					   weights & distance \\
+				\bottomrule
+			\end{tabular}
+			
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{KNN}}
 			\label{table:20}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                           z\_thresh \\
-					 feature\_selector &                              recursive\_elimination \\
-					 features\_selected\_set & \{Y Gyro, X / Z, MaxZratio, MinZratio, SpeedvsZ, MeanDevGyroX\} \\
-								Model &                                      Decision Tree \\
-						F1\_score &                                           0.363636 \\
-					   Precision &                                               0.25 \\
-						  Recall &                                           0.666667 \\
-						Accuracy &                                           0.517241 \\
+				\midrule
+					  Método de detección de anomalías &                                              ocsvm \\
+				Método de selección de características &                                 backward\_selection \\
+						 Características seleccionadas & 					\{Y Accel, X Gyro, Z Gyro, X / Z, \\
+						 							   &	MeanDevAccelZ, MedianDevGyroX, MedianDevGyroY,   \\
+													   &	MeanDevGyroZ, MedianDevGyroZ\} \\
+												modelo &                                                KNN \\
+											  F1 score &                                            0.42623 \\
+											 Precision &                                           0.565217 \\
+												Recall &                                           0.342105 \\
+											  Accuracy &                                           0.738806 \\
 				\bottomrule
 			\end{tabular}
 			\newline
 			\newline
-
-			\begin{tabular}{ll}
-			\toprule
-			 Hyperparams &   Value \\
-			\midrule
-			   criterion & entropy \\
-			   max\_depth &    None \\
-			max\_features &    log2 \\
-				splitter &    best \\
-			\bottomrule
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &    Valor \\
+				\midrule
+					 algorithm &  kd\_tree \\
+					 leaf\_size &       50 \\
+				   n\_neighbors &        3 \\
+					   weights & distance \\
+				\bottomrule
 			\end{tabular}
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \emph{Decision Tree}}
+			
+		\end{table}
+	
+		\begin{figure}[htb]
+			\centering
+			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{\emph{Decision Tree}}}
 			\label{table:21}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                          z\_thresh \\
+				Método de selección de características &                 forward\_selection \\
+						 Características seleccionadas & \{Y Accel, Z Gyro, MedianDevGyroX \} \\
+												modelo &                     Decision Tree \\
+											  F1 score &                               0.4 \\
+											 Precision &                          0.363636 \\
+												Recall &                          0.444444 \\
+											  Accuracy &                          0.586207 \\
+				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+					 criterion &  gini \\
+					 max\_depth &  None \\
+				  max\_features &  log2 \\
+					  splitter &  best \\
+				\bottomrule
+			\end{tabular}
+			
 		\end{figure}
 
-		\begin{figure}[htb]
+		\begin{table}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                                    z\_diff \\
-					 feature\_selector &                         forward\_selection \\
-				features\_selected\_set & \{MinZratio, MedianDevGyroY, MeanDevGyroZ\} \\
-								Model &                             Decision Tree \\
-						F1\_score &                                  0.333333 \\
-					   Precision &                                  0.357143 \\
-						  Recall &                                    0.3125 \\
-						Accuracy &                                  0.636364 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams &   Value \\
-				\midrule
-				   criterion & entropy \\
-				   max\_depth &    None \\
-				max\_features &    None \\
-					splitter &    best \\
-				\bottomrule
-			\end{tabular}
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \emph{Decision Tree}}
+			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{\emph{Decision Tree}}}
 			\label{table:22}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                               dbscan \\
-					 feature\_selector &                recursive\_elimination \\
-				features\_selected\_set & \{X / Z, MeanDevAccelY, MeanDevGyroY\} \\
-								Model &                        Decision Tree \\
-						F1\_score &                             0.551724 \\
-					   Precision &                                  0.5 \\
-						  Recall &                             0.615385 \\
-						Accuracy &                             0.682927 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams &   Value \\
 				\midrule
-				   criterion & entropy \\
-				   max\_depth &    None \\
-				max\_features &    None \\
-					splitter &    best \\
+					  Método de detección de anomalías &                                   z\_diff \\
+				Método de selección de características &                    recursive\_elimination \\
+						 Características seleccionadas & \{SpeedvsZ, MedianDevGyroY, MeanDevGyroZ\}\\
+												modelo &                            Decision Tree \\
+											  F1 score &                                      0.5 \\
+											 Precision &                                 0.392857 \\
+												Recall &                                   0.6875 \\
+											  Accuracy &                                      0.6 \\
+				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+					 criterion &  gini \\
+					 max\_depth &  None \\
+				  max\_features &  None \\
+					  splitter &  best \\
 				\bottomrule
 			\end{tabular}
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \emph{Decision Tree}}
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
+			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{\emph{Decision Tree}}}
 			\label{table:23}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                              ocsvm \\
-					 feature\_selector &                              recursive\_elimination \\
-				features\_selected\_set & \{Y Accel, X Gyro, Y Gyro, X / Z, MinZratio, SpeedvsZ \\
-									{} & MeanDevAccelX, MeanDevAccelY, MeanDevGyroX\} \\
-								Model &                                      Decision Tree \\
-						F1\_score &                                           0.492308 \\
-					   Precision &                                                0.5 \\
-						  Recall &                                           0.484848 \\
-						Accuracy &                                           0.753731 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams &   Value \\
 				\midrule
-				   criterion & entropy \\
-				   max\_depth &    None \\
-				max\_features &    None \\
-					splitter &    best \\
+					  Método de detección de anomalías &                                             dbscan \\
+				Método de selección de características &                                  forward\_selection \\
+						 Características seleccionadas & \{X Accel, Z Gyro, X / Z, MinZratio, SpeedvsZ, \\
+						 							   &   MeanDevAccelX, MeanDevAccelY, MedianDevAccelY, \\
+													   &                                    MeanDevGyroZ \} \\
+												modelo &                                      Decision Tree \\
+											  F1 score &                                           0.628571 \\
+											 Precision &                                               0.55 \\
+												Recall &                                           0.733333 \\
+											  Accuracy &                                           0.682927 \\
 				\bottomrule
 			\end{tabular}
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \emph{Decision Tree}}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &   Valor \\
+				\midrule
+					 criterion & entropy \\
+					 max\_depth &    None \\
+				  max\_features &    log2 \\
+					  splitter &    best \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
+			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{\emph{Decision Tree}}}
 			\label{table:24}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                   z\_thresh \\
-					 feature\_selector &                          forward\_selection \\
-				features\_selected\_set & \{Y Accel, MedianDevAccelX, MedianDevGyroX\} \\
-								Model &                                        SVM \\
-						F1\_score &                                       0.25 \\
-					   Precision &                                        0.2 \\
-						  Recall &                                   0.333333 \\
-						Accuracy &                                   0.586207 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams & Value \\
 				\midrule
-						  C &  1000 \\
-					  gamma &  0.01 \\
-					 kernel &   rbf \\
-				probability &  true \\
+					  Método de detección de anomalías &                                              ocsvm \\
+				Método de selección de características &                              recursive\_elimination \\
+						 Características seleccionadas & \{Y Gyro, X / Z, MaxZratio, MinZratio, \\
+						 							   &   SpeedvsZ,  MeanDevAccelY \}\\
+												modelo &                                      Decision Tree \\
+											  F1 score &                                           0.394366 \\
+											 Precision &                                           0.424242 \\
+												Recall &                                           0.368421 \\
+											  Accuracy &                                           0.679104 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &   Valor \\
+				\midrule
+					 criterion & entropy \\
+					 max\_depth &    None \\
+				  max\_features &    sqrt \\
+					  splitter &    best \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+
+		\begin{table}[htb]
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{SVM}}
 			\label{table:25}
-		\end{figure}
-
-		\begin{figure}[htb]
 			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                            z\_diff \\
-					 feature\_selector &                 forward\_selection \\
-				features\_selected\_set & \{Z Accel, SpeedvsZ, MeanDevGyroZ\} \\
-								Model &                               SVM \\
-						F1\_score &                          0.222222 \\
-					   Precision &                          0.272727 \\
-						  Recall &                            0.1875 \\
-						Accuracy &                          0.618182 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams & Value \\
 				\midrule
-						  C &  1000 \\
-					  gamma &  0.01 \\
-					 kernel &   rbf \\
-				probability &  true \\
+					  Método de detección de anomalías &                                         z\_thresh \\
+				Método de selección de características &                               backward\_selection  \\
+						 Características seleccionadas & \{MeanDevAccelY, MedianDevAccelZ,  \\
+						 							   &                                MedianDevGyroY\}  \\
+												modelo &                                              SVM  \\
+											  F1 score &                                         0.470588 \\
+											 Precision &                                              0.5 \\
+												Recall &                                         0.444444 \\
+											  Accuracy &                                         0.689655 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+							 C &  1000 \\
+						 gamma &   0.1 \\
+						kernel &   rbf \\
+				   probability &  true \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{SVM}}
 			\label{table:26}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                    dbscan \\
-					 feature\_selector &                         forward\_selection \\
-				features\_selected\_set & \{SpeedvsZ, MedianDevAccelY, MeanDevGyroY\} \\
-								Model &                                       SVM \\
-						F1\_score &                                       0.5 \\
-					   Precision &                                  0.545455 \\
-						  Recall &                                  0.461538 \\
-						Accuracy &                                  0.707317 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams & Value \\
 				\midrule
-						  C &    10 \\
-					  gamma &   0.1 \\
-					 kernel &   rbf \\
-				probability &  true \\
+					  Método de detección de anomalías &                                             z\_diff \\
+				Método de selección de características &                                 backward\_selection \\
+						 Características seleccionadas & \{X Gyro, Z Gyro, SpeedvsZ, MeanDevGyroX, \\
+						 							   &      MeanDevGyroY, MedianDevGyroY \} \\
+												modelo &                                                SVM \\
+											  F1 score &                                                0.5 \\
+											 Precision &                                                0.5 \\
+												Recall &                                                0.5 \\
+											  Accuracy &                                           0.709091 \\
 				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+			\toprule
+			Hiperparámetro & Valor \\
+			\midrule
+						 C &  1000 \\
+					 gamma &   0.1 \\
+					kernel &   rbf \\
+			   probability &  true \\
+			\bottomrule
 			\end{tabular}
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{SVM}}
 			\label{table:27}
-		\end{figure}
+
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                                             dbscan \\
+				Método de selección de características &                                  forward\_selection \\
+						 Características seleccionadas & \{X Accel, X Gyro, X / Z, MinZratio,   \\
+						 							   &  MinZratio, MedianDevAccelY, MeanDevGyroZ \} \\
+												modelo &                                                SVM \\
+											  F1 score &                                           0.684211 \\
+											 Precision &                                           0.565217 \\
+												Recall &                                           0.866667 \\
+											  Accuracy &                                           0.707317 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+							 C &    50 \\
+						 gamma &   0.1 \\
+						kernel &   rbf \\
+				   probability &  true \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
 
 		\begin{figure}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                                ocsvm \\
-					 feature\_selector &                    forward\_selection \\
-				features\_selected\_set & \{X / Z, MeanDevAccelZ, MeanDevGyroX\} \\
-								Model &                                  SVM \\
-						F1\_score &                             0.285714 \\
-					   Precision &                             0.347826 \\
-						  Recall &                             0.242424 \\
-						Accuracy &                             0.701493 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams & Value \\
-				\midrule
-						  C &  1000 \\
-					  gamma &  0.01 \\
-					 kernel &   rbf \\
-				probability &  true \\
-				\bottomrule
-			\end{tabular}
 			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{SVM}}
 			\label{table:28}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                                              ocsvm \\
+				Método de selección de características &                              recursive\_elimination \\
+						 Características seleccionadas & \{Y Gyro, X / Z, MinZratio, SpeedvsZ,   \\ 
+						 							   &   MeanDevAccelX, MeanDevGyroX \}\\
+												modelo &                                                SVM \\
+											  F1 score &                                           0.366197 \\
+											 Precision &                                           0.393939 \\
+												Recall &                                           0.342105 \\
+											  Accuracy &                                           0.664179 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+							 C &  1000 \\
+						 gamma &   0.1 \\
+						kernel &   rbf \\
+				   probability &  true \\
+				\bottomrule
+			\end{tabular}
+			
 		\end{figure}
 
 		\begin{figure}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                                           z\_thresh \\
-					 feature\_selector &                                  forward\_selection \\
-				features\_selected\_set & \{Z Accel, MinZratio, MedianDevAccelX, MeanDevAccelY \\
-									{} &  MeanDevAccelZ, MeanDevGyroX, MedianDevGyroX, \\
-									{} &  MeanDevGyroY, MedianDevGyroY\}\\
-								Model &                                     Log Regression \\
-						F1\_score &                                           0.266667 \\
-					   Precision &                                           0.333333 \\
-						  Recall &                                           0.222222 \\
-						Accuracy &                                            0.62069 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &   Value \\
-				\midrule
-						  C &     100 \\
-				   max\_iter &     500 \\
-					penalty &      l2 \\
-					 solver &    saga \\
-						tol &  0.0001 \\
-				\bottomrule
-			\end{tabular}
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Regresión Logística}}
 			\label{table:29}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                                           z\_thresh \\
+				Método de selección de características &                                 backward\_selection \\
+						 Características seleccionadas & \{MedianDevAccelX, MeanDevAccelY, \\ 
+						                               &  MedianDevAccelZ, MeanDevGyroX, \\
+						 							   &    ,MedianDevGyroX, MeanDevGyroY \}\\		
+												modelo &                                     Log Regression \\
+											  F1 score &                                                0.2 \\
+											 Precision &                                                1.0 \\
+												Recall &                                           0.111111 \\
+											  Accuracy &                                           0.724138 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &     Valor \\
+				\midrule
+							 C &        10 \\
+					  max\_iter &       100 \\
+					   penalty &        l2 \\
+						solver &      saga \\
+						   tol &  0.000001 \\
+				\bottomrule
+			\end{tabular}
+			
 		\end{figure}
 
 		\begin{figure}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                            z\_diff \\
-					 feature\_selector &                 forward\_selection \\
-				features\_selected\_set & \{Y Accel, X / Z, MedianDevAccelY\} \\
-								Model &                    Log Regression \\
-						F1\_score &                          0.363636 \\
-					   Precision &                               0.4 \\
-						  Recall &                          0.333333 \\
-						Accuracy &                          0.618182 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &    Value \\
-				\midrule
-						  C &      100 \\
-				   max\_iter &      500 \\
-					penalty &       l2 \\
-					 solver &    lbfgs \\
-						tol &  0.00001 \\
-				\bottomrule
-			\end{tabular}
 			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{Regresión Logística}}
 			\label{table:30}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                              z\_diff \\
+				Método de selección de características &               recursive\_elimination \\
+						 Características seleccionadas & \{Y Gyro, MinZratio, MedianDevGyroZ\} \\
+												modelo &                      Log Regression \\
+											  F1 score &                                0.32 \\
+											 Precision &                            0.444444 \\
+												Recall &                                0.25 \\
+											  Accuracy &                            0.690909 \\
+				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &  Valor \\
+				\midrule
+							 C &    100 \\
+					  max\_iter &   1000 \\
+					   penalty &     l2 \\
+						solver &   saga \\
+						   tol &  0.001 \\
+				\bottomrule
+			\end{tabular}
+			
 		\end{figure}
 
-		\begin{figure}[htb]
+		\begin{table}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                                   dbscan \\
-					 feature\_selector &                        forward\_selection \\
-				features\_selected\_set & \{X / Z, MedianDevAccelY, MedianDevGyroZ\} \\
-								Model &                           Log Regression \\
-						F1\_score &                                 0.210526 \\
-					   Precision &                                 0.222222 \\
-						  Recall &                                      0.2 \\
-						Accuracy &                                 0.634146 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &     Value \\
-				\midrule
-						  C &       100 \\
-				   max\_iter &       500 \\
-					penalty &        l2 \\
-					 solver &     lbfgs \\
-						tol &  0.000001 \\
-				\bottomrule
-			\end{tabular}
 			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{Regresión Logística}}
 			\label{table:31}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                          ocsvm \\
-					 feature\_selector &                              forward\_selection \\
-				features\_selected\_set & \{MedianDevAccelY, MeanDevAccelZ, MeanDevGyroZ\} \\
-								Model &                                 Log Regression \\
-						F1\_score &                                        0.27907 \\
-					   Precision &                                            0.6 \\
-						  Recall &                                       0.181818 \\
-						Accuracy &                                       0.768657 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &  Value \\
 				\midrule
-						  C &    100 \\
-				   max\_iter &    100 \\
-					penalty &     l2 \\
-					 solver &   saga \\
-						tol &  0.001 \\
+					  Método de detección de anomalías &                                             dbscan \\
+				Método de selección de características &                              recursive\_elimination \\
+						 Características seleccionadas & \{X Accel, Y Accel, Y Gyro, Z Gyro, X / Z, \\ 
+						 							   &    MinZratio, SpeedvsZ, MeanDevAccelY,\\
+													   &  MedianDevGyroZ \} \\
+												modelo &                                     Log Regression \\
+											  F1 score &                                                0.5 \\
+											 Precision &                                           0.666667 \\
+												Recall &                                                0.4 \\
+											  Accuracy &                                           0.707317 \\
+				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &     Valor \\
+				\midrule
+							 C &       100 \\
+					  max\_iter &      1000 \\
+					   penalty &        l2 \\
+						solver &      saga \\
+						   tol &  0.000001 \\
 				\bottomrule
 			\end{tabular}
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{Regresión Logística}}
 			\label{table:32}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                           z\_thresh \\
-					 feature\_selector &                                 backward\_selection \\
-				features\_selected\_set &  \{Y Accel, Z Accel, X Gyro, Y Gyro, SpeedvsZ, MeanDevAccelZ,\\
-										& MeanDevGyroX, MeanDevGyroY, MedianDevGyroZ\}\\
-								model &                                      Random Forest \\
-							 F1\_score &                                           0.428571 \\
-							Precision &                                              0.375 \\
-							   Recall &                                                0.5 \\
-							 Accuracy &                                           0.724138 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-			
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams & Value \\
 				\midrule
-				   criterion &  gini \\
-				   max\_depth &     6 \\
-				max\_features &  sqrt \\
-				n\_estimators &   100 \\
+					  Método de detección de anomalías &                                              ocsvm \\
+				Método de selección de características &                              recursive\_elimination \\
+						 Características seleccionadas & \{Y Accel, X Gyro, Y Gyro, Z Gyro, \\ 
+						 							   &  X / Z,  MinZratio, SpeedvsZ, \\
+													   &  MedianDevAccelX, MeanDevGyroX \} \\
+												modelo &                                     Log Regression \\
+											  F1 score &                                            0.27451 \\
+											 Precision &                                           0.538462 \\
+												Recall &                                           0.184211 \\
+											  Accuracy &                                           0.723881 \\
 				\bottomrule
-			\end{tabular}
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &  Valor \\
+				\midrule
+							 C &    100 \\
+					  max\_iter &   1000 \\
+					   penalty &     l2 \\
+						solver &   saga \\
+						   tol &  0.001 \\
+				\bottomrule
+				\end{tabular}
+			
+		\end{table}
+		Configuración de hiperparámetros usada:
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Random Forest}}
 			\label{table:33}
-		\end{figure}
-		
-		\begin{figure}[htb]
-			\centering
-
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                             z\_diff \\
-					 feature\_selector &                                 backward\_selection \\
-				features\_selected\_set & \{Z Accel, Y Gyro, MinZratio, SpeedvsZ, MeanDevAccelZ, \\
-                						& MeanDevGyroX, MedianDevGyroX, MeanDevGyroY,\\ 
-										& MedianDevGyroY\} \\
-								model &                                      Random Forest \\
-							 F1\_score &                                           0.434783 \\
-							Precision &                                           0.714286 \\
-							   Recall &                                             0.3125 \\
-							 Accuracy &                                           0.763636 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams & Value \\
 				\midrule
-				   criterion &  gini \\
-				   max\_depth &    20 \\
-				max\_features &  sqrt \\
-				n\_estimators &   120 \\
+					  Método de detección de anomalías &                                           z\_thresh \\
+				Método de selección de características &                              recursive\_elimination \\
+						 Características seleccionadas & \{X Accel, Y Gyro, X / Z, MaxZratio, \\ 
+						                               & MinZratio,  SpeedvsZ, MedianDevAccelY,  \\
+													   &  MedianDevGyroX, MeanDevGyroZ \}\\
+												modelo &                                      Random Forest \\
+											  F1 score &                                           0.444444 \\
+											 Precision &                                           0.444444 \\
+												Recall &                                           0.444444 \\
+											  Accuracy &                                           0.655172 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+					 criterion &  gini \\
+					 max\_depth &     6 \\
+				  max\_features &  sqrt \\
+				  n\_estimators &   120 \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+		
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{Random Forest}}
 			\label{table:34}
-
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                             dbscan \\
-					 feature\_selector &                              recursive\_elimination \\
-				features\_selected\_set & \{X Accel, Y Accel, Y Gyro, Z Gyro, X / Z, SpeedvsZ\}\\
-								model &                                      Random Forest \\
-							 F1\_score &                                           0.545455 \\
-							Precision &                                           0.666667 \\
-							   Recall &                                           0.461538 \\
-							 Accuracy &                                           0.756098 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams & Value \\
 				\midrule
-				   criterion &  gini \\
-				   max\_depth &    10 \\
-				max\_features &  log2 \\
-				n\_estimators &   180 \\
+				      Método de detección de anomalías &                               z\_diff \\
+				Método de selección de características &                    forward\_selection \\
+				         Características seleccionadas & \{X Gyro, MeanDevGyroY, MeanDevGyroZ\} \\
+				                                modelo &                        Random Forest \\
+				                              F1 score &                                0.625 \\
+				                             Precision &                                0.625 \\
+				                                Recall &                                0.625 \\
+				                              Accuracy &                             0.781818 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &   Valor \\
+				\midrule
+					 criterion & entropy \\
+					 max\_depth &      20 \\
+				  max\_features &    log2 \\
+				  n\_estimators &     120 \\
+				\bottomrule
+			\end{tabular}
+			
+
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{Random Forest}}
 			\label{table:35}
-
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                              ocsvm \\
-					 feature\_selector &                                  forward\_selection \\
-				features\_selected\_set & \{X Gyro, Y Gyro, Z Gyro, X / Z, MeanDevAccelY\\
-										&	MeanDevAccelZ, MedianDevGyroY, MeanDevGyroZ,\\ 
-										& MedianDevGyroZ\} \\
-								model &                                      Random Forest \\
-							 F1\_score &                                           0.292683 \\
-							Precision &                                               0.75 \\
-							   Recall &                                           0.181818 \\
-							 Accuracy &                                           0.783582 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-			
-			\begin{tabular}{ll}
-				\toprule
-				 Hyperparams & Value \\
 				\midrule
-				   criterion &  gini \\
-				   max\_depth &    20 \\
-				max\_features &  sqrt \\
-				n\_estimators &   120 \\
+					  Método de detección de anomalías &                                             dbscan \\
+				Método de selección de características &                                 backward\_selection \\
+						 Características seleccionadas & \{X Accel, Z Accel, X / Z, MinZratio, \\
+						                               &        MedianDevAccelY, MedianDevGyroZ \} \\
+												modelo &                                      Random Forest \\
+											  F1 score &                                               0.64 \\
+											 Precision &                                                0.8 \\
+												Recall &                                           0.533333 \\
+											  Accuracy &                                           0.780488 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+					 criterion &  gini \\
+					 max\_depth &    20 \\
+				  max\_features &  sqrt \\
+				  n\_estimators &   120 \\
+				\bottomrule
+			\end{tabular}
+			
+
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{Random Forest}}
 			\label{table:36}
-		\end{figure}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                                              ocsvm \\
+				Método de selección de características &                                 backward\_selection \\
+						 Características seleccionadas & \{X Accel, X Gyro, \\
+						                               &   MedianDevAccelX, MedianDevAccelZ, \\
+						                               &  MeanDevGyroX, MedianDevGyroZ \}\\
+												modelo &                                      Random Forest \\
+											  F1 score &                                           0.297872 \\
+											 Precision &                                           0.777778 \\
+												Recall &                                           0.184211 \\
+											  Accuracy &                                           0.753731 \\
+				\bottomrule
+			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro & Valor \\
+				\midrule
+					 criterion &  gini \\
+					 max\_depth &    20 \\
+				  max\_features &  log2 \\
+				  n\_estimators &   180 \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+
 \end{appendices}
