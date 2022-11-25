@@ -236,66 +236,75 @@
 	
 	\newpage
 	\section*{Tablas de resultados}
-		\begin{figure}[htb]
+		
+		\begin{table}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-					  outliers\_method &                                z\_thresh \\
-					 feature\_selector &                       forward\_selection \\
-				features\_selected\_set & {Y Accel, MeanDevGyroX, MedianDevGyroX} \\
-								Model &                                     KNN \\
-						f1\_score &                                   0.125 \\
-					   precision &                                     0.1 \\
-						  recall &                                0.166667 \\
-						accuracy &                                0.517241 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &   Value \\
-				\midrule
-				  algorithm &   brute \\
-				n\_neighbors &       3 \\
-					weights & uniform \\
-				\bottomrule
-			\end{tabular}
 			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{KNN}}
 			\label{table:17}
-		\end{figure}
-
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
+			\begin{tabular}{lc}
 				\toprule
-					  outliers\_method &                                       z\_diff \\
-					 feature\_selector &                            forward\_selection \\
-				features\_selected\_set & {MeanDevGyroX, MedianDevGyroY, MeanDevGyroZ} \\
-								Model &                                          KNN \\
-						F1\_score &                                     0.266667 \\
-					   Precision &                                     0.285714 \\
-						  Recall &                                         0.25 \\
-						Accuracy &                                          0.6 \\
-				\bottomrule
-			\end{tabular}
-			\newline
-			\newline
-
-			\begin{tabular}{ll}
-				\toprule
-				Hyperparams &    Value \\
 				\midrule
-				  algorithm &  kd\_tree \\
-				  leaf\_size &       50 \\
-				n\_neighbors &        3 \\
-					weights & distance \\
+					  Método de detección de anomalías &                                         z\_thresh \\
+				Método de selección de características &                               backward\_selection \\
+						 Características seleccionadas & \{MeanDevAccelY, MedianDevAccelZ,    \\
+						 							   &									MedianDevGyroY\} \\
+												modelo &                                              KNN \\
+											  F1 score &                                         0.470588 \\
+											 Precision &                                              0.5 \\
+												Recall &                                         0.444444 \\
+											  Accuracy &                                         0.689655 \\
 				\bottomrule
 			\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+				\begin{tabular}{lc}
+				\toprule
+				Hyperparámetro &    Valor \\
+				\midrule
+					 algorithm &  kd\_tree \\
+					 leaf\_size &       50 \\
+				   n\_neighbors &        3 \\
+					   weights & distance \\
+				\bottomrule
+				\end{tabular}
+			
+			
+		\end{table}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{KNN}}
 			\label{table:18}
-		\end{figure}
+			\begin{tabular}{lc}
+				\toprule
+				\midrule
+					  Método de detección de anomalías &                                     z\_diff \\
+				Método de selección de características &                         backward\_selection \\
+						 Características seleccionadas & \{MeanDevGyroX, MeanDevGyroY, \\
+						 							   & 							MeanDevGyroZ\}   \\
+												modelo &                                        KNN \\
+											  F1 score &                                        0.5 \\
+											 Precision &                                   0.583333 \\
+												Recall &                                     0.4375 \\
+											  Accuracy &                                   0.745455 \\
+				\bottomrule
+				\end{tabular}
+			\newline
+			\newline
+			Configuración de hiperparámetros usada:
+			\begin{tabular}{lc}
+				\toprule
+				Hyperparámetro &     Valor \\
+				\midrule
+					 algorithm & ball\_tree \\
+					 leaf\_size &        40 \\
+				   n\_neighbors &         5 \\
+					   weights &  distance \\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
 
 		\begin{figure}[htb]
 			\centering
