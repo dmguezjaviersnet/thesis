@@ -143,18 +143,18 @@
 
 	\subsection{Detalles acerca de algunos de los baches marcados}
 		En las recorridos realizados hay una gran variedad de anomalías que son baches, también hay muchas anomalías, que por sus características,
-		son idénticas a un bache, como por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:14}), que en condiciones normales no 
-		tendría las mismas características (ver \ref{fig:15}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
+		son idénticas a un bache, como por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:15}), que en condiciones normales no 
+		tendría las mismas características (ver \ref{fig:16}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
 		sensores es muy probable que hayan sido similares a las de un bache.
 
 		De igual forma, algunas otras tapas de alcantarillas no tiene las características que verdaderamente le corresponde como se puede ver en la
-		figura \ref{fig:16}.
+		figura \ref{fig:17}.
 
 		Existen también otros objetos en la vía que no tienen las características reales y que pueden ocasionar las lecturas de los sensores sean similares
-		a las de un bache como se muestra en la figura \ref{fig:17}.
+		a las de un bache como se muestra en la figura \ref{fig:18}.
 
 		Estas anomalías que se consideraron que podían generar lecturas	similares a las de un bache se etiqutaron como tal, al igual que las anomalías que se 
-		pueden apreciar en las figuras \ref{fig:18} y \ref{fig:19}, que sí son realmente baches.
+		pueden apreciar en las figuras \ref{fig:19} y \ref{fig:20}, que sí son realmente baches.
 
 \section{Los modelos de aprendizaje de máquinas}
 	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo
@@ -394,6 +394,17 @@
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale = 0.6]{Graphics/best_model_confusion_matrix.png}
-		\caption{Matriz de confusión del modelo que mejor \emph{F1 score} obtuvo}
+		\caption{Matriz de confusión del modelo que mejor \emph{F1 score} obtuvo.}
 		\label{fig:13}
+	\end{figure}
+
+	En la siguiente imagen (figura \ref{fig:14}) se puede apreciar ubicados en un mapa con leyeneda, las predicciones que realizó el modelo con mejor 
+	\emph{F1 score}, en el conjunto de prueba.
+
+	\newpage
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale = 0.4]{Graphics/map_point_predictions.png}
+		\caption{Visualización de la ubicación de las predicciones realizadas por el modelo con mejor \emph{F1 score} en el conjunto de prueba.}
+		\label{fig:14}
 	\end{figure}
