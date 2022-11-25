@@ -245,11 +245,9 @@
     {\Large Tutores: \textbf{\@advisor}} \\
     \vfill
     {\large Trabajo de Diploma \\presentado en opción al título de \\ \@degree} \\
-    \vskip 1cm
-	\begin{figure}[h]
-		\centering
-		\includegraphics[scale = 0.07]{Graphics/qr_tesis.png}
-	\end{figure}
+    \vskip 0.80cm
+		\includegraphics[width=3.1cm]{Graphics/qr_tesis.png}
+  \vskip 0.25cm
     \@date
   \end{center}
 }
