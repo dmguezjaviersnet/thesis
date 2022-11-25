@@ -493,7 +493,8 @@ que son baches dentro de una imagen.
 			anomalía ponen el dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta
 			a dicha serie temporal. \emph{Tai et al.} \brackcite{tai2010automatic} etiquetaron sus datos realizando grabaciones de audio durante el
 			viaje recolectando la voz de la persona encargada de notificar la presencia de una anomalía.
-			\indent \emph{Ranjith et al.} \brackcite{ranjith2015anomaly}, etiquetan a mano unos pocos datos utilizando vídeos grabados durante el proceso
+
+			\emph{Ranjith et al.} \brackcite{ranjith2015anomaly}, etiquetan a mano unos pocos datos utilizando vídeos grabados durante el proceso
 			de recolección de datos, y luego etiquetan el resto de los datos de forma automática utilizando \textbf{K-Means} y \textbf{DBSCAN}. Esta vía 
 			permite automatizar el proceso de etiquetado, de esta forma se puede lidiar con gran cantidad de datos sin tener que etiquetarlos a mano.
 
@@ -504,13 +505,15 @@ que son baches dentro de una imagen.
 		\indent Muchos autores proponen utilizar métodos de procesamiento de señales digitales para purificar la señal y mejorar su calidad. Métodos como \emph
 		{Fast Fourier Transform}(\textbf{FFT}), \emph{Wavelet Decomposition} \brackcite {el2018towards}, \emph{Wavelet Discrete Transform} \brackcite
 		{seraj2015roads}, y \emph{high-pass filters} y \emph{low-pass filters} \brackcite{eriksson2008pothole, kulkarni2014pothole} para eliminar
-		componentes de baja y alta frecuencia respectivamente.\\
-		\indent También es importante determinar de que forma segmentar la señal para su análisis. Hay propuestas que segmentan la señal en 256 ventanas
-		\brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 2.5,
-		segundos con el 66\% de las ventanas solapadas \brackcite{seraj2015roads} y ventanas deslizantes con varias duraciones entre 0.5 y 2 segundos
-		\brackcite{perttunen2011distributed}.\\
-		\indent Una interesante propuesta por \emph{Zhenf et al.} \brackcite{zheng2020fused} sugiere que la mayoría de los artículos con respecto al tema no
-		toman en consideración el hecho que la gran mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas
+		componentes de baja y alta frecuencia respectivamente.
+			
+			También es importante determinar de que forma segmentar la señal para su análisis. Hay propuestas que segmentan la señal en 256 ventanas
+		\brackcite{eriksson2008pothole}, en ventanas con duración de 1 segundo \brackcite{el2018towards}, ventanas deslizantes con duración de 2.5 
+		segundos con el 66\% de las ventanas solapadas \brackcite{seraj2015roads} y ventanas deslizantes con varias duraciones entre 0.5 y 2 segundos.
+		\brackcite{perttunen2011distributed}.
+
+			Una interesante propuesta por \emph{Zheng et al.} \brackcite{zheng2020fused} sugiere que la mayoría de los artículos con respecto al tema no
+		toman en consideración el hecho que la gran mayoría de la carreteras que existe en el mundo no poseen anomalías, y que la aplicación de técnicas
 		de aprendizaje de máquinas utizando una ventana deslizante a ciegas puede disminuir considerablemente la precisión y la rapidez del proceso de
 		entrenamiento, por lo que proponen un método para determinar de forma dinámica el tamaño de la ventana a considerar.\\
 		
@@ -525,11 +528,17 @@ que son baches dentro de una imagen.
 		rotaciones.
 		
 	\subsection{Frecuencia de muestreo}
-		La frecuencia de muestreo es un factor importante, si es muy alta se introduciría ruido innecesario en los datos, y si es muy baja y no se podrá
-		obtener toda la información necesaria para resolver el problema en cuestión. Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
-		{seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
-		\textbf{acelerómetro} y 1Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100Hz \brackcite{mednis2011real}, 100Hz para el 
-		\textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS} \brackcite{el2018towards}.
+		La frecuencia de muestreo es un factor importante, si es muy alta se introduciría ruido innecesario en los datos, y si es muy baja no se podría
+		obtener toda la información necesaria para resolver el problema en cuestión. En la literatura son propuestas a utilizar varias 
+		frecuencias  de muestreo por cada sensor. Para el acelerómetro los autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite{seraj2015roads}, 
+		25Hz \brackcite{tai2010automatic}, 200\brackcite{el2018towards}, 310Hz \brackcite{mohan2008nericell}, y 380Hz\brackcite{eriksson2008pothole}. En 
+		el giroscopio se utilizaron frecuencias de muestreo de 200Hz \brackcite{el2018towards}. En el caso del GPS se utilizó una frecuencia de muestreo 
+		de 1Hz \brackcite{el2018towards, eriksson2008pothole}. 
+		
+		% Algunos autores utilizaron frecuencias de muestreo de 47 y 93Hz \brackcite
+		% {seraj2015roads}, 50Hz \brackcite{carlos2018evaluation}, 25Hz \brackcite{tai2010automatic}, 310Hz \brackcite{mohan2008nericell}, 380Hz para el 
+		% \textbf{acelerómetro} y 1Hz para el \textbf{GPS} \brackcite{eriksson2008pothole}, 26, 47, 52, 98 y 100Hz \brackcite{mednis2011real}, 100Hz para el 
+		% \textbf{acelerómetro}, 200Hz para el \textbf{giroscopio} y 1Hz para el \textbf{GPS} \brackcite{el2018towards}.
 
 	\subsection{Geolocalización del bache utilizando GPS}
 		Pocos de los autores se plantean resolver el problema de identificar la ubicación del bache utilizando el \textbf{GPS}. Debido a que el

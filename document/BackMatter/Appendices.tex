@@ -50,138 +50,191 @@
 		\end{figure}
 		\newpage
 
-	\section*{Tablas con los hiperparámetros que se probaron los métodos no-supervisados}
-		\begin{figure}[htb]
+	\section*{Tablas con los hiperparámetros que se probaron los métodos de detección de anomalías no-supervisados}
+
+		\begin{table}[htb]
 			\centering
-			\begin{tabular}{ll}
-				\toprule
-				                                          eps &                                  min\_samples \\
-				\midrule
-				  0.05, 0.1, ..., 0.95, 0.99 &  15, 20, ..., 60, 65 \\
-				\bottomrule
-			\end{tabular}
 			\caption{Hiperparámetros con los que se probó \textbf{DBSCAN}}
 			\label{table:4}
-		\end{figure}
-		
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{ll}
-				\toprule
-				                                            gamma &                                                 nu \\
-				\midrule
-				  scale, 0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 10 &  0.05, 0.1, ..., 0.95, 0.99 \\
-				\bottomrule
+			\begin{tabular}{lc}
+			\toprule
+			Hiperparámetro &                                     Valores \\
+			\midrule
+					   eps & 0.05, 0.1, 0.15, 0.20, ... 0.90, 0.95, 0.99 \\
+			   min\_samples & 15, 20, 25, 30, 25, 40,  45, 50, 55, 60, 65 \\
+			\bottomrule
 			\end{tabular}
+		\end{table}
+
+		% \begin{table}[htb]
+		% 	\centering
+		% 	\caption{Hiperparámetros con los que se probó \textbf{DBSCAN}}
+		% 	\label{table:4}
+		% 	\begin{tabular}{ll}
+		% 		\toprule
+		% 		                                          eps &                                  min\_samples \\
+		% 		\midrule
+		% 		  0.05, 0.1, ..., 0.95, 0.99 &  15, 20, ..., 60, 65 \\
+		% 		\bottomrule
+		% 	\end{tabular}
+			
+		% \end{table}
+		
+		\begin{table}[htb]
+			\centering
 			\caption{Hiperparámetros con los que se probó \textbf{One Class SVM}}
 			\label{table:5}
-		\end{figure}
-		
-		\begin{figure}[htb]
-			\centering
-			\begin{tabular}{lll}
-				\toprule
-				 cluster\_method &                                      metric &                                        min\_samples \\
-				\midrule
-				     xi, dbscan &  minkowski, euclidean, canberra, braycurtis &  5, 10, ..., 60, 65 \\
-				\bottomrule
+			\begin{tabular}{lc}
+			\toprule
+			Hiperparámetro &                                            Valores \\
+			\midrule
+					 gamma &    scale, 0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 10 \\
+						nu & 0.05, 0.15, 0.2 ..., 0.8, 0.85, 0.95, 0.99 \\
+			\bottomrule
 			\end{tabular}
+		\end{table}
+		
+		% \begin{figure}[htb]
+		% 	\centering
+		% 	\begin{tabular}{ll}
+		% 		\toprule
+		% 		                                            gamma &                                                 nu \\
+		% 		\midrule
+		% 		  scale, 0.00001, 0.0001, 0.001, 0.01, 0.1, 1, 10 &  0.05, 0.1, ..., 0.95, 0.99 \\
+		% 		\bottomrule
+		% 	\end{tabular}
+		% 	\caption{Hiperparámetros con los que se probó \textbf{One Class SVM}}
+		% 	\label{table:5}
+		% \end{figure}
+
+		\begin{table}[htb]
+			\centering
 			\caption{Hiperparámetros con los que se probó \textbf{OPTICS}}
 			\label{table:6}
-		\end{figure}
-
-	\section*{Tablas con los hiperparámetros que se probaron los métodos supervisados}
-		\begin{figure}[ht!]
-			\centering
-			\begin{tabular}{llll}
-				\toprule
-					   n\_neighbors &            weights &                  algorithm &       leaf\_size \\
-				\midrule
-				 3, 5, 7, 9, 11 &  uniform, distance &  brute, kd\_tree, ball\_tree &  20, 30, 40, 50 \\
-				\bottomrule
+			\begin{tabular}{lc}
+			\toprule
+			Hiperparámetro &                                           Valores \\
+			\midrule
+			cluster\_method &                                        xi, dbscan \\
+					metric &        minkowski, euclidean, canberra, braycurtis \\
+			   min\_samples & 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65 \\
+			\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros con los que se probó \textbf{KNN}}
-			\label{table:7}
-		\end{figure}
-
-		\begin{figure}[ht!]
-			\centering
-			\begin{tabular}{llll}
-				\toprule
-						criterion &        splitter &           max\_depth &      max\_features \\
-				\midrule
-				  entropy, gini &  best, random &  3, 4, 5, 6, None &  sqrt, log2, None \\
-				\bottomrule
-			\end{tabular}
-			\caption{Hiperparámetros con los que se probó \emph{Decision Tree}}
-			\label{table:8}
-		\end{figure}
+		\end{table}
 		
-		\begin{figure}[ht!]
+	\newpage
+	\section*{Tablas con los hiperparámetros que se probaron los métodos supervisados}
+
+		\begin{table}[ht!]
 			\centering
-			\begin{tabular}{llll}
+			\caption{Hiperparámetros con los que se probó  \textbf{KNN}}
+			\label{table:7}
+			\begin{tabular}{lc}
 				\toprule
-					 n\_estimators &        criterion &          max\_depth &  max\_features \\
+				Hiperparámetro &                   Valores \\
 				\midrule
-				  100, 120, 180 &  entropy, gini &  10,  13, 16, 20 &  log2, sqrt \\
+				   n\_neighbors &            3, 5, 7, 9, 11 \\
+					   weights &         uniform, distance \\
+					 algorithm & brute, kd\_tree, ball\_tree \\
+					 leaf\_size &            20, 30, 40, 50 \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros con los que se probó \emph{Randon Forest}}
+		\end{table}
+
+		\begin{table}[ht!]
+			\centering
+			\caption{Hiperparámetros con los que se probó \textbf{\emph{Decision Tree}}}
+			\label{table:8}
+			\begin{tabular}{lc}
+				\toprule
+				Hiperparámetro &          Valores \\
+				\midrule
+				     criterion &    entropy, gini \\
+				      splitter &     best, random \\
+				     max\_depth & 3, 4, 5, 6, None \\
+				  max\_features & sqrt, log2, None \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+
+		\begin{table}[ht!]
+			\centering
+			\caption{Hiperparámetros con los que se probó \textbf{\emph{Random Forest}}}
 			\label{table:9}
-		\end{figure}
-
-		\begin{figure}[ht!]
-			\centering
-			\begin{tabular}{lllll}
+			\begin{tabular}{lc}
 				\toprule
-				 penalty &                       tol &                   C &         solver &        max\_iter \\
+				Hiperparámetro &         Valores \\
 				\midrule
-					l2 &  1e-3, 1e-4, 1e-5, 1e-6 &  1, 10, 100, 1000 &  lbfgs, saga &  100, 500, 1000 \\
+				  n\_estimators &   100, 120, 180 \\
+					 criterion &   entropy, gini \\
+					 max\_depth & 10,  13, 16, 20 \\
+				  max\_features &      log2, sqrt \\
 				\bottomrule
 			\end{tabular}
-			\caption{Hiperparámetros con los que se probó \textbf{Regresión logística}}
+		\end{table}
+			
+		
+
+		\begin{table}[ht!]
+			\centering
+			\caption{Hiperparámetros con los que se probó \textbf{Regresión Logística}}
 			\label{table:10}
-		\end{figure}
-		\newpage
-
-		\begin{figure}[ht!]
-			\centering
-			\begin{tabular}{llll}
+			\begin{tabular}{lc}
 				\toprule
-					  C & kernel &          gamma &  probability \\
+				Hiperparámetro &                Valores \\
 				\midrule
-				  100 &  rbf &  0.01, 0.001 &         True \\
+					   penalty &                     l2 \\
+						   tol & 1e-3, 1e-4, 1e-5, 1e-6 \\
+							 C &       1, 10, 100, 1000 \\
+						solver &            lbfgs, saga \\
+					  max\_iter &         100, 500, 1000 \\
 				\bottomrule
 			\end{tabular}
+		\end{table}
+		
+		
+		\begin{table}[htb]
+			\centering
 			\caption{Hiperparámetros con los que se probó \textbf{SVM}}
 			\label{table:11}
-		\end{figure}
-		\newpage
+			\begin{tabular}{lc}
+			\toprule
+			Hiperparámetro &                           Valores \\
+			\midrule
+						 C &              1, 10, 50, 100, 1000 \\
+					kernel &                               rbf \\
+					 gamma & 0.1, 0.01, 0.001, 0.0001, 0.00001 \\
+			   probability &                              True \\
+			\bottomrule
+			\end{tabular}
+		\end{table}
+	
 
 	\section*{Las diez características más seleccionadas}
 	
-		\begin{figure}[htb]
-			\centering
-				\begin{tabular}{lr}
-					\toprule
-						Feature &  Count \\
-					\midrule
-					 	 X / Z &     87 \\
-			   			SpeedvsZ &     77 \\
-		   				MeanDevGyroZ &     76 \\
-		 				MedianDevGyroZ &     69 \\
-					 	Y Gyro &     58 \\
-					 	Z Gyro &     55 \\
-			  			MinZratio &     54 \\
-		  				MeanDevGyroX &     54 \\
-		 				MeanDevAccelZ &     53 \\
-						MedianDevAccelY &     49 \\
-					\bottomrule
-				\end{tabular}
-				\caption{Top 10 de los features más seleccionados  para la clasificación}
-				\label{table:13}
-		\end{figure}
+	\begin{table}[htb]
+		\centering
+		\caption{Top 10 de las carácterísticas más seleccionadas para la clasificación}
+		\label{table:12}
+			\begin{tabular}{lc}
+			\toprule
+					Feature &  Count \\
+			\midrule
+					  X / Z &    203 \\
+				   SpeedvsZ &    185 \\
+			   MeanDevGyroZ &    180 \\
+			 MedianDevGyroZ &    164 \\
+				  MinZratio &    145 \\
+					 Z Gyro &    136 \\
+					 Y Gyro &    132 \\
+			MedianDevAccelY &    132 \\
+					 X Gyro &    125 \\
+			 MedianDevGyroY &    119 \\
+			\bottomrule
+			\end{tabular}
+	\end{table}
 	
+	\newpage
 	\section*{Tablas de resultados}
 		\begin{figure}[htb]
 			\centering
