@@ -239,9 +239,11 @@
 	\textbf{DBSCAN} y \textbf{One Class SVM} como se muestra en la figura \ref{table:1}. En la tabla \ref{table:2}, se pueden observar la media
 	de los coeficientes de Silhouete entre todas las rutas.
 
-	\begin{figure}[htb]
+	\begin{table}[htb]
 		\centering
-		\begin{tabular}{llll}
+		\caption{Puntuación de Silhouete de cada algoritmo de detección de anomalías no-supervisado en cada ruta}
+		\label{table:1}
+		\begin{tabular}{lccc}
 		\toprule
 		  Ruta\textbackslash Algoritmo &    DBSCAN &     OCSVM &     OPTICS \\
 		\midrule
@@ -250,24 +252,24 @@
 		  Ruta3 &  0.620526 &  0.509438 &  -0.238291 \\
 		\bottomrule
 		\end{tabular}
-		\caption{Puntuación de Silhouete de cada algoritmo de detección de anomalías no-supervisado en cada ruta}
-		\label{table:1}
-	\end{figure}
+		
+	\end{table}
 
-	\begin{figure}[htb]
+	\begin{table}[htb]
 		\centering
-		\begin{tabular}{ll}
-		\toprule
-		   Coeficiente de Silhouete medio & Algoritmo \\
-		\midrule
-		   0.594417 &    DBSCAN \\
-		   0.525539 &     OCSVM \\
-		  -0.251639 &    OPTICS \\
-		\bottomrule
-		\end{tabular}
 		\caption{Puntuación de Silhouete media de cada algoritmo de detección de anomalías no-supervisado}
 		\label{table:2}
-	\end{figure}
+		\begin{tabular}{lc}
+		\toprule
+		Algoritmo & Coeficiente de Silhouete medio \\
+		\midrule
+		   DBSCAN &   0.594417 	\\
+		    OCSVM &   0.525539 	\\
+		   OPTICS &  -0.251639 	\\
+		\bottomrule
+		\end{tabular}
+		
+	\end{table}
 
 	Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los \emph{clusters} se asignaron de 
 	forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
@@ -276,24 +278,29 @@
 	realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del instante en el que 
 	el vehículo está en caída libre.
 
-	\begin{figure}[htb]
+	\begin{table}[htb]
 		\centering
+		\caption{Número de anomalías detectadas por cada algoritmo}
+		\label{table:3}
 		\begin{tabular}{ll}
 			\toprule
 			 Algoritmo &  Número de Anomalías \\
 			\midrule
 				DBSCAN &                  134 \\
 				 OCSVM &                  446 \\
-				z-diff &                  181 \\
-			   z-tresh &                   95 \\
-				g\_zero &                    0 \\
+				Z-Diff &                  181 \\
+			   Z-Tresh &                   95 \\
+				G\_zero &                    0 \\
 			\bottomrule
 		\end{tabular}
-		\caption{Número de anomalías detectadas por cada algoritmo}
-		\label{table:3}
-	\end{figure}
+		
+	\end{table}
 
 	En la segunda fase del \emph{pipeline}, la selección de características, se pudo apreciar en la tabla \ref{table:13} que los features más
 	escogidos por los algoritmos de selección de características fueron fulanito, menganito, ciclanito, etc. 
 
 	Finalmente en la fase final del \emph{pipeline}, los modelos supervisados, se pudo observar que ...
+
+	
+
+
