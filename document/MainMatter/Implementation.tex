@@ -35,7 +35,7 @@
 		\item \textbf{mark\textunderscore labels}: Donde se guardan las marcas.
 		\item \textbf{sensors}: Donde se guarda el archivo temporal en el que se van guardando los datos que va recopilando la aplicación
 			mientras está grabando.
-		\item \textbf{exported} donde se guardan los archivos exportados.
+		\item \textbf{exported}: Donde se guardan los archivos exportados.
 	\end{itemize}
 
 	Además, es necesario dar permisos de ubicación a la aplicación para que pueda acceder a los datos del \textbf{GPS}, latitud y longitud,
@@ -95,12 +95,13 @@
 		\indent Cuando el vehículo se iba a detener por alguna razón y se estaba al tanto, se cambiaba al estado de \textbf{frenar} un poco antes, para
 		registrar tal evento en los datos. Lo mismo se hizo cuando el vehículo iba a doblar una esquina. Una vez terminaba el evento, se cambiaba otra
 		vez a estado \textbf{normal}. Cuando el vehículo llegaba al final de la ruta planeada, se detenía el proceso de grabación y se exportaban los
-		datos de dicho recorrido a un archivo .\textbf{JSON} aparte con un nombre que indentificara la ruta.
+		datos de dicho recorrido a un archivo .\textbf{JSON} aparte con un nombre que indentificara la ruta. Se utilizaron dos vehículos para la
+		recopilación de los datos: las conocidas \textbf{Gacelas(GAZelles)}, utilizadas como servicio de tranporte de la capital,  
+		y un \textbf{Hyundai Atos 1998}.
 
 	\subsection{Metodología para marcar los baches}
 		Para marcar los baches, se recorrió la misma ruta que se había seleccionado para capturar los datos, y se fueron marcando los baches. Antes 
 		de realizar las marcas, se esperó un tiempo a que la precisión del \textbf{GPS} se estabilizara en un rango aceptable, preferiblemente por debajo 
-	
 		de los 5 metros. Las marcas se realizaron desde la acera debido al tráfico, y en la medida de lo posible un poco más cerca del bache en la calle.
 		Por cada bache, se realizaron varias marcas con distinta precisión y desde distintas ubicaciones relativamente cercanas a la ubicación real del
 		bache, con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaron de marcar los baches en el recorrido
@@ -197,7 +198,7 @@
 		metros. Se consideró 10 metros, debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
 		recopilación.\\
 		\indent Para computar la distancia se utilizó la fórmula de \textbf{Haversine}, que se utiliza para calcular la distancia entre dos puntos sobre la
-		superficie de una esfera utilizando co obtenidosordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene
+		superficie de una esfera utilizando coordenadas de latitud-longitud. Debido a que la \textbf{Tierra} no es una esfera perfecta, tiene
 		distintos radios, que van desde 6356.752 km en los polos hasta 6378.137 km en el Ecuador. A causa de esto, es imposible calcular exactamente la
 		distancia entre 2 puntos con esta fórmula, pero el error al hacerlo es de un 0.5\%, por lo que es bastante despreciable. El radio de la esfera
 		que se consideró para este cómputo fue de 6371 km.\\
@@ -215,7 +216,7 @@
 	\subsection{Detalles de la selección de modelo}
 		Una vez el algoritmo de selección de características terminaba, se generaba un nuevo \textbf{DataFrame} con esas únicas columnas como datos,
 		y fue con este juego de datos que se pasaba a la fase de selección de modelo. En esta, se llevó a cabo un extenso proceso en el cual se buscó
-		el mejor algoritmo con la mejor configuración de hiperparámetros para ese juego de datos. Los varios algoritmos que se probaron fueron
+		el mejor algoritmo con la mejor configuración de hiperparámetros para ese juego de datos. Los algoritmos que se probaron fueron
 		mencionados en el capítulo anterior (ver \ref {chapter:proposal}).\\
 		\indent Para llevar a cabo esta fase de la propuesta se utilizó la biblioteca \textbf{sklearn} de \textbf{Python}.
 		Para los modelos, se utilizaron los módulos \textbf{sklearn.svm}, \textbf{sklearn.trees}, \textbf{sklearn.linear\textunderscore models},
@@ -231,7 +232,7 @@
 
 		\subsubsection{Conjuntos de hiperparámetros}
 			Por cada uno de los 5 métodos utilizados, se probaron distintos conjuntos de hiperparámetros(ver figuras \ref{table:7}, \ref{table:8},
-			\ref{table:9}, \ref{table:10}, \ref{table:11}. Mediante el  \textbf{GridSearchCV} se buscó la mejor combinación de hiperparámetros 
+			\ref{table:9}, \ref{table:10}, \ref{table:11}). Mediante el  \textbf{GridSearchCV} se buscó la mejor combinación de hiperparámetros 
 			para cada uno de estos métodos.
 
 \section{Resultados}
@@ -273,7 +274,7 @@
 
 	Como se puede apreciar, \textbf{OPTICS} tuvo una puntuación incluso por debajo de 0, lo que indica que los \emph{clusters} se asignaron de 
 	forma errónea. Por esta razón se optó por removerlo del \emph{pipeline} de la propuesta. También se recopiló información acerca de la
-	cantidad de anomalías que detectó cada algoritmo. De esta forma se pudo analizar los resultados, con lo que se decidió eliminar del \emph
+	cantidad de anomalías que detectó cada algoritmo(ver figura \ref{table:3}). De esta forma se pudo analizar los resultados, con lo que se decidió eliminar del \emph
 	{pipeline} a \textbf{G-Zero}, pues se consideró que no detectó suficientes anomalías. Esto se supone que sea debido a que la frecuencia de
 	muestreo a la que se realizaron las capturas fue demasiado baja, y debido a esto no fue posible obtener los datos representativos del
 	instante en el que el vehículo está en caída libre.
@@ -310,7 +311,7 @@
 
 	Finalmente, en la última fase del \emph{pipeline}, se analizaron varios algoritmos de aprendizaje supervisado, con datos estandarizados y sin
 	estandarizar. El que mejores resultados arrojó fue \textbf{SVM} con kernel rbf y datos estandarizados. La configuración exacta de todo el
-	\emph{pipeline} con la que se obtuvo este resultado se puede observar en la tabla \ref{fig:}.
+	\emph{pipeline} con la que se obtuvo este resultado se puede observar en la tabla \ref{table:27}.
 	\newpage
 
 	En las tablas \ref{table:13}-\ref{table:16} se pueden apreciar los resultados obtenidos para cada una de las métricas, por cada algoritmo de detección de 
@@ -367,7 +368,7 @@
 		\end{tabular}
 	\end{table}
 
-	Las configuraciones con las que se alcanzaron estas puntuaciones se pueden ver en detalle en las las tablas \ref{table:17}-\ref{table:36}.
+	Las configuraciones con las que se alcanzaron estas puntuaciones se pueden ver en detalle en las tablas \ref{table:17}-\ref{table:36}.
 
 	\newpage
 	\begin{table}[htb]
@@ -387,8 +388,8 @@
 		\end{tabular}
 	\end{table}
 
-	Acá en la matriz de confusión del modelo que arrojó mejor \emph{F1 score} (ver figura \ref{fig:13}), se puede apreciar que el porcentaje de falsos
-	negativos es bien bajo, lo que indica que este modelo falló en clasficar muy pocos baches como tales. A pesar de esto, se considera que estas pruebas 
+	En la matriz de confusión del modelo que arrojó mejor \emph{F1 score} (ver figura \ref{fig:13}), se puede apreciar que el porcentaje de falsos
+	negativos es bien bajo, lo que indica que este modelo falló en clasificar muy pocos baches. A pesar de esto, se considera que estas pruebas 
 	deben ser repetidas con un conjunto de datos mucho más grande, para tener un resultado más relevante y contundente.
 
 	\begin{figure}[htb]

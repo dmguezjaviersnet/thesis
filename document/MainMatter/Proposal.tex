@@ -131,9 +131,9 @@
 	corregir esto, se estimaron los valores de latitud-longitud de dichas lecturas utilizando interpolación lineal entre dos lecturas
 	de \textbf{GPS} consecutivas.
 
-	\subsection{Extraccón de características estadísticas}
-		Durante este proceso, además de corregir y eliminar ciertos datos, también se extrajeron características, entre ellos
-		algunos estadísticos, y se incorporaron a cada uno de los datos. Estas características se extrajeron con el objetivo
+	\subsection{Extracción de características}
+		Durante este proceso, además de corregir y eliminar ciertos datos, también se extrajeron características. Entre ellas,
+		algunas estadísticas.  Luego, se incorporaron a cada uno de los datos. Estas características se extrajeron con el objetivo
 		de tener un juego de datos que brindara más información acerca de la naturaleza del problema, y así, tentativamente,
 		mejorar la calidad de la propuesta.\\
 
@@ -182,14 +182,14 @@
 	ubicación, con coordenadas de latitud-longitud.\\
 	\indent Para asignar la etiqueta de bache a una anomalía, se busca en un radio predefinido si existe una marca de bache, de lo contrario, se le
 	asigna la etiqueta de no bache. Debido a que es imposible determinar exactamente el punto donde el vehículo hizo contacto con el bache
-	utilizando el \textbf{GPS}, a causa del error inherente del sensor, este proceso de etiquetado tiene un cierto error. Este error puede ocasionar
+	utilizando el \textbf{GPS}, a causa del error inherente del sensor, este proceso de etiquetado tiene cierto error. Este error puede ocasionar
 	que anomalías que no sean baches sean etiquetadas como tal, debido a que exista una marca que indique la presencia de un bache en un radio
 	cercano a esta.
 
 \section{Selección de características}
 	Ya con los datos etiquetados, lo próximo que se propuso fue llevar a cabo un proceso de selección de características utilizando métodos como
 	\emph{Forward Selection}, \emph{Backward Selection} y \emph{Recursive Feedback Elimination}. De esta forma, se podrían determinar cuales de las 
-	características que posee nuestro juego de datos son mejores para predecir si una anomalía es bache o no bache. Con lo cual se podríá determinar
+	características que posee nuestro juego de datos son mejores para predecir si una anomalía es bache o no bache. Con lo cual se podría determinar
 	automáticamente la existencia de un bache en la carretera.
 
 \section{Selección de modelo}
