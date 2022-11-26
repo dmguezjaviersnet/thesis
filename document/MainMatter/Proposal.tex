@@ -118,7 +118,7 @@
 		relevante. Esto se debe a que es necesario que las lecturas que se obtengan durante el muestreo sean relevantes y representen
 		las características de la carretera por la que viaja el vehículo. Para esto, es necesario colocar el dispositivo móvil de tal 
 		forma que la dirección del eje Y del vehículo coincida con la del eje Y del móvil, para que las señales que se capturen
-		se correspondan con la realidad. De lo contrario, se deberían realizar ciertos ajustes utilizando algún método de
+		se correspondan con la realidad. De lo contrario se deberían realizar ciertos ajustes utilizando algún método de
 		transformación de coordenadas para poder obtener lecturas acertadas, sin importar la posición en la que se coloque
 		el dispositivo.
 
@@ -194,9 +194,9 @@
 
 \section{Selección de modelo}
 	Una vez se sabe que características son las mejores para predecir si una anomalía es bache o no, se llevó a cabo un proceso de selección de
-	modelo. La métrica de evaluación que se escogió fue el \emph{F1 score}, porque se consideró que un equilibrio entre \emph{precision} y
+	modelo. La métrica de evaluación que se escogió fue el \emph{F1 score} porque se consideró que un equilibrio entre \emph{precision} y
 	\emph{recall} es más relevante que el \emph{accuracy} para el problema en cuestión. Este proceso de selección de modelo tiene el
-	objetivo de determinar entre varios modelos definidos, cual obtiene mejor rendimiento con respecto a la métrica seleccionada utlizando los datos
+	objetivo de determinar entre varios modelos definidos cual obtiene mejor rendimiento con respecto a la métrica seleccionada utlizando los datos
 	del problema. Los modelos entre los cuales se propuso escoger son: \textbf{KNN}, árboles de decisión, \emph{Random Forest}, regresión logística y
 	\textbf{SVM}.\\
 	\indent Junto con este proceso de selección de modelo también se llevó a cabo una selección de hiperparámetros que permita determinar con
