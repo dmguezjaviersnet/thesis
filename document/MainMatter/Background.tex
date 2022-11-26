@@ -40,8 +40,8 @@ que son baches dentro de una imagen.
 		{koch2011pothole, jo2015pothole,ryu2015image}. 
 		% En el \emph{histogram shape-based thresholding} el valor T de umbral se determina como el valor de
 		% intensidad del punto $P_T(T, h(T))$ que tiene la distancia máxima a la recta que intersecta con el origen del histograma y el punto que indica la
-		% máxima intensidad $P_{max}$ ~\brackcite{koch2011pothole}. Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B
-		% que contiene el área defectuosa ~\brackcite{koch2011pothole}. Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
+		% máxima intensidad $P_{max}$\brackcite{koch2011pothole}. Basado en este umbral T se convierte la imagen mejorada $I_{m}$ en una imagen binaria B
+		% que contiene el área defectuosa\brackcite{koch2011pothole}. Por otra parte, el método de Otsu separa las regiones oscuras del fondo como sigue:
 
 		% $$B_{i,j}=\left\{
 		% 	\begin{array}{c l}
@@ -64,7 +64,7 @@ que son baches dentro de una imagen.
 		
 		% de los \emph{pixels}
 		% , mientras que los valores de los \emph{pixels} del resto de la región se cambia a
-		% 0 ~\brackcite{akagic2017pothole}.
+		% 0\brackcite{akagic2017pothole}.
 
 		Jo et al.\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación de línea, 
 		detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
@@ -113,7 +113,7 @@ que son baches dentro de una imagen.
 		la trayectoria para eliminar los objetos similares causados por otros vehículos en movimiento. 
 		
 
-		Akagic et al. ~\brackcite{akagic2017pothole} para la identificación de un bache proponen un método de 3 fases:
+		Akagic et al.\brackcite{akagic2017pothole} para la identificación de un bache proponen un método de 3 fases:
 		el método de imágenes recortadas y umbralización de Otsu, la eliminación de formas de contorno y la detección 
 		de regiones de baches. La fase inicial está basada en los trabajos realizados por  Buza et al.\brackcite{buza2013pothole}.
 		La primera diferencia que añaden es que la imagen de entrada en el primer paso es ahora el resultado del paso de extracción 
@@ -138,7 +138,7 @@ que son baches dentro de una imagen.
 		% estructurales de la textura. 
 		% La región exterior $R_o$ representa la parte intacta y saludable de la imagen del pavimento
 
-		Por otro lado, Ryu et al. ~\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
+		Por otro lado, Ryu et al.\brackcite{ryu2015image} dan una propuesta para decidir si las regiones candidatas refinadas son baches o no. Para este fin, 
 		comparan las regiones candidatas con el fondo, usando características como la desviación estándar y el histograma. En particular, hacen 
 		uso de la característica del histograma mediante un \emph{ordered histogram intersection}(\textbf{OHI}). Mediante el uso del \textbf{OHI} es posible 
 		distinguir manchas, luces y sombras y evitar la detección errónea de baches. Para establecer que una región candidata refinada se considere que no es un 
@@ -152,7 +152,7 @@ que son baches dentro de una imagen.
 		% \textbf{OHI} es un método para 
 		%medir el grado de similitud entre las regiones de una imagen. s
 		
-		La propuesta de Buza et al. ~\brackcite{buza2013pothole} es aplicar un proceso de selección de semillas. Esto marcará el área para la identificación 
+		La propuesta de Buza et al.\brackcite{buza2013pothole} es aplicar un proceso de selección de semillas. Esto marcará el área para la identificación 
 		de la región del bache. El próximo paso es la extracción del área vertical en la imagen agrupada. Después de esta operación se tienen las regiones 
 		definidas verticalmente por un bache. La operación vertical previa se utiliza como base para la extracción de las regiones definidas horizontalmente 
 		por un bache. El proceso de identificación de baches se completa trazando líneas verticales y horizontales entre los puntos indentificados para 
@@ -166,7 +166,7 @@ que son baches dentro de una imagen.
 	y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características
 	mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
 
-	Pereira et al. ~\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolutional} , cuatro
+	Pereira et al.\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolutional} , cuatro
 	capas de \emph{pooling} y una capa de \emph{fully-connected}. Una función de activación \textbf{ReLU} es usada entre 
 	la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
 	y la capa de salida. Las salidas de las capas de \emph{fully-connected} están conectadas a la capa de salida que hace 
@@ -183,7 +183,7 @@ que son baches dentro de una imagen.
 	% Para carreteras sin marca de carril, y siempre que no se puedan detectar carriles, utilizan 
 	% 	un método de detección estático de marcas de carril. Las marcas de carril pueden ser generadas usando el \emph{vanishing point} (un \emph{vanishing point} es un punto 
 	% 	en el plano de una imagen de un dibujo en perspectiva donde las proyecciones en perspectiva bidimensional de líneas paralelas entre sí en el espacio 
-	% 	tridimensional parecen converger) ~\brackcite{jo2015pothole}. La mayoría de los carriles tienen dos marcas de carril (una hacia el lado derecho 
+	% 	tridimensional parecen converger)\brackcite{jo2015pothole}. La mayoría de los carriles tienen dos marcas de carril (una hacia el lado derecho 
 	% 	del vehículo, y otra hacia su lado izquierdo). Si una de las dos marcas no es detectada, es reemplazada por una marca de carril estática. Solo 
 	% 	se reemplaza la marca que no fue detectada. Es decir, cuando una marca del carril izquierdo no se detectó, solo esa línea se reemplaza por una marca 
 	% 	de carril estática
@@ -195,10 +195,10 @@ que son baches dentro de una imagen.
 	% como una medida estadística para describir la textura  tanto de la región interna como de 
 	% 	la región externa
 
-	% Pereira et al. ~\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
+	% Pereira et al.\brackcite{pereira2018deep} llevan a cabo un proceso de \emph{data augmentation} mediante rotación, \emph{shift} y \emph{flip}
 	% de la imagen en el conjunto de entrenamiento para evitar el \emph{overfitting}.
 
-	La propuesta de Kumar et al. ~\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} para detectar baches en imágenes 
+	La propuesta de Kumar et al.\brackcite{kumar2020modern} utiliza la técnica de \emph{transfer learning} para detectar baches en imágenes 
 	en tiempo real. Para este propósito, hacen uso de \emph{Faster Region-based Convolutional Neural Network}(\textbf{F-RCNN}) y un modelo de
 	\emph{Inception - V2}. 
 	% \
@@ -210,7 +210,7 @@ que son baches dentro de una imagen.
 	% \emph{Fast R-CNN} con la \textbf{RPN}(\emph{region proposal network}), se convierte en \emph{Faster R-CNN}. Básicamente , la 
 	% diferencia entre \emph{Fast R-CNN} y \emph{Faster R-CNN} es la región propuesta.
 	
-	Ahmed et al. ~\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
+	Ahmed et al.\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
 	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
 	con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \textbf{CNN} 
 	propuesta llamada  \textbf{MVGG16}). La propuesta \emph{Faster R-CNN} con \emph{backbone} \textbf{MVGG16} desarrolló una 
@@ -219,43 +219,43 @@ que son baches dentro de una imagen.
 		\subsubsection{Data augmentation}
 			Un tamaño limitado en el conjunto de datos puede conducir a un \emph{overfitting}. Sin embargo, los modelos de \emph{deep learning}
 			exigen una cantidad satisfactoria de datos para generar resultados precisos. Con la técnica de \emph{data augmentation} se logra evitar 
-			el \emph{overfitting} asi como aprovechar la regularización ~\brackcite{ahmed2021smart,pereira2018deep}. 
-			Esto se reliza mediante procesos de rotación~\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}~\brackcite{pereira2018deep}, 
-			\emph{flip}~\brackcite{pereira2018deep}, \emph{scaling}~\brackcite{ahmed2021smart}, ajuste de color~\brackcite{ahmed2021smart} y 
-			\emph{mosaic augmentation}~\brackcite{ahmed2021smart} sobre las imágenes.
+			el \emph{overfitting} asi como aprovechar la regularización\brackcite{ahmed2021smart,pereira2018deep}. 
+			Esto se reliza mediante procesos de rotación\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}\brackcite{pereira2018deep}, 
+			\emph{flip}\brackcite{pereira2018deep}, \emph{scaling}\brackcite{ahmed2021smart}, ajuste de color\brackcite{ahmed2021smart} y 
+			\emph{mosaic augmentation}\brackcite{ahmed2021smart} sobre las imágenes.
 
 	\subsection{Captura de los datos}
 	Para la captura de los datos algunos autores usan cámaras de video conectadas a los  parabrisas de los vehículos para 
-	recopilar imágenes de las carreteras ~\brackcite{ahmed2021smart}. Otros,  obtienen imágenes que contengan baches de  sitios en 
-	Internet usando el motor de búsqueda de Google ~\brackcite{koch2011pothole,akagic2017pothole}. Muchas de las imágenes tomadas 
-	se realizaron desde distintas cámaras, ángulos de disparo, tamaños, número de baches y fondos ~\brackcite{akagic2017pothole,pereira2018deep,ahmed2021smart}. 
+	recopilar imágenes de las carreteras\brackcite{ahmed2021smart}. Otros,  obtienen imágenes que contengan baches de  sitios en 
+	Internet usando el motor de búsqueda de Google\brackcite{koch2011pothole,akagic2017pothole}. Muchas de las imágenes tomadas 
+	se realizaron desde distintas cámaras, ángulos de disparo, tamaños, número de baches y fondos\brackcite{akagic2017pothole,pereira2018deep,ahmed2021smart}. 
 	Un conjunto de datos no estructurados se puede utilizar para examinar el verdadero potencial de cualquier método de 
-	detección de baches ~\brackcite{akagic2017pothole}.
+	detección de baches\brackcite{akagic2017pothole}.
 
-	Koch et al. ~\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
+	Koch et al.\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
 	del \emph{Georgia Tech campus} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
 	\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
-	Jo et al. ~\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
+	Jo et al.\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
 	\emph{black-box}  a lo largo de la \emph{National Highway}. Los videos fueron grabados en un clima soleado al mediodía.
 
-	Ryu et al. ~\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
+	Ryu et al.\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
 	en Corea. 
 
-	Pererira et al. ~\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
+	Pererira et al.\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
 	lugares con diversas condiciones de clima, tamaños y formas.
 
-	Buza et al. ~\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
+	Buza et al.\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
 	múltiples baches, 10 con grietas y un bache, 5 con parches de la carretera reparados y el resto sin zonas defectuosas.
 
-	Kumar et al. ~\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
+	Kumar et al.\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
 	Todo el conjunto de datos consta de dos conjuntos diferentes, uno se consideraron simple y el otro más complejo.
 
-	Ahmed et al. ~\brackcite{ahmed2021smart} usan conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
+	Ahmed et al.\brackcite{ahmed2021smart} usan conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
 	diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
 
 
-% Akagic et al. ~\brackcite{akagic2017pothole} se comprueba en una imagen conjunto de datos formado a partir de imágenes 
+% Akagic et al.\brackcite{akagic2017pothole} se comprueba en una imagen conjunto de datos formado a partir de imágenes 
 % seleccionadas de la búsqueda en Google de la  palabra clave "bache". 
 
 
@@ -264,7 +264,7 @@ que son baches dentro de una imagen.
 
 % Akagic et al.  probaron con más de 80 imágenes de baches de diferentes capturadas 
 % desde varias cámaras, ángulos de disparo, diferentes formas irregulares y número de baches, diferentes tamaños y fondos 
-% ~\brackcite{akagic2017pothole}. 
+%\brackcite{akagic2017pothole}. 
 
 % La principal ventaje que tiene el uso de \textbf{CNN} es que detecta las características importantes sin supervisión humana.
 
@@ -281,16 +281,16 @@ que son baches dentro de una imagen.
 % determinados y utilizados para establecer dos vectores de características $f_i$ y $f_o$, que describen la textura de las regiones $R_i$ 
 % y $R_o$ respectivamente. A continuación, se calculan y comparan las longitudes de los vectores de características $f_i$ y $f_o$.
 % Si $|f_o|$  es menor que  $|f_i|$, significa que la textura dentro de $R_i$ es más gruesa y granulada que en el interior de $R_o$, se asume 
-% que la región $R_i$ es la región interior de un bache ~\brackcite{koch2011pothole}.
+% que la región $R_i$ es la región interior de un bache\brackcite{koch2011pothole}.
 
 % De acuerdo con la observación de los autores de que la región dentro de un bache es en su mayoría granular, 
-% los llamados \emph{spot filters} se utilizan para crear respuestas de filtro alto ~\brackcite{koch2011pothole}
+% los llamados \emph{spot filters} se utilizan para crear respuestas de filtro alto\brackcite{koch2011pothole}
 
 
 	% \subsection{Extracción de la forma de una imagen(\emph{Shape extraction})}
 	% % El tamaño absoluto de una región de interés R es dependiente de de la resolución de una imagen, mientras 
 	% % la linealidad de la forma de una región se puede definir por su excentricidad $\epsilon$. Se considera que una región es lineal 
-	% % si su excentricidad es mayor que 0.99. Para extraer la forma de los próximos candidatos a regiones defectuosas se determina ~\brackcite{koch2011pothole}:
+	% % si su excentricidad es mayor que 0.99. Para extraer la forma de los próximos candidatos a regiones defectuosas se determina\brackcite{koch2011pothole}:
 	% Dada las siguientes propiedades de una región:\\
 
 	% \begin{itemize}
@@ -307,7 +307,7 @@ que son baches dentro de una imagen.
 
 	% Basado en estas propiedades se distingue entre regiones que podrían representar la sombra de un bache y regiones que podrían representar un bache
 	% completo. Una región es candidata a representar la sombra de un un bache si el centroide de la región no reside dentro de la región , o si la
-	% excentricidad excede el umbral $\varepsilon+{max}$ y $\frac{l_{max}}{s}$ excede el umbral $r_{max}$ ~\brackcite{koch2011pothole}.
+	% excentricidad excede el umbral $\varepsilon+{max}$ y $\frac{l_{max}}{s}$ excede el umbral $r_{max}$\brackcite{koch2011pothole}.
 
 % \begin{center}
 % 	$type(R)$ := $\left\{\substack{\text{Es candidato a representar la sombra de un bache} :\;\;P_{cent}\in{R}\;\; \vee  (\varepsilon > \varepsilon_{max} \wedge (\frac{l_{max}}{s} > r_{max})) \\
@@ -316,7 +316,7 @@ que son baches dentro de una imagen.
 % \end{center}
 
 
-	% Para aproximar la forma elíptica de un bache basado en la forma detectada se procede a realizar los siguientes pasos ~\brackcite{koch2011pothole}:
+	% Para aproximar la forma elíptica de un bache basado en la forma detectada se procede a realizar los siguientes pasos\brackcite{koch2011pothole}:
 
 	% \begin{enumerate}
 	% 	\item Utilizan adelgazamiento morfológico para reducir la región de sombra  a su trazo o esqueleto mínimamente conectado.
@@ -333,11 +333,11 @@ que son baches dentro de una imagen.
 	% \subsection{Extracción de la textura}
 
 
-% Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas ~\brackcite{koch2011pothole}
+% Es una de las propuestas es segmentar la  imagen en regiones defectuosas y no defectuosas\brackcite{koch2011pothole}
 % Luego utilizar un proceso de  \emph{thresholding} sobre un histograma de la forma de la imagen (histogram shape-based thresholding)
 
 % Con base en las propiedades geométricas de una región defectuosa, la
-% la forma potencial del bache se aproxima utilizando adelgazamiento morfológico y regresión elíptica. ~\brackcite{koch2011pothole}
+% la forma potencial del bache se aproxima utilizando adelgazamiento morfológico y regresión elíptica.\brackcite{koch2011pothole}
 
 
 % Posteriormente, se extrae la textura dentro de una posible forma defectuosa y se compara con la textura del pavimento circundante 
@@ -375,7 +375,7 @@ que son baches dentro de una imagen.
 		la idea de que condiciones anómalas de la carretera son reflejadas en características de los datos de aceleración \brackcite
 		{mohan2008nericell, mednis2011real, eriksson2008pothole}.\\
 
-		\emph{Mednis et al.} ~\brackcite{mednis2011real} propusieron los siguientes métodos:\\
+		\emph{Mednis et al.}\brackcite{mednis2011real} propusieron los siguientes métodos:\\
 
 		\begin{itemize}
 			\item  \emph{\textbf {Z-Thresh}}: Establecer unos umbrales para los valores del acelerómetro en el eje Z en un instante de tiempo.\\
@@ -387,10 +387,10 @@ que son baches dentro de una imagen.
 				cual podría ser indicativo de que el vehículo está en caída libre en un pequeño intervalo de tiempo.
 		\end{itemize}
 
-		\emph{Mohan et al.} ~\brackcite{mohan2008nericell} usan una idea idéntica al \emph{\textbf{Z-Thresh}} y otra en la que buscan
+		\emph{Mohan et al.}\brackcite{mohan2008nericell} usan una idea idéntica al \emph{\textbf{Z-Thresh}} y otra en la que buscan
 		una caída sostenida de la aceleración en el eje Z por debajo de cierto umbral, durante cierta cantidad de tiempo(\emph{\textbf{Z-SUS}}).\\
 
-		\emph{Astarita et al.} ~\brackcite{astarita2012mobile}, proponen un método basado en una serie de filtros para desechar 1 o más eventos que
+		\emph{Astarita et al.}\brackcite{astarita2012mobile}, proponen un método basado en una serie de filtros para desechar 1 o más eventos que
 		no sean anomalías. Un primer filtro de baja frecuencia para eliminar las componentes introducidas como consecuencia del ruido de fondo en la señal.
 		Un segundo filtro de velocidad para eliminar picos cuando el vehículo está detenido, asociados al evento de tirar la puerta del vehículo. Y por 
 		último, un filtro que remueve las componentes que están por debajo de un umbral prefijado, que se determinó como resultado del análisis estadístico
@@ -416,7 +416,7 @@ que son baches dentro de una imagen.
 		% \end{itemize}
 
 
-		El algoritmo para la detección de anomalías en la carretera propuesto por \emph{Eriksson et al.} ~\brackcite{eriksson2008pothole} sigue
+		El algoritmo para la detección de anomalías en la carretera propuesto por \emph{Eriksson et al.}\brackcite{eriksson2008pothole} sigue
 		esta misma idea de establecer umbrales pero es un poco más elaborado, ya que usa una 5 filtros donde cada filtro está diseñado
 		para rechazar uno o más de un evento que no sea bache:\\
 
@@ -450,10 +450,10 @@ que son baches dentro de una imagen.
 	\subsection{Enfoques utilizando aprendizaje de máquinas}
 		\subsubsection{Algoritmos}
 			Con respecto a los trabajos existentes que utilizan el aprendizaje de máquinas existen varios. Entre los modelos supervisados
-			más utilizados están \emph{Support Vector Machines}(\textbf{SVM}) ~\brackcite{tai2010automatic, ranjith2015anomaly, carlos2018evaluation,
+			más utilizados están \emph{Support Vector Machines}(\textbf{SVM})\brackcite{tai2010automatic, ranjith2015anomaly, carlos2018evaluation,
 			seraj2015roads, el2018towards, cong2013applying, perttunen2011distributed, gonzalez2017learning}, \emph{Decision Trees} ~\brackcite
-			{el2018towards, gonzalez2017learning}, \emph{Random Forest} ~\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
-			(\textbf{KNN}) ~\brackcite{el2018towards, zheng2020fused, gonzalez2017learning}. Otros autores utilizan aprendizaje profundo con
+			{el2018towards, gonzalez2017learning}, \emph{Random Forest}\brackcite{el2018towards, zheng2020fused}, \emph{K-Nearest Neighboors}
+			(\textbf{KNN})\brackcite{el2018towards, zheng2020fused, gonzalez2017learning}. Otros autores utilizan aprendizaje profundo con
 			\emph{Artificial Neural Networks}(\textbf{ANN}) \brackcite {kulkarni2014pothole, pawar2020efficient, gonzalez2017learning}.
 			\emph{Zheng et al.} \brackcite{zheng2020fused} agregan a este proceso \textbf{DTW}(\emph{Dynamic Time Warping}) que se utiliza
 			para determinar similitud entre 2 series temporales que puedan ser obtenidas a distintas velocidades.
@@ -622,14 +622,14 @@ que son baches dentro de una imagen.
 		% {características} (basadas principalmente en la aceleración en el eje Z), sí existía o no una anomalía. características como la media,
 		% desviación estándar, varianza, coeficiente de variación y diferencia entre valor mínimo y máximo. otras 4 características utilizados
 		% para otorgar un valor de confianza a 4 de los características previamente mencionados excepto a la varianza, comparándolos con un cierto
-		% valor umbral. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema(~\brackcite{mednis2011real}), con el
+		% valor umbral. Esta idea fue tomada teniendo en cuenta una serie de artículos con respecto al tema\brackcite{mednis2011real}), con el
 		% objetivo de mejorar el rendimiento del clasificador. Otro de los características es la cantidad de veces que un feature estadístico
 		% sobrepasó el valor \emph {threshold} concebido. Completan los 12 características utilizados la suma de los valores de confianza, así
 		% como el valor de confianza correspondiente. Cabe desctacar que implementaron una plataforma llamada Pothole Lab con el objetivo de crear un
 		% sitio web público donde tener acceso a data sets robustos y curados. Los datos que utilizaron fueron obtenidos de este mismo sitio y fueron
 		% capturados utilizando un Moto G Android a una frecuencia de 50Hz.\\
 
-		% ~\brackcite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más características
+		%\brackcite{seraj2015roads} en su propuesta, incorporaron además los datos del giroscopio con el objetivo de obtener más características
 		% que permitieran mejorar la calidad del clasificador. Además, también realizaron un proceso para eliminar el ruido y mejorar la calidad de
 		% las señales obtenidas con los sensores de los dispositivos utilizados para capturar los datos. Separaron las señales en ventanas de 2.5
 		% segundos y extrajeron de ahí varios características para el proceso de entrenamiento. características de dominio temporal,
@@ -638,7 +638,7 @@ que son baches dentro de una imagen.
 		% la cual etiquetaron sus datos utilizando vídeos y audios grabados durante la recolección de los datos. El dispositivo que utilizaron para la
 		% recolección de los datos fue un Samsung Galaxy S2 y recopilaron datos a frecuencias de 47Hz y 93Hz.\\
 
-		% ~\brackcite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los
+		%\brackcite{el2018towards} como en el artículo previamente mencionado, llevaron a cabo un extenso proceso, separando las señales de los
 		% sensores por ventanas de 1 segundo y generando vectores de características bien extensos en cada una de estas ventanas. Además llevaron
 		% a cabo un proceso de eliminación de ruido de las señales probando varios métodos conocidos en el campo del procesamiento de señales
 		% digitales como la transformada de Fourier o la transformada de Fourier por ventanas discretas (\textbf{WDFT} por sus siglas en inglés),
@@ -670,7 +670,7 @@ que son baches dentro de una imagen.
 		% contacto con alguna anomalía de la carretera. Los conductores usuales intentan evitar los baches, por que la probabilidad de detectar una
 		% anomalía en la carretera es menor que la que se debe de esperar de una distribución sin sesgo del área que se intenta mapear.\\
 
-		% ~\brackcite{cong2013applying} para la extracción de características descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition})
+		%\brackcite{cong2013applying} para la extracción de características descomponen la señal usando \textbf{WPD}(\emph{Wavelet Packet Decomposition})
 		% usando sucesivamente filtros de \emph{low-pass} y de \emph{high-pass}. Donde \textbf{WPD} es llevado a cabo aplicando de forma iterativa filtros
 		% espejos en cuadratura y seguido por submuestreo. La selección de características basadas en aprendizaje de máquinas puede ser asistida para
 		% reducir la demanda computacional para la clasificiación. La selección de características está diseñada para encontrar las características que
@@ -682,7 +682,7 @@ que son baches dentro de una imagen.
 		% {SVM} fué entrenado con el 70 \%  de los datos (1234 segmentos) y el conjunto de entrenamiento fue escogido de manera aleatoria. El resto de
 		% los datos  (530 segmentos) y en todos los 21 segmentos de anomalías fueron usados para los tests de precisión del modelo \textbf{SVM} construido.\\
 
-		% ~\brackcite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que puede utilizarse
+		%\brackcite{kulkarni2014pothole} proponen un sistema que detecta los baches, registra su ubicación, un crea un documento que puede utilizarse
 		% para cargarlo en un servidor centralizado o enviarlo  a las autoridades competentes inmediatamente.  Cuando el usuario inicia su viaje, lanza
 		% la aplicación Android de detección de baches. La aplicación, que tiene como complemento del algoritmo en funcionamiento, detecta los baches en
 		% las carreteras mientras el usuario está conduciendo. Supervisa los cambios en la aceleración. La aplicación añáde la hora actual, las coordenadas
@@ -734,7 +734,7 @@ que son baches dentro de una imagen.
 			
 		% \end{itemize}
 
-		% ~\brackcite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran
+		%\brackcite{zheng2020fused} se refieren a que la mayoría de los artículos con respecto al tema no toman en consideración el hecho que la gran
 		% mayoría de la carreteras que existe en el mundo no posee anomalías, y que la aplicación de técnicas de aprendizaje de máquinas utizando una
 		% ventana deslizante a ciegas puede disminuir considerablemente la precisión y la rapidez del proceso de entrenamiento. Para esto plantean que
 		% una anomalía comienza con una señal normal y luego ocurre un pico de aceleración en el eje Z que excede un umbral superior y luego
@@ -753,7 +753,7 @@ que son baches dentro de una imagen.
 		% con otras hechas en los últimos 3 años obteniendo un mejor \emph{F1 score} al identificar los 3 tipos de anomalías que consideraron en cada
 		% uno de los 3 \emph{datasets} que probaron.\\
 
-		% ~\brackcite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la
+		%\brackcite{perttunen2011distributed} explican que los sensores del teléfono móvil son reflejados en las señales de dos maneras: Primero, la
 		% señal del \textbf{GPS} en el teléfono usado tenía muchco ruido. Segundo, las mediciones del \textbf{GPS} y de la aceleración fueron contaminadas
 		% por ráfagas, que son mediciones registradas con la misma marca de tiempo. A continuación, se realizó el rechazo de valores atípicos de GPS y se
 		% aplicó el filtro de Kalman a la latitud y la longitud para reducir aún más el ruido. Después la velocidad será estimamda por cada par consecutivo
@@ -783,7 +783,7 @@ que son baches dentro de una imagen.
 		% rejilla de valores de los parámetros $\gamma$ y C. Presentaron además un \emph{framework} de visualización para los resultados, parar
 		% habilitar la inspección visual de, por ejemplo, los ejemplos cercanos al borde de las clases.\\
 
-		% ~\brackcite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el
+		%\brackcite{pawar2020efficient} utilizan un dispositivo móvil ubicado en el parabrisas del vehículo para capturar las señales del acelerómetro y el
 		% giroscopio. Con esto construyen un vector de 24 características entre los cuales están los valores máximo, mínimo, la desviación estándar
 		% y la media de los 3 ejes del acelerómetro así como los del giroscopio, luego estandarizaron los datos para disminuir el efecto de las anomalías
 		% en los características y permite percibir mejor en un gráfico los picos en las lecturas causados por los baches. Finalmente proponen como
@@ -796,7 +796,7 @@ que son baches dentro de una imagen.
 		% Minority OverSampling Technique}) con el objetivo de contrarrestar el gran desbalance entre clases que hay en este problema en particular(bache y no
 		% bache en este caso).\\
 
-		% ~\brackcite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
+		%\brackcite{gonzalez2017learning} realizaron un riguroso proceso de experimentación con respecto al tipo y total de vehículos con
 		% un total de 12, entre ellos camiones incluidos, además probaron con distintas posiciones del móvil dentro del vehículo. Para la recolección de datos 2
 		% personas iban en el vehículo, uno de ellos encargado de etiquetar las anomalías de la siguiente forma, cuando se van acercando a la anomalía ponen el
 		% dispositivo a recolectar los datos y una vez pasan la anomalía detienen la recolección de datos y asignan una etiqueta a dicha serie temporal. Su
