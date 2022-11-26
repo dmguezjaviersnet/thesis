@@ -521,7 +521,7 @@ que son baches dentro de una imagen.
 	{eriksson2008pothole}, \emph{Real time pothole detection using android smartphones with accelerometers} de \emph{Mednis et al.}\brackcite{mednis2011real} y 
 	\emph{Using mobile smartphones for rich monitoring of road and traffic conditions} de \emph{Mohan et al.}\brackcite{mohan2008nericell}. 
 
-	Las técnicas propuestas en estos trabajos iniciales, aún son utilizadas y consideradas por los autores para realizar sus respectivas investigaciones,
+	Las técnicas propuestas en estos trabajos iniciales aún son utilizadas y consideradas por los autores para realizar sus respectivas investigaciones,
 	sin importar el enfoque que empleen para resolver su problema. Una de las vías de solución que recientemente ha crecido en popularidad es el aprendizaje
 	de máquinas. En los últimos años, ha habido una gran cantidad de propuestas en la literatura analizada, que utilizan métodos de aprendizaje de máquinas
 	para atacar este problema. Hay propuestas con distintos enfoques, distintas formas de procesar los datos y distintas formas de implementar la propuesta,
@@ -536,7 +536,7 @@ que son baches dentro de una imagen.
 		\item Purificación de la señal: Muchos, emplean algún método que le permita eliminar componentes no relevantes de la serie temporal, como
 			el ruido ocasionado por vibraciones ajenas al estado de la carretera, utilizando filtros digitales. Otros realizan un análisis de la frecuencia
 			de la señal con métodos de procesamiento de señales digitales, que les permite desde producir una señal más acertada, hasta la extracción de
-			características que pueden ser representativas del problema. Estas pueden ser utilizadas luego, para el entrenamiento de algoritmos de aprendizaje
+			características que pueden ser representativas del problema. Estas pueden ser utilizadas luego para el entrenamiento de algoritmos de aprendizaje
 			de máquinas.
 
 		\item Segmentación de la señal: Gran parte propone utilizar técnicas de ventana deslizante para analizar y detectar
@@ -554,21 +554,21 @@ que son baches dentro de una imagen.
 
 		\item Etiquetado: Casi todos los autores etiquetan sus datos a mano. Lo hacen utilizando grabaciones de vídeo o de audio que se realizan 
 			simultáneamente con la captura de los datos. Aunque existen algunos que utilizan métodos de aprendizaje no-supervisado como agrupamiento
-			para etiquetar de forma automática los datos, teniendo un pequeño conjunto de datos etiquetados a mano. Esto permite etiquetar grandes 
+			para etiquetar de forma automática los datos teniendo un pequeño conjunto de datos etiquetados a mano. Esto permite etiquetar grandes 
 			cantidades de datos de forma sencilla.
 	\end{itemize}
 
 	Teniendo en cuenta el análisis de la literatura acerca del problema que se propone abarcar en este trabajo, se seguirán las siguientes ideas con el 
 	fin de llegar a una alternativa de solución. Se utilizará el enfoque basado en series temporales generadas a partir del muestreo de sensores como el
 	\textbf{acelerómetro}, \textbf {giroscopio} y el \textbf{GPS}. La posición del dispositivo se decidió que fuera fija, de forma que su orientación
-	coincidiera con la del vehículo. La señal no fue segmentada en ventanas para su análisis, en vez de eso, se realizó una búsqueda de anomalías entre
-	todos los datos para identificar potenciales candidatos a bache. Para esto, se utilizaron algunos métodos propuestos en la literatura como \textbf
+	coincidiera con la del vehículo. La señal no fue segmentada en ventanas para su análisis, en vez de eso se realizó una búsqueda de anomalías entre
+	todos los datos para identificar potenciales candidatos a bache. Para esto se utilizaron algunos métodos propuestos en la literatura como \textbf
 	{Z-Thresh}, \textbf{Z-Diff} y \textbf{G-Zero}, además de algunos métodos de agrupamiento. Estos últimos, en la literatura, son utilizados también,
 	pero para etiquetar de forma automática los datos. Este enfoque no fue visto en ninguno de los artículos de la literatura analizados, y pudiera reducir
 	enormemente la cantidad de datos a analizar. Esto se debe a que la gran mayoría de los datos representan carretera en buen estado.
 
 	El proceso de etiquetado se realizó de forma manual, aunque no utilizando vídeo ni audio, sino buscando en un radio determinado alrededor de cada
-	lectura, baches previamente identificados y ubicados con el \textbf{GPS}.
+	lectura baches previamente identificados y ubicados con el \textbf{GPS}.
 
 	Los sensores que se utilizaron fueron \textbf{acelerómetro}, \textbf {giroscopio} y \textbf{GPS}. No muchas de las propuesta analizadas utilizan
 	el \textbf{giroscopio} y se considera que sus lecturas pueden ser muy relevantes para caracterizar el estado de la carretera. El \textbf{GPS}
