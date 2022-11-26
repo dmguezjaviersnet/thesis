@@ -475,9 +475,9 @@ que son baches dentro de una imagen.
 		entrenamiento. Por esta razón, proponen un método para determinar de forma dinámica el tamaño de la ventana a considerar.\\
 		
 	\subsection{Ubicación del dispositivo en el vehículo}
-		Primero, antes de poder atacar este problema utilizando alguna propuesta que utilice datos de sensores como el \textbf{acelerómetro}, el \textbf{giroscopio}
-		y el \textbf{GPS}, es necesario llevar a cabo un trabajo de campo que permita recopilar información utilzando estos sensores. Así estén separados cada uno,
-		o utilizando algún dispositivo móvil que los tenga incorporados.
+		Para poder llevar a cabo las propuestas que utilicen datos de sensores como el \textbf{acelerómetro}, 
+		el \textbf{giroscopio} y el \textbf{GPS}, es necesario un trabajo de campo que permita recopilar información utilizando estos 
+		sensores. Estos, pueden encontrarse como sensores independientes en intrumentos de medición, o incorporados en algún dispositivo móvil.
 
 		Debido a que estos dispositivos tienen los 3 ejes prefijados, es necesario colocarlos de tal manera que los datos recopilados tengan sentido, o sea,
 		que se conozca la orientación del eje Z del dispositivo o tener alguna forma de estimar dicha orientación, como plantean \emph{Astarita et al.}
@@ -533,7 +533,7 @@ que son baches dentro de una imagen.
 			dispositivo en el vehículo. Lo cual sería una comodidad, pues permitiría facilitar la recolección de datos, incluso por personas ajenas a la
 			investigación.
 
-		\item Purificación de la señal: Muchos, emplean algún método que le permita eliminar componentes no relevantes de la serie temporal, como
+		\item Purificación de la señal: Muchos emplean algún método que le permita eliminar componentes no relevantes de la serie temporal, como
 			el ruido ocasionado por vibraciones ajenas al estado de la carretera, utilizando filtros digitales. Otros realizan un análisis de la frecuencia
 			de la señal con métodos de procesamiento de señales digitales, que les permite desde producir una señal más acertada, hasta la extracción de
 			características que pueden ser representativas del problema. Estas pueden ser utilizadas luego, para el entrenamiento de algoritmos de aprendizaje
@@ -558,9 +558,12 @@ que son baches dentro de una imagen.
 			cantidades de datos de forma sencilla.
 	\end{itemize}
 
+	Existen dos enfoques que se le dan al problema de detectar baches en la carretera: uno basado en imágenes y otro basado en series 
+	temporales de señales. Se utilizará el enfoque basado en series temporales generadas a partir del muestreo de sensores como el
+	\textbf{acelerómetro}, \textbf {giroscopio} y \textbf{GPS}.
+
 	Teniendo en cuenta el análisis de la literatura acerca del problema que se propone abarcar en este trabajo, se seguirán las siguientes ideas con el 
-	fin de llegar a una alternativa de solución. Se utilizará el enfoque basado series temporales generadas a partir del muestreo de sensores como el
-	\textbf{acelerómetro}, \textbf {giroscopio} y el \textbf{GPS}. La posición del dispositivo se decidió que fuera fija, de forma que su orientación
+	fin de llegar a una alternativa de solución. La posición del dispositivo se decidió que fuera fija, de forma que su orientación
 	coincidiera con la del vehículo. La señal no fue segmentada en ventanas para su análisis, en vez de eso, se realizó una búsqueda de anomalías entre
 	todos los datos para identificar potenciales candidatos a bache. Para esto, se utilizaron algunos métodos propuestos en la literatura como \textbf
 	{Z-Thresh}, \textbf{Z-Diff} y \textbf{G-Zero}, además de algunos métodos de agrupamiento. Estos últimos, en la literatura, son utilizados también,
