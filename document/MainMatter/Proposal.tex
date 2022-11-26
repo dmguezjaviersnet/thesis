@@ -5,10 +5,10 @@
 	de captura de señales. Una vez se tengan los datos que se quieren estructurados, se pasa a una fase de detección de
 	anomalías utilizando algunos métodos heurísticos y de aprendizaje no-supervisado. Las anomalías que se extraigan con
 	este proceso son etiquetadas con un método que utiliza la distancia de la ubicación de las lecturas a ciertas marcas
-	previamente etiquetadas a mano. Luego se realiza un proceso de selección de características utilizando varios métodos, 
-	para determinar las características más relevantes a la hora de clasificar las anomalías en bache o no bache. Y
-	finalmente se realiza un proceso de selección de modelos e hiperparámetros, mediante el cual se busca un algoritmo
-	y una configuración de hiperparámetros que maximice el \emph{F1 score}.
+	previamente etiquetadas a mano. Luego se realiza un proceso de selección de características utilizando varios métodos 
+	para determinar las más relevantes a la hora de clasificar las anomalías en bache o no bache. Finalmente, se realiza 
+	un proceso de selección de modelos e hiperparámetros, mediante el cual se busca un algoritmoy una configuración de 
+	hiperparámetros que maximice el \emph{F1 score}.
 
 \section{Captura de señales}
 	Las señales que se consideraron capturar son las proporcionadas por sensores como el \textbf{acelerómetro},
@@ -32,7 +32,7 @@
 		\label{fig:2}
 	\end{figure}
 
-	Por su parte los ejes correspondientes a un vehículo(figura \ref{fig:3}) están distribuidos de la siguiente forma:
+	Por su parte, los ejes correspondientes a un vehículo(figura \ref{fig:3}) están distribuidos de la siguiente forma:
 
 	\begin{itemize}
 		\item eje X: Va de un lado del vehículo a otro (lateral).
@@ -48,15 +48,15 @@
 	\end{figure}
 
 	\subsection{Acelerómetro}
-		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar,
-		sin embargo una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
+		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar.
+		Sin embargo, una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
 		por el bache. En ese momento cae brevemente e incluso se inclina momentáneamente hacia un lado (en el caso de un bache
-		que afecte una sola rueda). Por esta razón la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado, debe tener
+		que afecte una sola rueda). Por esta razón la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
 		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.\\
 		\indent Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
 		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado. También, dicho sensor debe registrar lecturas
 		anormales en el eje X si el bache afecta un solo lado del vehículo, pues en este caso el vehículo se inclina violentamente
-		hacia un lado por un momento(figura \ref{fig:4})k.\\
+		hacia un lado por un momento(figura \ref{fig:4}).\\
 
 	\begin{figure}[htb]
 		\centering
@@ -103,13 +103,13 @@
 		obtener las lecturas.\\
 		\indent Para actualizar de forma correcta la \textbf{frecuencia de muestreo} es necesario conocer la \textbf{velocidad}
 		a la que viaja el vehículo, o al menos realizar una estimación aceptable de la misma utilizando los sensores de
-		los que dispone el dispositivo móvil. Esta estimación se realizó utilizando las lecturas del \textbf{GPS}, y se 
+		los que dispone el dispositivo móvil. Esta estimación se realizó utilizando las lecturas del \textbf{GPS} y se 
 		asignaron frecuencias de muestreo teniendo en cuenta los límites de velocidad existentes en la zona urbana donde 
 		se llevaron a cabo los experimentos. Debido a que en Cuba existen muy pocas carreteras donde se permita a
 		los vehículos desplazarse a más de 100 km/h y también debido a que la mayoría de los vehículos que circulan en
 		el país no alcanzan dicha \textbf{velocidad}, se asumió que esta es la máxima a la que podría desplazarse un
 		vehículo a la hora de decidir las frecuencias de muestreo de los sensores.\\
-		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1Hz, debido a que es necesario tener 
+		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1Hz debido a que es necesario tener 
 		la ubicación en tiempo real del dispositivo y buena precisión en las lecturas del propio \textbf{GPS}. Además, 
 		muestrear más de una vez por segundo no es necesario, pues la distancia entre una lectura y otra no es considerable.\\
 
@@ -124,16 +124,16 @@
 
 \section{Preprocesamiento de los datos}
 	Luego de recolectar los datos, se lleva a cabo un preprocesamiento de los mismos para eliminar o corregir cierto aspectos.
-	El primer aspecto de este preprocesamiento es eliminar lecturas donde la precisión del \textbf{GPS} sea mayor que cierto valor,
+	El primer aspecto de este preprocesamiento es eliminar lecturas donde la precisión del \textbf{GPS} sea mayor que 10 m
 	con el objetivo de tener la mayor precisión posible en los datos recopilados.\\
 	\indent También, debido a que la frecuencia de muestreo del \textbf{acelerómetro} y el \textbf{giroscopio} es mayor que la del
 	\textbf{GPS}, existen varias lecturas consecutivas con un mismo valor de latitud-longitud en ese intervalo de tiempo. Para
-	corregir esto, se estimaron los valores de latitud-longitud de dichas lecturas utilizando interpolación lineal entre dos lecturas
+	corregir esto se estimaron los valores de latitud-longitud de dichas lecturas utilizando interpolación lineal entre dos lecturas
 	de \textbf{GPS} consecutivas.
 
 	\subsection{Extracción de características}
 		Durante este proceso, además de corregir y eliminar ciertos datos, también se extrajeron características. Entre ellas,
-		algunas estadísticas.  Luego, se incorporaron a cada uno de los datos. Estas características se extrajeron con el objetivo
+		algunas estadísticas.  Luego se incorporaron a cada uno de los datos. Estas características se extrajeron con el objetivo
 		de tener un juego de datos que brindara más información acerca de la naturaleza del problema, y así, tentativamente,
 		mejorar la calidad de la propuesta.\\
 
@@ -171,19 +171,19 @@
 	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado los
 	métodos de aprendizaje de máquinas que se probaron fueron \textbf{DBSCAN}, \textbf{OPTICS} y \textbf{One Class SVM} utilizando 
 	6 características, las lecturas de los 3 ejes del \textbf{acelerómetro}, y además las lecturas de los 3 ejes del \textbf{giroscopio}.
-	Este último sensor se incluyó, pues se consideró que sus lecturas pueden ser significativas a la hora de determinar la existencia de una 
+	Este último sensor se incluyó pues se consideró que sus lecturas pueden ser significativas a la hora de determinar la existencia de una 
 	anomalía. Este proceso de detección de anomalías se aplicó a cada una de las series temporales obtenidas como resultado del muestreo
 	de los sensores del dispositivo móvil.
 
 \section{Etiquetado de anomalías}
-	Luego de haber detectado las anomalías, es necesario llevar a cabo un proceso de etiquetado para poder utilizar los datos en la siguiente
-	fase de la propuesta. Para esto, se utilizaron las anomalías extraídas de la serie temporal y una lista de marcas. Estas marcas se realizaron
+	Luego de haber detectado las anomalías es necesario llevar a cabo un proceso de etiquetado para poder utilizar los datos en la siguiente
+	fase de la propuesta. Para esto se utilizaron las anomalías extraídas de la serie temporal y una lista de marcas. Estas marcas se realizaron
 	manualmente a lo largo de la misma ruta con la cual se generaron las series temporales e indican la presencia de un bache en cierta
 	ubicación, con coordenadas de latitud-longitud.\\
-	\indent Para asignar la etiqueta de bache a una anomalía, se busca en un radio predefinido si existe una marca de bache, de lo contrario, se le
+	\indent Para asignar la etiqueta de bache a una anomalía se busca en un radio predefinido si existe una marca de bache, de lo contrario, se le
 	asigna la etiqueta de no bache. Debido a que es imposible determinar exactamente el punto donde el vehículo hizo contacto con el bache
 	utilizando el \textbf{GPS}, a causa del error inherente del sensor, este proceso de etiquetado tiene cierto error. Este error puede ocasionar
-	que anomalías que no sean baches sean etiquetadas como tal, debido a que exista una marca que indique la presencia de un bache en un radio
+	que anomalías que no sean baches sean etiquetadas como tal debido a que exista una marca que indique la presencia de un bache en un radio
 	cercano a esta.
 
 \section{Selección de características}
