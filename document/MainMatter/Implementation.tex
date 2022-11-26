@@ -310,8 +310,7 @@
 	En la tabla \ref{table:12} se puede apreciar un ranking de las 10 características más escogidas entre todas las veces que se corrió el \emph{pipeline}.
 
 	Finalmente, en la última fase del \emph{pipeline}, se analizaron varios algoritmos de aprendizaje supervisado, con datos estandarizados y sin
-	estandarizar. El que mejores resultados arrojó fue \textbf{SVM} con kernel rbf y datos estandarizados. La configuración exacta de todo el
-	\emph{pipeline} con la que se obtuvo este resultado se puede observar en la tabla \ref{table:27}.
+	estandarizar. 
 	\newpage
 
 	En las tablas \ref{table:13}-\ref{table:16} se pueden apreciar los resultados obtenidos para cada una de las métricas, por cada algoritmo de detección de 
@@ -388,7 +387,7 @@
 		\end{tabular}
 	\end{table}
 
-	En la matriz de confusión del modelo que arrojó mejor \emph{F1 score} (ver figura \ref{fig:13}), se puede apreciar que el porcentaje de falsos
+	En la matriz de confusión del modelo que arrojó mejor\emph{F1 score} (ver figura \ref{fig:13}), se puede apreciar que el porcentaje de falsos
 	negativos es bien bajo, lo que indica que este modelo falló en clasificar muy pocos baches. A pesar de esto, se considera que estas pruebas 
 	deben ser repetidas con un conjunto de datos mucho más grande, para tener un resultado más relevante y contundente.
 
@@ -409,3 +408,7 @@
 		\caption{Visualización de la ubicación de algunas de las predicciones realizadas por el modelo con mejor \emph{F1 score} en el conjunto de prueba.}
 		\label{fig:14}
 	\end{figure}
+
+	Dados los resultados obtenidos, la configuración con la cual se obtubo mejores resultado utilizó \textbf{DBSCAN} para detectar las anomalías y como modelo
+	supervisado \textbf{SVM}, con kernel rbf, $\gamma$ = 0.1, C = 50  y datos estandarizados. La configuración exacta con la que se obtuvo este resultado se
+	puede observar en la tabla \ref{table:27}. El modelo alcanzó un \emph{F1 score} de 0.68 y un \emph{accuracy} de 0.70.
