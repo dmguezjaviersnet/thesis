@@ -167,7 +167,7 @@
 		una característica y cada fila uno de los datos recopilados. Entre las columnas de este \textbf{DataFrame} están los valores de los 3 ejes del \textbf
 		{acelerómetro}, los valores de los 3 ejes del \textbf{giroscopio} y la velocidad. Estas son las primeras 7 características de nuestro juego de datos
 		y son obtenidas directamente al leer los datos recopilados.\\
-		\indent El resto de características, son generadas a partir de las 7 previamente mencionadas y tienen como objetivo
+		\indent El resto de características son generadas a partir de las 7 previamente mencionadas y tienen como objetivo
 		enriquecer el juego de datos para obtener una representación más precisa del problema que se pretende resolver. Estas características estadísticas,
 		que fueron mencionadas en el capítulo anterior (ver \ref{chapter:proposal}), son computadas y agregadas como columnas al \textbf{DataFrame}.
 		Luego se agregan las columnas correspondientes a la latitud, longitud y precisión de dicha ubicación, para cada uno de los datos. Finalmente, son
@@ -409,7 +409,7 @@
 		\label{fig:14}
 	\end{figure}
 
-	Dados los resultados obtenidos, la configuración con la cual se obtubo mejores resultado utilizó \textbf{DBSCAN} para detectar las anomalías y como modelo
+	La configuración con la cual se obtuvo mejores resultados utilizó \textbf{DBSCAN} para detectar las anomalías y como modelo
 	supervisado \textbf{SVM}, con kernel rbf, $\gamma$ = 0.1, C = 50  y datos estandarizados. Las características seleccionadas fueron: 
 	X Accel, X Gyro,  X / Z, MinZratio, MedianDevAccelY, MeanDevGyroZ. La configuración exacta con la que se obtuvo este resultado se
 	puede observar en la tabla \ref{table:27}. El modelo alcanzó un \emph{F1 score} de 0.68 y un \emph{accuracy} de 0.70.

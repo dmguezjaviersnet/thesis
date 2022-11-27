@@ -4,13 +4,26 @@
 Cuba se ha propuesto, desde hace unos años, llevar a cabo un profundo proceso de informatización.
 Entre los temas dentro de dicho proceso que tienen como objetivo facilitar muchas actividades
 cotidianas se encuentran: transacciones bancarias, comercio electrónico, mayor acceso a internet, digitalización
-de información, acceso a información, etc.  
+de información, acceso a información, etc. A este proceso se le suma el monitoreo de las carreteras, 
+el acceso público de las rutas principales de muchos medios de transporte y el conocimiento del tráfico vehicular
+que existe en las principales ciudades.
 
+Las carreteras tienen un papel importante parar el desplazamiento 
+de personas o mercancías de un lugar a otro. Estas se deterioran debido al clima, al tráfico o a la mala calidad de 
+los distintos tipos de trabajo que se llevan a cabo en la vía pública. En Cuba es algo bastante común que la mayoría de 
+las carreteras en las grandes ciudades, como La Habana, estén en malas condiciones (ver figura \ref{fig:1}). 
+La funcionalidad que debe ofrecer la red de carreteras de un país es crucial para la seguridad y comodidad de los personas. 
+De ahí la importancia que tiene la gestión del deterioro de las mismas. La computación ha sido una herramienta muy usada 
+para tratar esta situación. Una de las aplicaciones que se le ha dado es predecir el nivel de deterioro que sufrirán 
+las carreteras con el tiempo.  
+
+% como, por ejemplo, para predecir el nivel de deterioro que sufrirán con el tiempo.  
 % Una de las tantas actividades que desde hace ya tiempo se ha convertido en
 % cotidiana, es el uso de los medios de transporte terrestres para desplazar mercancías o personas de un lugar a otro de
 % manera más rápida. Para esto se han ido desarrollado las carreteras, y se han ido mejorando con materiales para facilitar
-% el desplazamiento y a la vez hacerlas más resistentes. Aún así, en los tiempos actuales las carreteras se deterioran
-% debido al clima, al tráfico o a la mala calidad de los distintos tipos de trabajo que se llevan a cabo en la vía
+% el desplazamiento y a la vez hacerlas más resistentes.
+% Aún así, en los tiempos actuales
+% Las carreteras se deterioran debido al clima, al tráfico o a la mala calidad de los distintos tipos de trabajo que se llevan a cabo en la vía
 % pública. En Cuba es algo bastante común que la mayoría de las carreteras en las grandes ciudades, como La Habana,
 % estén en malas condiciones.\\
 
@@ -26,7 +39,8 @@ de información, acceso a información, etc.
 		reparación de estas calles, sino que también podría servir de guía a choféres para evitar tales tramos. Esto evitaría las posibles
 		consecuencias ocasionadas por estas condiciones, como accidentes y daños a la estructura de los vehículos. Además, el hecho de no tener que
 		enviar vehículos a inspeccionar el estado de las carreteras, constituye un ahorro importante de recursos y de tiempo. De esta forma se podrían
-		tomar decisiones con mayor rapidez sobre que tramos de carretera priorizar.\\
+		tomar decisiones con mayor rapidez sobre que tramos de carretera priorizar.
+		
 		Muchos de los primeros trabajos que se propusieron resolver el problema de determinar los tramos de carreteras en mal estado utilizaban
 		métodos de detección que se basaban en fijar umbrales. Estos métodos, a pesar de funcionar, no tenían muy buena precisión\brackcite{eriksson2008pothole,
 		mohan2008nericell, mednis2011real}. Más recientemente, con el auge del aprendizaje de máquinas, muchos autores han atacado este problema utilizando
@@ -38,7 +52,7 @@ de información, acceso a información, etc.
 		la calidad de las predicciones de los modelos de \emph{Machine Learning}\brackcite{el2018towards, zheng2020fused, perttunen2011distributed, gonzalez2017learning}.\\
 		
 	\subsubsection*{Problemática}
-		En la Cuba no se conoce el uso de alguna forma automatizada de ubicar de manera sencilla y accesible los tramos de carreteras que están en mal estado. 
+		En Cuba no se conoce el uso de alguna forma automatizada de ubicar de manera sencilla y accesible los tramos de carreteras que están en mal estado. 
 		Una herramienta que pudiera facilitar esta información podría contribuir a mejorar el estado de los viales en La Habana, y a mantener a las autoridades y a 
 		los choferes al tanto de las condiciones de las calles.
 		
@@ -76,8 +90,18 @@ de información, acceso a información, etc.
 		\end{itemize}
 
 	\subsubsection*{Estructura de la tesis}
-		La tesis está estructurada en 3 capítulos. El capítulo 1 es un resumen del estado del arte respeto al problema de la detección de baches en
+		La tesis está estructurada en 3 capítulos. El capítulo 1 es un resumen del estado del arte respecto al problema de la detección de baches en
 		la carretera. En este se hace un repaso por los distintos enfoques desde los cuales se ha propuesto resolver dicho problema por varios autores,
-		así como de las técnicas más utilizadas. El capítulo 2 contiene la propuesta de solución hecha en esta tesis, donde se explican los detalles de 
-		dicha propuesta. Finalmente, en el capítulo 3, se explican los detalles de implementación de la propuesta y los detalles acerca de los experimentos
-		que se realizaron para llevar cabo dicha propuesta y analizar los resultados.
+		así como de las técnicas más utilizadas. En el capítulo 2 se explica la propuesta desarrollada en esta investigación para detectar baches en la
+		carretera mediante el uso de aprendizaje de máquinas. Además, se exponen los sensores que se utilizaron para la recolección de datos, así 
+		como los pasos necesarios para poder predecir la presencia de un bache. Finalmente, en el capítulo 3, se explican los detalles 
+		de implementación de la propuesta, la aplicación utilizada para la captura de los datos y las tecnologías que permitieron concretar la investigación.
+		También se adentra en los experimentos que se realizaron para llevarla  a cabo y hace un análisis de los resultados obtenidos.
+		% los experimentos que se realizaron para llevarla  a cabo. Se explica las herramientas que se utilizaron para concretar la investigación y 
+		% se analizan los resultados obtenidos.
+		
+		% dicha propuesta y analizar los resultados.
+
+		% El capítulo 2 contiene la propuesta de solución hecha en esta tesis, donde se explican los detalles de 
+		% dicha propuesta.
+		% En el capítulo 3 se presentan los resultados obtenidos
