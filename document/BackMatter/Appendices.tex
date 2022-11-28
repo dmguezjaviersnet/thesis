@@ -100,7 +100,7 @@
 
 		\begin{table}[ht!]
 			\centering
-			\caption{Hiperparámetros con los que se probó  \textbf{KNN}}
+			\caption{Hiperparámetros con los que se probó \textbf{KNN}}
 			\label{table:7}
 			\begin{tabular}{lc}
 				\toprule
@@ -206,10 +206,12 @@
 				\end{tabular}
 		\end{table}
 	
+	\newpage
 	\section*{Mejores resultados e hiperparámetros seleccionados}
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{KNN}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Thresh} como método de detección de anomalías y \textbf{KNN}
+			como método supervisado. De \textbf{KNN} se especifican además los hiperparámetros seleccionados.}
 			\label{table:17}
 			\begin{tabular}{lc}
 				\toprule
@@ -243,7 +245,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{KNN}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Diff} como método de detección de anomalías y \textbf{KNN}
+			como método supervisado. De \textbf{KNN} se especifican además los hiperparámetros seleccionados.}
 			\label{table:18}
 			\begin{tabular}{lc}
 				\toprule
@@ -275,7 +278,8 @@
 		\end{table}
 
 		\begin{table}[htb]
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{KNN}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{DBSCAN} como método de detección de anomalías y \textbf{KNN}
+			como método supervisado. De \textbf{KNN} se especifican además los hiperparámetros seleccionados.}
 			\label{table:19}
 			\centering
 			\begin{tabular}{lc}
@@ -310,15 +314,17 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{KNN}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{One Class SVM} como método de detección de anomalías y \textbf{KNN}
+			como método supervisado. De \textbf{KNN} se especifican además los hiperparámetros seleccionados.}
 			\label{table:20}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & 					\{Y Accel, X Gyro, Z Gyro, X / Z, \\
-						 							   &	MeanDevAccelZ, MedianDevGyroX, MedianDevGyroY,   \\
-													   &	MeanDevGyroZ, MedianDevGyroZ\} \\
+													   &						MeanDevAccelZ, MedianDevGyroX, \\
+													   &						MedianDevGyroY, MeanDevGyroZ, \\
+													   &						MedianDevGyroZ\} \\
 												modelo &                                                KNN \\
 											  F1 score &                                            0.42623 \\
 											 Precision &                                           0.565217 \\
@@ -344,13 +350,14 @@
 	
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{\emph{Decision Tree}}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Thresh} como método de detección de anomalías y \emph{Decision Tree}
+			como método supervisado. De \emph{Decision Tree} se especifican además los hiperparámetros seleccionados.}
 			\label{table:21}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                          z\_thresh \\
 				Método de selección de características &                 forward\_selection \\
-						 Características seleccionadas & \{Y Accel, Z Gyro, MedianDevGyroX \} \\
+						 Características seleccionadas & \{Y Accel, Z Gyro, MedianDevGyroX\} \\
 												modelo &                     Decision Tree \\
 											  F1 score &                               0.4 \\
 											 Precision &                          0.363636 \\
@@ -376,7 +383,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{\emph{Decision Tree}}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Diff} como método de detección de anomalías y \emph{Decision Tree}
+			como método supervisado. De \emph{Decision Tree} se especifican además los hiperparámetros seleccionados.}
 			\label{table:22}
 			\begin{tabular}{lc}
 				\toprule
@@ -408,15 +416,16 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{\emph{Decision Tree}}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{DBSCAN} como método de detección de anomalías y \emph{Decision Tree}
+			como método supervisado. De \emph{Decision Tree} se especifican además los hiperparámetros seleccionados.}
 			\label{table:23}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                  forward\_selection \\
-						 Características seleccionadas & \{X Accel, Z Gyro, X / Z, MinZratio, SpeedvsZ, \\
-						 							   &   MeanDevAccelX, MeanDevAccelY, MedianDevAccelY, \\
-													   &                                    MeanDevGyroZ \} \\
+						 Características seleccionadas &		\{X Accel, Z Gyro, X / Z, MinZratio, \\
+						 							   &			MeanDevAccelX, MeanDevAccelY, SpeedvsZ, \\
+													   &                                   MedianDevAccelY, MeanDevGyroZ\} \\
 												modelo &                                      Decision Tree \\
 											  F1 score &                                           0.628571 \\
 											 Precision &                                               0.55 \\
@@ -442,14 +451,15 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{\emph{Decision Tree}}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{One Class SVM} como método de detección de anomalías y \emph{Decision Tree}
+			como método supervisado. De \emph{Decision Tree} se especifican además los hiperparámetros seleccionados.}
 			\label{table:24}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Gyro, X / Z, MaxZratio, MinZratio, \\
-						 							   &   SpeedvsZ,  MeanDevAccelY \}\\
+						 							   &   SpeedvsZ,  MeanDevAccelY\}\\
 												modelo &                                      Decision Tree \\
 											  F1 score &                                           0.394366 \\
 											 Precision &                                           0.424242 \\
@@ -474,7 +484,8 @@
 		\end{table}
 
 		\begin{table}[htb]
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{SVM}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Thresh} como método de detección de anomalías y \textbf{SVM}
+			como método supervisado. De \textbf{SVM} se especifican además los hiperparámetros seleccionados.}
 			\label{table:25}
 			\centering
 			\begin{tabular}{lc}
@@ -508,14 +519,15 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{SVM}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Diff} como método de detección de anomalías y \textbf{SVM}
+			como método supervisado. De \textbf{SVM} se especifican además los hiperparámetros seleccionados.}
 			\label{table:26}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                             z\_diff \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Gyro, Z Gyro, SpeedvsZ, MeanDevGyroX, \\
-						 							   &      MeanDevGyroY, MedianDevGyroY \} \\
+						 							   &      MeanDevGyroY, MedianDevGyroY\} \\
 												modelo &                                                SVM \\
 											  F1 score &                                                0.5 \\
 											 Precision &                                                0.5 \\
@@ -541,15 +553,17 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{SVM}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{DBSCAN} como método de detección de anomalías y \textbf{SVM}
+			como método supervisado. De \textbf{SVM} se especifican además los hiperparámetros seleccionados.}
 			\label{table:27}
 
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                  forward\_selection \\
-						 Características seleccionadas & \{X Accel, X Gyro, X / Z \\
-						 							   &  MinZratio, MedianDevAccelY, MeanDevGyroZ \} \\
+						 Características seleccionadas &							\{X Accel, X Gyro, X / Z \\
+						 							   &							MinZratio, MedianDevAccelY, \\
+													   &										MeanDevGyroZ\} \\
 												modelo &                                                SVM \\
 											  F1 score &                                           0.684211 \\
 											 Precision &                                           0.565217 \\
@@ -575,14 +589,15 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{SVM}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{One Class SVM} como método de detección de anomalías y \textbf{SVM}
+			como método supervisado. De \textbf{SVM} se especifican además los hiperparámetros seleccionados.}
 			\label{table:28}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                              ocsvm \\
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Gyro, X / Z, MinZratio, SpeedvsZ,   \\ 
-						 							   &   MeanDevAccelX, MeanDevGyroX \}\\
+						 							   &   MeanDevAccelX, MeanDevGyroX\}\\
 												modelo &                                                SVM \\
 											  F1 score &                                           0.366197 \\
 											 Precision &                                           0.393939 \\
@@ -608,7 +623,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Regresión Logística}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Thresh} como método de detección de anomalías y \textbf{Regresión Logística}
+			como método supervisado. De \textbf{Regresión Logística} se especifican además los hiperparámetros seleccionados.}
 			\label{table:29}
 			\begin{tabular}{lc}
 				\toprule
@@ -616,7 +632,7 @@
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{MedianDevAccelX, MeanDevAccelY, \\ 
 						                               &  MedianDevAccelZ, MeanDevGyroX, \\
-						 							   &    ,MedianDevGyroX, MeanDevGyroY \}\\		
+						 							   &    ,MedianDevGyroX, MeanDevGyroY\}\\		
 												modelo &                                     Log Regression \\
 											  F1 score &                                                0.2 \\
 											 Precision &                                                1.0 \\
@@ -643,7 +659,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{Regresión Logística}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Diff} como método de detección de anomalías y \textbf{Regresión Logística}
+			como método supervisado. De \textbf{Regresión Logística} se especifican además los hiperparámetros seleccionados.}
 			\label{table:30}
 			\begin{tabular}{lc}
 				\toprule
@@ -676,7 +693,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{Regresión Logística}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{DBSCAN} como método de detección de anomalías y \textbf{Regresión Logística}
+			como método supervisado. De \textbf{Regresión Logística} se especifican además los hiperparámetros seleccionados.}
 			\label{table:31}
 			\begin{tabular}{lc}
 				\toprule
@@ -684,7 +702,7 @@
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{X Accel, Y Accel, Y Gyro, Z Gyro, X / Z, \\ 
 						 							   &    MinZratio, SpeedvsZ, MeanDevAccelY,\\
-													   &  MedianDevGyroZ \} \\
+													   &  MedianDevGyroZ\} \\
 												modelo &                                     Log Regression \\
 											  F1 score &                                                0.5 \\
 											 Precision &                                           0.666667 \\
@@ -711,7 +729,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{Regresión Logística}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{One Class SVM} como método de detección de anomalías y \textbf{Regresión Logística}
+			como método supervisado. De \textbf{Regresión Logística} se especifican además los hiperparámetros seleccionados.}
 			\label{table:32}
 			\begin{tabular}{lc}
 				\toprule
@@ -719,7 +738,7 @@
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{Y Accel, X Gyro, Y Gyro, Z Gyro, \\ 
 						 							   &  X / Z,  MinZratio, SpeedvsZ, \\
-													   &  MedianDevAccelX, MeanDevGyroX \} \\
+													   &  MedianDevAccelX, MeanDevGyroX\} \\
 												modelo &                                     Log Regression \\
 											  F1 score &                                            0.27451 \\
 											 Precision &                                           0.538462 \\
@@ -745,7 +764,8 @@
 		\end{table}
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Thresh} y \textbf{Random Forest}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Thresh} como método de detección de anomalías y \textbf{Randon Forest}
+			como método supervisado. De \textbf{Random Forest} se especifican además los hiperparámetros seleccionados.}
 			\label{table:33}
 			\begin{tabular}{lc}
 				\toprule
@@ -753,7 +773,7 @@
 				Método de selección de características &                              recursive\_elimination \\
 						 Características seleccionadas & \{X Accel, Y Gyro, X / Z, MaxZratio, \\ 
 						                               & MinZratio,  SpeedvsZ, MedianDevAccelY,  \\
-													   &  MedianDevGyroX, MeanDevGyroZ \}\\
+													   &  MedianDevGyroX, MeanDevGyroZ\}\\
 												modelo &                                      Random Forest \\
 											  F1 score &                                           0.444444 \\
 											 Precision &                                           0.444444 \\
@@ -779,7 +799,8 @@
 		
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{Z-Diff} y \textbf{Random Forest}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{Z-Diff} como método de detección de anomalías y \textbf{Randon Forest}
+			como método supervisado. De \textbf{Random Forest} se especifican además los hiperparámetros seleccionados.}
 			\label{table:34}
 			\begin{tabular}{lc}
 				\toprule
@@ -812,14 +833,15 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{DBSCAN} y \textbf{Random Forest}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{DBSCAN} como método de detección de anomalías y \textbf{Randon Forest}
+			como método supervisado. De \textbf{Random Forest} se especifican además los hiperparámetros seleccionados.}
 			\label{table:35}
 			\begin{tabular}{lc}
 				\toprule
 					  Método de detección de anomalías &                                             dbscan \\
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Accel, Z Accel, X / Z, MinZratio, \\
-						                               &        MedianDevAccelY, MedianDevGyroZ \} \\
+						                               &        MedianDevAccelY, MedianDevGyroZ\} \\
 												modelo &                                      Random Forest \\
 											  F1 score &                                               0.64 \\
 											 Precision &                                                0.8 \\
@@ -846,7 +868,8 @@
 
 		\begin{table}[htb]
 			\centering
-			\caption{Mejor resultado obtenido con \textbf{One Class SVM} y \textbf{Random Forest}}
+			\caption{Configuración del mejor resultado obtenido utilizando \textbf{One Class SVM} como método de detección de anomalías y \textbf{Randon Forest}
+			como método supervisado. De \textbf{Random Forest} se especifican además los hiperparámetros seleccionados.}
 			\label{table:36}
 			\begin{tabular}{lc}
 				\toprule
@@ -854,7 +877,7 @@
 				Método de selección de características &                                 backward\_selection \\
 						 Características seleccionadas & \{X Accel, X Gyro, \\
 						                               &   MedianDevAccelX, MedianDevAccelZ, \\
-						                               &  MeanDevGyroX, MedianDevGyroZ \}\\
+						                               &  MeanDevGyroX, MedianDevGyroZ\}\\
 												modelo &                                      Random Forest \\
 											  F1 score &                                           0.297872 \\
 											 Precision &                                           0.777778 \\
