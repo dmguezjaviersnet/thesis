@@ -380,12 +380,12 @@ que son baches dentro de una imagen.
 			\item \emph{\textbf {Velocidad}}: Las ventanas donde el carro no se está moviendo o se está moviendo a muy poca velocidad son ignoradas. 
 				De esta forma se rechazan eventos como un tirón en la puerta cuando se baja el pasajero del vehículo.\\
 			\item \emph{\textbf {High-pass}}: Los filtros de \emph{high-pass} eliminan las componentes de baja frecuencia de la señal de aceleración
-				en los ejes z y x, que pueden indicar giros, frenazos, etc.\\
+				en los ejes Z y X, que pueden indicar giros, frenazos, etc.\\
 			\item  \emph{\textbf {Z-peak}}: Los picos de aceleración en el eje Z es la principal característica de las anomalías significativas de
 				la carretera. Este filtro rechaza todas las ventanas con un pico (absoluto) en la aceleración menor cierto umbral $t_z$.\\
-			\item \emph{\textbf {xz-ratio}}: La aceleración en el eje x puede ayudar a identificar anomalías que abarcan el ancho de la carretera
+			\item \emph{\textbf {xz-ratio}}: La aceleración en el eje X puede ayudar a identificar anomalías que abarcan el ancho de la carretera
 				y, por lo tanto, impactan ambos lados del carro de igual manera.  Asumiendo que el bache solo impacta un lado del carro, un verdadero
-				evento de bache con un gran pico de aceleración en el eje z debería producir un pico significante en el eje x dentro de alguna
+				evento de bache con un gran pico de aceleración en el eje Z debería producir un pico significante en el eje X dentro de alguna
 				ventana.\\
 			\item \emph{\textbf {speed vs z ratio}}: A altas velocidades, incluso pequeñas anomalías en la carretera pueden crear altos picos en las
 				lecturas de aceleración. Este filtro rechaza ventanas donde el pico de aceleración en el eje Z es menor que un factor $t_s$ veces la
@@ -443,16 +443,16 @@ que son baches dentro de una imagen.
 
 		\subsubsection{Etiquetado de los datos}
 			Para el uso de estos modelos supervisados es necesario tener datos etiquetados. Debido a que las anomalías y los baches ocurren por una 
-			fracción de segundo, determinar exactamente el momento en el que ocurre es un proceso complicado. Algunos autores propusieron etiquetar
-			los datos utilizando vídeo y audio capturado durante el recorrido, identificando cada evento que ocurriese durante el viaje\brackcite
-			{seraj2015roads}. Otros utilizaron solamente vídeos capturados durante el proceso de recolección de datos para etiquetarlos\brackcite
+			fracción de segundo, determinar exactamente el momento en el que ocurren es un proceso complicado. Algunos autores propusieron etiquetar
+			los datos utilizando video y audio capturado durante el recorrido, identificando cada evento que ocurriese durante el viaje\brackcite
+			{seraj2015roads}. Otros utilizaron solamente videos capturados durante el proceso de recolección de datos para etiquetarlos\brackcite
 			{el2018towards}.\\
 			\indent \emph{Gonzales et al.}\brackcite{gonzalez2017learning} etiquetaron las anomalías de la siguiente forma: cuando se van acercando a la
 			anomalía, ponen el dispositivo a recolectar los datos y, una vez, pasan la anomalía, detienen la recolección de datos y asignan una etiqueta
 			a dicha serie temporal. \emph{Tai et al.}\brackcite{tai2010automatic} etiquetaron sus datos realizando grabaciones de audio durante el
-			viaje, recolectando la voz de la persona encargada de notificar la presencia de una anomalía.
+			viaje recolectando la voz de la persona encargada de notificar la presencia de una anomalía.
 
-			\emph{Ranjith et al.}\brackcite{ranjith2015anomaly} etiquetan a mano unos pocos datos utilizando vídeos grabados durante el proceso
+			\emph{Ranjith et al.}\brackcite{ranjith2015anomaly} etiquetan a mano unos pocos datos utilizando videos grabados durante el proceso
 			de recolección de datos y, luego, etiquetan el resto de los datos de forma automática utilizando \textbf{K-Means} y \textbf{DBSCAN}. Esta vía 
 			permite automatizar el proceso de etiquetado de forma que se puede lidiar con gran cantidad de datos sin tener que etiquetarlos a mano.
 
@@ -529,7 +529,7 @@ que son baches dentro de una imagen.
 	pero con la misma meta en mente. Hay varios temas fundamentales en este problema, que son considerados de forma distinta por varios autores:
 
 	\begin{itemize}
-		\item Posición del vehículo del móvil: Algunos fijan el dispositivo en distintas posiciones en el vehículo de forma tal que coincida su orientación
+		\item Posición del móvil en el vehículo : Algunos fijan el dispositivo en distintas posiciones en el vehículo de forma tal que coincida su orientación
 			con la del vehículo. Pero no muchos de los autores se plantean el problema de obtener lecturas relevantes sin importar la orientación del
 			dispositivo en el vehículo. Lo cual sería una comodidad, pues permitiría facilitar la recolección de datos, incluso por personas ajenas a la
 			investigación.
@@ -553,7 +553,7 @@ que son baches dentro de una imagen.
 		\item Frecuencia de muestreo y sensores: La mayoría de los autores consideran frecuencias de muestreo fijas, lo que puede ocasionar que se
 			sobremuestree o submuestree. Muy pocos incluyen el giroscopio como sensor a la hora del muestreo la información.
 
-		\item Etiquetado: Casi todos los autores etiquetan sus datos a mano. Lo hacen utilizando grabaciones de vídeo o de audio que se realizan 
+		\item Etiquetado: Casi todos los autores etiquetan sus datos a mano. Lo hacen utilizando grabaciones de video o de audio que se realizan 
 			simultáneamente con la captura de los datos. Aunque existen algunos que utilizan métodos de aprendizaje no-supervisado como agrupamiento
 			para etiquetar de forma automática los datos teniendo un pequeño conjunto de datos etiquetados a mano. Esto permite etiquetar grandes 
 			cantidades de datos de forma sencilla.
@@ -569,9 +569,9 @@ que son baches dentro de una imagen.
 	todos los datos para identificar potenciales candidatos a bache. Para esto, se utilizaron algunos métodos propuestos en la literatura como \textbf
 	{Z-Thresh}, \textbf{Z-Diff} y \textbf{G-Zero}, además de algunos métodos de agrupamiento. Estos últimos, en la literatura, son utilizados también,
 	pero para etiquetar de forma automática los datos. Este enfoque no fue visto en ninguno de los artículos de la literatura analizados, y pudiera reducir
-	enormemente la cantidad de datos a analizar. Esto se debe a que la gran mayoría de los datos representan carretera en buen estado.
+	enormemente la cantidad de datos a analizar. Esto se debe a que la gran mayoría de los datos representan carreteras en buen estado.
 
-	El proceso de etiquetado se realizó de forma manual, aunque no utilizando vídeo ni audio, sino buscando en un radio determinado alrededor de cada
+	El proceso de etiquetado se realizó de forma manual, aunque no utilizando video ni audio, sino buscando en un radio determinado alrededor de cada
 	lectura baches previamente identificados y ubicados con el \textbf{GPS}.
 
 	Los sensores que se utilizaron fueron \textbf{acelerómetro}, \textbf {giroscopio} y \textbf{GPS}. No muchas de las propuestas analizadas utilizan
