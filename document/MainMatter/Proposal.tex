@@ -78,7 +78,7 @@
 		El \textbf{GPS}(\emph{Global Positioning System}) es el sensor que le permite al dispositivo móvil ubicarse sobre la
 		superficie de la tierra utilizando coordenadas de latitud-longitud. Debido a que este sistema utiliza señales para
 		comunicarse con satélites en tiempo real, existe una latencia debido al tiempo que le toma a la señal viajar hacia el
-		satélite y de vuelta al dispositivo. Además, las condiciones atmosféricas pueden afectar esta latencia, así como el hecho
+		satélite y regresar al dispositivo. Además, las condiciones atmosféricas pueden afectar esta latencia, así como el hecho
 		de que la señal puede ser reflejada por el terreno, edificios, etc., como por ejemplo, cuando se viaja a través de un
 		túnel subterráneo donde la señal no puede llegar.\\
 		\indent También es importante destacar que las lecturas que genera el \textbf {GPS} tienen cierto margen de error que varía
@@ -97,8 +97,8 @@
 		\indent La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
 		{giroscopio} por cada metro. Si el vehículo se desplaza a una \textbf{velocidad} $v$ en $m/s$ y se quiere obtener
 		$x$ muestras por cada metro, quiere decir que se necesitan obtener $v * x$ muestras, por lo que la frecuencia de muestreo
-		necesaria sería de $v * x Hz$. Como se quiere una sola muestra por cada metro la frecuencia de muestreo
-		en este caso particular es de $v Hz$. La actualización de la \textbf{frecuencia de muestreo} ocurre cada vez que se recomputa
+		necesaria sería de $v * x$ Hz. Como se quiere una sola muestra por cada metro la frecuencia de muestreo
+		en este caso particular es de $v$ Hz. La actualización de la \textbf{frecuencia de muestreo} ocurre cada vez que se recomputa
 		la velocidad, lo que se propuso realizar cada 5 segundos debido a la posible latencia inherente del \textbf{GPS} a la hora
 		obtener las lecturas.\\
 		\indent Para actualizar de forma correcta la \textbf{frecuencia de muestreo} es necesario conocer la \textbf{velocidad}
@@ -109,7 +109,7 @@
 		los vehículos desplazarse a más de 100 km/h y también debido a que la mayoría de los vehículos que circulan en
 		el país no alcanzan dicha \textbf{velocidad}, se asumió que esta es la máxima a la que podría desplazarse un
 		vehículo a la hora de decidir las frecuencias de muestreo de los sensores.\\
-		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1Hz debido a que es necesario tener 
+		\indent La frecuencia de muestreo del \textbf{GPS} se fijó constante en 1 Hz debido a que es necesario tener 
 		la ubicación en tiempo real del dispositivo y buena precisión en las lecturas del propio \textbf{GPS}. Además, 
 		muestrear más de una vez por segundo no es necesario, pues la distancia entre una lectura y otra no es considerable.\\
 
