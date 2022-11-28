@@ -1,7 +1,7 @@
 \chapter{Detalles de Implementación y Experimentos}\label{chapter:implementation}
 
 \section{Aplicación para la captura de señales}
-	Para capturar las señales se utilizó una aplicación implementada en \textbf{Flutter} 2.10.15, con \textbf{dart} 2.16.2.
+	Para capturar las señales se utilizó una aplicación implementada en \textbf{Flutter} 2.10.15, con \textbf{Dart} 2.16.2.
 	Se utilizaron las bibliotecas \textbf{sensors\textunderscore plus} y \textbf{geolocator}, disponibles en \textbf{Flutter} para obtener acceso
 	a las lecturas del \textbf {acelerómetro}, \textbf{giroscopio} y \textbf{GPS}. Para comenzar a realizar una captura se aprieta el botón
 	de \emph{Start recorder} y a partir de ese momento la aplicación comienza a reflejar los valores que se obtienen de los sensores en la
@@ -236,6 +236,16 @@
 			para cada uno de estos métodos.
 
 \section{Resultados}
+
+	Los experimentos se realizaron en una computadora portátil con las siguientes características:
+
+	\begin{itemize}
+		\item Sistema Operativo: \textbf{Ubuntu 22.04}
+		\item Procesador: \textbf{Intel i5 7300HQ} de 4 núcleos a 3.50GHz
+		\item RAM: 8GB
+		\item Modelo: \textbf{Dell Inspiron 7567}
+	\end{itemize}
+
 	En la primera fase del \emph{pipeline}, la detección de anomalías, los métodos no supervisados que mejor rendimiento mostraron en general fueron
 	\textbf{DBSCAN} y \textbf{One Class SVM} como se muestra en la figura \ref{table:1}. En la tabla \ref{table:2} se pueden observar la media
 	de los coeficientes de Silhouete entre todas las rutas.

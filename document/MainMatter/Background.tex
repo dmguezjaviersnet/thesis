@@ -6,7 +6,7 @@ heurísticos o de aprendizaje de máquinas, que hacen uso de la serie temporal g
 
 \section{Detección de baches en imágenes}
 Varios autores en la literatura se han propuesto identificar baches en imágenes. Algunos de estos enfocan este problema por la vía del
-procesamiento de imágenes digitales. Mediante el uso de varios filtros consecutivos  sobre la imagen se logra poco a poco acercarse 
+procesamiento de imágenes digitales. Mediante el uso de varios filtros consecutivos  sobre la imagen se logra, poco a poco, acercarse 
 a la región que corresponde a un bache sobre el pavimento de la carretera.  Otros autores hacen uso de técnicas de \emph{Deep Learning}
 para, de forma automática, sacar características relevantes que permitan entrenar el modelo para que prediga las regiones 
 que son baches dentro de una imagen.
@@ -21,7 +21,7 @@ que son baches dentro de una imagen.
 		\subsubsection{Preprocesamiento de la imagen}
 		Uno de los preprocesamientos que se realiza es la reducción de la imagen a utilizar. Se conoce que la reducción de la imagen  disminuye 
 		la complejidad computacional en su procesamiento\brackcite{jo2015pothole}. Además, se ha verificado en una propuesta de la literatura 
-		que necesariamente el tamaño de la imagen no afecta la calidad de un bache\brackcite{akagic2017pothole}.  En este trabajo se propone, entonces, 
+		que el tamaño de la imagen no afecta la calidad de detección de un bache\brackcite{akagic2017pothole}.  En este trabajo se propone, entonces, 
 		decrementar el tamaño de la imagen $\alpha$ veces.
 
 		% La reducción del tamaño de una imagen  disminuye la complejidad computacional en su procesamiento ~\brackcite{jo2015pothole}. 
@@ -59,7 +59,7 @@ que son baches dentro de una imagen.
 
 		La propuesta de Akagic et al.\brackcite{akagic2017pothole} consta de varios pasos. Primero, forman una nueva matriz que contiene las posiciones 
 		de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
-		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
+		en la desviación estándar de la imagen, para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
 		\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
 		interés se extrae en función de la posición de estos puntos.
 		
@@ -67,7 +67,7 @@ que son baches dentro de una imagen.
 		% , mientras que los valores de los \emph{pixels} del resto de la región se cambia a
 		% 0\brackcite{akagic2017pothole}.
 
-		Jo et al.\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediantes los siguientes pasos: segmentación de línea, 
+		Jo et al.\brackcite{jo2015pothole} proponen realizar la extracción de candidatos mediante los siguientes pasos: segmentación de línea, 
 		detección de carril, selección de la región de interés y agrupación de línea. La segmentación de línea implica investigar la conectividad 
 		de línea entre los \emph{pixels}. A continuación, se detecta el carril para eliminar el ruido restante. Solo utilizan la superficie de la 
 		carretera dentro de las dos marcas de carril, y todos los valores que queden fuera de esta área son eliminados. Por lo general, las marcas 
@@ -97,7 +97,7 @@ que son baches dentro de una imagen.
 		máximo y la relación entre la longitud del eje mayor y el tamaño de la región excede un valor de umbral máximo. 
 		Para reducir la región a su trazo  mínimamente conectado usan un proceso de adelgazamiento morfológico. Los puntos de 
 		ramificación del trazo son identificados y conectados en orden para determinar el camino principal de la región. Finalmente, 
-		teniendo como base el camino principal del trazo se utiliza regresión elíptica para aproximar una elipse. Con esto, se logra 
+		teniendo como base el camino principal del trazo, se utiliza regresión elíptica para aproximar una elipse. Con esto, se logra 
 		extraer la forma de la región de un candidato a bache.
 
 		\subsubsection{Identificación de un bache entre los candidatos}
@@ -154,7 +154,7 @@ que son baches dentro de una imagen.
 	y otra parte de clasificación. Las capas de \emph{convolution} y \emph{pooling}  permiten realizar la extracción de características,
 	mientras la capa \emph{fully-connected} realiza la tarea de clasificación. 
 
-	Pereira et al.\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolution} , cuatro
+	Pereira et al.\brackcite{pereira2018deep} proponen una \textbf{CNN} con cuatro capas de \emph{convolution}, cuatro
 	capas de \emph{pooling} y una capa \emph{fully-connected}. Una función de activación \textbf{ReLU} es usada entre 
 	la capa de \emph{convolution} y la capa de \emph{pooling}. Una función sigmoidal se emplea entre la capa \emph{fully-connected}
 	y la capa de salida. La capa de salida da como resultado  valores predecidos entre 0 y 1, indicando si no hay o hay un bache respectivamente.
@@ -189,7 +189,7 @@ que son baches dentro de una imagen.
 	detección de baches\brackcite{akagic2017pothole}.
 
 	Koch et al.\brackcite{koch2011pothole} también obtienen  imágenes de videos de archivos de prueba capturados alrededor 
-	del \emph{Georgia Tech campus} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
+	del \emph{campus} de \textbf{Georgia Tech} utilizando un prototipo de vehículo robot controlado a distancia equipado con una cámara web 
 	\textbf{HP Elite Autofocus} y una computadora portátil \textbf{Viliv S5 Ultra PC}. 
 
 	Jo et al.\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
