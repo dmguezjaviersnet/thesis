@@ -9,7 +9,7 @@
 	\indent La aplicación muestra en tiempo real las lecturas de los distintos sensores, así como la velocidad en kilómetros por hora (km/h) y la
 	duración de la captura que se está realizando en el momento (ver figura \ref{fig:6}).\\
 	\indent Cuando se desea detener la grabación se presiona el botón \emph{Stop recorder}. Luego si se quiere exportar dicha grabación se puede
-	hacer presionando el botón de \emph{Save record as} e introduciendo el nombre con el que se desea salvar dichar grabación (ver figura
+	hacer presionando el botón de \emph{Save record as} e introduciendo el nombre con el que se desea salvar dicha grabación (ver figura
 	\ref{fig:7}). De esta forma se puede acceder a todas las grabaciones para posteriormente utilizarlas en el modelo de aprendizaje de máquinas.\\
 	\indent Con el botón \emph{Mark anomaly} se pueden realizar marcas, de esta forma se salvan las coordenadas de latitud-longitud en un
 	archivo de marcas. La aplicación tiene, además, un mapa donde se pueden visualizar datos de latitud-longitud previamente guardados.
@@ -67,7 +67,7 @@
 	se guarda la duración en milisegundos, del recorrido realizado.
 
 	La aplicación cuenta, además, con una funcionalidad que permite etiquetar ciertas capturas con frases como \textbf{girar izquierda},
-	\textbf{girar derecha}, \textbf{frenar} y \textbf{normal}. Con estas estiquetas se puede registrar cuando el vehículo dobla en alguna
+	\textbf{girar derecha}, \textbf{frenar} y \textbf{normal}. Con estas etiquetas se puede registrar cuando el vehículo dobla en alguna
 	esquina o cuando frena mientras se captura la señal. Esto puede ser útil para descartar anomalías asociadas a estos eventos o
 	para mostrar y analizar el comportamiento de las señales de los sensores mientras el vehículo se encuentra en alguno de estos estados
 	(ver figura \ref{fig:9}).
@@ -89,14 +89,14 @@
 
 	\subsection{Metodología para la captura de señales}
 		Primero que todo, para capturar las señales, se escogieron varias rutas de La Habana de longitud moderada. Una vez montado en un vehículo
-		se colocó el dispositivo en el asiento de tal forma que su eje Y coindiera con el eje Y del vehículo y su pantalla estuviera hacia arriba.
+		se colocó el dispositivo en el asiento de tal forma que su eje Y coincidiera con el eje Y del vehículo y su pantalla estuviera hacia arriba.
 		Apenas el vehículo comenzó a moverse, se puso la aplicación a grabar. Durante el viaje, dado que no se contaba con un objeto capaz de fijar el
 		dispositivo móvil en la posición deseada, se tuvo que sostener lo mejor posible con las manos para que mantuviera la orientación. \\
 		\indent Cuando el vehículo se iba a detener por alguna razón y se estaba al tanto, se cambiaba al estado de \textbf{frenar} un poco antes, para
 		registrar tal evento en los datos. Lo mismo se hizo cuando el vehículo iba a doblar una esquina. Una vez terminaba el evento, se cambiaba otra
 		vez a estado \textbf{normal}. Cuando el vehículo llegaba al final de la ruta planeada, se detenía el proceso de grabación y se exportaban los
-		datos de dicho recorrido a un archivo .\textbf{JSON} aparte con un nombre que indentificara la ruta. Se utilizaron dos vehículos para la
-		recopilación de los datos: las conocidas \textbf{Gacelas(GAZelles)}, utilizadas como servicio de tranporte de la capital,  
+		datos de dicho recorrido a un archivo .\textbf{JSON} aparte con un nombre que identificara la ruta. Se utilizaron dos vehículos para la
+		recopilación de los datos: las conocidas \textbf{Gacelas(GAZelles)}, utilizadas como servicio de transporte de la capital,  
 		y un \textbf{Hyundai Atos 1998}.
 
 	\subsection{Metodología para marcar los baches}
@@ -105,7 +105,7 @@
 		de los 5 metros. Las marcas se realizaron desde la acera debido al tráfico, y en la medida de lo posible un poco más cerca del bache en la calle.
 		Por cada bache se realizaron varias marcas con distinta precisión y desde distintas ubicaciones relativamente cercanas a la ubicación real del
 		bache con el objetivo de minimizar el efecto del error inherente del \textbf{GPS}. Una vez que se terminaron de marcar los baches en el recorrido
-		en cuestión se exportó dicho archivo con un nombre similar al de las lecturas para poder relacionarlos uno con el otro a la hora de utilizarlos.
+		en cuestión, se exportó dicho archivo con un nombre similar al de las lecturas para poder relacionarlos uno con el otro a la hora de utilizarlos.
 
 	\subsection{Error en las lecturas y las marcas}
 		En las lecturas durante los recorridos existe cierto error. Esto se debe a que no se pudo fijar el dispositivo en la posición óptima y se tuvo que
@@ -123,9 +123,9 @@
 	\end{figure}
 
 	La ruta 1 se tomó empezando en Belascoaín y Reina hasta Belascoaín y San Miguel (ver \ref{fig:10}) y tiene una longitud de 0.5 km. La ruta
-	2 comienza en Egido y Arsenal y termina en Ayesteran y 19 de mayo (ver \ref{fig:11}) y tiene una longitud de 3.32 km. La ruta 3 comienza en
+	2 comienza en Egido y Arsenal y termina en Ayesterán y 19 de mayo (ver \ref{fig:11}) y tiene una longitud de 3.32 km. La ruta 3 comienza en
 	Egido y Arsenal y termina en L y Jovellar (ver \ref{fig:12}) y tiene una longitud de 3.73 km.\\ \indent Se trataron de escoger rutas donde
-	hubieran una cantidad importante de baches que se pudieran utilizar para el modelo.
+	hubiera una cantidad importante de baches que se pudieran utilizar para el modelo.
 	\newpage
 
 	\begin{figure}[htb]
@@ -143,24 +143,24 @@
 	\end{figure}
 
 	\subsection{Detalles acerca de algunos de los baches marcados}
-		En las recorridos realizados hay una gran variedad de anomalías que son baches, pero también hay muchas anomalías que, por sus características,
+		En los recorridos realizados hay una gran variedad de anomalías que son baches, pero también hay muchas anomalías que, por sus características,
 		son similares a un bache como, por ejemplo, una boca de alcantarilla hundida en el pavimento (ver \ref{fig:15}) que en condiciones normales no 
 		tendría las mismas características (ver \ref{fig:16}). A pesar de que ambas son tapas de alcantarilla, en el primer caso las lecturas de los 
 		sensores es muy probable que hayan sido similares a las de un bache.
 
-		De igual forma, algunas otras tapas de alcantarillas no tiene las características que verdaderamente le corresponde como se puede ver en la
+		De igual forma, algunas otras tapas de alcantarillas no tiene las características que verdaderamente le corresponde, como se puede ver en la
 		figura \ref{fig:17}.
 
 		Existen también otros objetos en la vía que no tienen las características reales y que pueden ocasionar las lecturas de los sensores sean similares
 		a las de un bache como se muestra en la figura \ref{fig:18}.
 
-		Estas anomalías que se consideraron que podían generar lecturas	similares a las de un bache se etiqutaron como tal, al igual que las anomalías que se 
+		Estas anomalías, que se consideraron que podían generar lecturas	similares a las de un bache, se etiquetaron como tal, al igual que las anomalías que se 
 		pueden apreciar en las figuras \ref{fig:19} y \ref{fig:20}, que sí son realmente baches.
 
 \section{Los modelos de aprendizaje de máquinas}
 	Luego de haber recopilado los datos con la aplicación móvil, estos fueron pasados a un programa hecho en \textbf{Python 3.10.6} con el objetivo
 	de llevar a cabo la segunda fase de la propuesta. Dentro de este programa es donde se determina qué modelo de aprendizaje de máquinas se ajusta
-	mejor al juego de datos, pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructuralos de forma conveniente. 
+	mejor al juego de datos, pero antes de esto fue necesario procesar los datos recolectados por la aplicación móvil y estructurarlos de forma conveniente. 
 
 	\subsection{Detalles de la estructura del juego de datos y características escogidas}
 		Con el juego de datos cargado ya en el programa, se construyó un \textbf{DataFrame} de la biblioteca \textbf{pandas} donde cada columna representa
@@ -191,8 +191,8 @@
 		\ref{table:4}, \ref{table:5} y \ref{table:6}.
 
 	\subsection{Detalles del proceso de etiquetado}
-		Con cada uno de los juegos de datos obtenidos por cada uno de los métodos utilizados para detectar anomalías se llevó a cabo
-		el proceso de etiquetado para indentificar que anomalía es un bache. Esto, como se mencionó en el capítulo anterior(ver \ref{chapter:proposal}),
+		Con cada uno de los juegos de datos obtenidos por cada uno de los métodos utilizados para detectar anomalías, se llevó a cabo
+		el proceso de etiquetado para identificar qué anomalía es un bache. Esto, como se mencionó en el capítulo anterior(ver \ref{chapter:proposal}),
 		se llevó a cabo utilizando el conjunto de marcas correspondientes a la serie temporal de la cual se extrajeron las anomalías. De esta manera, se
 		le asigna una etiqueta a una anomalía indicando que es bache si existe una marca en el conjunto de marcas que se encuentre en un radio de 10
 		metros. Se consideró 10 metros debido al error que mantuvo el dispositivo que se utilizó para la captura de los datos durante el proceso de
@@ -205,11 +205,11 @@
 
 	\subsection{Detalles de la selección de características}
 		Por cada juego de anomalías etiquetadas, como ya se mencionó en el capítulo previo (ver \ref{chapter:proposal}), se llevó a cabo un proceso
-		de selección de características con varios métodos, para escoger cuales de estas representan mejor el problema que se pretende resolver.
+		de selección de características con varios métodos, para escoger cuáles de estas representan mejor el problema que se pretende resolver.
 		Antes de esto se eliminaron características que se consideraron no aportan información acerca de si una anomalía es bache o no como, por ejemplo,
 		la velocidad, la latitud, la longitud y la precisión del \textbf{GPS}.\\
 		\indent El clasificador que se utilizó para estimar dichas características en el proceso de selección fue un \emph{Random Forest}, y fue
-		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la bibliotea \textbf{sklearn}. Cada vez que se corrían los métodos de selección
+		utilizado el que brinda el módulo \textbf{sklearn.ensembles} de la biblioteca \textbf{sklearn}. Cada vez que se corrían los métodos de selección
 		de características se almacenó la información de qué características se escogieron. A dichos métodos se les pasaba el número de
 		características a seleccionar. Las cantidades de características con que se probaron fueron: 3, 6 y 9.\\
 
