@@ -59,7 +59,7 @@ que son baches dentro de una imagen.
 
 		La propuesta de Akagic et al.\brackcite{akagic2017pothole} consta de varios pasos. Primero, forman una nueva matriz que contiene las posiciones 
 		de todos los \emph{pixels} blancos de la imagen. Segundo, seleccionan un número dinámico de \emph{pixels}, basados 
-		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first cuales relevel seed points}. Luego forman  los 
+		en la desviación estándar de la imagen para formar lo que ellos denominan \emph{first level seed points}. Luego forman  los 
 		\emph{second level seed points} basados en los valores de los \emph{pixels} vecinos del primer nivel. La región de
 		interés se extrae en función de la posición de estos puntos.
 		
@@ -167,7 +167,7 @@ que son baches dentro de una imagen.
 	\emph{Inception - V2}. 
 	
 	Ahmed et al.\brackcite{ahmed2021smart} entrenan el conjunto de datos de imágenes que contienen baches con diez diferentes 
-	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$ ,y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
+	\textbf{CNNs}: tres variaciones  \textbf{YOLOv5}($Y_l$, $Y_m$, y $Y_s$ ), dos variaciones de \textbf{YOLOR} y \emph{Faster R-CNN} 
 	con 5 \emph{backbones} diferentes (\textbf{ResNet50}, \textbf{VGG16}, \textbf{MobileNetV2}, \textbf{InceptionV3}  y  \textbf{CNN} 
 	propuesta llamada  \textbf{MVGG16}). La propuesta \emph{Faster R-CNN} con \emph{backbone} \textbf{MVGG16} desarrolló una 
 	\textbf{CNN} profunda con diferentes capas dilatadas para aumentar los campos receptivos.
@@ -176,7 +176,7 @@ que son baches dentro de una imagen.
 			Un tamaño limitado en el conjunto de datos puede conducir a un \emph{overfitting}. Sin embargo, los modelos de \emph{deep learning}
 			exigen una cantidad satisfactoria de datos para generar resultados precisos. Con la técnica de \emph{data augmentation} se logra evitar 
 			el \emph{overfitting} asi como aprovechar la regularización\brackcite{ahmed2021smart,pereira2018deep}. 
-			Esto se reliza mediante procesos de rotación\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}\brackcite{pereira2018deep}, 
+			Esto se realiza mediante procesos de rotación\brackcite{pereira2018deep,ahmed2021smart}, \emph{shift}\brackcite{pereira2018deep}, 
 			\emph{flip}\brackcite{pereira2018deep}, \emph{scaling}\brackcite{ahmed2021smart}, ajuste de color\brackcite{ahmed2021smart} y 
 			\emph{mosaic augmentation}\brackcite{ahmed2021smart} sobre las imágenes.
 
@@ -194,21 +194,21 @@ que son baches dentro de una imagen.
 
 	Jo et al.\brackcite{jo2015pothole}  recopilan un total de 20 videoclips de carreteras con baches utilizando una cámara 
 	\emph{black-box}  a lo largo de la \emph{National Highway}. Los videos fueron grabados en un clima soleado al mediodía.
-
-	Ryu et al.\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
+	Por otra parte, Ryu et al.\brackcite{ryu2015image} usan imágenes de carreteras en 2D recopiladas por un vehículo topográfico
 	en Corea. 
 
 	Pererira et al.\brackcite{pereira2018deep} entrenan el modelo propuesto  con 13 244 imágenes recopiladas de diferentes
-	lugares con diversas condiciones de clima, tamaños y formas.
+	lugares con diversas condiciones de clima, tamaños y formas. Ahmed et al.\brackcite{ahmed2021smart} usan un conjunto de 
+	datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz diurna, diferentes condiciones de carretera, 
+	y con diferentes formas y tamaños.
 
 	Buza et al.\brackcite{buza2013pothole} probaron con 50 imágenes diferentes. Estas imágenes incluían: 15 imágenes con un bache, 10 con
 	múltiples baches, 10 con grietas y un bache, 5 con parches de la carretera reparados y el resto sin zonas defectuosas.
 
 	Kumar et al.\brackcite{kumar2020modern} usaron un conjunto de datos de baches que constaba de más de 1500 imágenes.
-	Todo el conjunto de datos consta de dos conjuntos diferentes, uno se consideró simple y el otro más complejo.
+	Todo el conjunto de datos se dividió en dos subconjuntos diferentes, uno se consideró simple y el otro más complejo.
 
-	Ahmed et al.\brackcite{ahmed2021smart} usan un conjunto de datos que incluye imágenes de baches que se recopilaron en diferentes condiciones de luz 
-	diurna, diferentes condiciones de carretera, y con diferentes formas y tamaños.
+	
 
 
 % Akagic et al.\brackcite{akagic2017pothole} se comprueba en una imagen conjunto de datos formado a partir de imágenes 
@@ -324,7 +324,7 @@ que son baches dentro de una imagen.
 \section{Detección utilizando series temporales}
 	Otra alternativa común para determinar la presencia de baches en la carretera, se basa en la utilización de series temporales que se generan como
 	resultado del muestreo de sensores como el \textbf{acelerómetro} o el \textbf{giroscopio}. Para determinar la existencia de los baches, los primeros
-	trabajo se basaron en el uso de técnicas de establecimiento de umbrales. Para ello existen diferentes enfoques.
+	trabajos se basaron en el uso de técnicas de establecimiento de umbrales. Para ello existen diferentes enfoques.
 
 	\subsection{Enfoques utilizando métodos heurísticos}
 		Entre estos primeros trabajos se propusieron varios métodos heurísticos basados en umbrales. Todos tienen como premisa
@@ -373,7 +373,7 @@ que son baches dentro de una imagen.
 
 
 		El algoritmo para la detección de anomalías en la carretera propuesto por \emph{Eriksson et al.}\brackcite{eriksson2008pothole} sigue
-		esta misma idea de establecer umbrales, pero es un poco más elaborado, ya que usa una 5 filtros donde cada filtro está diseñado
+		esta misma idea de establecer umbrales, pero es un poco más elaborado, ya que usa 5 filtros donde cada filtro está diseñado
 		para rechazar uno o más de un evento que no sea bache:\\
 
 		\begin{itemize}
