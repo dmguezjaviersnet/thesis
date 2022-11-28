@@ -7,7 +7,7 @@
 	este proceso son etiquetadas con un método que utiliza la distancia de la ubicación de las lecturas a ciertas marcas
 	previamente etiquetadas a mano. Luego se realiza un proceso de selección de características utilizando varios métodos 
 	para determinar las más relevantes a la hora de clasificar las anomalías en bache o no bache. Finalmente, se realiza 
-	un proceso de selección de modelos e hiperparámetros, mediante el cual se busca un algoritmoy una configuración de 
+	un proceso de selección de modelos e hiperparámetros, mediante el cual se busca un algoritmo y una configuración de 
 	hiperparámetros que maximice el \emph{F1 score}.
 
 \section{Captura de señales}
@@ -51,7 +51,7 @@
 		La señal del \textbf{acelerómetro} mientras el vehículo se desplaza por carreteras en buen estado es bien similar.
 		Sin embargo, una vez pasa por encima de un bache ocurre un evento anómalo en el que el vehículo se ve afectado
 		por el bache. En ese momento cae brevemente e incluso se inclina momentáneamente hacia un lado (en el caso de un bache
-		que afecte una sola rueda). Por esta razón la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
+		que afecte una sola rueda). Por esta razón, la señal del \textbf{acelerómetro} en un intervalo de tiempo determinado debe tener
 		un comportamiento fuera de lo común que permita identificar el evento en la serie temporal capturada por este sensor.\\
 		\indent Tal como se plantea en la literatura, la característica fundamental de un bache son lecturas anormales en el eje
 		Z del \textbf{acelerómetro} durante un intervalo de tiempo determinado. También, dicho sensor debe registrar lecturas
@@ -70,7 +70,7 @@
 		mide en $rad/s$ la velocidad angular del dispositivo móvil con respecto a los 3 ejes mencionados previamente. 
 		En el momento que un vehículo interactúa con un bache ocurren vibraciones que hacen que el vehículo gire, lo que
 		debería generar picos en las lecturas del \textbf{giroscopio} en un intervalo de tiempo. El problema con este sensor es 
-		que, a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja por lo que 
+		que, a pesar de ser de los más comunes, no es abundante en teléfonos inteligentes de gama baja, por lo que 
 		su uso en la propuesta de solución se tiene pensado como algo que permita mejorarla y no algo de lo que esta
 		dependa.\\
 
@@ -85,14 +85,14 @@
 		de un dispositivo a otro y que depende de la potencia del sensor en sí. En general, según la literatura, la mediana del error
 		en estos sensores es de 5m aproximadamente\brackcite{eriksson2008pothole}, ambos aspectos son importantes a tener en cuenta
 		al hacer uso de este sensor. El mismo se puede utilizar para estimar la \textbf{velocidad} a la que viaja el vehículo, lo que
-		es necesario ya que la \textbf{velocidad} es un factor que influye de forma directa en la forma que un vehículo es afectado por
+		es necesario, ya que la \textbf{velocidad} es un factor que influye de forma directa en la forma que un vehículo es afectado por
 		un bache. Además, con este sensor es posible ubicar en un mapa, aproximadamente, los lugares donde existen baches u otro tipo
 		de anomalías, incluso puede ser útil para marcar rutas de viaje y así facilitar algunos aspectos de la propuesta de solución.
 
 	\subsection{Velocidad y frecuencia de muestreo}
 		Debido a que la \textbf{velocidad} de un vehículo durante un recorrido no suele ser constante, es necesario que la \textbf
 		{frecuencia de muestreo} del \textbf{acelerómetro} y el \textbf{giroscopio} cambie en función de la \textbf{velocidad}
-		a la que vaya el vehículo. Pues si el vehículo se desplaza más rápido será necesario muestrear más para mantener la
+		a la que vaya el vehículo. Pues si el vehículo se desplaza más rápido, será necesario muestrear más para mantener la
 		precisión y consistencia de los datos que se generen.\\
 		\indent La frecuencia de muestreo se tomó de tal forma que se tuviera una lectura de \textbf{acelerómetro} y \textbf
 		{giroscopio} por cada metro. Si el vehículo se desplaza a una \textbf{velocidad} $v$ en $m/s$ y se quiere obtener
@@ -118,12 +118,12 @@
 		relevante. Esto se debe a que es necesario que las lecturas que se obtengan durante el muestreo sean relevantes y representen
 		las características de la carretera por la que viaja el vehículo. Para esto, es necesario colocar el dispositivo móvil de tal 
 		forma que la dirección del eje Y del vehículo coincida con la del eje Y del móvil, para que las señales que se capturen
-		se correspondan con la realidad. De lo contrario se deberían realizar ciertos ajustes utilizando algún método de
+		se correspondan con la realidad. De lo contrario, se deberían realizar ciertos ajustes utilizando algún método de
 		transformación de coordenadas para poder obtener lecturas acertadas, sin importar la posición en la que se coloque
 		el dispositivo.
 
 \section{Preprocesamiento de los datos}
-	Luego de recolectar los datos, se lleva a cabo un preprocesamiento de los mismos para eliminar o corregir cierto aspectos.
+	Luego de recolectar los datos, se lleva a cabo un preprocesamiento de los mismos para eliminar o corregir ciertos aspectos.
 	El primer aspecto de este preprocesamiento es eliminar lecturas donde la precisión del \textbf{GPS} sea mayor que 10 m
 	con el objetivo de tener la mayor precisión posible en los datos recopilados.\\
 	\indent También, debido a que la frecuencia de muestreo del \textbf{acelerómetro} y el \textbf{giroscopio} es mayor que la del
@@ -168,15 +168,15 @@
 	2 enfoques. Primero, intentar identificar las anomalías utilizando los métodos heurísticos sugeridos en la literatura basados
 	en umbrales. Segundo, emplear algoritmos de aprendizaje de máquinas para detectar anomalías.\\
 	\indent Los métodos heurísticos que se utilizaron en la propuesta fueron \textbf{Z-THRESH}, \textbf{Z-DIFF} y \textbf{G-ZERO}.
-	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado los
+	Estos solo hacen uso de las lecturas del \textbf{acelerómetro} para determinar la existencia de una anomalía. Por otro lado, los
 	métodos de aprendizaje de máquinas que se probaron fueron \textbf{DBSCAN}, \textbf{OPTICS} y \textbf{One Class SVM} utilizando 
 	6 características, las lecturas de los 3 ejes del \textbf{acelerómetro}, y además las lecturas de los 3 ejes del \textbf{giroscopio}.
-	Este último sensor se incluyó pues se consideró que sus lecturas pueden ser significativas a la hora de determinar la existencia de una 
+	Este último sensor se incluyó, pues se consideró que sus lecturas pueden ser significativas a la hora de determinar la existencia de una 
 	anomalía. Este proceso de detección de anomalías se aplicó a cada una de las series temporales obtenidas como resultado del muestreo
 	de los sensores del dispositivo móvil.
 
 \section{Etiquetado de anomalías}
-	Luego de haber detectado las anomalías es necesario llevar a cabo un proceso de etiquetado para poder utilizar los datos en la siguiente
+	Luego de haber detectado las anomalías, es necesario llevar a cabo un proceso de etiquetado para poder utilizar los datos en la siguiente
 	fase de la propuesta. Para esto se utilizaron las anomalías extraídas de la serie temporal y una lista de marcas. Estas marcas se realizaron
 	manualmente a lo largo de la misma ruta con la cual se generaron las series temporales e indican la presencia de un bache en cierta
 	ubicación, con coordenadas de latitud-longitud.\\
@@ -188,7 +188,7 @@
 
 \section{Selección de características}
 	Ya con los datos etiquetados, lo próximo que se propuso fue llevar a cabo un proceso de selección de características utilizando métodos como
-	\emph{Forward Selection}, \emph{Backward Selection} y \emph{Recursive Feedback Elimination}. De esta forma, se podrían determinar cuales de las 
+	\emph{Forward Selection}, \emph{Backward Selection} y \emph{Recursive Feedback Elimination}. De esta forma, se podrían determinar cuáles de las 
 	características que posee nuestro juego de datos son mejores para predecir si una anomalía es bache o no bache. Con lo cual se podría determinar
 	automáticamente la existencia de un bache en la carretera.
 
@@ -196,9 +196,9 @@
 	Una vez se sabe que características son las mejores para predecir si una anomalía es bache o no, se llevó a cabo un proceso de selección de
 	modelo. La métrica de evaluación que se escogió fue el \emph{F1 score} porque se consideró que un equilibrio entre \emph{precision} y
 	\emph{recall} es más relevante que el \emph{accuracy} para el problema en cuestión. Este proceso de selección de modelo tiene el
-	objetivo de determinar entre varios modelos definidos cual obtiene mejor rendimiento con respecto a la métrica seleccionada utlizando los datos
+	objetivo de determinar entre varios modelos definidos cuál obtiene mejor rendimiento con respecto a la métrica seleccionada utilizando los datos
 	del problema. Los modelos entre los cuales se propuso escoger son: \textbf{KNN}, árboles de decisión, \emph{Random Forest}, regresión logística y
 	\textbf{SVM}.\\
 	\indent Junto con este proceso de selección de modelo también se llevó a cabo una selección de hiperparámetros que permita determinar con
-	cuales de estos el modelo arroja mejores resultados. Finalmente, se evaluó el rendimiento del modelo analizando el comportamiento de la métrica
+	cuáles de estos el modelo arroja mejores resultados. Finalmente, se evaluó el rendimiento del modelo analizando el comportamiento de la métrica
 	de evaluación en un conjunto de prueba.
