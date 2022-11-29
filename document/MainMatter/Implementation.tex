@@ -418,8 +418,16 @@
 		\caption{Visualización de la ubicación de algunas de las predicciones realizadas por el modelo con mejor \emph{F1 score} en el conjunto de prueba.}
 		\label{fig:14}
 	\end{figure}
-	
-	La configuración con la cual se obtuvo mejores resultados utilizó \textbf{DBSCAN} para detectar las anomalías y como modelo
-	supervisado \textbf{SVM}, con kernel rbf, $\gamma$ = 0.1, C = 50  y datos estandarizados. Las características seleccionadas fueron: 
-	X Accel, X Gyro,  X / Z, MinZratio, MedianDevAccelY, MeanDevGyroZ. La configuración exacta con la que se obtuvo este resultado se
-	puede observar en la tabla \ref{table:27}. El modelo alcanzó un \emph{F1 score} de 0.68 y un \emph{accuracy} de 0.70.
+
+	\subsection{Discusión de los resultados}
+		Los resultados obtenidos durante el proceso de experimentación son alentadores teniendo en cuenta varios aspectos que pueden haber influido negativamente.
+		Entre dichos aspectos está: la naturaleza contaminada de los datos obtenidos a partir del muestreo de los sensores, la forma en la que se fijó el
+		dispositivo móvil para recopilar los datos y el poco tiempo del cual se dispuso para llevar a cabo los experimentos.
+
+		La configuración con la cual se obtuvo mejores resultados utilizó \textbf{DBSCAN} para detectar las anomalías y como modelo
+		supervisado \textbf{SVM}, con kernel rbf, $\gamma$ = 0.1, C = 50  y datos estandarizados. Las características seleccionadas fueron: 
+		X Accel, X Gyro, X / Z, MinZratio, MedianDevAccelY y MeanDevGyroZ. La configuración exacta con la que se obtuvo este resultado se
+		puede observar en la tabla \ref{table:27}. El modelo alcanzó un \emph{F1 score} de 0.68 y un \emph{accuracy} de 0.70.
+
+		A pesar de los resultados obtenidos, debido a la poca cantidad de datos con las que se contó, se considera necesario contrastarlos con un juego de datos mucho más
+		grande. Además, se debe explorar más en detalle otras posibles configuraciones de hiperparámetros para los modelos.
